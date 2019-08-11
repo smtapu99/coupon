@@ -1,0 +1,136 @@
+<%- if coupons.present? -%>
+  <!-- .featured__list -->
+
+  <div class="<%= widget.width == '33' ? 'col-lg-4 w-featured__list--33' : nil %> w-featured__list<%= ' last-chance-widget' if widget.featured_coupons_type == ' last_chance' %> <%= hide_featured_class(values) %>">
+
+    <div class="row">
+
+      <div class="col">
+
+        <h2 class="w-featured__headline h2"><%= values[:title].present? ? values[:title] : category.present? ? category.name : '' %></h2>
+
+        <% if widget.width != '33' %>
+
+          <%- if widget.featured_coupons_type == 'last_chance' -%>
+
+            <a href="<%= dynamic_url_for('coupons', 'index', type: 'expiring') %>" class="w-featured__more-link"><%= t(:VIEW_ALL, default: 'View all') %>
+              <i class="icon-chevron-right"></i></a>
+
+          <%- elsif widget.featured_coupons_type == 'exclusive_coupons' -%>
+
+            <a href="<%= dynamic_url_for('coupons', 'index', type: 'exclusive') %>" class="w-featured__more-link"><%= t(:VIEW_ALL, default: 'View all') %>
+              <i class="icon-chevron-right"></i></a>
+
+          <%- elsif widget.featured_coupons_type == 'top_coupons' -%>
+
+            <a href="<%= dynamic_url_for('coupons', 'index', type: 'top') %>" class="w-featured__more-link"><%= t(:VIEW_ALL, default: 'View all') %>
+              <i class="icon-chevron-right"></i></a>
+
+          <%- elsif category.present? -%>
+
+            <a href="<%= dynamic_url_for('category', 'show', slug: category.slug) %>" class="w-featured__more-link"><%= t(:VIEW_ALL, default: 'View all') %>
+              <i class="icon-chevron-right"></i></a>
+
+          <%- end -%>
+
+        <% end %>
+
+      </div>
+
+    </div>
+
+    <div class="row">
+
+      <%- i = 1 -%>
+
+      <% no_skip = true %>
+
+      <%- coupons.each_with_index do |coupon, idx| -%>
+
+        <%- is_ad_code = values[:ad_code].present? && i == 2 -%>
+
+        <%- is_teaser = coupon.widget_or_shop_header.present? && values[:teaser_positions].reject(&:empty?).include?(i.to_s) || is_ad_code -%>
+
+        <%
+          if coupons.count > 3
+            is_last_coupon = [coupons.index(coupons[-1]) - 1, coupons.index(coupons[-1])].include?(idx)
+          else
+            is_last_coupon = coupons.index(coupons[-1]) == idx
+          end
+        %>
+
+        <% if no_skip %>
+
+          <div class="<%= widget.width == '33' ? 'col-lg-12 col-md-6 col-sm-12' : 'col-lg-4 col-md-6' %> <%= is_last_coupon ? 'd-md-none d-lg-block' : '' %> ">
+
+            <div class="w-featured__item <%= is_teaser ? 'w-featured__item--big' : 'w-featured__item--small' %><%= ' coupon-ads' if is_ad_code %>" data-shop-name="<%= coupon.shop.title %>">
+
+              <% next_coupon = coupons[idx + 1] %>
+
+              <%= render partial: "shared/featured_coupons_frame", locals: { coupon: coupon, is_ad_code: is_ad_code, i: i, is_teaser: is_teaser, widget: widget } %>
+
+              <% unless is_teaser %>
+
+                <% if next_coupon.present? %>
+
+                  <%= render partial: "shared/featured_coupons_frame", locals: { coupon: next_coupon, is_ad_code: is_ad_code, i: i, is_teaser: is_teaser, widget: widget } %>
+
+                  <% no_skip = false %>
+
+                <% end %>
+
+              <% end %>
+
+            </div>
+
+          </div>
+
+        <% else %>
+
+          <% no_skip = true %>
+
+        <% end %>
+
+        <% break if (is_teaser && i == 5) || i == 6 %>
+
+        <% i += is_teaser ? 2 : 1 %>
+
+      <%- end -%>
+
+      <div class="col">
+
+        <% if widget.width == '33' %>
+
+        <%- if widget.featured_coupons_type == 'last_chance' -%>
+
+          <a href="<%= dynamic_url_for('coupons', 'index', type: 'expiring') %>" class="w-featured__more-link"><%= t(:VIEW_ALL, default: 'View all') %>
+            <i class="icon-chevron-right"></i></a>
+
+        <%- elsif widget.featured_coupons_type == 'exclusive_coupons' -%>
+
+          <a href="<%= dynamic_url_for('coupons', 'index', type: 'exclusive') %>" class="w-featured__more-link"><%= t(:VIEW_ALL, default: 'View all') %>
+            <i class="icon-chevron-right"></i></a>
+
+        <%- elsif widget.featured_coupons_type == 'top_coupons' -%>
+
+          <a href="<%= dynamic_url_for('coupons', 'index', type: 'top') %>" class="w-featured__more-link"><%= t(:VIEW_ALL, default: 'View all') %>
+            <i class="icon-chevron-right"></i></a>
+
+        <%- elsif category.present? -%>
+
+          <a href="<%= dynamic_url_for('category', 'show', slug: category.slug) %>" class="w-featured__more-link"><%= t(:VIEW_ALL, default: 'View all') %>
+            <i class="icon-chevron-right"></i></a>
+
+        <%- end -%>
+
+      <% end %>
+
+      </div>
+
+    </div>
+
+  </div>
+
+<%- end -%>
+
+<!-- .featured__list -->

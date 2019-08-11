@@ -1,0 +1,105 @@
+<div class="col-sm-12 col-md-6" id="visibility">
+
+  <div class="box bordered-box purple-border <%= 'box-collapsed' unless session[:last_setting] == 'visibility' %>">
+
+    <div class="box-header purple-background">
+
+      <div class="title">
+
+        <i class="icon-eye-open"></i>
+
+        Visibility Settings
+
+      </div>
+
+      <div class="actions">
+
+        <a class="btn box-collapse btn-xs btn-link" href="#">
+
+          <i></i>
+
+        </a>
+
+      </div>
+
+    </div>
+
+    <div class="box-content">
+
+      <%= form_for [:admin, @setting], method: :patch, html: {class: 'form form-horizontal', style: 'margin-bottom: 0'} do |f| %>
+
+        <%= hidden_field_tag :option_type, 'visibility' %>
+
+        <%= fields_for :visibility, @setting.visibility do |ff| %>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.check_box :coupon_properties, { checked: ff.object.nil? || ff.object.coupon_properties.nil? ? true : !ff.object.coupon_properties.to_i.zero? } %>
+
+              <%= ff.label :coupon_properties, 'Show Coupon Properties' %>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.check_box :coupon_description, { checked: ff.object.nil? || ff.object.coupon_description.nil? ? true : !ff.object.coupon_description.to_i.zero? } %>
+
+              <%= ff.label :coupon_description, 'Show Read More/Less Coupon Description' %>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.check_box :site_header, { checked: ff.object.nil? || ff.object.site_header.nil? ? true : !ff.object.site_header.to_i.zero? } %>
+
+              <%= ff.label :site_header, 'Show Old Site Header?' %>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.check_box :shop_header, { checked: ff.object.nil? || ff.object.shop_header.nil? ? true : !ff.object.shop_header.to_i.zero? } %>
+
+              <%= ff.label :shop_header, 'Show Old Shop Header?' %>
+
+            </div>
+
+          </div>
+
+          <div class="form-actions form-actions-padding-sm">
+
+            <div class="row">
+
+              <div class="col-md-2">
+
+                <%= f.submit 'Save', class: 'btn btn-primary btn-block' %>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        <% end %>
+
+      <% end %>
+
+    </div>
+
+  </div>
+
+</div>

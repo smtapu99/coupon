@@ -1,0 +1,63 @@
+<div class="widget widget--summary">
+
+  <% if !without_h2 %>
+
+    <h2><%= t(:HEADER_BEST_DEALS_AND_COUPONS_SUMMARY, default: t(:BEST_DEALS_IN_SHOP, default: 'BEST_DEALS_IN_SHOP')).gsub('{shop}', title) %></h2>
+
+  <% end %>
+
+  <ul class="list-unstyled">
+
+    <%- coupons.take(2).each do |coupon| -%>
+
+      <li><%= anchorize_title(coupon.title, "#coupon-#{coupon.id}") %></li>
+
+    <%- end -%>
+
+  </ul>
+
+  <%- if counts.present? -%>
+
+    <table class="table">
+
+      <%- counts.keys.each do |key| -%>
+
+        <%- next unless counts.value_of_interest?(key) -%>
+
+        <tr>
+
+          <%- if key.to_sym == :total -%>
+
+            <td><%= t(:SUMMARY_VERIFIED, default: 'SUMMARY_VERIFIED') %></td>
+
+            <td><%= counts.count(:total) %></td>
+
+          <%- else -%>
+
+            <td><%= t("SUMMARY_#{key.to_s.upcase}", default: "SUMMARY_#{key.to_s.upcase}") %></td>
+
+            <td><%= counts.count(key) %></td>
+
+          <%- end -%>
+
+        </tr>
+
+      <%- end -%>
+
+      <%- if best.discount.present? -%>
+
+        <tr>
+
+          <td><%= t(:SUMMARY_BEST_DISCOUNT, default: 'SUMMARY_BEST_DISCOUNT') %></td>
+
+          <td><%= best.discount %></td>
+
+        </tr>
+
+      <%- end -%>
+
+    </table>
+
+  <%- end -%>
+
+</div>

@@ -1,0 +1,18 @@
+<div class="coupon-cta">
+
+    <span <%= clickout_params_for_element(coupon) %> class="clickout">
+
+      <% if coupon.coupon_type == 'coupon' && coupon.code.present? %>
+
+        <span class="o-button c-button"><%= coupon_code_btn_text(coupon) %> <span class="code">***</span></span>
+
+      <%- else -%>
+
+        <span class="o-button"><%= coupon_btn_text(coupon) %></span>
+
+      <%- end -%>
+
+    </span>
+
+</div>
+

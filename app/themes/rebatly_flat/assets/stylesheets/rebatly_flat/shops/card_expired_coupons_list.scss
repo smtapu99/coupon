@@ -1,0 +1,40 @@
+.pannacotta {
+  &.card-expired-coupons-list {
+    .card-content {
+      ol {
+        margin-bottom: 0;
+
+        li {
+          border-bottom: 1px solid $color-border;
+          color: $color-subheadline;
+          font-size: 14px;
+          font-weight: lighter;
+
+          h4 {
+            color: $color-subheadline;
+            font-size: 14px;
+            display: inline;
+            font-weight: lighter;
+          }
+
+          &:last-child {
+            border-bottom: none;
+          }
+
+          > div {
+            @include flat-anchor($color-subheadline, darken($color-sky, 10%));
+
+            border: none;
+            display: block;
+            padding: 25px;
+          }
+
+          span {
+            font-weight: bold;
+            margin-right: 30px;
+          }
+        }
+      }
+    }
+  }
+}

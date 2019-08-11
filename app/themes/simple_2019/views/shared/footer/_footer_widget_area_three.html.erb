@@ -1,0 +1,45 @@
+<!-- .f-widget .f-widget-three -->
+
+<div class="f-widget">
+
+  <div class="f-widget__header">
+
+    <h4 class="f-widget__title"><%= t(:CONTACT, default: 'Stay in Contact') %></h4>
+
+  </div>
+
+  <div class="f-widget__content">
+
+    <ul class="f-widget__list">
+
+      <li class="f-widget__item">
+
+        <%= link_to t(:REPORT_OFFER, default: 'Report an Offer'), url_for(send("report_#{@site.site.id}_path")), rel: 'nofollow' %>
+
+      </li>
+
+      <li class="f-widget__item">
+
+        <%= link_to t(:BECOME_A_PARTNER, default: 'Be our Partner'), url_for(send("partner_#{@site.site.id}_path")), rel: 'nofollow' %>
+
+      </li>
+
+      <li class="f-widget__item">
+
+        <%= link_to t(:CONTACT, default: 'Talk to Us'), url_for(send("contact_#{@site.site.id}_path")), rel: 'nofollow' %>
+
+      </li>
+
+      <li class="f-widget__item f-widget__item--no-bullet">
+
+        <%= button_tag t(:HOW_TO_USE, default: 'How to Use'), class: 'f-widget__help-btn', type: 'button', data: {modal: 'help'} %>
+
+      </li>
+
+    </ul>
+
+  </div>
+
+</div>
+
+<!-- ./f-widget.f-widget-three -->

@@ -1,0 +1,15 @@
+@critical popular-shops.css {
+  .popular-shops {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding-left: 0;
+    list-style-type: none;
+
+    &__item {
+      flex: 0 0 20%;
+      max-width: 20%;
+      padding: 5px;
+    }
+  }
+}

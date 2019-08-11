@@ -1,0 +1,61 @@
+<div class="subpage-teaser" id="subpage-teaser<%= "-" + order_number.to_s if defined?(order_number) %>">
+
+  <div class="container">
+
+    <div class="subpage-teaser__header">
+
+      <h3 class="section-header section-header--inverse"><%= values[:title] %></h3>
+
+      <h4 class="section-subheader"><%= values[:subtitle] %></h4>
+
+      <%- if values[:image_url].present? -%>
+
+      <img class="subpage-teaser__label" src="<%= values[:image_url] %>" alt="Label: <%= values[:title] %>">
+
+      <%- end -%>
+
+    </div>
+
+  </div>
+
+  <div class="subpage-teaser__wrapper">
+
+    <div class="container">
+
+      <div class="row">
+
+        <%- values[:subpage_teaser].each do |teaser| -%>
+
+        <%- next unless teaser[:url].present? -%>
+
+        <div class="col-md-4">
+
+          <a class="subpage-teaser__item" href="<%= teaser[:url] %>">
+
+            <div class="subpage-teaser__picture" style="background-image: url(<%= teaser[:image_url] %>)">
+
+              <%- if teaser[:icon_url].present? -%>
+
+              <div class="subpage-teaser__overlay"></div>
+
+              <img class="subpage-teaser__icon" src="<%= teaser[:icon_url] %>" alt="Icon: <%= values[:title] %>">
+
+              <%- end -%>
+
+            </div>
+
+            <div class="subpage-teaser__text"><%= teaser[:title] %></div>
+
+          </a>
+
+        </div>
+
+        <%- end -%>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

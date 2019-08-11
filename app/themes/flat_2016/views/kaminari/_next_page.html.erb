@@ -1,0 +1,9 @@
+<% unless current_page.last? %>
+
+  <li>
+    
+    <%= link_to '<span aria-hidden="true"><i class="roberto roberto-chevron-right"></i></span>'.html_safe, url, {'aria-label'.to_sym => t(:PREVIOUS, default: 'Previous'), :rel => 'next', :remote => remote} %>
+
+  </li>
+  
+<% end %>

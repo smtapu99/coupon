@@ -1,0 +1,68 @@
+<div class="container">
+
+  <div class="hero">
+
+    <div class="row">
+
+      <div class="col-md-10 col-md-offset-1 col-sm-8 col-sm-offset-2">
+
+        <%- if @campaign.h1_first_line.present? -%>
+
+          <div class="text-center hero__header">
+
+            <div class="hero__header-shadow"></div>
+
+            <div class="hero__header-border"></div>
+
+            <h1 class="hero__h1"><%= @campaign.h1_first_line.html_safe %>
+              <br> <%= "#{@campaign.h1_second_line.html_safe}" %></h1>
+
+            <div class="hero__discount">
+
+              <div class="hexagon hexagon--small">
+
+                <svg class="hexagon__img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 135.82861 117.63104">
+                  <path d="M98.985 112.63h-62.14L5.774 58.817 36.844 5h62.14l31.07 53.816z" fill="none" stroke="#000" stroke-width="8"/>
+                </svg>
+
+                <span class="hexagon__num">%</span>
+
+              </div>
+
+              <div class="hexagon hexagon--mid">
+
+                <svg class="hexagon__img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 135.82861 117.63104">
+                  <path d="M98.985 112.63h-62.14L5.774 58.817 36.844 5h62.14l31.07 53.816z" fill="none" stroke="#000" stroke-width="8"/>
+                </svg>
+
+                <span class="hexagon__num">-30</span>
+
+              </div>
+
+              <div class="hexagon hexagon--big">
+
+                <svg class="hexagon__img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 135.82861 117.63104">
+                  <path d="M98.985 112.63h-62.14L5.774 58.817 36.844 5h62.14l31.07 53.816z" fill="none" stroke="#000" stroke-width="8"/>
+                </svg>
+
+                <span class="hexagon__num">-80</span>
+
+              </div>
+
+            </div>
+
+            <a href="#hot-offers" class="hero__get-the-deals">
+              <span><%= t(:hero_cta, default: 'GET THE DEALS!') %></span>
+            </a>
+
+          </div>
+
+        <%- end -%>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

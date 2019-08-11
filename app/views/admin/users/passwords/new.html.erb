@@ -1,0 +1,53 @@
+<div class="login-container">
+
+  <div class="container">
+
+    <div class="row">
+
+      <div class="col-sm-4 col-sm-offset-4">
+
+        <h1 class="text-center title">Forgot your password?</h1>
+
+        <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: {method: :post}) do |f| %>
+
+          <%= devise_error_messages! %>
+
+          <div class="form-group">
+
+            <div class="controls with-icon-over-input">
+
+              <%= f.email_field :email, autofocus: true, class: 'form-control', placeholder: 'E-mail' %>
+
+              <i class="icon-user text-muted"></i>
+
+            </div>
+
+          </div>
+
+          <%= f.submit 'Send me reset password instructions', class: 'btn btn-block' %>
+
+        <% end %>
+
+        <%= render 'admin/users/shared/links' %>
+
+        <!-- <div class="text-center">
+
+          <hr class="hr-normal">
+
+          <a href="sign_in.html">
+
+            <i class="icon-chevron-left"></i>
+
+            I already know my password
+
+          </a>
+
+        </div> -->
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

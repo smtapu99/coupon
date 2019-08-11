@@ -1,0 +1,21 @@
+<% if query.present? %>
+
+  <p class="alert alert-info alert--center">
+
+    <%= t(:SORRY_ALL_OUR_COUPONS_FOR_SEARCH_QUERY_ARE_GONE, default: 'Sorry! All our coupons for {search_query} are gone').gsub('{search_query}', "<b>#{query}</b>").html_safe %>
+
+  </p>
+
+  <script type="text/javascript">
+    if(typeof dataLayer != 'undefined') {
+      dataLayer.push({
+        'event': 'no_result_search',
+        'eventCategory': 'no_result_search',
+        'eventAction': '<%= query %>'
+      });
+    }
+  </script>
+
+<% end %>
+
+<%= render partial: 'coupons/shared/card_coupons_list', locals: { coupons: top_coupons, hide_pagination: true } if top_coupons.present? %>

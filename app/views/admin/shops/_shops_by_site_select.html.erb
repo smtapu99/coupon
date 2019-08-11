@@ -1,0 +1,9 @@
+<%- if sites.present? %>
+
+  <%= select_tag request.referrer.include?('coupons') ? 'coupon[shop_ids]' : 'shop[shop_ids]', option_groups_from_collection_for_select(sites, :active_shops, :name, :id, :title), multiple: true, class: 'select2 form-control' %>
+
+<% else %>
+
+  <%= select_tag request.referrer.include?('coupons') ? 'coupon[shop_ids]' : 'shop[shop_ids]', [], multiple: true, class: 'select2 form-control' %>
+
+<% end %>

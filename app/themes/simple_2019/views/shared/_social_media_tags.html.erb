@@ -1,0 +1,75 @@
+<!-- Social Media Tags -->
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary"/>
+
+<meta name="twitter:url" content="<%= original_url_with_custom_protocol %>">
+
+<%- if Setting::get('publisher_site.twitter_site').present? -%>
+
+  <meta name="twitter:site" content="<%= Setting::get('publisher_site.twitter_site') %>"/>
+
+<%- end -%>
+
+<% if content_for?(:social_image) %>
+
+   <meta name="twitter:image" content="<%= yield(:social_image) %>" />
+
+<%- end -%>
+
+<% if content_for?(:title) %>
+
+  <meta name="twitter:title" content="<%= yield(:title) %>"/>
+
+<%- end -%>
+
+<% if content_for?(:description) %>
+
+    <meta name="twitter:description" content="<%= yield(:description) %>">
+
+<%- end -%>
+
+<!-- Facebook -->
+
+<%- if (app_id = Setting::get('publisher_site.facebook_app_id', default: nil)).present? -%>
+
+  <meta property="fb:app_id" content="<%= app_id %>"/>
+
+<%- end -%>
+
+<%- if (admin_ids = Setting::get('publisher_site.facebook_admin_ids', default: nil)).present? -%>
+
+  <meta property="fb:admins" content="<%= admin_ids %>"/>
+
+<%- end -%>
+
+<meta property="og:url" content="<%= original_url_with_custom_protocol %>">
+
+<meta property="og:type" content="website"/>
+
+<% if content_for?(:title) %>
+
+  <meta property="og:title" content="<%= yield(:title) %>"/>
+
+<%- end -%>
+
+<% if content_for?(:description) %>
+
+    <meta property="og:description" content="<%= yield(:description) %>">
+
+<%- end -%>
+
+<% if content_for?(:social_image) %>
+
+   <meta property="og:image" content="<%= yield(:social_image) %>" />
+
+<%- end -%>
+
+<%- if Setting::get('publisher_site.facebook_site').present? -%>
+
+  <meta property="og:site_name" content="<%= Setting::get('publisher_site.facebook_site') %>" />
+
+<%- end -%>
+
+<meta property="og:locale" content="<%= I18n.locale %>" />
+

@@ -1,0 +1,57 @@
+<div class="modal-header border-top-ashes text-right">
+
+  <button aria-label="<%= t(:CLOSE, default: 'Close') %>" class="btn btn-white close" data-dismiss="modal" type="button">
+
+      <span aria-hidden="true">
+
+        <i class="roberto roberto-remove"></i>
+
+      </span>
+
+  </button>
+
+</div>
+
+<!-- modal-header -->
+
+<div class="modal-body text-center">
+
+  <h2 style="margin-top: 0px;"><%= t(:HELP_YOU_FRIENDS_TO_SAVE_MONEY, default: 'Help your friends save money!') %></h2>
+
+  <p style="margin-bottom: 20px;"><%= t(:CHOOSE_HOW_YOU_WANT_TO_SHARE_THIS_COUPON, default: "Choose how you want to share this coupon:") %></p>
+
+  <ul class="list-inline list-steps list-unstyled" data-event-category="coupon-share">
+
+      <li class="with-icon with-icon-facebook">
+
+        <a data-event-action="facebook" href="https://www.facebook.com/sharer/sharer.php?u=<%= dynamic_url_for('shops', 'show', slug: @coupon.shop.slug, only_path: false) %>#<%= @coupon.id %>" target="_blank">
+
+          <i class="fa fa-facebook"></i>
+
+        </a>
+
+      </li>
+
+      <li class="with-icon with-icon-twitter">
+
+        <a data-event-action="twitter" href="http://twitter.com/home?status=<%= dynamic_url_for('shops', 'show', slug: @coupon.shop.slug, only_path: false) %>#<%= @coupon.id %>" target="_blank">
+
+          <i class="fa fa-twitter"></i>
+
+        </a>
+
+      </li>
+
+      <li class="with-icon with-icon-google">
+
+        <a data-event-action="google" href="https://plus.google.com/share?url=<%= dynamic_url_for('shops', 'show', slug: @coupon.shop.slug, only_path: false) %>#<%= @coupon.id %>" target="_blank">
+
+          <i class="fa fa-google"></i>
+
+        </a>
+
+      </li>
+
+  </ul>
+
+</div>

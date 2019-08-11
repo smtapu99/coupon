@@ -1,0 +1,17 @@
+
+<% if ancestor.errors.present? %>
+<div class="col-xs-12">
+  <div class="alert alert-danger">
+    <h4>
+      <i class="icon-remove-sign"></i>
+      Error
+    </h4>
+    <ul>
+      <% ancestor.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+<% end %>
+

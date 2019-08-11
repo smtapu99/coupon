@@ -1,0 +1,45 @@
+<h3><b><%= t '404_HEADLINE'.to_sym, default: '404_HEADLINE' %></b></h3>
+
+<p><%= t '404_PAGETEXT'.to_sym, default: '404_PAGETEXT' %></p>
+
+<% if @coupons.present? %>
+
+  <div class="box">
+
+    <div class="box-header bg-<%= Setting.default_widget_header_or 'cloud' %>">
+
+      <h2><i class="picon picon-coupons"></i> <%= t '404_BOX_HEADLINE'.to_sym, default: '404_BOX_HEADLINE' %></h2>
+
+    </div>
+
+    <!-- /.box-header bg-<%= Setting.default_widget_header_or 'cloud' %> -->
+
+    <div class="box-content">
+
+      <%= render partial: 'coupons/coupons_list', locals: {coupons: @coupons} %>
+
+    </div>
+
+    <!-- /.box-content -->
+
+  </div>
+
+  <!-- /.box -->
+
+<% else %>
+
+  <div class="alert alert-warning">
+
+    <%= t :THEIRS_NO_COUPON, default: 'THEIRS_NO_COUPON' %>
+
+  </div>
+
+  <!-- /.alert alert-warning -->
+
+<% end %>
+
+<% content_for :sidebar do %>
+
+  &nbsp;
+
+<% end %>

@@ -1,0 +1,132 @@
+<%- return if error == true -%>
+
+<div class="hot-offers" id="hot-offers<%= "-" + order_number.to_s if defined?(order_number) %>">
+
+  <div class="container">
+
+    <div class="row">
+
+      <div class="hot-offers__header">
+
+        <h3 class="section-header "><%= values[:title] %></h3>
+
+        <%- if (values[:subtitle].present?) -%>
+
+          <h4 class="section-subheader"><%= values[:subtitle] %></h4>
+
+        <%- end -%>
+
+      </div>
+
+      <div class="hot-offers__offers">
+
+        <%- for offer in hot_offers -%>
+
+          <%- coupon = offer[:coupon] -%>
+
+          <%- next unless coupon.present? -%>
+
+          <div class="<%= hot_offer_size(offer[:size]) %>" <%= clickout_params_for_element(coupon) %>>
+
+            <div class="offer <%= hot_offer_modifiers(offer) %>">
+
+              <div class="offer__img" style="background-image: url(<%= offer[:image] %>)"></div>
+
+              <div class="offer__inner">
+
+                <div class="offer__head">
+
+                  <%- if offer[:hide_logo] != 'on' -%>
+
+                    <img
+                      class="offer__vendor <%= 'offer__vendor--transparent' if offer[:logo_bg_transparent] %>"
+                      <%= "style='background:#{offer[:logo_bg_color]}'".html_safe if offer[:logo_bg_color].present? %>
+                      alt="<%= coupon.title %>" src="<%= coupon.shop.logo_url('_110x110') %>">
+
+                  <%- end -%>
+
+                  <% if coupon.has_savings? %>
+
+                    <div class="offer__discount">
+
+                      <svg class="offer__discount-tag" version="1.1" width="104" height="28"
+
+                           xmlns="http://www.w3.org/2000/svg">
+
+                        <path d="M104 0H0l14 14L0 28h104L90 14l14-14z" fill="#3E75D1"></path>
+
+                      </svg>
+
+                      <span class="offer__discount-value">
+
+                        <%= savings_in_string(coupon, false) %>
+
+                      </span>
+
+                    </div>
+
+                  <% end %>
+
+                </div>
+
+                <div class="offer__body">
+
+                  <div class="offer__information">
+
+                    <%- if coupon.title.length > 48 && offer[:size] == 'small' -%>
+
+                      <div class="offer__name"><span class="offer__backing"><%= coupon.title[0..45] %>...</span></div>
+
+                    <%- elsif coupon.title.length > 80 -%>
+
+                      <div class="offer__name"><span class="offer__backing"><%= coupon.title[0..80] %>...</span></div>
+
+                    <%- else -%>
+
+                      <div class="offer__name"><span class="offer__backing"><%= coupon.title %></span></div>
+
+                    <%- end -%>
+
+                    <%- if coupon.description.present? && coupon.description.length > 58 && offer[:size] == 'small' -%>
+
+                      <div class="offer__description">
+                        <span class="offer__backing"><%= strip_tags(coupon.description[0..55]) %>...</span>
+                      </div>
+
+                    <%- elsif coupon.description.present? && coupon.description.length > 80 -%>
+
+                      <div class="offer__description">
+                        <span class="offer__backing"><%= strip_tags(coupon.description[0..80]) %>...</span>
+                      </div>
+                    <%- else -%>
+
+                      <div class="offer__description">
+                        <span class="offer__backing"><%= strip_tags(coupon.description) %></span>
+                      </div>
+                    <%- end -%>
+
+                    <span class="btn offer__cta"><%= t("grab_it", default: 'GRAB IT') %></span>
+
+                  </div>
+
+                </div>
+
+                <!-- ./offer offer--left-align -->
+
+              </div>
+
+            </div>
+
+          </div>
+
+        <%- end # for offers in hot_offers -%>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- ./hot-offers -->

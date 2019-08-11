@@ -1,0 +1,40 @@
+<% if params[:controller] == 'shops' %>
+
+  <% if coupon.use_logo_on_shop_page && coupon.try(:logo_url, '_110x110') %>
+
+    <div class="coupon__logo">
+
+      <%= image_tag "", data: { normal: coupon.logo_url('_110x110') }, class: 'img-responsive', alt: coupon.title %>
+
+    </div>
+
+  <% else %>
+
+    <div class="coupon__logo coupon__logo--bg <%= coupon.is_exclusive ? 'coupon__logo--exclusive' : '' %>">
+
+      <% if coupon.logo_text_first_line.present? && coupon.logo_text_second_line.present? %>
+
+        <span class="coupon__amount" style="width: 90px; display: block"><%= strip_tags(coupon.logo_text_first_line).html_safe %></span>
+
+        <span class="coupon__type" style="width: 90px; display: block"><%= coupon.logo_text_second_line %></span>
+
+      <% else %>
+
+        <% default_texts = default_logo_texts(coupon) %>
+
+        <span class="coupon__amount" style="width: 90px; display: block"><%= default_texts[:first_line] %></span>
+
+        <span class="coupon__type" style="width: 90px; display: block"><%= default_texts[:second_line] %></span>
+
+      <% end %>
+
+    </div>
+
+  <% end %>
+
+<% else %>
+
+  <%= render partial: 'shops/shared/coupon_list_shop_logo', locals: { shop: coupon.shop, height: 100, width: 100 } %>
+
+<% end %>
+

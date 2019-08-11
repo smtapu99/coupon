@@ -1,0 +1,154 @@
+@font-face {
+  font-family: 'simple';
+  src:
+    url('https://static.savings-united.com/pc/assets/simple_2019/simple.ttf') format('truetype'),
+    url('https://static.savings-united.com/pc/assets/simple_2019/simple.woff') format('woff'),
+    url('https://static.savings-united.com/pc/assets/simple_2019/simple.svg') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: auto;
+}
+
+i[class^='icon-'] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'simple' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.icon-clock:before {
+  content: "\e925";
+}
+.icon-travel:before {
+  content: "\e920";
+}
+.icon-desktop:before {
+  content: "\e921";
+}
+.icon-pet:before {
+  content: "\e922";
+}
+.icon-music:before {
+  content: "\e923";
+}
+.icon-photo:before {
+  content: "\e924";
+}
+.icon-banking:before {
+  content: "\e91f";
+}
+.icon-book:before {
+  content: "\e91e";
+}
+.icon-car:before {
+  content: "\e91d";
+}
+.icon-adult:before {
+  content: "\e91b";
+}
+.icon-dice:before {
+  content: "\e91c";
+}
+.icon-armchair:before {
+  content: "\e900";
+}
+.icon-bag:before {
+  content: "\e901";
+}
+.icon-baggage:before {
+  content: "\e902";
+}
+.icon-bread:before {
+  content: "\e903";
+}
+.icon-check:before {
+  content: "\e904";
+}
+.icon-chevron-down:before {
+  content: "\e905";
+}
+.icon-chevron-right:before {
+  content: "\e906";
+}
+.icon-comb:before {
+  content: "\e907";
+}
+.icon-cross:before {
+  content: "\e908";
+}
+.icon-diaper:before {
+  content: "\e909";
+}
+.icon-double-chevron:before {
+  content: "\e90a";
+}
+.icon-dumbbell:before {
+  content: "\e90b";
+}
+.icon-thumb-down:before {
+  content: "\e90c";
+}
+.icon-thumb-up:before {
+  content: "\e90d";
+}
+.icon-headphones:before {
+  content: "\e90e";
+}
+.icon-house:before {
+  content: "\e90f";
+}
+.icon-info:before {
+  content: "\e910";
+}
+.icon-lens:before {
+  content: "\e911";
+}
+.icon-mask:before {
+  content: "\e912";
+}
+.icon-menu:before {
+  content: "\e913";
+}
+.icon-present:before {
+  content: "\e914";
+}
+.icon-star-empty:before {
+  content: "\e915";
+}
+.icon-star:before {
+  content: "\e916";
+}
+.icon-store:before {
+  content: "\e917";
+}
+.icon-t-shirt:before {
+  content: "\e918";
+}
+.icon-tag:before {
+  content: "\e919";
+}
+.icon-tools:before {
+  content: "\e91a";
+}
+.icon-kite:before {
+  content: "\e926";
+}
+.icon-car:before {
+  content: "\e91d"
+}
+.icon-folder:before {
+  content: "\e927"
+}
+.icon-click:before {
+  content: "\e928";
+}
+.icon-envelope:before {
+  content: "\e929";
+}

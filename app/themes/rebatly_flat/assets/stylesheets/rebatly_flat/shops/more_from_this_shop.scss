@@ -1,0 +1,7 @@
+.pannacotta {
+  &.more-from-this-shop, &.blog-posts {
+    ul li a {
+      @include flat-anchor($color-sky);
+    }
+  }
+}

@@ -1,0 +1,254 @@
+<% footer_campaigns = @site.footer_campaigns %>
+<% footer_shops = @site.footer_shops %>
+
+<div class="pannacotta" id="footer" role="contentinfo" data-event-category="footer">
+
+  <div class="container">
+
+    <div class="row" role="complementary">
+
+      <div class="col-sm-4 col-xs-12">
+
+        <div class="widget">
+
+          <div class="widget-header">
+
+            <h4 class="widget-title"><%= t(:CONTACT, default: 'Stay in Contact') %></h4>
+
+            <!-- /.widget-title -->
+
+          </div>
+
+          <!-- /.widget-header -->
+
+          <div class="widget-content">
+
+            <ul class="list-unstyled">
+
+              <li>
+
+                <span class="list-circle"></span>
+
+                <%= link_to t(:REPORT_OFFER, default: 'Report an Offer'), url_for(send("report_#{@site.site.id}_path")), rel: 'nofollow' %>
+
+              </li>
+
+              <li>
+
+                <span class="list-circle"></span>
+
+                <%= link_to t(:BECOME_A_PARTNER, default: 'Be our Partner'), url_for(send("partner_#{@site.site.id}_path")), rel: 'nofollow' %>
+
+              </li>
+
+              <li>
+
+                <span class="list-circle"></span>
+
+                <%= link_to t(:CONTACT, default: 'Talk to Us'), url_for(send("contact_#{@site.site.id}_path")), rel: 'nofollow' %>
+
+              </li>
+
+              <%- if footer_campaigns.present? && footer_campaigns.size == 1 -%>
+
+                <% campaign = footer_campaigns.first %>
+
+                <li>
+
+                  <span class="list-circle"></span>
+
+                  <%= link_to campaign.nav_title_or_name, dynamic_campaign_url_for(campaign) %>
+
+                </li>
+
+              <%- end -%>
+
+              <%- if footer_shops.present? && footer_shops.size == 1 -%>
+
+                <% shop = footer_shops.first %>
+
+                <li>
+
+                  <span class="list-circle"></span>
+
+                  <%= link_to shop.anchor_text_or_title, dynamic_url_for('shops', 'show', slug: shop.slug) %> |
+
+                </li>
+
+              <%- end -%>
+
+            </ul>
+
+            <!-- /.list-unstyled -->
+
+          </div>
+
+          <!-- /.widget-content -->
+
+        </div>
+
+        <!-- /.widget -->
+
+      </div>
+
+      <!-- /.col-sm-4 -->
+
+      <div class="col-sm-8 col-xs-12">
+
+        <div class="widget">
+
+          <div class="widget-header">
+
+            <h4 class="widget-title"><%= t(:PRESS, default: 'Press') %></h4>
+
+            <!-- /.widget-title -->
+
+          </div>
+
+          <!-- /.widget-header -->
+
+          <div class="widget-content">
+
+            <ul class="list-unstyled">
+
+              <% if Setting::get('legal_pages.imprint_url').present? %>
+
+                <li>
+
+                  <span class="list-circle"></span>
+
+                  <%= link_to t(:IMPRINT, default: 'Imprint'), Setting::get('legal_pages.imprint_url'), rel: 'nofollow' %>
+
+                </li>
+
+              <% end %>
+
+              <% if Setting::get('legal_pages.terms_and_conditions_url').present? %>
+
+                <li>
+
+                  <span class="list-circle"></span>
+
+                  <%= link_to t(:TERMS_AND_CONDITIONS, default: 'Terms of Use'), Setting::get('legal_pages.terms_and_conditions_url'), rel: 'nofollow' %>
+
+                </li>
+
+              <% end %>
+
+              <% if Setting::get('legal_pages.privacy_policy_url').present? %>
+
+                <li>
+
+                  <span class="list-circle"></span>
+
+                  <%= link_to t(:PRIVACY_POLICY, default: 'Privacy Policy'), Setting::get('legal_pages.privacy_policy_url'), rel: 'nofollow' %>
+
+                </li>
+
+              <% end %>
+
+              <% if Setting::get('legal_pages.cookie_policy_url').present? %>
+
+                <li>
+
+                  <span class="list-circle"></span>
+
+                  <%= link_to t(:COOKIE_POLICY, default: 'Cookie Policy'), Setting::get('legal_pages.cookie_policy_url'), rel: 'nofollow' %>
+
+                </li>
+
+              <% end %>
+
+              <% if Setting::get('legal_pages.faq_url').present? %>
+
+                <li>
+
+                  <span class="list-circle"></span>
+
+                  <%= link_to t(:FAQ, default: 'Faq'), Setting::get('legal_pages.faq_url'), rel: 'nofollow' %>
+
+                </li>
+
+              <% end %>
+
+            </ul>
+
+            <!-- /.list-unstyled -->
+
+          </div>
+
+          <!-- /.widget-content -->
+
+        </div>
+
+        <!-- /.widget -->
+
+      </div>
+
+      <%- if footer_campaigns.present? && footer_campaigns.size > 1 -%>
+
+          <div class="col-xs-12">
+
+            <%= render partial: 'shared/footer_campaigns', locals: { footer_campaigns: footer_campaigns } %>
+
+          </div>
+
+          <!-- /.col-xs-12 -->
+
+      <% end %>
+
+      <%- if footer_shops.present? && footer_shops.size > 1 -%>
+
+        <div class="col-xs-12">
+
+          <%= render partial: 'shared/footer_shops', locals: { footer_shops: footer_shops } %>
+
+        </div>
+
+        <!-- /.col-xs-12 -->
+
+      <% end %>
+
+    </div>
+
+    <!-- /.row -->
+
+    <%- disclaimer_text = Setting::get('publisher_site.disclaimer_text', default: nil) -%>
+
+    <%- if Setting::get('publisher_site.show_disclaimer', default: nil).to_i != 0 && disclaimer_text.present? -%>
+
+      <div class="row">
+
+        <div class="col-xs-12">
+
+          <div class="copyright">
+
+            <p class="text-center disclaimer">
+
+                <%= disclaimer_text.html_safe %>
+
+            </p>
+
+            <!-- /.text-center -->
+
+          </div>
+
+          <!-- /.copyright -->
+
+        </div>
+
+        <!-- /.col-xs-12 -->
+
+      </div>
+
+      <!-- /.row -->
+
+    <%- end -%>
+
+  </div>
+
+  <!-- /.container -->
+
+</div>
+
+<!-- /#footer.pannacotta -->

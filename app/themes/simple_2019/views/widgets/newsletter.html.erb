@@ -1,0 +1,37 @@
+<%- if Campaign.current.present? -%>
+
+  <%= render template: 'widgets/full-newsletter', locals: { values: values, site: site } -%>
+
+<%- else -%>
+
+  <div class="widget widget--newsletter w-newsletter">
+
+    <h3><%= t(:NEWSLETTER_SIGNUP, default: 'NEWSLETTER_SIGNUP') %></h3>
+
+    <span class="w-newsletter__subheader"><%= t(:SUBSCRIBE_TO_OUR_NEWSLETTER_AND_GET_DEALS, default: "Subscribe and receive our best deals instantly!") %></span>
+
+    <%= form_tag send("subscribe_#{site.site.id}_path"), method: :post, class: 'w-newsletter__form', role: 'form', remote: :true, data: { 'event-action' => 'form_submit' } do |f| %>
+
+      <%= email_field_tag :email, nil, class: 'w-newsletter__input', id: 'newsletter_email', placeholder: values[:placeholder], :required => true, "aria-label" => values[:placeholder] %>
+
+      <!-- /.form-group -->
+
+      <%= button_tag values[:button_text], class: 'btn w-newsletter__submit' %>
+
+      <p class="w-newsletter__privacy">
+
+        <%= label_tag :privacy_policy_sb, class: 'privacy-policy' do %>
+
+          <%= check_box_tag :privacy_policy_sb, '', false, :required => true %>
+
+          <%= t(:BY_SUBSCRIBING_YOU_ACCEPT_OUR_PRIVACY_POLICY, default: 'By subscribing you accept our <a href="%{policy_url}" rel="nofollow" target="_blank">privacy policy</a>', policy_url: policy_url).html_safe %>
+
+        <%- end -%>
+
+      </p>
+
+    <% end %>
+
+  </div>
+
+<%- end -%>

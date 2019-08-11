@@ -1,0 +1,121 @@
+.flyout {
+  position: fixed;
+  right: 0;
+  bottom: 175px;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  width: 535px;
+  height: 110px;
+  padding: 18px;
+  color: #FFF;
+  box-shadow: -5px 7px 17px rgba(0, 0, 0, 0.34);
+  transform: translateX(150%);
+  transition: transform ease-in-out 0.3s;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    padding: 11px;
+  }
+
+  &--visible {
+    transform: translateX(0);
+  }
+
+  &--default {
+    padding: 11px 40px 11px 11px;
+    background-color: $color-sky;
+
+    @media (max-width: 768px) {
+      padding: 11px;
+    }
+  }
+
+  &--first {
+    background-color: $color-ready;
+  }
+
+  &__logo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+
+    &--default {
+      flex: 1 0 83px;
+      height: 60px;
+      border-right: 2px solid #FFF;
+    }
+
+    &--first {
+      color: $color-ready;
+      background-color: #FFF;
+    }
+  }
+
+  &__amount {
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  &__text {
+    padding: 0 20px;
+    font-weight: 300;
+    font-size: 22px;
+    line-height: 1.4;
+    text-align: center;
+
+    @media (max-width: 768px) {
+      padding: 0 10px;
+      font-size: 16px;
+    }
+
+    &::first-line {
+      font-weight: 700;
+    }
+  }
+
+  &__clickout {
+    display: inline-block;
+    cursor: pointer;
+
+    &--default {
+      padding: 8px 16px;
+      font-weight: 700;
+      font-size: 11px;
+      line-height: 1;
+      white-space: nowrap;
+      text-align: center;
+      border: 1px solid white;
+      border-radius: 30px;
+
+      @media (max-width: 768px) {
+        padding: 8px;
+        font-size: 10px;
+      }
+
+      &:hover {
+        color: $color-sky;
+        background-color: #FFF;
+      }
+    }
+
+    &--first {
+      margin-right: 35px;
+
+      @media (max-width: 768px) {
+        margin-right: 0;
+      }
+
+      svg {
+        width: 48px;
+        height: auto;
+      }
+
+      &:hover {
+        filter: drop-shadow(0 0 3px rgb(255, 255, 255));
+      }
+    }
+  }
+}

@@ -1,0 +1,303 @@
+.footer {
+  $this: &;
+
+  &.footer--2019 {
+    margin-top: 60px;
+    padding: 20px 0 0;
+    background-color: #FFF;
+  }
+
+  a {
+    color: #FFF;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &__wrp {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  &__to-top {
+    position: absolute;
+    top: -65px;
+    right: 0;
+    display: block;
+    padding: 11px 20px;
+    background: $btn--info;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+
+    &:hover {
+      color: #FFF;
+      background-color: darken($btn--info, 10%);
+    }
+  }
+
+  &__back-wrp {
+    order: 1;
+    width: 20%;
+
+    @media (max-width: 768px) {
+      order: 2;
+      width: 100%;
+      margin-top: 10px;
+      text-align: center;
+    }
+  }
+
+  &__back-btn {
+    width: 100%;
+    max-width: 240px;
+    padding: 10px;
+    font-weight: 600;
+    font-size: 16px;
+    background-color: $btn--info;
+    border-radius: 9px;
+
+    &:hover {
+      color: #FFF;
+      background-color: darken($btn--info, 10%);
+    }
+  }
+
+  &__area-one {
+    order: 2;
+    width: 80%;
+    padding: 0 20px;
+
+    @media (max-width: 768px) {
+      order: 1;
+      width: 100%;
+      text-align: center;
+    }
+
+    a {
+      color: $font-color;
+    }
+  }
+
+  &__divider {
+    order: 3;
+    width: 100%;
+    height: 1px;
+    margin: 20px 0;
+    background-color: $btn--info;
+  }
+
+  &__area-empty {
+    order: 4;
+    width: 20%;
+  }
+
+  &__area-two {
+    order: 5;
+    width: 60%;
+    padding: 0 20px;
+
+    @media (max-width: 768px) {
+      width: 100%;
+      text-align: center;
+    }
+
+    a {
+      color: $font-color;
+    }
+  }
+
+  &__legal-pages {
+    margin-top: 7px;
+  }
+
+  &__logo {
+    order: 6;
+    width: 20%;
+
+    @media (max-width: 768px) {
+      width: 100%;
+      text-align: center;
+
+      a {
+        display: inline-block;
+      }
+    }
+
+    img {
+      max-width: 240px;
+    }
+  }
+
+  &__campaigns {
+    margin-top: 7px;
+    font-weight: 700;
+  }
+
+  &__bottom {
+    height: 20px;
+    margin-top: 20px;
+    background-color: $btn--info;
+  }
+
+  /* Custom styles Start */
+  &--second {
+    #{$this}__area-empty {
+      display: none;
+    }
+
+    #{$this}__logo {
+      order: 6;
+    }
+
+    #{$this}__area-two {
+      order: 5;
+      width: 80%;
+
+      @media (max-width: 768px) {
+        width: 100%;
+      }
+    }
+  }
+
+  &--third {
+    #{$this}__wrp {
+      flex-wrap: nowrap;
+      padding-bottom: 45px;
+
+      @media (max-width: 768px) {
+        flex-wrap: wrap;
+      }
+
+    }
+
+    #{$this}__back-wrp {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+    }
+
+    #{$this}__back-btn {
+      border-bottom-right-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+
+    #{$this}__area-empty {
+      display: none;
+    }
+
+    #{$this}__area-two {
+      order: 1;
+      width: 45%;
+
+      @media (max-width: 768px) {
+        width: 100%;
+      }
+    }
+
+    #{$this}__divider {
+      order: 2;
+      width: 10px;
+      height: auto;
+      margin: 0 10px;
+
+      @media (max-width: 768px) {
+        width: 100%;
+        height: 1px;
+        margin: 10px 0;
+      }
+    }
+
+    #{$this}__area-one {
+      order: 3;
+    }
+
+    #{$this}__logo {
+      order: 4;
+
+      @media (max-width: 768px) {
+        order: 0;
+      }
+    }
+
+    #{$this}__bottom {
+      margin-top: 0;
+    }
+  }
+
+  &--fourth {
+    #{$this}__wrp {
+      flex-wrap: nowrap;
+      padding-bottom: 45px;
+
+      @media (max-width: 768px) {
+        flex-wrap: wrap;
+      }
+    }
+
+    #{$this}__back-wrp {
+      position: absolute;
+      top: -64px;
+      bottom: auto;
+      left: 50%;
+      transform: translateX(-50%);
+
+      @media (max-width: 768px) {
+        top: -74px;
+      }
+    }
+
+    #{$this}__to-top {
+      top: auto;
+      right: 50%;
+      bottom: 0;
+      transform: translateX(50%);
+
+      @media (max-width: 768px) {
+        min-width: 200px;
+        text-align: center;
+      }
+    }
+
+    #{$this}__back-btn {
+      border-bottom-right-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+
+    #{$this}__logo {
+      order: 1;
+    }
+
+    #{$this}__area-one {
+      order: 2;
+    }
+
+    #{$this}__area-two {
+      order: 3;
+      width: 45%;
+
+      @media (max-width: 768px) {
+        width: 100%;
+      }
+    }
+
+    #{$this}__area-empty {
+      display: none;
+    }
+
+    #{$this}__divider {
+      display: none;
+
+      @media (max-width: 768px) {
+        display: block;
+      }
+    }
+
+    #{$this}__bottom {
+      margin-top: 0;
+    }
+  }
+
+  /* Custom styles End */
+}

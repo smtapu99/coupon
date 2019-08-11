@@ -1,0 +1,25 @@
+<!-- .f-widget.f-widget-four -->
+
+<div class="f-widget">
+
+  <div class="f-widget__header">
+
+    <a href="<%= Setting::get('publisher_site.external_logo_url', default: root_url) %>" class="f-widget__logo" rel="<%= Setting::get('publisher_site.external_logo_rel_attr', default: '') %>" title="<%= @site.site.name %>">
+
+      <% if @site.image_setting.logo_url.nil? %>
+
+        <%= image_tag "", data: { normal: 'flat_2016/site-logo.png' }, alt: @site.site.name, title: @site.site.name, height: 70 %>
+
+      <% else %>
+
+        <%= image_tag "", data: { normal: @site.image_setting.logo_url }, alt: @site.site.name, title: @site.site.name, height: 70 %>
+
+      <% end %>
+
+    </a>
+
+  </div>
+
+</div>
+
+<!-- ./f-widget.f-widget-four -->

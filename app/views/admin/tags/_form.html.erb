@@ -1,0 +1,88 @@
+
+<div class="col-sm-12">
+
+  <div class="box bordered-box blue-border">
+
+    <div class="box-header blue-background">
+
+      <div class="title">
+
+        <i class="icon-group"></i>
+
+        Tags Form
+
+      </div>
+
+    </div>
+
+    <div class="box-content">
+
+      <%= form_for [:admin, @tag], html: {class: 'form form-horizontal', style: 'margin-bottom: 0'} do |f| %>
+
+      <%= render partial: 'admin/shared/form_errors', locals: {ancestor: @tag} %>
+
+      <div class="form-group <%= 'has-error' unless @tag.errors.messages[:name].blank? %>">
+
+        <%= f.label :word, class: 'col-md-2 control-label' %>
+
+        <div class="col-md-5">
+
+          <%= f.text_field :word, class: 'form-control' %>
+
+        </div>
+
+      </div>
+
+      <div class="form-group">
+
+        <%= f.label :category_id, 'Category ID', class: 'col-md-2 control-label' %>
+
+        <div class="col-md-5">
+
+          <%= f.select :category_id, Site.current.categories.active.collect { |i| [i.site_id_and_name, i.id] }, { include_blank: true }, { multiple: false, class: 'form-control' } %>
+
+        </div>
+
+      </div>
+
+      <div class="form-group <%= 'has-error' unless @tag.errors.messages[:name].blank? %>">
+
+        <%= f.label :is_blacklisted, class: 'col-md-2 control-label' %>
+
+        <div class="col-md-5">
+
+          <%= f.check_box :is_blacklisted, class: 'form-control' %>
+
+          <div class="help-box">
+
+            <small>Default: No; When enabled, API requests containing this tag will return an empty result.</small>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="form-actions form-actions-padding-sm">
+
+        <div class="row">
+
+          <div class="col-md-10 col-md-offset-2">
+
+            <%= f.submit nil, class: 'btn btn-primary' if can? :create, Tag %>
+
+            <%= link_to t('.cancel', :default => t('helpers.links.cancel')), admin_tags_path, class: 'btn' %>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <% end %>
+
+    </div>
+
+  </div>
+
+</div>

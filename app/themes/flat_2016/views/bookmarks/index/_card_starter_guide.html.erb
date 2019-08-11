@@ -1,0 +1,75 @@
+<div class="card card-starter-guide hidden pannacotta">
+
+  <div class="card-header">
+
+    <p class="card-title"><%= t(:STARTER_GUIDE, default: 'Starter Guide') %></p>
+
+    <!-- /.card-title -->
+
+  </div>
+
+  <!-- /.card-header -->
+
+  <div class="card-content">
+
+    <ul class="list-two-cols list-unstyled">
+
+      <li>
+
+        <span class="list-circle"></span>
+
+        <%= link_to t(:MOST_POPULAR_COUPONS, default: 'Most Popular Coupons'), dynamic_url_for('coupons', 'index', type: 'popular') %>
+
+      </li>
+
+      <li>
+
+        <span class="list-circle"></span>
+
+        <%= link_to t(:LIST_OF_SHOPS, default: 'List Of Shops'), dynamic_url_for('shops') %>
+
+      </li>
+
+      <li>
+
+        <span class="list-circle"></span>
+
+        <%= link_to t(:EXCLUSIVE_COUPONS, default: 'Exclusive Coupons'), dynamic_url_for('coupons', 'index', type: 'exclusive') %>
+
+      </li>
+
+      <li>
+
+        <span class="list-circle"></span>
+
+        <%= link_to t(:COUPONS_BY_CATEGORY, default: 'Coupons By Categories'), dynamic_url_for('categories') %>
+
+      </li>
+
+      <li>
+
+        <span class="list-circle"></span>
+
+        <%= link_to t(:EXPIRING_COUPONS, default: 'Expiring Coupons'), dynamic_url_for('coupons', 'index', type: 'expiring') %>
+
+      </li>
+
+      <li>
+
+        <span class="list-circle"></span>
+
+        <%= link_to t(:HOW_TO_USE_COUPONS, default: 'How To Use Coupons'), '#', data: {modal: 'help'} %>
+
+      </li>
+
+    </ul>
+
+    <!-- /.list-three-cols list-unstyled -->
+
+  </div>
+
+  <!-- /.card-content -->
+
+</div>
+
+<!-- /.card card-starter-guide hidden pannacotta -->

@@ -1,0 +1,111 @@
+<div class="col-sm-12 col-md-6" id="mail-forms">
+
+  <div class="box bordered-box blue-border <%= 'box-collapsed' unless session[:last_setting] == 'mail_forms' %>">
+
+    <div class="box-header grass-green-background">
+
+      <div class="title">
+
+        <i class="icon-mail-reply-all"></i>
+
+        Mail Form Settings
+
+      </div>
+
+      <div class="actions">
+
+        <a class="btn box-collapse btn-xs btn-link" href="#">
+
+          <i></i>
+
+        </a>
+
+      </div>
+
+    </div>
+
+    <div class="box-content">
+
+      <%= form_for [:admin, @setting], method: :patch, html: {class: 'form form-horizontal', style: 'margin-bottom: 0'} do |f| %>
+
+        <%= hidden_field_tag :option_type, 'mail_forms' %>
+
+        <%= fields_for :mail_forms , @setting.mail_forms do |ff| %>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :contact_emails %>
+
+              <%= ff.text_field :contact_emails, class: 'form-control' %>
+
+              <p class="help-block">
+
+                <small class="text-muted">This is where mail forms are sent to. You can put more then one email adress here. Separate them with comma.</small>
+
+              </p>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.check_box :contact_form_enabled, { checked: ff.object.nil? || ff.object.contact_form_enabled.nil? ? true : !ff.object.contact_form_enabled.to_i.zero? } %>
+
+              <%= ff.label :contact_form_enabled %>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.check_box :partner_form_enabled, { checked: ff.object.nil? || ff.object.partner_form_enabled.nil? ? true : !ff.object.partner_form_enabled.to_i.zero? } %>
+
+              <%= ff.label :partner_form_enabled %>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.check_box :report_form_enabled, { checked: ff.object.nil? || ff.object.report_form_enabled.nil? ? true : !ff.object.report_form_enabled.to_i.zero? } %>
+
+              <%= ff.label :report_form_enabled %>
+
+            </div>
+
+          </div>
+
+          <div class="form-actions form-actions-padding-sm">
+
+            <div class="row">
+
+              <div class="col-md-2">
+
+                <%= f.submit 'Save', class: 'btn btn-primary btn-block' %>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        <% end %>
+
+      <% end %>
+
+    </div>
+
+  </div>
+
+</div>

@@ -1,0 +1,14 @@
+@import "topbar";
+@import "sub-nav-bar";
+@import "critical-grid";
+
+@critical common.css {
+  #content {
+    order: 1;
+    border-top: 1px solid transparent;
+
+    @media #{$md} {
+      order: 0;
+    }
+  }
+}

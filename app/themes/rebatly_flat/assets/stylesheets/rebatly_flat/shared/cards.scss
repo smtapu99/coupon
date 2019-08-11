@@ -1,0 +1,71 @@
+.pannacotta {
+  &.card {
+    background-color: #fff;
+    border: 1px solid $color-border;
+    border-bottom-width: 2px;
+    border-radius: 2px;
+    margin-bottom: 30px;
+
+    &.card-transparent {
+      background-color: transparent;
+      border: none;
+    }
+
+    .card-header {
+      padding: 25px;
+
+      &.with-border-bottom {
+        border-bottom: 1px solid $color-border;
+      }
+
+      &.bg-freedom, &.bg-royal {
+        .card-title {
+          color: #fff;
+        }
+      }
+
+      .card-title {
+        color: $color-title;
+        font-size: 20px;
+        font-weight: lighter;
+        margin: 0;
+
+        b, strong {
+          font-weight: bold;
+        }
+      }
+    }
+
+    .card-content {
+      hr {
+        border-top-color: $color-cloud;
+      }
+    }
+
+    .card-footer {
+      padding: 20px 25px;
+
+      &.with-border-top {
+        border-top: 1px solid $color-border;
+      }
+    }
+
+    &.card-spacer {
+      background-color: transparent;
+      border: 0;
+      height: 120px;
+    }
+  }
+}
+
+@media (min-width: 992px) {
+  .pannacotta.card.card-spacer {
+    height: 100px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .pannacotta.card.card-spacer {
+    height: 120px;
+  }
+}

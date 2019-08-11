@@ -1,0 +1,10 @@
+<%# this structure is needed to make sure structured data from header is rendered before head -%>
+<%- content_for :html_body do -%>
+  <%= render partial: 'shared/header' %>
+  <%= (content_for?(:content)) ? yield(:content) : yield %>
+  <%= render partial: 'shared/footer' %>
+<%- end -%>
+
+<%= render partial: 'shared/head' %>
+<%= (content_for?(:html_body)) ? yield(:html_body).force_encoding(Encoding::UTF_8) : yield.force_encoding(Encoding::UTF_8) %>
+<%= render partial: 'shared/foot' %>

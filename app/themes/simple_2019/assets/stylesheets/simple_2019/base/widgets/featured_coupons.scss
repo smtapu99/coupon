@@ -1,0 +1,132 @@
+@critical home.css {
+  .w-featured {
+    $this: &;
+
+    &__list {
+      margin-top: 26px;
+
+      & + .premium-widget,
+      & + .premium-offers {
+        margin-top: 40px;
+
+        @media (max-width: 768px) {
+          margin-top: 0;
+        }
+      }
+
+      &--33 {
+        #{$this}__frame {
+          flex: 1 1 0;
+          margin: 0 0 7px;
+        }
+
+        #{$this}__logo {
+          max-width: 80px;
+          max-height: 80px;
+        }
+
+        #{$this}__footer {
+          padding: 7px 0 7px 19px;
+        }
+
+        #{$this}__content {
+          padding-top: 11px;
+          padding-left: 28px;
+          line-height: 1.3;
+        }
+
+        #{$this}__shop-title {
+          font-weight: 600;
+          line-height: 1;
+          text-transform: capitalize;
+        }
+      }
+    }
+
+    &__item {
+      display: flex;
+      height: 100%;
+      padding-bottom: 3px;
+
+      &--big {
+        .w-featured__frame {
+          height: 100%;
+          margin: 0;
+        }
+      }
+
+      &--small {
+        flex-direction: column;
+
+        .w-featured__frame {
+          &:first-of-type {
+            margin-bottom: 5px;
+          }
+
+          &:last-of-type {
+            margin-top: 5px;
+          }
+        }
+      }
+    }
+
+    &__frame {
+      display: block;
+      height: 50%;
+
+      @include default-box;
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
+
+    &__hero {
+      width: 100%;
+      height: 120px;
+    }
+
+    &__headline {
+      float: left;
+    }
+
+    &__more-link {
+      float: right;
+      margin-top: 7px;
+      color: $font-color;
+
+      i {
+        font-size: 13px;
+      }
+    }
+
+    &__shop-title {
+      display: block;
+      color: $color-sky;
+      text-transform: uppercase;
+    }
+
+    &__footer {
+      display: flex;
+    }
+
+    &__logo {
+      max-width: 110px;
+      max-height: 110px;
+    }
+
+    &__content {
+      padding: 12px 12px 0;
+      color: $font-color;
+      font-size: 14px;
+
+      .coupon__label {
+        width: auto;
+      }
+    }
+
+    &__time {
+      display: block;
+    }
+  }
+}

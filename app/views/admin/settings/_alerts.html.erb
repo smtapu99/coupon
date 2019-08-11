@@ -1,0 +1,71 @@
+<div class="col-sm-12 col-md-6" id="admin-rules">
+
+  <div class="box bordered-box blue-border <%= 'box-collapsed' unless session[:last_setting] == 'alert' %>">
+
+    <div class="box-header pink-background">
+
+      <div class="title">
+
+        <i class="icon-rss"></i>
+
+        Alerts
+
+      </div>
+
+      <div class="actions">
+
+        <a class="btn box-collapse btn-xs btn-link" href="#">
+
+          <i></i>
+
+        </a>
+
+      </div>
+
+    </div>
+
+    <div class="box-content">
+
+      <%= form_for [:admin, @setting], method: :patch, html: {class: 'form form-horizontal', style: 'margin-bottom: 0'} do |f| %>
+
+        <%= hidden_field_tag :option_type, 'alert' %>
+
+        <%= fields_for :alert, @setting.alert do |ff| %>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :uniq_coupons_threshold %>
+
+              <%= ff.text_field :uniq_coupons_threshold, class: 'form-control' %>
+
+              <div class="help-box"><small>Default: 100; The number of unique coupons left before alert is triggered.</small></div>
+
+            </div>
+
+          </div>
+
+          <div class="form-actions form-actions-padding-sm">
+
+            <div class="row">
+
+              <div class="col-md-2">
+
+                <%= f.submit 'Save', class: 'btn btn-primary btn-block' %>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        <% end %>
+
+      <% end %>
+
+    </div>
+
+  </div>
+
+</div>

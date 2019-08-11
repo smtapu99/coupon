@@ -1,0 +1,181 @@
+<!-- BEGIN POPUP -->
+<style type="text/css">
+
+  #my-modal .campaign a {
+   text-decoration: none;
+  }
+  #my-modal .modal-body.campaign button {
+     margin-top: 20px;
+     margin-bottom: 20px;
+     width: 200px;
+  }
+  .pannacotta#my-modal .modal-content .modal-body.campaign {
+    background: url(<%= values[:mobile_background_url] || values[:background_url] %>);
+    text-align: center;
+    padding: 50px;
+    background-size: cover;
+  }
+  #my-modal .modal-body.campaign img {
+    margin: 0 auto;
+    max-width: 100%;
+  }
+
+  #my-modal .modal-body.campaign h2 {
+    text-align: center;
+    color: #fff;
+    font-size: 30px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    line-height: 40px;
+    font-weight: bold;
+  }
+
+  #my-modal .modal-body.campaign p {
+    text-align: center;
+    color: #fff;
+    font-size: 25px;
+    margin-bottom: 30px;
+  }
+
+  #my-modal .modal-body.campaign .btn {
+    text-align: center;
+    display: inline-block;
+  }
+  .pannacotta#my-modal .modal-content.campaign-modal-content {
+    background: transparent;
+  }
+  .pannacotta#my-modal .modal-content .modal-header.campaign .btn {
+    position: absolute;
+    right: 15px;
+    top: 20px;
+    z-index: 999;
+  }
+  #my-modal .roberto.roberto-remove {
+    position: relative;
+    top: 2px;
+  }
+
+  #my-modal .btn-campaign-close {
+    opacity: 0.5;
+    z-index: 9999;
+    position: relative;
+    background: transparent;
+    color: #fff;
+    margin-top: 5px;
+    margin-right: 6px;
+  }
+  #my-modal .btn-campaign-close:hover {
+    opacity: 0.8;
+  }
+
+  #my-modal .campaign-link:hover, #my-modal .campaign-link:active, #my-modal .campaign-link:focus, #my-modal .campaign-link:visited {
+    text-decoration: none;
+  }
+
+  @media (min-width: 768px){
+    #my-modal .modal-body.campaign img {
+      max-width: 300px;
+    }
+    #my-modal .modal-body.campaign {
+      background: url(<%= values[:background_url] %>);
+    }
+  }
+
+  <%- if values[:custom_style].present? -%>
+    <%= values[:custom_style].html_safe %>
+  <%- end -%>
+
+</style>
+
+<script type="text/template" id="campaign-modal">
+    <button aria-label="close" class="btn close btn-campaign-close" data-dismiss="modal" type="button">
+      <span aria-hidden="true">
+        <i class="roberto roberto-remove"></i>
+      </span>
+    </button>
+    <%- if values[:content].present? -%>
+      <%= values[:content].html_safe %>
+    <%- else -%>
+      <a href="<%= values[:clickout_url] %>" class="text-center campaign-link">
+        <div class="modal-body pannacotta campaign">
+          <%- if values[:logo_url].present? -%>
+            <%= image_tag values[:logo_url], alt: values[:title], class: 'img-responsive' %>
+          <%- end -%>
+
+          <%- if values[:title].present? -%>
+            <h2><%= values[:title].html_safe %></h2>
+          <%- end -%>
+
+          <%- if values[:subtitle].present? -%>
+            <p><%= values[:subtitle].html_safe %></p>
+          <%- end -%>
+
+          <%- if values[:button_text].present? -%>
+            <span class="btn btn-large btn-ready"><%= values[:button_text] %></span>
+          <%- end -%>
+        </div>
+      </a>
+    <%- end -%>
+</script>
+
+<script type="text/javascript">
+
+  var popup_name = "<%= values[:tracking_name].present? ? values[:tracking_name].parameterize : 'widget-' + @widget.id.to_s %>";
+
+  var preventReload = function(){
+    var exp_date = new Date('<%= widget_expires_at(values[:popup_interval]) %> 00:00:00').toUTCString();
+    document.cookie = popup_name + "=true; expires="+exp_date+"; path=/";
+  }
+
+  var trackPopupEvent = function(category, action){
+    dataLayer.push({
+      'event': category,
+      'eventCategory': category,
+      'eventAction': action,
+      'eventLabel': 'null',
+      'eventValue': '0'
+      });
+  }
+
+  <%- if values[:popup_start_date].present? && values[:popup_end_date].present? -%>
+    var show_popup = new Date().getTime() >= new Date('<%= values[:popup_start_date] %> 00:00:00').getTime() && new Date().getTime() < new Date('<%= values[:popup_end_date] %> 23:59:59').getTime();
+  <%- elsif values[:popup_start_date].present? && !values[:popup_end_date].present? -%>
+    var show_popup = new Date().getTime() >= new Date('<%= values[:popup_start_date] %> 00:00:00').getTime()
+  <%- elsif !values[:popup_start_date].present? && values[:popup_end_date].present? -%>
+    var show_popup = new Date().getTime() >= new Date().getTime()  && new Date().getTime() < new Date('<%= values[:popup_end_date] %> 23:59:59').getTime();
+  <%- else -%>
+    var show_popup = true;
+  <%- end -%>
+
+
+  if(show_popup && document.cookie.indexOf(popup_name) < 0 && window.location.hash == '' && <%= values[:clickout_url] == url_for(:only_path => false, :overwrite_params=>nil) ? false : true %>) {
+
+    jQuery('.pannacotta#my-modal .modal-dialog').css('max-width', '600px').css('width','inherit');
+
+    setTimeout(function() {
+
+      trackPopupEvent(popup_name, 'impression')
+
+      jQuery("#my-modal")
+      .on('hidden.bs.modal', function () {
+        preventReload();
+        trackPopupEvent(popup_name, 'close');
+      })
+      .modal('show')
+      .find('.modal-content')
+      .addClass('campaign-modal-content')
+      .html('')
+      .html($('#campaign-modal').html());
+
+    }, <%= values[:delay].present? ? values[:delay].to_i * 1000 : 5000  %>);
+
+  }
+
+  jQuery(document).on('click', '.campaign a', function(e){
+    e.preventDefault();
+    preventReload();
+    trackPopupEvent(popup_name, 'campaign_click');
+    window.location = $(this).attr('href');
+  })
+</script>
+<!-- END POPUP -->

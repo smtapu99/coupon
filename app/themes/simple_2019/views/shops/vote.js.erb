@@ -1,0 +1,8 @@
+document.querySelector('.star-rating-container').innerHTML = "<%= escape_javascript render(partial: 'shops/show/star_rating', locals: {shop: @shop, existed_vote: @existed_vote}) %>";
+
+var votes = parseInt("<%= @existed_vote.present? ? @existed_vote.stars : @shop.rating.round %>");
+var starLIs = document.querySelectorAll('.star-rating li');
+for (var i = 0; i < votes; i ++) {
+  starLIs[i].querySelector('i').classList.remove('icon-star-empty')
+  starLIs[i].querySelector('i').classList.add('icon-star')
+}

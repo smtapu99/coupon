@@ -1,0 +1,383 @@
+@critical coupon.css {
+  .coupon {
+    @include default-box;
+
+    $this: &;
+
+    position: relative;
+    width: 100%;
+    min-height: 50px;
+    margin-bottom: 10px;
+
+    &__body {
+      display: flex;
+      padding: 22px 25px 7px;
+
+      @media #{$lg} {
+        padding: 10px 10px 7px;
+      }
+
+      @media #{$md} {
+        flex-wrap: nowrap;
+      }
+    }
+
+    &__footer {
+      min-height: 34px;
+      padding: 5px 24px;
+      background-color: $background--light-grey;
+
+      a {
+        color: #FFF;
+
+        &:hover {
+          color: #FFF;
+        }
+      }
+    }
+
+    &__aside {
+      flex: 0 1 16%;
+    }
+
+    &__right {
+      display: flex;
+      flex: 0 1 85%;
+      flex-wrap: nowrap;
+
+      @media #{$md} {
+        flex: 0 1 75%;
+        flex-wrap: wrap;
+      }
+    }
+
+    &__desc {
+      flex-grow: 1;
+
+      @media #{$lg} {
+        padding: 0 10px;
+      }
+    }
+
+    &__action {
+      text-align: right;
+
+      .btn {
+        margin-top: 23px;
+      }
+    }
+
+    &__title {
+      margin: 0;
+      line-height: 1.1;
+    }
+
+    &__tag {
+      position: absolute;
+      top: 16px;
+      right: 25px;
+      color: $font-gray;
+      font-size: 14px;
+
+      i[class^=icon] {
+        margin-right: 3px;
+        font-size: 17px;
+        vertical-align: middle;
+      }
+    }
+
+    &__logo {
+      width: 90px;
+      height: 90px;
+
+      &--bg {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: #FFF;
+        background-color: $color-sale;
+      }
+    }
+
+    &__amount {
+      font-weight: 700;
+      font-size: 36px;
+      line-height: 1;
+    }
+
+    &__type {
+      font-size: 19px;
+      line-height: 1;
+    }
+
+    &-info {
+      margin-top: 20px;
+      line-height: 1em;
+    }
+
+    &__label {
+      display: inline-block;
+      width: 90px;
+      margin-top: 5px;
+      font-weight: 700;
+      font-size: 14px;
+      text-align: center;
+
+      &--exclusive {
+        color: $color-warning;
+      }
+
+      &--sale {
+        color: $color-sale;
+      }
+    }
+
+    &__additional {
+      color: $font-gray;
+      font-size: 14px;
+    }
+
+    &__votes {
+      float: right;
+    }
+
+    &--large {
+      margin-bottom: 40px;
+      border: 2px solid $big-coupon-color;
+
+      @media #{$md} {
+        margin-top: 11px;
+      }
+
+      #{$this}__body {
+        padding: 34px 36px 14px;
+
+        @media #{$md} {
+          padding: 18px 10px 7px;
+        }
+      }
+
+      #{$this}__desc {
+        display: -webkit-box;
+        max-height: 100%;
+        padding: 2px 12px 0;
+        line-clamp: 3;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow-y: hidden;
+
+        @media #{$md} {
+          flex-grow: 1;
+        }
+
+        @media #{$sm} {
+          line-clamp: 6;
+          -webkit-line-clamp: 6;
+        }
+
+        @media #{$xs} {
+          line-clamp: 3;
+          -webkit-line-clamp: 3;
+        }
+      }
+
+      #{$this}__aside {
+        flex: 0 1 15%;
+      }
+
+      #{$this}__action {
+        .btn {
+          min-width: 230px;
+          margin-top: 38px;
+          padding: 17px 0;
+          font-size: 20px;
+          text-align: center;
+
+          @media #{$xs} {
+            min-width: 150px;
+            margin-top: 10px;
+            padding: 10px 0;
+            font-size: 14px;
+          }
+        }
+      }
+
+      #{$this}__tag {
+        font-size: 26px;
+
+        @media #{$md} {
+          top: 165px;
+          right: auto;
+          left: 26px;
+          font-size: 15px;
+        }
+
+        @media #{$xs} {
+          top: 120px;
+          right: auto;
+          left: 12px;
+          font-size: 12px;
+        }
+      }
+
+      #{$this}__logo {
+        width: 138px;
+        height: 138px;
+
+        @media #{$xs} {
+          width: 90px;
+          height: 90px;
+        }
+
+        &#{$this}__logo--bg {
+          background-color: $big-coupon-color;
+        }
+      }
+
+      #{$this}__amount {
+        font-weight: 700;
+        font-size: 30px;
+
+        @media #{$xs} {
+          font-size: 24px;
+        }
+      }
+
+      #{$this}__type {
+        font-size: 20px;
+        text-transform: uppercase;
+
+        @media #{$xs} {
+          font-size: 24px;
+        }
+      }
+
+      #{$this}__label {
+        width: 138px;
+        margin-top: 7px;
+        font-size: 20px;
+      }
+
+      #{$this}__title {
+        font-size: 24px;
+        line-height: 1;
+
+        @media #{$xs} {
+          font-size: 14px;
+        }
+      }
+
+      #{$this}-title {
+        display: flex;
+        align-items: flex-start;
+        min-height: 65px;
+        margin: 0;
+        font-size: 26px;
+        line-height: 1.1;
+
+        @media #{$sm} {
+          min-height: 40px;
+          font-size: 20px;
+        }
+      }
+
+      #{$this}__text {
+        margin: 0;
+        overflow: hidden;
+        font-size: 20px;
+        line-height: 1.1;
+
+        @media #{$xs} {
+          margin-top: 17px;
+          font-size: 14px;
+        }
+      }
+
+      #{$this}__additional {
+        font-size: 18px;
+
+        @media #{$xs} {
+          font-size: 14px;
+        }
+      }
+
+      #{$this}__footer {
+        padding: 12px 35px 12px 45px;
+        color: #FFF;
+        background-color: $big-coupon-color;
+
+        @media #{$md} {
+          padding-left: 10px;
+        }
+
+        @media #{$xs} {
+          padding: 5px 35px 5px 10px;
+        }
+      }
+
+      #{$this}__votes {
+        font-size: 20px;
+
+        .vote--yes {
+          margin-right: 10px;
+        }
+      }
+    }
+  }
+}
+
+@critical common.css {
+  .coupon {
+    $this: &;
+
+    &__see-details {
+      color: $color-sky;
+      font-weight: 700;
+      font-size: 14px;
+      cursor: pointer;
+
+      &--opened {
+        & + #{$this}__icon-chevron {
+          transform: rotate(-90deg);
+        }
+      }
+
+      &:hover {
+        text-decoration: none;
+
+        span {
+          text-decoration: underline;
+        }
+      }
+    }
+
+    &__icon-chevron {
+      display: inline-block;
+      color: $color-sky;
+      font-weight: 700;
+      font-size: 10px;
+      transform: rotate(0deg);
+      transition: transform ease-in-out 0.3s;
+    }
+
+    &__text {
+      margin-top: 12px;
+      padding-right: 10px;
+      font-size: 14px;
+      line-height: 1.3;
+
+      &--full {
+        display: inline-block;
+        max-height: 500px;
+        overflow: hidden;
+        transition: max-height ease-in-out 0.3s;
+      }
+
+      &--hidden {
+        display: none;
+        max-height: 0;
+      }
+    }
+  }
+}

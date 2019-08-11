@@ -1,0 +1,97 @@
+
+<div class="form-controll" style="margin-bottom: 10px;">
+
+    <%= image_tag @widget.value[:image_url], class: 'img-responsive' if @widget.value[:image_url].present? %>
+
+</div>
+
+
+<div class="form-group">
+
+  <%= ff.label :image, class: 'col-md-2 control-label' %>
+
+  <div class="col-md-10">
+
+    <%= ff.file_field :image, class: 'form-control' %>
+
+    <p>
+
+      <label>
+
+        <%= ff.check_box :remove_image %>
+
+        Remove Image
+
+      </label>
+
+    </p>
+
+  </div>
+
+</div>
+
+<div class="form-group">
+
+  <%= ff.label :href, class: 'col-md-2 control-label' %>
+
+  <div class="col-md-10">
+
+    <%= ff.text_field :href, class: 'select2 form-control' %>
+
+  </div>
+
+</div>
+
+<div class="form-group">
+
+  <%= ff.label :alt, class: 'col-md-2 control-label' %>
+
+  <div class="col-md-10">
+
+    <%= ff.text_field :alt, class: 'select2 form-control' %>
+
+  </div>
+
+</div>
+
+<div class="form-group">
+
+  <%= ff.label :columns, class: 'col-md-2 control-label' %>
+
+  <div class="col-md-10">
+
+    <%= ff.select :columns, [1,2,3], {}, class: 'select2 form-control' %>
+
+  </div>
+
+</div>
+
+<div class="form-group">
+
+  <%= ff.label :without_header, class: 'col-md-2 control-label' %>
+
+  <div class="col-md-10">
+
+      <%= ff.check_box :without_header, class: 'form-control check_box' %>
+
+  </div>
+
+</div>
+
+<div class="form-group">
+
+  <%= ff.label :transparent_widget, class: 'col-md-2 control-label' %>
+
+  <div class="col-md-10">
+
+      <%= ff.check_box :transparent_widget, class: 'form-control check_box' %>
+
+  </div>
+
+</div>
+
+<script type="text/javascript">
+
+  jQuery('input[type=file]').bootstrapFileInput()
+
+</script>

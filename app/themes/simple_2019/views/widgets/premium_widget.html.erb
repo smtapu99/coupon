@@ -1,0 +1,107 @@
+<div class="premium-widget">
+
+  <div class="container">
+
+    <div class="row">
+
+      <div class="col-md-3">
+
+        <h4 class="premium-widget__header">
+
+          <%= values[:section_one_header] %>
+
+        </h4>
+
+        <ul class="premium-widget__shops">
+
+          <%- shop_ids = values[:shops] -%>
+
+          <%- shop_list = @site.shops.where(id: shop_ids) -%>
+
+          <%- shop_list.each do |shop| -%>
+
+            <li class="premium-widget__shops-item">
+
+              <%= link_to(shop.title, dynamic_url_for('shops', 'show', slug: shop.slug)) %>
+
+            </li>
+
+          <%- end %>
+
+        </ul>
+
+      </div>
+
+      <div class="col-md-9">
+
+        <h4 class="premium-widget__header">
+
+          <%= values[:section_two_header] %>
+
+        </h4>
+
+        <div class="row">
+
+          <div class="col-md-6">
+
+            <div class="premium-widget__coupons">
+
+              <% coupons.each do |coupon| %>
+
+                <%- h1 = coupon.shop.try(:html_document).try(:h1) -%>
+
+                <a class="premium-widget__coupon" <%= clickout_params_for_element(coupon) %> title="<%= coupon.title %>">
+
+                  <% if coupon.use_logo_on_home_page && coupon.try(:logo_url, '_110x110') %>
+
+                    <img alt="<%= h1 %>" class="premium-widget__coupon-image" src="" data-normal="<%= coupon.logo_url('_110x110') %>" width="220">
+
+                  <% else %>
+
+                    <img alt="<%= h1 %>" class="premium-widget__coupon-image" src="" data-normal="<%= coupon.shop.logo_url('_110x110') %>" width="220">
+
+                  <% end %>
+
+                  <div class="premium-widget__coupon-aside">
+
+                    <% if coupon.is_exclusive? %>
+
+                      <span class="premium-widget__coupon-tag"><%= t('COUPON_IS_EXCLUSIVE', default: 'Exclusive') %></span>
+
+                    <% end %>
+
+                    <p class="premium-widget__coupon-text"><%= coupon.title.truncate(60) %></p>
+
+                  </div>
+
+                </a>
+
+              <% end %>
+
+            </div>
+
+          </div>
+
+          <div class="col-md-6">
+
+            <div class="premium-widget__banner">
+
+              <a href="<%= values[:clickout_url] %>">
+
+                <img data-normal="<%= values[:image_url] %>" src="" alt="<%= values[:title] %>" class="img-responsive">
+
+              </a>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

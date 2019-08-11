@@ -1,0 +1,27 @@
+<!-- .headline -->
+
+<div class="headline">
+
+  <div class="container">
+
+    <div class="row justify-content-center">
+
+      <div class="col">
+
+        <h1 class="headline__title"><%= t(:H1_MAINPAGE, default: 'Coupons And Offers With The Best Promotions').html_safe %></h1>
+
+        <p class="headline__subtitle">
+
+          <%= @weekly_coupons_count.to_i + rand(300..3000) %> <%= t(:FREE_VOUCHER_CODES_AND_DISCOUNTS_ADDED_THIS_WEEK, default: 'Free voucher codes and discounts added this week') %>
+
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- ./headline -->

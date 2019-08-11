@@ -1,0 +1,20 @@
+<%
+var_hash = {}
+var_hash['snippet_header'] = render partial: 'shared/header' if @custom_layout.include?('{{snippet_header}}')
+var_hash['main_content'] = (content_for?(:content) ? yield(:content) : yield) if @custom_layout.include?('{{main_content}}')
+var_hash['snippet_footer'] = render partial: 'shared/footer' if @custom_layout.include?('{{snippet_footer}}')
+var_hash['snippet_footer_shops'] = render partial: 'shared/footer_shops' if @custom_layout.include?('{{snippet_footer_shops}}')
+var_hash['snippet_footer_campaigns'] = render partial: 'shared/footer_campaigns', locals: { footer_campaigns: @site.footer_campaigns } if @custom_layout.include?('{{snippet_footer_campaigns}}')
+
+template = Liquid::Template.parse(@custom_layout)
+
+content_for :custom_layout do
+  raw template.render(var_hash, :filters => [])
+end
+%>
+
+<%= render 'shared/head' %>
+
+<%= yield :custom_layout %>
+
+<%= render 'shared/foot' %>

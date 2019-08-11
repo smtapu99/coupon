@@ -1,0 +1,10 @@
+require 'axlsx'
+
+p = Axlsx::Package.new
+wb = xlsx_package.workbook
+wb.add_worksheet(name: "campaigns_#{Time.now.to_date}") do |sheet|
+ sheet.add_row Campaign::CSV_EXPORT_COLUMN_HEADERS[:campaign].values
+ @campaigns.find_each do |campaign, index|
+   sheet.add_row campaign.csv_mapped_attributes
+ end
+end

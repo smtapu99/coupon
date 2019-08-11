@@ -1,0 +1,17 @@
+version: '2'
+options:
+  verbose: true
+syncs:
+  app-source:
+    src: '.'
+    notify_terminal: true
+    sync_args:
+      - "-prefer newer"
+      - "-ignore='Path .git'"
+      - "-ignore='BelowPath .git'"
+      - "-ignore='Path log'"
+      - "-ignore='BelowPath log'"
+      - "-ignore='Path tmp'"
+      - "-ignore='BelowPath tmp'"
+      - "-ignore='Path public'"
+      - "-ignore='BelowPath public'"

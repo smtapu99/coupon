@@ -1,0 +1,67 @@
+<%-
+
+  cloaked = cloak_urls(text)
+
+  cloaked = cloaked.gsub('<script', '<pc_script') # prevent scripts from beeing emptied
+
+  cloaked = cloaked.gsub('/script>', '/pc_script>')
+
+  html = sanitize(cloaked, tags: %w(h2 h3 strong b br p ul li ol img a script iframe embed object pc_script), attributes: %w(href target src width height alt title))
+
+  html = html.split('<h2');
+
+  html.each_with_index{|c, i| html[i] = (html[i].start_with?('>') ? '<h2' : '') + html[i]}
+
+-%>
+
+<%- if html.is_a?(Array) and html.size > 0 -%>
+
+  <!-- .seo-text -->
+
+  <div class='seo-text'>
+
+    <div class="row">
+
+      <%- html.take(4).each_with_index do |part, index| -%>
+
+        <%- uid = (defined? widget_id) ? widget_id.to_s + index.to_s : index -%>
+
+        <%- next unless part.start_with?('<h2') -%>
+
+        <%- splitted = part.split('</h2>') -%>
+
+        <%- next unless splitted[0].gsub('<h2>', '').present? && splitted[1].present? -%>
+
+        <div class="col-md-4">
+
+          <div class="seo-text__card">
+
+            <div class="seo-text__header">
+
+              <div class="seo-text__title">
+
+                  <%= sanitize(splitted[0].html_safe, tags: %w(h2)) %></h2>
+
+              </div>
+
+            </div>
+
+            <div class="seo-text__content">
+
+              <%= splitted[1].gsub('<pc_script', '<script').gsub('/pc_script>', '/script>').html_safe %>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      <%- end -%>
+
+    </div>
+
+  </div>
+
+  <!-- ./seo-text -->
+<%- end -%>
+

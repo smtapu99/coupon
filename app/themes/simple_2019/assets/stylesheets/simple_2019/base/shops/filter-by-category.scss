@@ -1,0 +1,53 @@
+@critical filter-by-category.css {
+  .filter-by-category {
+    &__header {
+      border-bottom: 1px solid $border-color;
+    }
+
+    &__title {
+      margin: 0;
+      color: #262626;
+      font-weight: lighter;
+      font-size: 20px;
+    }
+
+    &__content {
+      padding: 25px 25px 0;
+
+      p {
+        color: #262626;
+        font-weight: lighter;
+        font-size: 14px;
+      }
+
+      ul {
+        padding-left: 0;
+        list-style: none;
+
+        li {
+          margin-bottom: 15px;
+        }
+
+        a {
+          display: block;
+          height: 39px;
+          padding: 9px 8px;
+          color: $color-sky;
+          font-weight: lighter;
+          font-size: 14px;
+          text-align: center;
+          text-transform: uppercase;
+          border: 1px solid $color-sky;
+          transition: background-color 0.3s ease, color 0.3s ease;
+
+          &:focus,
+          &:hover {
+            color: #FFF;
+            text-decoration: none;
+            background-color: $color-sky;
+          }
+        }
+      }
+    }
+  }
+}

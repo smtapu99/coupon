@@ -1,0 +1,177 @@
+<% # --- Headerimage section --- %>
+
+<%= render 'campaigns/show/header_image', head_lines: true %>
+
+<%- if newsletter_enabled? && !@campaign.hide_newsletter_box -%>
+
+  <div class="pannacotta card widget-newsletter widget-newsletter-full">
+
+    <div class="col-xs-12 col-sm-6 text-center">
+
+      <h2><%= t(:SUBSCRIBE_TO_OUR_NEWSLETTER, default: 'SUBSCRIBE_TO_OUR_NEWSLETTER') %></h2>
+
+      <p>
+
+        <%= t(:GET_THE_BEST_COUPONS_STRAIGHT_TO_YOUR_INBOX, default: 'Get the best coupons straight to your inbox!') %>
+
+      </p>
+
+    </div>
+
+    <div class="col-xs-12 col-sm-6 text-center">
+
+      <%= form_tag send("subscribe_#{@site.site.id}_path"), class: 'form-inline', method: :post, role: 'form', data:{'event-action' => 'form_submit'} do |f| %>
+
+        <div class="form-group row">
+
+          <div class="col-md-8">
+
+            <div class="input-wrapper">
+
+              <%= email_field_tag :email, nil, class: 'form-control', id: 'empty_shop_newsletter_email', placeholder: t(:TYPE_HERE_YOUR_EMAIL, default: 'Type here your email'), "aria-label" => t(:TYPE_HERE_YOUR_EMAIL, default: 'Type here your email') %>
+
+            </div>
+            <!-- /.input-wrapper bg-ashes -->
+
+          </div>
+
+          <div class="col-md-4">
+
+            <%= button_tag(t(:SUBSCRIBE, default: 'Subscribe'), class: 'btn btn-ready btn-small') %>
+
+          </div>
+
+          <div class="col-md-12">
+
+            <p class="privacy-note">
+
+              <%= render 'shared/privacy_note_checkbox' %>
+
+              <% if (t(:BY_SUBSCRIBING_YOU_ACCEPT_OUR_PRIVACY_POLICY, default: 'By subscribing you accept our <a href="%{policy_url}" rel="nofollow" target="_blank">privacy policy</a>', policy_url: policy_url).html_safe.length > 80) %>
+                <span class="show-newsletter-details" data-more-text="<%= t(:MORE_DETAILS, default: 'More details') %>" data-less-text="<%= t(:LESS_DETAILS, default: 'Less details') %>">
+                  <%= t(:MORE_DETAILS, default: 'More details') %>
+                </span>
+              <% end %>
+
+            </p>
+
+          </div>
+
+      <% end %>
+
+        </div>
+
+    </div>
+
+  </div>
+
+<%- end # if newsletter_enabled -%>
+
+<%- if @campaign.themed_fallback_into_grid? -%>
+
+  <%- if !@campaign.coupons_on_top -%>
+
+    <div class="themed themed--grid-fallback <%=@campaign.template%>">
+
+      <%= render 'campaigns/show/widgets', only: [:hot_offers, :sponsor_bar, :shop_bubbles, :discount_bubbles, :subpage_teaser, :premium_hero, :premium_offers, :top_sales, :quicklinks, :rotated_coupons] %>
+
+    </div>
+
+  <%- end -%>
+
+  <%= render partial: 'campaigns/show/featured_images' %>
+
+  <div class="themed themed--grid-fallback <%=@campaign.template%>" style="background: transparent;">
+
+    <div class="deals" id="deals">
+
+      <div class="deals__header">
+
+        <h3 class="section-header"><%= t(:see_our_best_coupons, default: 'See our best coupons') %></h3>
+
+        <h4 class="section-subheader"><%= t(:search_what_you_need_and_grab_it, default: 'Search what you need and grab it') %></h4>
+
+      </div>
+
+      <div class="deals__wrapper">
+
+        <%= render partial: 'campaigns/show/coupons' %>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <%- if @campaign.coupons_on_top -%>
+
+    <div class="themed themed--grid-fallback <%=@campaign.template%>">
+
+      <%= render 'campaigns/show/widgets', only: [:hot_offers, :sponsor_bar, :shop_bubbles, :discount_bubbles, :subpage_teaser, :premium_hero, :premium_offers, :top_sales, :quicklinks, :rotated_coupons] %>
+
+    </div>
+
+  <%- end -%>
+
+<% elsif Setting::get('widget_ranking.show_featured_images_before_coupons', default: 1).to_i == 1 %>
+  <%= render partial: 'campaigns/show/featured_images' %>
+  <%= render partial: 'campaigns/show/coupons' %>
+<% else %>
+  <%= render partial: 'campaigns/show/coupons' %>
+  <%= render partial: 'campaigns/show/featured_images' %>
+<% end %>
+
+<%- if related_shops = @campaign.related_shops and related_shops.present? -%>
+
+  <div class="row" id="campaign-related-shops">
+
+    <div class="col-xs-12">
+
+    <h2 class=""><%= t(:find_more_coupons_of_this_campaign, default: 'Find More Coupons Of This Campaign') %></h2>
+
+    <ul class="list-unstyled">
+
+      <%- related_shops.each do |shop| -%>
+
+        <li>
+
+          <%= link_to dynamic_url_for('shops', 'show', slug: shop.slug) do %>
+
+            <%= image_tag shop.logo_url(:standard), alt: shop.title, class: 'img-responsive', height: '150', width: '150' %>
+
+          <%- end -%>
+
+        </li>
+
+      <%- end -%>
+
+      </ul>
+
+    </div>
+
+
+  </div>
+
+<%- end -%>
+
+<%- if @campaign.themed_fallback_into_grid? -%>
+
+  <div class="themed themed--grid-fallback <%=@campaign.template%>">
+
+  <%= render 'campaigns/show/widgets', only: [:about] %>
+
+  </div>
+
+<%- end -%>
+
+<%= render_summary_widget @campaign %>
+
+<div class="row">
+
+  <div class="col-xs-12">
+
+    <%= render partial: 'campaigns/show/card_about_this_campaign', locals: { campaign: @campaign } %>
+
+  </div>
+
+</div>

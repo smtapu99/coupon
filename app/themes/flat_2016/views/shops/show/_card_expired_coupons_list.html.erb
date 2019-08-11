@@ -1,0 +1,53 @@
+<% if coupons.present? %>
+  <%# FIXME: translation cache bug. Translations remain cached as part of the view cache even if translations update %>
+  <%#- cache(['expired_coupons', *coupons.map(&:id)]) do -%>
+
+    <div class="card card-expired-coupons-list hidden-xs pannacotta">
+
+      <div class="card-header with-border-bottom">
+
+        <h2 class="card-title"><%= t(:EXPIRED_COUPONS_FOR, default: 'Expired Coupons For') %> <%= shop.title if shop.title.present? %></h2>
+
+        <!-- /.card-title with-border-bottom -->
+
+      </div>
+
+      <!-- /.card-header -->
+
+      <div class="card-content">
+
+        <ol class="list-unstyled">
+
+          <% coupons.each do |coupon| %>
+
+            <% if coupon.end_date.present? && coupon.end_date <= Time.zone.now %>
+
+              <li>
+
+                <div>
+
+                  <h4><%= coupon.title if coupon.title.present? %></h4>
+
+                </div>
+
+              </li>
+
+            <% end %>
+
+          <% end %>
+
+        </ol>
+
+        <!-- /.list-unstyled -->
+
+      </div>
+
+      <!-- /.card-content -->
+
+    </div>
+
+    <!-- /.card card-expired-coupons-list hidden-xs pannacotta -->
+
+  <%# end %>
+
+<% end %>

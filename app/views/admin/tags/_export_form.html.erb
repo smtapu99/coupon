@@ -1,0 +1,55 @@
+<div class="modal-dialog">
+
+  <div class="modal-content">
+
+    <%= form_for [:admin, @tag], method: :get, url: export_admin_tags_path, :html => { :class => 'form form-horizontal',
+      id: 'export-form',
+      style: 'margin-bottom: 0',
+      onsubmit: 'jQuery(this).find(".btn.btn-primary").val("Loading, please wait...").attr("disabled", true);'} do |f| %>
+
+    <div class="modal-header">
+
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+
+      <h4 class="modal-title" id="myModalLabel">Export Form</h4>
+
+    </div>
+
+    <div class="modal-body">
+
+      <div class="form-group">
+
+        <%= f.label :categories, class: 'col-md-2 control-label' %>
+
+        <div class="col-md-10">
+
+          <%= select_tag 'tag[category_ids]', options_from_collection_for_select(Site.current.categories.active, :id, :name), multiple: true, class: 'select2 form-control' %>
+
+          <div class="help-small">In order to export ALL tags select NO category. If you select categories you will only receive tags from that categories.</div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="modal-footer">
+
+        <%= f.submit 'Export Site Tags', :class => 'btn btn-primary' %>
+
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+    </div>
+
+    <% end # form %>
+
+  </div><!-- /.modal-content -->
+
+</div><!-- /.modal-dialog -->
+
+<script type="text/javascript">
+
+jQuery('.select2').select2();
+select2_select_all();
+
+</script>

@@ -1,0 +1,64 @@
+<div class="full-newsletter" style="<%= "background: values[:background]" if values[:background].present? %>" id="full-newsletter<%= "-" + order_number.to_s if defined?(order_number) %>">
+
+  <div class="container">
+
+    <div class="col-md-12 text-center">
+
+      <h3 class="full-newsletter__header"><%= values[:title] %></h3>
+
+    </div>
+
+    <div class="col-md-12 text-center">
+
+      <div class="full-newsletter__form">
+
+        <%= form_tag send("subscribe_#{site.site.id}_path"), method: :post, role: 'form', remote: :true, data: {'event-action' => 'form_submit'} do |f| %>
+
+          <div class="col-md-6 col-md-offset-3">
+
+            <div class="col-sm-9">
+
+              <div class="input-wrapper">
+
+                <%= email_field_tag :email, nil, class: 'full-newsletter__input form-control', id: 'newsletter_email', placeholder: values[:placeholder], :required => true, title: values[:placeholder], "aria-label" => values[:placeholder]%>
+
+              </div>
+
+            </div>
+
+            <div class="col-sm-3">
+
+              <%= button_tag values[:button_text], class: 'btn btn-ready btn-small full-newsletter__btn' %>
+
+            </div>
+
+            <div class="col-sm-12">
+
+              <p class="privacy-note">
+
+                <%= render 'shared/privacy_note_checkbox' %>
+
+                <span class="text-truncated">
+                  <%= truncate(t(:BY_SUBSCRIBING_YOU_ACCEPT_OUR_PRIVACY_POLICY, default: 'By subscribing you accept our <a href="%{policy_url}" rel="nofollow" target="_blank">privacy policy</a>', policy_url: policy_url).html_safe, length: 75, escape: false) %>
+                </span>
+                <span class="text-full hidden">
+                  <%= t(:BY_SUBSCRIBING_YOU_ACCEPT_OUR_PRIVACY_POLICY, default: 'By subscribing you accept our <a href="%{policy_url}" rel="nofollow" target="_blank">privacy policy</a>', policy_url: policy_url).html_safe %>
+                </span>
+
+              </p>
+
+            </div>
+
+          </div>
+
+        <% end %>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- ./full-newsletter -->

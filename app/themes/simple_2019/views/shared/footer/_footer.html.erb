@@ -1,0 +1,129 @@
+<!-- .footer -->
+<% unless Setting::get('publisher_site.show_footer', default: 1).to_i.zero? %>
+
+  <%- if Site.current.is_wls? -%>
+
+    <%- if Setting.get('publisher_site.wls_footer_style', default: 'default') == 'default' -%>
+
+      <%= render partial: 'shared/footer/footer_wls' %>
+
+    <% else %>
+
+      <%= render partial: 'shared/footer/footer_2019' %>
+
+    <% end %>
+
+  <%- else -%>
+
+    <% show_social_media = Setting::get('publisher_site.show_social_media_column', default: 0).to_i.zero? %>
+
+    <% column_classes = show_social_media.present? ? 'col-xs-12 col-sm-4' : 'col-xs-12 col-sm-3' %>
+
+    <% footer_campaigns = @site.footer_campaigns %>
+
+    <% footer_shops = @site.footer_shops %>
+
+    <div class="footer" id="footer" data-event-category="footer">
+
+      <div class="container">
+
+        <div class="row">
+
+          <div class="<%= column_classes %>">
+
+            <%= render partial: 'shared/footer/footer_widget_area_one', locals: { footer_campaigns: footer_campaigns, footer_shops: footer_shops } %>
+
+          </div>
+
+          <div class="<%= column_classes %>">
+
+            <%= render partial: 'shared/footer/footer_widget_area_two' %>
+
+          </div>
+
+          <div class="<%= column_classes %>">
+
+            <%= render partial: 'shared/footer/footer_widget_area_three' %>
+
+          </div>
+
+          <% unless show_social_media.present? %>
+
+            <div class="<%= column_classes %>">
+
+              <%= render partial: 'shared/footer/footer_widget_area_four' %>
+
+            </div>
+
+          <% end %>
+
+        </div>
+
+        <%- if footer_shops.present? && footer_shops.size > 1 -%>
+
+          <div class="row">
+
+            <div class="col">
+
+              <%= render partial: 'shared/footer/footer_shops', locals: { footer_shops: footer_shops } %>
+
+            </div>
+
+          </div>
+
+        <%- end -%>
+
+        <%- if footer_campaigns.present? && footer_campaigns.size > 1 -%>
+
+          <div class="row">
+
+            <div class="col">
+
+              <%= render partial: 'shared/footer/footer_campaigns', locals: { footer_campaigns: footer_campaigns } %>
+
+            </div>
+
+          </div>
+
+        <% end %>
+
+
+        <div class="row">
+
+          <div class="col">
+
+            <div class="copyright">
+
+              <a href="https://www.savings-united.com/" class="copyright__link" target="_blank" rel="nofollow">
+
+                <%= image_tag 'flat_2016/saving_united_logo_xs.png', class: 'copyright__logo img-responsive', height: 38, width: 140, alt: "Savings United Logo" %>
+
+              </a>
+
+              <% disclaimer_text = Setting::get('publisher_site.disclaimer_text', default: nil) %>
+
+              <% if Setting::get('publisher_site.show_disclaimer', default: nil).to_i != 0 && disclaimer_text.present? %>
+
+                <p class="copyright__disclaimer">
+
+                  <%= disclaimer_text.html_safe %>
+
+                </p>
+
+              <%- end -%>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  <% end %>
+
+<% end %>
+
+<!-- ./footer -->

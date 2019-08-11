@@ -1,0 +1,59 @@
+<%- cache([@shops, @query]) do -%>
+
+  <% if @shops.present? %>
+
+    <ul class="list-unstyled shop-autocomplete">
+
+      <%- if @shops.present? -%>
+
+        <%- @shops.each_with_index do |shop, shop_index| -%>
+
+          <li class="result-shop">
+
+            <a href="<%= dynamic_url_for('shops', 'show', slug: shop.slug) %>">
+
+              <div class="result-media">
+
+                <%= image_tag shop.logo_url, alt: shop.title, class: 'img-responsive', height: 100, width: 100 %>
+
+              </div>
+
+              <div class="result-body">
+
+                <span class="first-line"><%= (shop.title.gsub(/#{Regexp.escape(@query)}/i) {"<b>#{$&}</b>"}).html_safe  %></span>
+
+                <%- if shop.active_coupons_count > 0 -%>
+
+                  <small class="second-line"><i class="color-ready roberto roberto-star"></i>&nbsp;
+
+                    <%= t("see_all_count_coupons", default: 'See all count coupons').gsub('count', shop.active_coupons_count.to_s) %>
+
+                  </small>
+
+                <%- end -%>
+
+              </div>
+
+            </a>
+
+            <div class="clear"></div>
+
+            <%- if shop_index + 1 < @shops.size -%>
+
+              <hr>
+
+            <%- end -%>
+
+          </li>
+
+        <%- end -%>
+
+      <%- end -%>
+
+    </ul>
+
+    <!-- /.list-unstyled -->
+
+  <% end %>
+
+<%- end -%>

@@ -1,0 +1,15 @@
+<% for_mobile ||= false %>
+
+<div class="card card-back-to pannacotta <%= (for_mobile === true) ? 'visible-xs' : 'hidden-xs' %>">
+
+  <div class="card-content">
+
+    <%= link_to(t(:BACK_TO_CATEGORIES_LIST, default: 'Back To Categories List'), dynamic_url_for('categories')) %>
+
+  </div>
+
+  <!-- /.card-content -->
+
+</div>
+
+<!-- /.card card-back-to pannacotta <%= (for_mobile === true) ? 'visible-xs' : 'hidden-xs' %> -->

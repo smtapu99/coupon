@@ -1,0 +1,209 @@
+<%-
+desk_coupons = coupons.where(is_mobile: false)
+coupon_sizes = {
+  mobile: {
+    coupons: coupons.select_by_type_mobile('coupon').size,
+    offers: coupons.select_by_type_mobile('offer').size
+  },
+  desktop: {
+    coupons: coupons.select_by_type_desktop('coupon').size,
+    offers: coupons.select_by_type_desktop('offer').size
+  }
+}
+-%>
+
+<div class="row">
+
+  <div class="col-xs-12">
+
+    <div class="card-coupon-filter remote-filter">
+
+      <ul class="filter-mobile hidden">
+
+        <%- if both_filters = coupon_sizes[:mobile][:coupons] > 0 && coupon_sizes[:mobile][:offers] > 0 && both_filters = true -%>
+
+          <li class="active" data-filter-type="all"><%= t(:ALL, default: 'ALL') %></li>
+
+        <%- end -%>
+
+        <%- if coupon_sizes[:mobile][:coupons] > 0 -%>
+
+          <li data-filter-type="coupon" class="<%= 'active' unless both_filters %>">
+
+            <span><%= coupon_sizes[:mobile][:coupons] %></span> <%= coupon_sizes[:mobile][:coupons] > 1 ? t(:COUPONS, default: 'COUPONS').capitalize : t(:COUPON, default: 'COUPON').capitalize  %>
+
+          </li>
+
+        <%- end -%>
+
+        <%- if coupon_sizes[:mobile][:offers] > 0 -%>
+
+          <li data-filter-type="offer" class="<%= 'active' unless both_filters %>">
+
+            <span><%= coupon_sizes[:mobile][:offers] %></span> <%= coupon_sizes[:mobile][:offers] > 1 ? t(:OFFERS, default: 'OFFERS').capitalize : t(:OFFER, default: 'OFFER').capitalize  %>
+
+          </li>
+
+        <%- end -%>
+
+      </ul>
+
+      <ul class="filter-desktop hidden">
+
+        <%- if both_filters = coupon_sizes[:desktop][:coupons] > 0 && coupon_sizes[:desktop][:offers] > 0 && both_filters = true -%>
+
+          <li class="active" data-filter-type="all"><%= t(:ALL, default: 'ALL') %></li>
+
+        <%- end -%>
+
+        <%- if coupon_sizes[:desktop][:coupons] > 0 -%>
+
+          <li data-filter-type="coupon" class="<%= 'active' unless both_filters %>">
+
+            <span><%= coupon_sizes[:desktop][:coupons] %></span> <%= coupon_sizes[:desktop][:coupons] > 1 ? t(:COUPONS, default: 'COUPONS').capitalize : t(:COUPON, default: 'COUPON').capitalize  %>
+
+          </li>
+
+        <%- end -%>
+
+        <%- if coupon_sizes[:desktop][:offers] > 0 -%>
+
+          <li data-filter-type="offer" class="<%= 'active' unless both_filters %>">
+
+            <span><%= coupon_sizes[:desktop][:offers] %></span> <%= coupon_sizes[:desktop][:offers] > 1 ? t(:OFFERS, default: 'OFFERS').capitalize : t(:OFFER, default: 'OFFER').capitalize  %>
+
+          </li>
+
+        <%- end -%>
+
+      </ul>
+
+      <br class="visible-xs">
+
+      <%- if params[:controller] != 'shops' && desk_coupons.present? and shop_ids = desk_coupons.map(&:shop_id).uniq and shop_ids.present? and shop_ids.size > 1 -%>
+
+        <div class="btn-group shop-filter filter-desktop hidden">
+
+          <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+            <%= t(:FILTER_BY_SHOP, default: 'FILTER BY SHOP') %>
+
+          </button>
+
+          <div class="dropdown-menu">
+
+            <%- @site.shops.where(id: shop_ids).order(title: :asc).each do |shop| -%>
+
+              <label class="shop-<%= shop.id %>x">
+
+                <input type="checkbox" value="shop-<%= shop.id %>x">
+
+                <span><%= shop.title %></span>
+
+              </label>
+
+            <%- end -%>
+
+          </div>
+
+        </div>
+
+      <%- end -%>
+
+      <%- if params[:controller] != 'shops' && coupons.present? and shop_ids = coupons.map(&:shop_id).uniq and shop_ids.present? and shop_ids.size > 1 -%>
+
+        <div class="btn-group shop-filter filter-mobile hidden">
+
+          <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+            <%= t(:FILTER_BY_SHOP, default: 'FILTER BY SHOP') %>
+
+          </button>
+
+          <div class="dropdown-menu">
+
+            <%- @site.shops.where(id: shop_ids).order(title: :asc).each do |shop| -%>
+
+              <label class="shop-<%= shop.id %>">
+
+                <input type="checkbox" value="shop-<%= shop.id %>">
+
+                <span><%= shop.title %></span>
+
+              </label>
+
+            <%- end -%>
+
+          </div>
+
+        </div>
+
+      <%- end -%>
+
+      <%- if desk_coupons.present? and category_ids = desk_coupons.map(&:category_ids).flatten.uniq and category_ids.reject(&:nil?).present? and category_ids.reject(&:nil?).size > 1 -%>
+
+        <div class="btn-group category-filter filter-desktop hidden">
+
+          <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+            <%= t(:FILTER_BY_CATEGORY, default: 'FILTER BY CATEGORY') %>
+
+          </button>
+
+          <div class="dropdown-menu">
+
+            <%- @site.categories.where(id: category_ids).each do |cat| -%>
+
+              <label class="cat-<%= cat.id %>x">
+
+                <input type="checkbox" value="cat-<%= cat.id %>x">
+
+                <span><%= cat.name %></span>
+
+              </label>
+
+            <%- end -%>
+
+          </div>
+
+        </div>
+
+      <%- end -%>
+
+      <%- if coupons.present? and category_ids = coupons.map(&:category_ids).flatten.uniq and category_ids.reject(&:nil?).present? and category_ids.reject(&:nil?).size > 1 -%>
+
+        <div class="btn-group category-filter filter-mobile hidden">
+
+          <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+            <%= t(:FILTER_BY_CATEGORY, default: 'FILTER BY CATEGORY') %>
+
+          </button>
+
+          <div class="dropdown-menu">
+
+            <%- @site.categories.where(id: category_ids).each do |cat| -%>
+
+              <label class="cat-<%= cat.id %>">
+
+                <input type="checkbox" value="cat-<%= cat.id %>">
+
+                <span><%= cat.name %></span>
+
+              </label>
+
+            <%- end -%>
+
+          </div>
+
+        </div>
+
+      <%- end -%>
+
+    </div>
+
+  </div>
+
+  <!-- /.card-shop-filter -->
+
+</div>

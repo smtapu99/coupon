@@ -1,0 +1,32 @@
+<div class="sidebar__logo d-none d-lg-block">
+
+  <a class="sidebar__logo-link" data-shop="<%= shop.title if shop.title.present? rescue nil %>" href="<%= cloak_url_string(shop.fallback_url) if shop.fallback_url.present? rescue nil %>" rel="nofollow" target="_blank">
+
+    <%= render partial: 'shops/shared/logo', locals: { shop: shop, css_class: '', height: 200, width: 200 } %>
+
+  </a>
+
+</div>
+
+<div class="sidebar__shop-link d-none d-lg-block">
+
+  <%= link_to cloak_url_string(shop.fallback_url), rel: 'nofollow', target: '_blank', class: 'sidebar__btn btn btn--warning', data: { shop: shop.title } do %>
+
+    <%= t(:GO_TO_SHOP_NAME, default: 'Go To Shop').gsub('{shop_name}', shop.title) %>
+
+  <% end %>
+
+</div>
+
+<div class="widget widget--rating">
+
+  <h3><%= t(:RATE, default: 'Rate') %> <%= shop.title %></h3>
+
+  <div class="star-rating-container">
+
+    <%= render partial: 'shops/show/star_rating', locals: { shop: shop } %>
+
+  </div>
+
+</div>
+

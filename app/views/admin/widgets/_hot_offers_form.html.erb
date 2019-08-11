@@ -1,0 +1,140 @@
+<div class="form-group">
+
+  <%= ff.label :subtitle, class: 'col-md-2 control-label' %>
+
+  <div class="col-md-10">
+
+    <%= ff.text_field :subtitle, class: 'form-control' %>
+
+  </div>
+
+</div>
+
+<div class="form-group">
+
+  <div class="col-md-12">
+
+    <div class="help-block">
+      In order for the widget to look good you should upload transparent shop logos; The offer headline and
+      text comes from the coupon title and description. Use &lt;br&gt; in the description to be sure it looks good.
+      Take care about box sizes so that each block contains one of this combinations:
+      <em>'small + large'</em>, <em>'medium + medium'</em> or <em>'large + small'</em>.
+      User either 3 or 6 blocks. nothing in between. If a coupon is not valid or inactive the widget will not show.
+    </div>
+
+  </div>
+
+</div>
+
+<%- (0..11).each do |num| -%>
+
+  <%= "<h3>#{(num / 2 + 1).floor.ordinalize} Block</h3>".html_safe if num % 2 == 0 %>
+
+  <div class="form-group">
+
+    <div class="col-md-4">
+
+      <%= "<label for=" ">Coupon IDs</label>".html_safe if num == 0 %>
+
+      <%= text_field_tag 'widget[hot_offers][][coupon_ids]', (@widget.hot_offers[num][:coupon_ids] rescue nil), class: 'form-control', placeholder: 'Coupon IDs' %>
+
+    </div>
+
+    <div class="col-md-4">
+
+      <%= "<label for=" ">Label Color</label>".html_safe if num == 0 %>
+
+      <%= select_tag "widget[hot_offers][][label_color]", options_for_select(["blue", "green", "yellow"], (@widget.hot_offers[num][:label_color] rescue nil)), class: 'form-control' %>
+
+    </div>
+
+    <div class="col-md-2">
+
+      <%= "<label for=" ">Box Size</label>".html_safe if num == 0 %>
+
+      <%= select_tag "widget[hot_offers][][size]", options_for_select(["small", "medium", "large"], (@widget.hot_offers[num][:size] rescue nil)), class: 'form-control' %>
+
+    </div>
+
+    <div class="col-md-2">
+
+      <%= "<label for=" ">Box Type</label>".html_safe if num == 0 %>
+
+      <%= select_tag "widget[hot_offers][][box_type]", options_for_select(["white", "gray", "background"], (@widget.hot_offers[num][:box_type] rescue nil)), class: 'form-control' %>
+
+    </div>
+
+  </div>
+
+  <div class="form-group">
+
+    <div class="col-md-8">
+
+      <%= "<label for=" ">Image URL</label>".html_safe if num == 0 %>
+
+      <%= text_field_tag 'widget[hot_offers][][image]', (@widget.hot_offers[num][:image] rescue nil), class: 'select2 form-control', placeholder: 'Image URL' %>
+
+    </div>
+
+    <div class="col-md-4">
+
+      <%= "<label for=" ">Text Alignment</label>".html_safe if num == 0 %>
+
+      <%= select_tag "widget[hot_offers][][text_alignment]", options_for_select(["left", "right"], (@widget.hot_offers[num][:text_alignment] rescue nil)), class: 'form-control' %>
+
+    </div>
+
+  </div>
+
+  <div class="form-group">
+
+    <div class="col-md-3">
+
+      <div class="checkbox">
+
+      <label>
+
+        <input type="checkbox" name="widget[hot_offers][][hide_logo]" <%= 'checked="checked"' if (@widget.hot_offers[num][:hide_logo] == 'on' rescue nil) %>>
+
+        Hide Logo
+
+      </label>
+
+    </div>
+
+    </div>
+
+    <div class="col-md-9">
+
+      <div class="checkbox">
+
+      <label>
+
+        <input type="checkbox" name="widget[hot_offers][][logo_bg_transparent]" <%= 'checked="checked"' if (@widget.hot_offers[num][:logo_bg_transparent] == 'on' rescue nil) %>>
+
+        Semitransparent Logo Background
+
+      </label>
+
+    </div>
+
+    </div>
+
+  </div>
+
+  <div class="form-group">
+
+    <div class="col-md-6">
+
+      <label> Logo Background Color </label>
+
+      <%= text_field_tag 'widget[hot_offers][][logo_bg_color]', (@widget.hot_offers[num][:logo_bg_color] rescue nil), class: 'select2 form-control colorpicker', placeholder: 'color', autocomplete: "off" %>
+
+    </div>
+
+  </div>
+
+
+  <%= "<hr #{'style="border-color: #000"'.html_safe if num.odd? }>".html_safe if num < 11 %>
+
+<%- end -%>

@@ -1,0 +1,51 @@
+<!-- Hero -->
+<style>
+  .themed .hero {
+    background-image:
+    <%- if @campaign.html_document.darken_header_image? %>
+        linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.2)),
+    <% end %>
+    url(<%= @campaign.html_document.mobile_header_image_url() || @campaign.html_document.header_image_url() %>);
+    background-size: cover;
+  }
+
+  @media(min-width: 768px) {
+    .themed .hero {
+      background-image:
+      <%- if @campaign.html_document.darken_header_image? %>
+          linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.2)),
+      <% end %>
+      url(<%= @campaign.html_document.header_image_url() %>);
+      background-size: cover;
+    }
+  }
+</style>
+
+<div class="hero hero--size-<%= @campaign.html_document.header_size %>">
+
+  <div class="container">
+
+    <div class="row">
+
+      <div class="col-md-12">
+
+        <%- if @campaign.h1_first_line.present? -%>
+
+          <h1 class="text-center hero__h1"><%= @campaign.h1_first_line.html_safe %> <br> <%= "#{@campaign.h1_second_line.html_safe}" %></h1>
+
+        <%- end -%>
+
+        <%- if @h2.present? -%>
+
+          <h2 class="text-center hero__h2"><%= @h2.html_safe %></h2>
+
+        <%- end -%>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+

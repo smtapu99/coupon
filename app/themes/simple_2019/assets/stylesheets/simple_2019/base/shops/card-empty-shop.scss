@@ -1,0 +1,70 @@
+.notice {
+  color: #FFF;
+  background-color: $btn--info;
+
+  &__header {
+    padding: 25px;
+    text-align: center;
+  }
+
+  &__content {
+    padding: 0 25px 25px;
+    text-align: center;
+
+    &--wrapper {
+      display: inline-block;
+      margin-bottom: 0;
+      vertical-align: middle;
+    }
+
+    &--label {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      margin: -1px;
+      padding: 0;
+      overflow: hidden;
+      border: 0;
+      clip: rect(0, 0, 0, 0);
+    }
+
+    &--input {
+      display: inline-block;
+      width: auto;
+      min-width: 238px;
+      height: 40px;
+      padding: 8px 12px;
+      color: #404040;
+      font-weight: 400;
+      font-size: 14px;
+      vertical-align: middle;
+      -webkit-box-shadow: none;
+      box-shadow: none;
+    }
+
+    &--button {
+      position: relative;
+      top: 1px;
+      padding: 8px 16px;
+      color: $font-color;
+      font-weight: 400;
+      text-transform: uppercase;
+      background-color: $background--grey;
+      border: none;
+
+      &:hover {
+        background-color: darken($background--grey, 10%);
+      }
+    }
+
+    &--privacy-note {
+      margin-top: 15px;
+      margin-bottom: 0;
+
+      a {
+        color: #FFF;
+        text-decoration: underline;
+      }
+    }
+  }
+}

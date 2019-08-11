@@ -1,0 +1,121 @@
+<div class="row">
+
+  <div class="col-xs-12">
+
+    <div class="page-header">
+
+      <h1 class="pull-left">
+
+        <i class="icon-group"></i>
+
+        <span>Caches</span>
+
+      </h1>
+
+      <div class="pull-right">
+
+        <ul class="breadcrumb">
+
+          <li>
+
+            <a href="/pcadmin">
+
+              <i class="icon-home"></i>
+
+            </a>
+
+          </li>
+
+          <li class="separator">
+
+            <i class="icon-angle-right"></i>
+
+          </li>
+
+          <li class="active">Caches</li>
+
+        </ul>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<%= render partial: 'admin/shared/flash' %>
+
+<div class="box bordered-box blue-border">
+
+      <div class="box-header blue-background">
+
+        <div class="title">
+
+          <i class="icon-rocket"></i>
+
+          Cache Purging Form
+
+        </div>
+
+      </div>
+
+  <div class="box-content">
+
+    <%= form_tag do |f| %>
+      <% if @proxy_server_type == 'fastly' && User.current.is_super_admin? %>
+        <fieldset>
+          <div class="col-sm-4">
+            <div class="box">
+              <div class="lead">
+                <i class="icon-eraser text-contrast"></i>
+                Purge all pages of <%= Site.current.name %>
+              </div>
+              <small class="text-muted">This will purge all pages of <%= Site.current.name %> instantly. Be careful with this option as it might affect the stability of the servers</small>
+            </div>
+          </div>
+          <div class="col-sm-7 col-sm-offset-1">
+            <div class="form-group">
+                <%= submit_tag("Purge #{Site.current.name}", name: 'purge_all', data: {confirm: 'You will purge all pages of '+Site.current.name+'. Are you sure?'}, class: 'btn btn-danger btn-block') %>
+            </div>
+          </div>
+        </fieldset>
+        <hr>
+      <% end %>
+      <fieldset>
+        <div class="col-sm-4">
+          <div class="box">
+            <div class="lead">
+              <i class="icon-fire text-contrast"></i>
+              Provide a single URL to be purged
+            </div>
+            <small class="text-muted">We will purge this URL from the reverse proxy cache, so that the latest content becomes publicly available.</small>
+            </br></br>
+            <% if @proxy_server_type == 'fastly' %>
+              <small class="text-muted">Please also remember that Fastly (which is your current reverse proxy provider) doesn't support wildcard purges, we recommend to activate surrogate keys if it is not yet active.</small>
+            <% end %>
+          </div>
+        </div>
+        <div class="col-sm-7 col-sm-offset-1">
+          <div class="form-group">
+            <%= label_tag 'url', 'URL' %>
+            <% is_field_disabled = (@proxy_server_type == 'fastly' && @fastly_auth_key.blank?) %>
+            <%= text_field_tag(:url, nil, {disabled: is_field_disabled, class: 'form-control', placeholder: 'http://site.com/page.html'}) %>
+            <% if is_field_disabled %>
+              <small class="text-error">You have selected Fastly as your reverse proxy provider, but you have forgotten to add an auth key, please do so on the settings page.</small>
+            <% end %>
+          </div>
+        </div>
+      </fieldset>
+
+
+      <div class="form-actions">
+        <div class="row">
+          <div class="col-sm-7 col-sm-offset-5">
+            <%= submit_tag("Purge URL", class: "btn btn-primary") %>
+          </div>
+        </div>
+      </div>
+  <% end %>
+  </div>
+</div>

@@ -1,0 +1,12 @@
+<% if is_home? %>
+
+  <h1><%= t(:H1_MAINPAGE, default: 'Coupons And Offers With The Best Promotions').html_safe %></h1>
+
+  <p class="text-uppercase">
+
+    <%= @weekly_coupons_count.to_i + rand(300..3000) %> <%= t(:FREE_VOUCHER_CODES_AND_DISCOUNTS_ADDED_THIS_WEEK, default: 'Free voucher codes and discounts added this week') %>
+
+  </p>
+  <!-- /.hidden-xs text-uppercase -->
+
+<% end %>

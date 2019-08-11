@@ -1,0 +1,107 @@
+<%- if coupons.present? && coupons.size >= (6 - values[:teaser_positions].reject(&:empty?).count) -%>
+
+<div class="row">
+
+  <div class="col-xs-12">
+
+    <h2><%= values[:title].present? ? values[:title] : category.present? ? category.name : '' %></h2>
+
+    <%- if widget.featured_coupons_type == 'last_chance' -%>
+
+      <a href="<%= dynamic_url_for('coupons', 'index', type: 'expiring') %>" class="more-link"><%= t(:VIEW_ALL, default: 'View all') %> <i class="roberto-chevron-right"></i></a>
+
+    <%- elsif widget.featured_coupons_type == 'exclusive_coupons' -%>
+
+      <a href="<%= dynamic_url_for('coupons', 'index', type: 'exclusive') %>" class="more-link"><%= t(:VIEW_ALL, default: 'View all') %> <i class="roberto-chevron-right"></i></a>
+
+    <%- elsif widget.featured_coupons_type == 'top_coupons' -%>
+
+      <a href="<%= dynamic_url_for('coupons', 'index', type: 'top') %>" class="more-link"><%= t(:VIEW_ALL, default: 'View all') %> <i class="roberto-chevron-right"></i></a>
+
+    <%- elsif category.present? -%>
+
+      <a href="<%= dynamic_url_for('category', 'show', slug: category.slug) %>" class="more-link"><%= t(:VIEW_ALL, default: 'View all') %> <i class="roberto-chevron-right"></i></a>
+
+    <%- end -%>
+
+  </div>
+  <!-- /.col-xs-12 -->
+
+  <% # Display featured-coupons all at once and not as slider. Visible from 768px and up. %>
+
+  <div class="col-xs-12">
+
+    <ol class="pannacotta featured-coupons<%= ' last-chance-widget' if widget.featured_coupons_type == ' last_chance' %> list-coupons-as-items list-unstyled hover <%= hide_featured_class(values)%>">
+
+      <%- i = 1 -%>
+
+      <% no_skip = true %>
+
+      <%- coupons.each_with_index do |coupon, idx| -%>
+
+        <%- is_ad_code = values[:ad_code].present? && i == 2 -%>
+
+        <%- is_teaser = coupon.widget_or_shop_header.present? && values[:teaser_positions].reject(&:empty?).include?(i.to_s) || is_ad_code -%>
+
+        <% if no_skip %>
+
+          <% # Insert 2 small coupon frames in 1 column, or 1 big coupon %>
+
+          <li class="coupon-item<%= ' coupon-item--big' if is_teaser %><%= ' coupon-ads' if is_ad_code %>" data-shop-name="<%= coupon.shop.title %>">
+
+            <% next_coupon = coupons[idx+1] %>
+
+            <%=
+              render partial: "shared/featured_coupons_frame", locals: {
+                coupon: coupon,
+                is_ad_code: is_ad_code,
+                i: idx,
+                is_teaser: is_teaser,
+                widget: widget,
+                coupons_belong_to_same_shop: coupons_belong_to_same_shop
+              }
+            %>
+
+            <% unless is_teaser %>
+
+              <% if next_coupon.present? %>
+
+                <%=
+                  render partial: "shared/featured_coupons_frame", locals: {
+                    coupon: next_coupon,
+                    is_ad_code: is_ad_code,
+                    i: idx+1,
+                    is_teaser: is_teaser,
+                    widget: widget,
+                    coupons_belong_to_same_shop: coupons_belong_to_same_shop
+                  }
+                %>
+
+                <% no_skip = false %>
+
+              <% end %>
+
+              </li>
+
+            <% end %>
+
+        <% else %>
+
+          <% no_skip = true %>
+
+        <% end %>
+
+        <% break if (is_teaser && i == 5) || i == 6 %>
+
+        <% i += is_teaser ? 2 : 1 %>
+
+      <%- end -%>
+
+    </ol>
+
+  </div>
+  <!-- /.col-xs-12 -->
+
+</div>
+
+<%- end -%>

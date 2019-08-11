@@ -1,0 +1,41 @@
+<li class="cloud-background widget-box" data-type="<%= widget.name %>" data-widget-id="<%= widget.id %>">
+
+  <table width="100%" style="table-layout: fixed">
+
+    <tr>
+
+      <td style="width:30%"><%= widget.id %>: <%= widget.name.titleize %></td>
+
+      <td style="width:60%"><span class="text-overflow"><%= widget.title %>&nbsp;</span></td>
+
+      <td style="width:10%" class="text-right">
+
+        <i class="icon icon-move"></i>
+
+        <% pencil_icon = %w[expired_coupon expiring_coupons] %>
+
+        <% unless pencil_icon.include?(widget.name) %>
+
+          <%= link_to '<i class="icon-pencil"></i>'.html_safe, edit_admin_widget_path(widget.id), remote: false, data:
+            {toggle: 'modal', target: '#myModal', remote: edit_admin_widget_path(widget.id)} %>
+
+        <% end %>
+
+        <% remove_icon = %w[coupons_lists expired_coupon help top_x_coupons expiring_coupons] %>
+
+        <% unless remove_icon.include?(widget.name) %>
+
+          <%= link_to '<i class="icon-remove"></i>'.html_safe, admin_widget_path(widget.id), remote: true, data:
+            {confirm: 'Are you sure to delete the widget completely from all areas?', method: 'delete', target: '#myModal'} %>
+
+        <% end %>
+
+      </td>
+
+    </tr>
+
+  </table>
+
+</li>
+
+<!-- /.cloud-background widget -->

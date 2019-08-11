@@ -1,0 +1,6 @@
+<% if @widget.errors.any? %>
+  $("#myModal").html('').html("<%= escape_javascript render(:partial => 'form') %>");
+<% else %>
+  $('#myModal').modal('hide');
+  $("#widgets ul").html("<%= escape_javascript render :partial => 'widgets', :locals => {widgets: Widget.by_current_site_and_campaign } %>");
+<% end %>

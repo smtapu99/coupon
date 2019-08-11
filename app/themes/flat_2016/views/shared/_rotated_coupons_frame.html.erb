@@ -1,0 +1,29 @@
+<%- h1 = coupon.shop.try(:html_document).try(:h1) -%>
+
+<div class="frame">
+
+  <a <%= clickout_params_for_element(coupon) %> title="<%= coupon.title %>">
+
+    <% if coupon.use_logo_on_home_page && coupon.try(:logo_url, '_110x110') %>
+
+      <img alt="<%= h1 %>" class="img-responsive pull-left" height="220" src="<%= coupon.logo_url('_110x110') %>" width="220">
+
+    <% else %>
+
+      <img alt="<%= h1 %>" class="img-responsive pull-left" height="220" src="<%= coupon.shop.logo_url('_110x110') %>" width="220">
+
+    <% end %>
+
+    <span class="content">
+
+      <b class="color-sky text-uppercase"><%= coupon.shop.title %></b>
+
+      <%= coupon.title.truncate(60) %>
+
+      <%= render partial: "coupons/shared/type", locals: {coupon: coupon} %>
+
+    </span>
+
+  </a>
+
+</div>

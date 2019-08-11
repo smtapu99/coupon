@@ -1,0 +1,80 @@
+<div class="pannacotta summary-widget">
+
+  <div class="row">
+
+    <div class="col-xs-12 col-sm-6 col-md-12">
+
+      <div class="shop-official">
+
+        <% if !without_h2 %>
+
+          <h2><%= t(:HEADER_BEST_DEALS_SUMMARY, default: t(:BEST_DEALS_IN_SHOP, default: 'BEST_DEALS_IN_SHOP')).gsub('{shop}', title) %></h2>
+
+        <% end %>
+
+        <%- if best.present? -%>
+
+        <table class="table table-responsive table-condensed">
+
+          <tr>
+
+            <th><%= t(:SHOP_VOUCHER_CODES, default: 'SHOP_VOUCHER_CODES').gsub('{shop}', title) %></th>
+
+            <th><%= t(:DISCOUNT, default: 'DISCOUNT') %></th>
+
+            <th><%= t(:EXPIRES, default: 'EXPIRES') %></th>
+
+          </tr>
+
+          <%- best.keys.each do |key| -%>
+
+            <%- next unless best.coupon(key).present? -%>
+
+            <%- if Setting.get('publisher_site.anchors_for_summary_widget', default: 0).to_i == 1 %>
+
+              <tr class="tr-hover">
+
+            <% else %>
+
+              <tr>
+            <% end %>
+
+              <%- if key.to_sym == :last_updated -%>
+
+                <td><%= t(:LAST_UPDATED, default: 'LAST_UPDATED') %></td>
+
+                <td>&nbsp;</td>
+
+                <td><%= I18n.l(best.coupon(key).updated_at.to_date, format: :short) %></td>
+
+              <%- else -%>
+
+                <td>
+                  <%= anchorize_title(best.coupon(key).title, "#coupon-#{best.coupon(key).id}") %>
+                </td>
+
+                <td><%= best.coupon(key).savings_in_string(false) %></td>
+
+                <td><%= I18n.l(best.coupon(key).end_date.to_date, format: :short) %></td>
+
+              <%- end -%>
+
+            </tr>
+
+          <%- end -%>
+
+        </table>
+
+        <%- end -%>
+
+      </div>
+
+      <!-- /.shop-official -->
+
+    </div>
+    <!-- /.col-xs-12 -->
+
+  </div>
+  <!-- /.row -->
+
+</div>

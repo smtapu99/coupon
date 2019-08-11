@@ -1,0 +1,59 @@
+.pannacotta {
+  &.card-breadcrumbs {
+    .card-content {
+      padding: 0;
+
+      .breadcrumb {
+        background-color: transparent;
+        border-radius: 0;
+        margin: -15px 0 18px;
+        padding: 0;
+
+        > li + li::before {
+          color: $color-border;
+          content: "\e803";
+          font-family: "mighty-roberto";
+          font-size: 8px;
+          font-weight: lighter;
+        }
+
+        .breadcrumbs-home {
+          display: none;
+        }
+
+        li {
+          display: inline;
+
+          &.active {
+            a {
+              @include flat-anchor($color-text, darken($color-sky, 10%));
+
+              font-size: 12px;
+            }
+          }
+
+          a {
+            @include flat-anchor($color-sky);
+
+            font-size: 12px;
+
+            i {
+              font-size: 14px;
+              font-weight: lighter;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.breadcrumb > .active {
+  color: #4A4A4A;
+}
+
+@media (max-width: 767px) {
+  .pannacotta.card-breadcrumbs {
+    display: none;
+  }
+}

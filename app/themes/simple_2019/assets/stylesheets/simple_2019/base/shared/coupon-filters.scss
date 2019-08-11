@@ -1,0 +1,11 @@
+.coupon-filters {
+  $this: &;
+
+  &__mobile {
+    display: none;
+  }
+
+  &--hidden {
+    // display: none;
+  }
+}

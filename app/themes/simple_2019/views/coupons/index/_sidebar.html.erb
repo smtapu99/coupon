@@ -1,0 +1,11 @@
+<% content_for :sidebar do %>
+
+  <%= render partial: 'coupons/index/filter_by_type' %>
+
+  <div class="d-none d-lg-block">
+
+    <%= render partial: 'shared/sidebar_seo_text', locals: { title: @h2, content: t("COUPON_#{params[:type].underscore.upcase}_SEO".to_sym, default: "COUPON_#{params[:type].underscore.upcase}_SEO") } %>
+
+  </div>
+
+<% end %>

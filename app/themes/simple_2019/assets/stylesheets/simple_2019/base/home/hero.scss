@@ -1,0 +1,60 @@
+.hero {
+  height: 300px;
+  border: 1px solid #EAEAEA;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+  @media #{$sm} {
+    height: auto;
+    min-height: 150px;
+  }
+
+  &__wrapper {
+    margin: 10px 0 20px;
+    background-color: $background--light-grey;
+    @media (max-width: 1199px) {
+      margin: 0;
+    }
+  }
+
+  &__links {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 0;
+    margin-bottom: 10px;
+    padding: 0;
+    overflow: hidden;
+    list-style-type: none;
+    background-color: #FFF;
+  }
+
+  &__link {
+    display: flex;
+    flex-grow: 1;
+    justify-content: space-around;
+    height: 90px;
+    margin-top: -1px;
+    margin-left: -1px;
+    background-color: #FFF;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+
+    &:hover {
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    &--divider {
+      height: 100%;
+      border-right: 1px solid $font-color;
+      opacity: 0.1;
+    }
+
+    a {
+      align-self: center;
+      padding: 14px 16px;
+      color: $font-color;
+      text-decoration: none;
+    }
+  }
+}

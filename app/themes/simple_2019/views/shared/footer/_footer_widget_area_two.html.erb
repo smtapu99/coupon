@@ -1,0 +1,91 @@
+<!-- .f-widget.f-widget-two -->
+
+<div class="f-widget">
+
+  <div class="f-widget__header">
+
+    <h4 class="f-widget__title"><%= t(:NAVIGATION_ABOUT_PANNACOTTA, default: @site.site.name) %></h4>
+
+  </div>
+
+  <div class="f-widget__content">
+
+    <ul class="f-widget__list">
+
+      <% if Setting::get('legal_pages.about_us_url').present? %>
+
+        <li class="f-widget__item">
+
+          <%= link_to t(:ABOUT_US, default: 'About Us'), Setting::get('legal_pages.about_us_url'), rel: 'nofollow' %>
+
+        </li>
+
+      <% end %>
+
+      <% if Setting::get('legal_pages.press_url').present? %>
+
+        <li class="f-widget__item">
+
+          <%= link_to t(:Press, default: 'Press'), Setting::get('legal_pages.press_url'), rel: 'nofollow' %>
+
+        </li>
+
+      <% end %>
+
+      <% if Setting::get('legal_pages.imprint_url').present? %>
+
+        <li class="f-widget__item">
+
+          <%= link_to t(:IMPRINT, default: 'Imprint'), Setting::get('legal_pages.imprint_url'), rel: 'nofollow' %>
+
+        </li>
+
+      <% end %>
+
+      <% if Setting::get('legal_pages.terms_and_conditions_url').present? %>
+
+        <li class="f-widget__item">
+
+          <%= link_to t(:TERMS_AND_CONDITIONS, default: 'Terms of Use'), Setting::get('legal_pages.terms_and_conditions_url'), rel: 'nofollow' %>
+
+        </li>
+
+      <% end %>
+
+      <% if Setting::get('legal_pages.privacy_policy_url').present? %>
+
+        <li class="f-widget__item">
+
+          <%= link_to t(:PRIVACY_POLICY, default: 'Privacy Policy'), Setting::get('legal_pages.privacy_policy_url'), rel: 'nofollow' %>
+
+        </li>
+
+      <% end %>
+
+      <% if Setting::get('legal_pages.cookie_policy_url').present? %>
+
+        <li class="f-widget__item">
+
+          <%= link_to t(:COOKIE_POLICY, default: 'Cookie Policy'), Setting::get('legal_pages.cookie_policy_url'), rel: 'nofollow' %>
+
+        </li>
+
+      <% end %>
+
+      <% if Setting::get('legal_pages.faq_url').present? %>
+
+        <li class="f-widget__item">
+
+          <%= link_to t(:FAQ, default: 'FAQ'), Setting::get('legal_pages.faq_url'), rel: 'nofollow' %>
+
+        </li>
+
+      <% end %>
+
+    </ul>
+
+  </div>
+
+</div>
+
+<!-- /.f-widget.f-widget-two -->

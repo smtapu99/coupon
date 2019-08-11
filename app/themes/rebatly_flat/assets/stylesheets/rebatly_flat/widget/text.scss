@@ -1,0 +1,161 @@
+.pannacotta {
+  &.card-text {
+    position: relative;
+
+    #floating-anchors {
+
+      display: none;
+      position: absolute;
+      left: -100px;
+      width: 100px;
+      top: -1px;
+      // @include flat-transition(top .5s linear);
+
+      &.fixed {
+        position: fixed;
+        top: 30px;
+      }
+
+      div.anchor-link {
+        position: relative;
+
+        a {
+          font-size: 12px;
+          color: #333;
+          display: block;
+          border-bottom: 1px solid lightgrey;
+          padding: 10px;
+
+          text-overflow: ellipsis;
+          overflow: hidden;
+
+          //@include flat-transition(all .33s ease);
+
+          &.active, &:hover {
+            background: $color-rebatly;
+            color: #fff;
+            cursor: pointer;
+            text-decoration: none;
+          }
+
+          &.active::after {
+            content: '';
+            display: block;
+            width: 14px;
+            height: 14px;
+            background: $color-rebatly;
+            position: absolute;
+            right: -7px;
+            top: 50%;
+            margin-top: -7px;
+            -webkit-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            transform: rotate(45deg);
+          }
+
+          &:last-child {
+            border-bottom: 0px;
+          }
+        }
+      }
+    }
+
+    .card-header {
+      .card-title {
+        font-weight: bold;
+      }
+    }
+    .card-content {
+      color: $color-text;
+      font-size: 14px;
+      font-weight: lighter;
+      line-height: 30px;
+      padding: 25px;
+
+
+      img {
+        max-width: 100%;
+      }
+
+      a {
+        @include flat-anchor($color-sky);
+      }
+
+      br + br {
+        display: none;
+      }
+
+      b, strong {
+        font-weight: bold;
+      }
+
+      h1, h2, .h1, .h2 {
+        font-size: 18px;
+        font-weight: bold;
+      }
+
+      h3, .h3 {
+        font-size: 16px;
+        font-weight: bold;
+        margin-top: 30px;
+      }
+
+
+      h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+        color: $color-headline;
+        font-weight: bold;
+        line-height: 30px;
+
+        b, strong {
+          font-weight: bold;
+        }
+      }
+
+      h4, h5, h6, .h4, .h5, .h6 {
+        font-size: 16px;
+        font-weight: lighter;
+      }
+
+      h1 + h2, h2 + h3, h3 + h4, h4 + h5, h5 + h6, .h1 + .h2, .h2 + .h3, .h3 + .h4, .h4 + .h5, .h5 + .h6 {
+        color: $color-text;
+        font-weight: bold;
+        margin-top: 0;
+      }
+
+      hr {
+        border-top-color: $color-cloud;
+      }
+
+      li {
+        font-size: 14px;
+        font-weight: lighter;
+        line-height: 30px;
+      }
+
+      p {
+        font-size: 14px;
+        font-weight: lighter;
+        line-height: 30px;
+      }
+
+      ul {
+        list-style: none;
+        padding-left: 0;
+
+        li a {
+          @include flat-anchor($color-sky);
+        }
+      }
+    }
+  }
+}
+
+@media(min-width: 1366px){
+  .pannacotta {
+    &.card-text {
+      #floating-anchors {
+        display: block;
+      }
+    }
+  }
+}

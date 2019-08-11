@@ -1,0 +1,315 @@
+version: '2'
+
+build_defaults: &build_defaults
+  working_directory: ~/app-engine
+  docker:
+    - image: savingsutd/gcp-ruby:2.6.3
+      environment:
+        - COVERALLS_PARALLEL=true
+        - VNAME=.vname.ci
+        - RAILS_ENV=test
+    - image: circleci/mysql:5.6-ram
+      environment:
+        - MYSQL_DATABASE=pannacotta_test
+    - image: redis:4.0.10
+
+deployment_defaults: &deployment_defaults
+  working_directory: ~/app-engine
+  docker:
+    - image: savingsutd/gcp-ruby:2.6.3
+      environment:
+        - VNAME=.vname.ci
+        - RAILS_ENV=production
+        - NODE_ENV=production
+    - image: redis:4.0.10
+
+notification_defaults: &notification_defaults
+  working_directory: ~/app-engine
+  docker:
+    - image: circleci/ruby:2.6.3
+      environment:
+        - VNAME=.vname.ci
+        - RAILS_ENV=production
+        - NODE_ENV=production
+
+create_client_secret: &create_client_secret
+  run:
+    name: Create client secret
+    command: |
+      if [ "$CIRCLE_BRANCH" == "master" ]; then CLIENT_SECRET="$PRODUCTION_CLIENT_SECRET"; else CLIENT_SECRET="$STAGING_CLIENT_SECRET"; fi
+      echo $CLIENT_SECRET | base64 --decode --ignore-garbage > ~/client-secret.json
+
+authorise_gae_project: &authorise_gae_project
+  run:
+    name: Authorise project
+    command: |
+      if [ "$CIRCLE_BRANCH" == "master" ]; then GAE_ENV="production"; else GAE_ENV="staging"; fi
+      gcloud auth activate-service-account --key-file ~/client-secret.json --project savingsunited-$GAE_ENV
+
+increase_cloud_build_timeout: &increase_cloud_build_timeout
+  run:
+    name: Increase build timeout
+    command: gcloud config set app/cloud_build_timeout 1200
+
+connect_cloud_sql: &connect_cloud_sql
+  run:
+    name: Connect CloudSQL instance
+    command: |
+      if [ "$CIRCLE_BRANCH" == "master" ]; then
+        ~/cloud_sql_proxy -credential_file=$HOME/client-secret.json -instances="savingsunited-production:europe-west1:su-app-production" -dir=/cloudsql;
+      else
+        ~/cloud_sql_proxy -credential_file=$HOME/client-secret.json -instances="savingsunited-staging:europe-west1:su-app-stag" -dir=/cloudsql;
+      fi
+    background: true
+
+wait_for_cloud_sql: &wait_for_cloud_sql
+  run:
+    name: Wait for database
+    command: sleep 3
+
+attach_workspace: &attach_workspace
+  attach_workspace:
+    at: ~/app-engine
+
+restore_bundle_cache: &restore_bundle_cache
+  restore_cache:
+    keys:
+      - bundle-{{ checksum "Gemfile.lock" }}
+
+jobs:
+
+  initialise:
+    <<: *build_defaults
+    steps:
+      - checkout
+      - run:
+          name: Assign version
+          command: date +%Y%m%dt%H%M%S > $VNAME
+      - *create_client_secret
+      - persist_to_workspace:
+          root: ~/app-engine
+          paths:
+            - .
+      - *restore_bundle_cache
+      - run: bundle install --deployment --with development test
+      - save_cache:
+          key: bundle-{{ checksum "Gemfile.lock" }}
+          paths:
+            - ~/app-engine/vendor/bundle
+
+  run_tests:
+    <<: *build_defaults
+    parallelism: 2
+    steps:
+      - *attach_workspace
+      - *restore_bundle_cache
+      - run: bundle install --deployment --with development test
+      - run:
+          name: Set up test database
+          command: RAILS_ENV=test bundle exec rake db:create db:migrate
+      - run:
+          name: Run tests
+          command: |
+            if [[ `git log -1 --pretty=%B` == *"[hotfix]"* ]]; then
+              echo "Hotfix fast-laned. Skipping tests.";
+              exit 0;
+            else
+              RAILS_ENV=test CIRCLE_BUILD_NUM=$CIRCLE_WORKFLOW_ID bundle exec rspec $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=filesize);
+            fi
+
+  report_coverage:
+    <<: *build_defaults
+    steps:
+      - run:
+          name: Update coveralls
+          command: |
+            if [[ `git log -1 --pretty=%B` == *"[hotfix]"* ]]; then
+              echo "Hotfix fast-laned. No coverage to report.";
+              exit 0;
+            else
+              curl -k https://coveralls.io/webhook?repo_token=$COVERALLS_REPO_TOKEN -d "payload[build_num]=$CIRCLE_WORKFLOW_ID&payload[status]=done"
+            fi
+
+  deploy_app:
+    <<: *deployment_defaults
+    steps:
+      - *attach_workspace
+      - *restore_bundle_cache
+      - *create_client_secret
+      - *authorise_gae_project
+      - *increase_cloud_build_timeout
+      - run:
+          name: Deploy application
+          command: |
+            if [ "$CIRCLE_BRANCH" == "master" ]; then GAE_ENV="production"; else GAE_ENV="staging"; fi
+            gcloud app deploy --version=`cat $VNAME` $GAE_ENV-app.yaml --quiet --no-promote
+          no_output_timeout: 20m
+
+  deploy_workers:
+    <<: *deployment_defaults
+    steps:
+      - *attach_workspace
+      - *restore_bundle_cache
+      - *create_client_secret
+      - *authorise_gae_project
+      - *increase_cloud_build_timeout
+      - run:
+          name: Deploy workers
+          command: |
+            if [ "$CIRCLE_BRANCH" == "master" ]; then GAE_ENV="production"; else GAE_ENV="staging"; fi
+            gcloud app deploy --version=`cat $VNAME` $GAE_ENV-worker.yaml --quiet --no-promote
+          no_output_timeout: 20m
+
+  deploy_cron:
+    <<: *deployment_defaults
+    steps:
+      - *attach_workspace
+      - *create_client_secret
+      - *authorise_gae_project
+      - run:
+          name: Deploy cron
+          command: gcloud app deploy cron.yaml --quiet
+
+  launch:
+    <<: *deployment_defaults
+    steps:
+      - *attach_workspace
+      - *restore_bundle_cache
+      - run: bundle install --deployment
+      - *create_client_secret
+      - *authorise_gae_project
+      - *connect_cloud_sql
+      - *wait_for_cloud_sql
+      - run:
+          name: Migrate database
+          command: |
+            if [ "$CIRCLE_BRANCH" == "master" ]; then GAE_ENV="production"; else GAE_ENV="staging"; fi
+            if [ "$GAE_ENV" == "production" ]; then
+              DB_PASSWORD=$PRODUCTION_DB_PASSWORD DB_USER=suapp_production DB_NAME=suapp_production DB_SOCKET=/cloudsql/savingsunited-production:europe-west1:su-app-production bundle exec rake db:migrate:with_data;
+            else
+              DB_PASSWORD=$STAGING_DB_PASSWORD DB_USER=suapp_staging DB_NAME=suapp_staging DB_SOCKET=/cloudsql/savingsunited-staging:europe-west1:su-app-stag bundle exec rake db:migrate:with_data;
+            fi
+          no_output_timeout: 45m
+      - run:
+          name: Confirm running instance
+          command: |
+            if [ "$CIRCLE_BRANCH" == "master" ]; then GAE_ENV="production"; else GAE_ENV="staging"; fi
+            if [ "$GAE_ENV" == "production" ]; then X_SU_HOST="cupon.es"; else X_SU_HOST="app-staging.savings-united.com"; fi
+            for ((n=0;n<4;n++)); do curl -I -H "X-SU-FORWARDED-HOST: $X_SU_HOST" http://`cat $VNAME`.savingsunited-$GAE_ENV.appspot.com/; done
+      - run:
+          name: Set traffic
+          command: gcloud app services set-traffic --splits `cat $VNAME`=1 --quiet
+
+  stop_redundant_versions:
+    <<: *deployment_defaults
+    steps:
+      - *attach_workspace
+      - *create_client_secret
+      - *authorise_gae_project
+      - run:
+          name: Stop redundant versions
+          command: gcloud app versions list | grep -v "`cat $VNAME`" | grep "SERVING" | grep "0.00" | awk '{print $2}' | xargs -L1 gcloud app versions stop --quiet || true
+          no_output_timeout: 15m
+
+  process_styles:
+    <<: *deployment_defaults
+    steps:
+      - *attach_workspace
+      - *restore_bundle_cache
+      - run: bundle install --deployment
+      - *create_client_secret
+      - *authorise_gae_project
+      - *connect_cloud_sql
+      - *wait_for_cloud_sql
+      - run:
+          name: Preprocess custom styles
+          command: |
+            if [ "$CIRCLE_BRANCH" == "master" ]; then GAE_ENV="production"; else GAE_ENV="staging"; fi
+            if [ "$GAE_ENV" == "production" ]; then
+              FOG_DIRECTORY=static.savings-united.com DB_PASSWORD=$PRODUCTION_DB_PASSWORD DB_USER=suapp_production DB_NAME=suapp_production DB_SOCKET=/cloudsql/savingsunited-production:europe-west1:su-app-production bundle exec rake stylesheets:process_all
+            else
+              FOG_DIRECTORY=static-staging.savings-united.com DB_PASSWORD=$STAGING_DB_PASSWORD DB_USER=suapp_staging DB_NAME=suapp_staging DB_SOCKET=/cloudsql/savingsunited-staging:europe-west1:su-app-stag bundle exec rake stylesheets:process_all
+            fi
+
+  notify_complete:
+    <<: *notification_defaults
+    steps:
+      - *attach_workspace
+      - run:
+          # FIXME: Fix once CircleCI fixes workflow notifications.
+          # https://discuss.circleci.com/t/notifications-for-workflows/14452
+          name: Notify on Slack
+          command: |
+            if [ "$CIRCLE_BRANCH" == "master" ]; then GAE_ENV="production"; else GAE_ENV="staging"; fi
+            if [ "$GAE_ENV" == "production" ]; then X_SU_HOST="cupon.es"; else X_SU_HOST="app-staging.savings-united.com"; fi
+            curl -X POST -H "Content-type: application/json" --data "{\"text\": \"Deployment complete (`cat $VNAME` by $CIRCLE_USERNAME on $GAE_ENV).\nhttps://$X_SU_HOST\" }" https://hooks.slack.com/services/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 || true
+
+workflows:
+  version: 2
+  build-and-deploy:
+    jobs:
+      - initialise
+      - run_tests:
+          requires:
+            - initialise
+      - report_coverage:
+          requires:
+            - run_tests
+      - deploy_app:
+          requires:
+            - run_tests
+          filters:
+            branches:
+              only:
+                - staging
+                - master
+      - deploy_cron:
+          requires:
+            - run_tests
+          filters:
+            branches:
+              only:
+                - staging
+                - master
+      - deploy_workers:
+          requires:
+            - run_tests
+          filters:
+            branches:
+              only:
+                - staging
+                - master
+      - launch:
+          requires:
+            - deploy_app
+            - deploy_workers
+          filters:
+            branches:
+              only:
+                - staging
+                - master
+      - stop_redundant_versions:
+          requires:
+            - launch
+          filters:
+            branches:
+              only:
+                - staging
+                - master
+      - process_styles:
+          requires:
+            - launch
+          filters:
+            branches:
+              only:
+                - staging
+                - master
+      - notify_complete:
+          requires:
+            - process_styles
+            - stop_redundant_versions
+          filters:
+            branches:
+              only:
+                - staging
+                - master

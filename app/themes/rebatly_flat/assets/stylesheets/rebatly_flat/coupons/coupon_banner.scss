@@ -1,0 +1,54 @@
+.pannacotta {
+  .coupon-banner {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 17px;
+    padding: 1px 8px 1px 0;
+    position: relative;
+    margin: 12px 0 0 8px;
+    max-width: 110px;
+    text-align: center;
+    white-space: nowrap;
+
+    &::before {
+      border-width: 10px 4px 9px;
+      border-style: solid;
+      content: '';
+      left: -8px;
+      position: absolute;
+      top: 0;
+    }
+
+    &::after {
+      border-style: solid;
+      border-width: 10px 4px 9px;
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+
+    &.exclusive {
+      background-color: $color-headline;
+      color: $color-white;
+
+      &::before {
+        border-color: $color-headline $color-headline $color-headline transparent;
+      }
+
+      &::after {
+        border-color: transparent $color-white transparent transparent;
+      }
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .pannacotta {
+    .coupon-banner {
+      font-size: 9px;
+    }
+  }
+}
+

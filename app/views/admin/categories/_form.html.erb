@@ -1,0 +1,238 @@
+<div class="col-sm-12">
+
+    <div class="box bordered-box blue-border">
+
+      <div class="box-header blue-background">
+
+        <div class="title">
+
+          <i class="icon-edit"></i>
+
+          Category Form
+
+        </div>
+
+      </div>
+
+      <div class="box-content">
+
+        <%= form_for [:admin, @category], html: {class: 'form form-horizontal', multipart: true, style: 'margin-bottom: 0'} do |f| %>
+
+        <%= render partial: 'admin/shared/form_errors', locals: {ancestor: @category} %>
+
+        <% unless Site.current.present? %>
+
+          <div class="form-group <%= 'has-error' unless @category.errors.messages[:site_id].blank? %>">
+
+            <%= f.label :site_id, class: 'col-md-2 control-label' %>
+
+            <div class="col-md-5">
+
+              <%= f.collection_select :site_id, User.current.sites, :id, :name, {prompt: false}, {disabled: !f.object.new_record?, class: 'form-control'} %>
+
+            </div>
+
+          </div>
+
+        <% end %>
+
+
+        <%- if can?(:change_status, @category) -%>
+
+          <div class="form-group">
+
+            <%= f.label :status, class: 'col-md-2 control-label' %>
+
+            <div class="col-md-5">
+
+              <%= f.select :status, Category.statuses, {prompt: true}, class: 'form-control' %>
+
+              <div class="help-block">
+
+                <small>Changing this status to blocked will create a redirection to the homepage. Changing it back to anything else then blocked will delete this redirection again.</small>
+
+              </div>
+
+            </div>
+
+          </div>
+
+          <hr />
+
+        <% end %>
+
+        <div class="form-group <%= 'has-error' unless @category.errors.messages[:name].blank? %>">
+
+          <%= f.label 'Category Name', class: 'col-md-2 control-label' %>
+
+          <div class="col-md-5">
+
+            <%= f.text_field :name, class: 'form-control' %>
+
+          </div>
+
+        </div>
+
+        <div class="form-group <%= 'has-error' unless @category.errors.messages[:main_category].blank? %>">
+
+          <%= f.label 'Is Main Category', class: 'col-md-2 control-label' %>
+
+          <div class="col-md-5">
+
+            <%= f.check_box :main_category, class: 'form-control' %>
+
+          </div>
+
+        </div>
+
+        <div class="form-group <%= 'has-error' unless @category.errors.messages[:parent_id].blank? %>">
+
+          <%= f.label 'Is subcategory of', class: 'col-md-2 control-label' %>
+
+          <div class="col-md-5">
+
+            <%- if @category.new_record? -%>
+
+              <%= f.collection_select :parent_id, Site.current.main_categories, :id, :name, { include_blank: 'Please select' }, { class: 'form-control' } %>
+
+            <%- else -%>
+
+              <%= f.collection_select :parent_id, Site.current.main_categories.where("id != #{@category.id}"), :id, :name, { include_blank: 'Please select' }, { class: 'form-control' } %>
+
+            <%- end -%>
+
+          </div>
+
+        </div>
+
+        <%- if User.current.is_admin? -%>
+
+        <div class="form-group">
+
+          <div class="red-background">You are logged in as Admin and are able to change the slug. Dont forget to also change the Redirections!!!</div>
+
+        </div>
+
+        <%- end -%>
+
+        <div class="form-group <%= 'has-error' unless @category.errors.messages[:slug].blank? %>">
+
+          <%= f.label :slug, class: 'col-md-2 control-label' %>
+
+          <div class="col-md-5">
+
+            <%= f.text_field :slug, class: 'form-control', disabled: !(@category.new_record? || User.current.is_admin?) %>
+
+          </div>
+
+        </div>
+
+        <%= render partial: 'admin/html_documents/sub_form', locals: { ancestor: @category, f: f } %>
+
+        <div class="form-group <%= 'has-error' unless @category.errors.messages[:slug].blank? %>">
+
+          <%= f.label :order_position, class: 'col-md-2 control-label' %>
+
+          <div class="col-md-5">
+
+            <%= f.number_field :order_position, class: 'form-control', min: 0, step: 1 %>
+
+          </div>
+
+        </div>
+
+        <div class="form-group">
+
+          <%= f.label :css_icon_class, class: 'col-md-2 control-label' %>
+
+          <div class="col-md-5">
+
+            <%= f.select :css_icon_class, Option::get_select_options('category_css_icon_classes', true), { include_blank: true }, class: 'form-control' %>
+
+          </div>
+
+        </div>
+
+        <div class="form-group">
+
+          <%= f.label :related_tier_1_shop_ids, class: 'col-md-2 control-label' %>
+
+          <div class="col-md-5">
+
+            <%= f.select :related_tier_1_shop_ids, Site.current.shops.by_tier_group(1).active.order_by_set(@category.related_tier_1_shop_ids).collect { |x| [x.title, x.id] }, {}, { multiple: true, class: 'select2 form-control' } %>
+
+          </div>
+
+        </div>
+
+        <div class="form-group">
+
+          <%= f.label :related_tier_2_shop_ids, class: 'col-md-2 control-label' %>
+
+          <div class="col-md-5">
+
+            <%= f.select :related_tier_2_shop_ids, Site.current.shops.by_tier_group(2).order_by_set(@category.related_tier_2_shop_ids).active.collect { |x| [x.title, x.id] }, {}, { multiple: true, class: 'select2 form-control' } %>
+
+          </div>
+
+        </div>
+
+        <div class="form-group">
+
+          <%= f.label :related_tier_3_shop_ids, class: 'col-md-2 control-label' %>
+
+          <div class="col-md-5">
+
+            <%= f.select :related_tier_3_shop_ids, Site.current.shops.by_tier_group(3).order_by_set(@category.related_tier_3_shop_ids).active.collect { |x| [x.title, x.id] }, {}, { multiple: true, class: 'select2 form-control' } %>
+
+          </div>
+
+        </div>
+
+        <div class="form-group">
+
+          <%= f.label :related_tier_4_shop_ids, class: 'col-md-2 control-label' %>
+
+          <div class="col-md-5">
+
+            <%= f.select :related_tier_4_shop_ids, Site.current.shops.by_tier_group(4).order_by_set(@category.related_tier_4_shop_ids).active.collect { |x| [x.title, x.id] }, {}, { multiple: true, class: 'select2 form-control' } %>
+
+          </div>
+
+        </div>
+
+        <div class="form-actions form-actions-padding-sm">
+
+          <div class="row">
+
+            <div class="col-md-10 col-md-offset-2">
+
+              <%= f.submit nil, class: 'btn btn-primary' if can? :create, Category %>
+
+              <%= link_to t('.cancel', default: t("helpers.links.cancel")), admin_categories_path, class: 'btn' %>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <% end %>
+
+      </div>
+
+    </div>
+
+  </div>
+
+<script type="text/javascript">
+
+document.ready = function(){
+
+  <%- unless can? :manage, Category -%>
+    $("form.form-horizontal :input").attr("disabled", true);
+  <%- end -%>
+}
+
+</script>
+

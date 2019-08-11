@@ -1,0 +1,139 @@
+<div class="col-sm-12 col-md-6" id="admin-rules">
+
+  <div class="box bordered-box blue-border <%= 'box-collapsed' unless session[:last_setting] == 'admin_rules' %>">
+
+    <div class="box-header sea-blue-background">
+
+      <div class="title">
+
+        <i class="icon-user"></i>
+
+        Admin Rules
+
+      </div>
+
+      <div class="actions">
+
+        <a class="btn box-collapse btn-xs btn-link" href="#">
+
+          <i></i>
+
+        </a>
+
+      </div>
+
+    </div>
+
+    <div class="box-content">
+
+      <%= form_for [:admin, @setting], method: :patch, html: {class: 'form form-horizontal', style: 'margin-bottom: 0'} do |f| %>
+
+        <%= hidden_field_tag :option_type, 'admin_rules' %>
+
+        <%= fields_for :admin_rules, @setting.admin_rules do |ff| %>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :canonical_domain %>
+
+              <%= ff.text_field :canonical_domain, class: 'form-control' %>
+
+            </div>
+
+          </div>
+
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :dynamic_pages %>
+
+              <%= ff.select :dynamic_pages, Option::get_select_options('indexation_rules_settings', true), {}, class: 'form-control' %>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :static_pages %>
+
+              <%= ff.select :static_pages, Option::get_select_options('indexation_rules_settings', true), {}, class: 'form-control' %>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :robots_txt %>
+
+              <p class="help-block">
+
+                <small class="text-muted">Add rules to the following defaults:<br />
+
+                  <%= default_robots_txt.gsub("\n", "<br />").html_safe %>
+
+                </small>
+
+              </p>
+
+              <%= ff.text_area :robots_txt, class: 'form-control' %>
+
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :cookie_policy_url %>
+
+              <%= ff.text_field :cookie_policy_url, class: 'form-control', placeholder: 'e.g. /cookies', required: true %>
+
+              <p class="help-block">
+
+                <small>
+                  <span class="text-danger">This field is mandatory.</span> If this is set there will be a "Learn More" link in the cookie alert message
+                  <br>
+                  3 translations are needed. The translation keys are: <code>cookies_eu.cookies_text</code>, <code>cookies_eu.learn_more</code> and <code>cookies_eu.ok</code>
+                </small>
+
+              </p>
+
+            </div>
+
+          </div>
+
+          <div class="form-actions form-actions-padding-sm">
+
+            <div class="row">
+
+              <div class="col-md-2">
+
+                <%= f.submit 'Save', class: 'btn btn-primary btn-block' %>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        <% end %>
+
+      <% end %>
+
+    </div>
+
+  </div>
+
+</div>

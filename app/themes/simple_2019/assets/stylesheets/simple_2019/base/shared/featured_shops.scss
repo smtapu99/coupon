@@ -1,0 +1,64 @@
+@critical featured-shops.css {
+  .featured-shops {
+    padding: 12px 0;
+    background-color: $background--light-grey;
+
+    .background--white & {
+      background: transparent;
+    }
+
+    &__list {
+      display: flex;
+      justify-content: space-around;
+      width: 100%;
+      min-width: 100%;
+      margin: 0;
+      padding-left: 0;
+      list-style-type: none;
+
+      @media (max-width: 991px) {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+    }
+
+    &__item {
+      display: inline-block;
+      width: 110px;
+      height: 110px;
+      margin: 0 8px;
+      padding: 6px;
+      background: #FFF;
+      border: 1px solid $border-color;
+
+      @media (max-width: 991px) {
+        flex-grow: 1;
+        margin: 0;
+      }
+
+      &:first-of-type {
+        margin-left: 0;
+      }
+
+      &:last-of-type {
+        margin-right: 0;
+      }
+
+      img {
+        max-width: 100%;
+
+        @media (max-width: 991px) {
+          height: 99%;
+        }
+      }
+    }
+
+    &__link {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+    }
+  }
+}

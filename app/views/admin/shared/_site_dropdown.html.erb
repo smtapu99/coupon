@@ -1,0 +1,29 @@
+<li class="dropdown medium" id="site_dropdown">
+
+  <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+
+    <b class="current_site"><%= Site.current.present? ? Site.current.id_and_name : 'All' %></b>
+
+    <b class="caret"></b>
+
+  </a>
+
+  <ul class="dropdown-menu">
+
+    <% selected = 'selected' if Site.current.blank? %>
+
+    <li><%= link_to('All', admin_user_unset_site_id_path(User.current.id), class: selected) %></li>
+
+    <%- sites = User.current.sites.active -%>
+
+    <% sites.each do |site| %>
+
+      <% selected = Site.current.present? && Site.current.id == site.id ? 'selected' : '' %>
+
+      <li><%= link_to(site.id_and_name, admin_user_site_id_path(User.current.id, site.id), class: selected) %></li>
+
+    <% end %>
+
+  </ul>
+
+</li>

@@ -1,0 +1,1723 @@
+$themes: (
+  'black-friday': (
+    'color-white': #FFF,
+    'topbar-bg': #000,
+    'topbar-font-color': #FFF,
+    'header-bg-image': url('https://static.savings-united.com/pc/assets/flat_2016/black-background.jpg'),
+    'color-primary': #EF2141,
+    'color-secondary': #32312F, // Buttons
+    'color-bg': #F4F4F1,
+    'color-light-bg': #E5E5E5,
+    'color-font': #000,
+    'color-1': #27AE60, // Green label
+    'color-2': #F2994A, // Yellow label
+    'color-3': #8A8A8A, // Arrow background
+    'color-4': #151515, // Teasers text
+    'color-5': #627A89, // Load More button
+    'color-6': #605E5E, // about-campaign Header
+    'color-7': #F6F6F6, // Offer background
+    'telegraph-green': #285E6A,
+    'independent-red': #D13030,
+    'social-blue': #4395DA,
+    'gold-premium': #C3851A,
+    'yellow-paste': #EECA02,
+    'pastel-purple': #8A44FF,
+    'bubblegum-pink': #FD7AFF,
+    'grey': #959595,
+    'border-radius': 3px
+  ),
+  'cybermonday': (
+    'color-white': #FFF,
+    'topbar-bg': #124368,
+    'topbar-font-color': #00F,
+    'header-bg-image': url('https://static.savings-united.com/pc/assets/flat_2016/cybermonday-bg.jpg'),
+    'pattern-bg': url('https://static.savings-united.com/pc/assets/flat_2016/cybermonday-pattern.jpg'),
+    'color-primary': #BB6BD9,
+    'color-secondary': #32312F, //buttons
+    'color-bg': #F4F4F1,
+    'color-light-bg': #E5E5E5,
+    'color-font': #000,
+    'color-1': #27AE60, // Green label
+    'color-2': #F2994A, // Yellow label
+    'color-3': #8A8A8A, // Arrow background
+    'color-4': #151515, // Teasers text
+    'color-5': #BB6BD9, // Load More button
+    'color-6': #605E5E, // About-campaign Header
+    'color-7': #F6F6F6, // Offer background
+    'color-8': #206392, // Shadows on the hero
+    'color-9': #26AADE, // Hot Offer Header and small hexagon
+    'telegraph-green': #285E6A,
+    'independent-red': #D13030,
+    'social-blue': #4395DA,
+    'gold-premium': #C3851A,
+    'yellow-paste': #EECA02,
+    'pastel-purple': #8A44FF,
+    'bubblegum-pink': #FD7AFF,
+    'grey': #959595,
+    'border-radius': 3px
+  ),
+  'black-friday-2018': (
+    'color-white': #FFF,
+    'topbar-bg': #000,
+    'topbar-font-color': #627A89,
+    'header-bg-image': '',
+    'color-primary': #EF2141,
+    'color-secondary': #32312F, // Buttons
+    'color-bg': #F4F4F1,
+    'color-light-bg': #E5E5E5,
+    'color-font': #000,
+    'color-1': #52BB56, // Green label
+    'color-2': #5DBCFF, // Blue label
+    'color-3': #8A8A8A, // Arrow background
+    'color-4': #151515, // Teasers text
+    'color-5': #627A89, // Load More button
+    'color-6': #605E5E, // about-campaign Header
+    'color-7': #FBFBFB, // Offer background
+    'color-8': #3E75D1, // See Details
+    'color-9': #F2994A, // Premium offers orane bg
+    'color-10': #9B51E0,
+    'color-11': #EB5757, // Category red
+    'telegraph-green': #285E6A,
+    'independent-red': #D13030,
+    'social-blue': #4395DA,
+    'gold-premium': #C3851A,
+    'yellow-paste': #EECA02,
+    'pastel-purple': #8A44FF,
+    'bubblegum-pink': #FD7AFF,
+    'grey': #959595,
+    'border-radius': 3px
+  ),
+  'default': (
+    'color-white': #FFF,
+    'topbar-bg': #FFF,
+    'topbar-font-color': #000,
+    'header-bg-image': url('https://static.savings-united.com/medium/48592/file_name/xmas-bg.jpg'),
+    'color-primary': #F12850,
+    'color-secondary': #323538, // Buttons
+    'color-bg': #F4F4F1,
+    'color-light-bg': #E5E5E5,
+    'color-font': #000,
+    'color-1': #27AE60, // Green label
+    'color-2': #F2994A, // Yellow label
+    'color-3': #8A8A8A, // Arrow background
+    'color-4': #151515, // Teasers text
+    'color-5': #627A89, // Load More button
+    'color-6': #605E5E, // about-campaign Header
+    'color-7': #F6F6F6, // Offer background
+    'color-8': #5C6469, // navigation + h1 color;
+    'telegraph-green': #285E6A,
+    'independent-red': #D13030,
+    'social-blue': #4395DA,
+    'gold-premium': #C3851A,
+    'yellow-paste': #EECA02,
+    'pastel-purple': #8A44FF,
+    'bubblegum-pink': #FD7AFF,
+    'grey': #959595,
+    'border-radius': 3px
+  )
+) !default;
+
+@mixin colorize($theme, $vars) {
+  .themed.themed--#{$theme} {
+    /*  Common elements Start */
+
+    .section {
+      &-header {
+        color: map_get($vars, 'color-secondary');
+
+        &--inverse {
+          color: map_get($vars, 'color-white');
+        }
+      }
+
+      &-subheader {
+        color: map_get($vars, 'color-primary');
+      }
+    }
+
+    /*  Common elements End */
+
+    /* Header Start */
+    .topbar {
+      color: map_get($vars, 'topbar-font-color');
+      background: map_get($vars, 'topbar-bg');
+    }
+
+    .themed__header {
+      background-image: map_get($vars, 'header-bg-image');
+    }
+
+    .site-logo {
+      @if $theme == black-friday-2018 {
+        margin: 8px 0;
+
+        a {
+          height: 49px;
+        }
+      }
+    }
+
+    .nav.primary {
+      & > li > a {
+        color: map_get($vars, 'topbar-font-color');
+
+        &:hover {
+          color: map_get($vars, 'color-primary');
+        }
+
+        &.bookmark-count {
+          color: map_get($vars, 'color-primary');
+        }
+      }
+    }
+
+    .nav-justified {
+      .open > a {
+        color: map_get($vars, 'color-primary');
+      }
+
+      & > li {
+        @if $theme == black-friday-2018 {
+          padding: 20px 17px;
+        }
+
+        & > a {
+          @if $theme == default {
+            color: map_get($vars, 'color-8');
+          } @else if $theme == black-friday-2018 {
+            color: map_get($vars, 'topbar-font-color');
+          } @else {
+            color: map_get($vars, 'color-white');
+          }
+
+          &:hover {
+            color: map_get($vars, 'color-primary');
+          }
+        }
+      }
+    }
+
+    .pannacotta.sub-menu {
+      @if $theme == default OR $theme == cybermonday {
+        top: 93px;
+      } @else if $theme == black-friday-2018 {
+        top: 82px;
+      }
+    }
+
+    @if $theme == black-friday-2018 {
+      .themed__navigation .sub-menu__categories {
+        top: 82px;
+      }
+    }
+
+    /* Header End */
+
+    /* Hero Start */
+    .hero {
+      color: map_get($vars, 'color-white');
+
+      @if $theme == cybermonday {
+        padding: 199px 0 207px;
+
+        @media (max-width: 767px) {
+          padding: 40px 0 130px;
+        }
+
+        &__header {
+          position: relative;
+          max-width: 710px;
+          margin: 0 auto;
+          padding: 40px 70px 23px;
+          text-align: center;
+
+          @media (max-width: 767px) {
+            padding: 20px 0 11px;
+          }
+        }
+
+        &__header-border,
+        &__header-shadow {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          border: 6px solid white;
+          transform: skew(-10deg);
+          pointer-events: none;
+        }
+
+        &__header-shadow {
+          top: 10px;
+          left: 10px;
+          border-color: rgba(0, 0, 0, 0.3);
+          filter: blur(3px);
+        }
+
+        &__h1 {
+          margin: 0 0 0 40px;
+          font-weight: 900;
+          font-family: 'Arial', sans-serif;
+          line-height: 1.2;
+          text-shadow: 3px 3px 0 darken(map_get($vars, 'color-primary'), 5%), -3px -3px 0 map_get($vars, 'color-8');
+
+          @media (max-width: 767px) {
+            margin-left: 16px;
+          }
+        }
+
+        &__get-the-deals {
+          position: absolute;
+          right: -45px;
+          bottom: -87px;
+          display: inline-block;
+          padding: 14px 34px 13px;
+          color: map_get($vars, 'color-8');
+          font-weight: 700;
+          font-size: 15px;
+          text-transform: uppercase;
+          background-color: map_get($vars, 'topbar-font-color');
+          box-shadow: 11px 10px 0 0 darken(map_get($vars, 'color-primary'), 5%), -6px -6px 0 0 map_get($vars, 'color-8');
+          transform: skew(-12deg);
+          transition: all ease-in-out 0.1s;
+
+          @media (max-width: 767px) {
+            left: 50%;
+            width: 80%;
+            transform: translateX(-50%) skew(-12deg);
+          }
+
+          span {
+            display: inline-block;
+            transform: skew(12deg);
+          }
+
+          &:hover {
+            box-shadow: 6px 5px 0 0 darken(map_get($vars, 'color-primary'), 5%), -3px -3px 0 0 map_get($vars, 'color-8');
+          }
+        }
+
+        &__discount {
+          position: absolute;
+          top: -101px;
+          left: -105px;
+          display: flex;
+          height: 110px;
+
+          @media (max-width: 767px) {
+            display: none;
+          }
+        }
+      }
+
+      @if $theme == black-friday-2018 {
+        padding: 180px 0 191px;
+
+        &__h1 {
+          margin-bottom: 29px;
+          font-weight: 700;
+          font-size: 64px;
+          font-family: "Open Sans", "Helvetica Neue", Arial, Helvetica, sans-serif;
+          text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+        }
+
+        &__h2 {
+          margin: 0;
+          font-weight: 400;
+          font-size: 36px;
+          font-family: "Open Sans", "Helvetica Neue", Arial, Helvetica, sans-serif;
+          text-transform: none;
+          text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+        }
+
+        &--size-small {
+          @media (max-width: 767px) {
+            padding: 20px 0;
+
+            .hero__h1 {
+              margin-bottom: 15px;
+              font-size: 30px;
+            }
+
+            .hero__h2 {
+              font-size: 22px;
+            }
+          }
+        }
+      }
+
+      @if $theme == default {
+        padding: 101px 0 120px;
+
+        @media (max-width: 992px) {
+          padding: 30px 0;
+        }
+
+        &__h1 {
+          color: map_get($vars, 'color-8');
+          font-weight: 900;
+          font-size: 62px;
+          font-family: "Open Sans", "Helvetica Neue", Arial, Helvetica, sans-serif;
+          line-height: 84px;
+          text-transform: none;
+
+          @media (max-width: 992px) {
+            font-size: 50px;
+            line-height: 1.5;
+          }
+
+          @media (max-width: 767px) {
+            font-size: 32px;
+            line-height: 1.1;
+          }
+        }
+
+        &__h2 {
+          margin-top: 32px;
+          color: map_get($vars, 'color-primary');
+          font-size: 26px;
+          text-transform: none;
+
+          @media (max-width: 767px) {
+            margin-top: 19px;
+            font-size: 18px;
+          }
+        }
+
+        &__cta {
+          margin-top: 30px;
+          padding: 8px 32px;
+          color: map_get($vars, 'color-white');
+          font-size: 18px;
+          background: map_get($vars, 'color-primary');
+        }
+      }
+
+      .countdown {
+        &-time {
+          text-shadow: 2px 3px 10px map_get($vars, 'color-primary'), 0 0 10px map_get($vars, 'color-primary'), 0 0 10px #EF2141, 0 0 10px map_get($vars, 'color-primary');
+        }
+      }
+
+      &__cta {
+        color: map_get($vars, 'color-white');
+        background: map_get($vars, 'color-primary');
+
+        &:hover {
+          background: darken(map_get($vars, 'color-primary'), 5%);
+        }
+      }
+    }
+
+    @if $theme == cybermonday {
+      .hexagon {
+        position: relative;
+        color: map_get($vars, 'color-white');
+        font-weight: 700;
+        font-size: 31px;
+        font-style: italic;
+
+        &--big {
+          align-self: flex-start;
+          width: 87px;
+
+          .hexagon__img {
+            path {
+              stroke: map_get($vars, 'topbar-font-color');
+            }
+          }
+        }
+
+        &--mid {
+          align-self: flex-end;
+          width: 60px;
+          margin-right: -10px;
+          font-size: 24px;
+
+          .hexagon__img {
+            path {
+              stroke: map_get($vars, 'color-primary');
+              stroke-width: 13px;
+            }
+          }
+        }
+
+        &--small {
+          align-self: center;
+          width: 32px;
+          margin-right: -3px;
+          font-size: 13px;
+
+          .hexagon__img {
+            margin-top: 19px;
+            font-weight: 600;
+            font-size: 25px;
+            text-shadow: 1px 1px 1px #FFF;
+
+            path {
+              stroke: map_get($vars, 'color-9');
+              stroke-width: 13px;
+            }
+          }
+
+          .hexagon__num {
+            left: 48%;
+
+            &::after {
+              content: "";
+            }
+          }
+        }
+
+        &__img {
+          filter: blur(1px);
+
+          path {
+            stroke: map_get($vars, 'topbar-font-color');
+          }
+        }
+
+        &__num {
+          position: absolute;
+          top: 44%;
+          left: 32%;
+          display: inline-block;
+          text-shadow: 3px 3px 0 darken(map_get($vars, 'color-primary'), 5%), -3px -3px 0 map_get($vars, 'color-8');
+          transform: translate(-50%, -50%);
+
+          &::after {
+            content: "﹪";
+            position: absolute;
+            top: -8px;
+            right: -18px;
+          }
+        }
+      }
+    }
+
+    /* Hero End */
+
+    /* Top Links Start */
+
+    .top-links {
+      @if $theme == cybermonday {
+        background: map_get($vars, 'pattern-bg') no-repeat;
+        background-size: cover;
+      }
+
+      &__btn {
+        border: 1px solid transparentize(map_get($vars, 'topbar-bg'), 0.7);
+        border-radius: map_get($vars, 'border-radius');
+
+        @if $theme == default {
+          border: 1px solid transparentize(map_get($vars, 'topbar-font-color'), 0.7);
+        }
+
+        &:hover {
+          background: transparentize(map_get($vars, 'topbar-bg'), 0.95);
+        }
+      }
+    }
+
+    /* Top Links End */
+
+    /* Widget-newsletter Start */
+    .full-newsletter {
+      @if $theme == cybermonday {
+        background: map_get($vars, 'header-bg-image') no-repeat;
+        background-size: cover;
+      } @else {
+        background: map_get($vars, 'color-primary');
+      }
+
+      &__header {
+        color: map_get($vars, 'color-white');
+      }
+
+      &__input {
+        border-radius: map_get($vars, 'border-radius');
+      }
+
+      &__btn.btn-small {
+        @if $theme == cybermonday {
+          background: map_get($vars, 'color-primary');
+        } @else {
+          background: map_get($vars, 'color-secondary');
+        }
+
+        border-radius: map_get($vars, 'border-radius');
+
+        &:hover {
+          background: darken(map_get($vars, 'color-secondary'), 10%);
+        }
+      }
+
+      &__privacy {
+        color: map_get($vars, 'color-white');
+
+        a {
+          @if $theme == cybermonday {
+            color: map_get($vars, 'color-primary');
+          } @else {
+            color: map_get($vars, 'color-secondary');
+          }
+        }
+      }
+    }
+
+    /* Widget-newsletter End */
+
+    /* Hot Offers Start */
+    .offer {
+      &--bg {
+        background-color: map_get($vars, 'color-7');
+      }
+
+      &__discount {
+        color: map_get($vars, 'color-white');
+      }
+
+      &--no-bg {
+        border: 1px solid darken(map_get($vars, 'color-bg'), 9%);
+      }
+
+      &__cta.btn {
+        color: map_get($vars, 'color-white');
+        background: map_get($vars, 'color-primary');
+      }
+
+      &--green-label {
+        .offer {
+          &__discount-tag #a {
+            fill: map_get($vars, 'color-1');
+          }
+        }
+      }
+
+      &--yellow-label {
+        .offer {
+          &__discount-tag #a {
+            fill: map_get($vars, 'color-2');
+          }
+        }
+      }
+    }
+
+    .hot-offers {
+      @if $theme == 'cybermonday' {
+        .section {
+          &-header {
+            color: map_get($vars, 'color-9');
+          }
+
+          &-subheader {
+            color: map_get($vars, 'color-6');
+          }
+        }
+      }
+    }
+
+    /* Hot Offers End */
+
+    /* Shop Bubbles Start */
+    .shop-bubbles {
+      background-color: map_get($vars, 'color-bg');
+
+      @if $theme == 'cybermonday' {
+        background: map_get($vars, 'pattern-bg') repeat-y;
+        background-size: contain;
+
+        .section {
+          &-subheader {
+            color: map_get($vars, 'color-9');
+          }
+        }
+      }
+
+      @if $theme == 'default' {
+        background-color: map_get($vars, 'color-primary');
+
+        .section {
+          &-header {
+            color: map_get($vars, 'color-white');
+          }
+
+          &-subheader {
+            color: map_get($vars, 'color-secondary');
+          }
+        }
+      }
+
+      &__item {
+        background: map_get($vars, 'color-white');
+      }
+
+      &__arrow {
+        background: map_get($vars, 'color-3');
+      }
+    }
+
+    /* Shop Bubbles End */
+
+    /* Subpage Teaser Start */
+    .subpage-teaser {
+      background: map_get($vars, 'topbar-bg');
+
+      @if $theme == 'cybermonday' {
+        background: map_get($vars, 'header-bg-image') no-repeat;
+        background-size: cover;
+
+        .section {
+          &-subheader {
+            color: map_get($vars, 'color-6');
+          }
+        }
+      }
+
+      @if $theme == 'default' {
+        background: map_get($vars, 'color-font');
+      }
+
+      &__text {
+        color: map_get($vars, 'color-4');
+        background: map_get($vars, 'color-white');
+      }
+    }
+
+    /* Subpage Teaser End */
+
+    /* Top Sales Start */
+    .top-sales {
+      background: map_get($vars, 'color-bg');
+
+      @if $theme == 'cybermonday' {
+        background: map_get($vars, 'pattern-bg') repeat-y;
+        background-size: contain;
+
+        .section {
+          &-subheader {
+            color: #EF2141;
+          }
+        }
+      }
+
+      &__item {
+        color: map_get($vars, 'color-font');
+        background-image: url('https://static.savings-united.com/pc/assets/flat_2016/top-sales__bg.svg');
+      }
+
+      &__name {
+        color: map_get($vars, 'color-4');
+      }
+    }
+
+    /* Top Sales End */
+
+    /* Deals Start */
+    .deals {
+      @if $theme == 'black-friday' {
+        background: map_get($vars, 'color-bg');
+      } @else {
+        background: map_get($vars, 'color-light-bg');
+      }
+
+      @if $theme == 'cybermonday' {
+        .section {
+          &-header {
+            color: map_get($vars, 'color-9');
+          }
+
+          &-subheader {
+            color: map_get($vars, 'color-6');
+          }
+        }
+      }
+
+      @if $theme == 'default' {
+        background: map_get($vars, 'color-bg');
+      }
+    }
+
+    /* Deals End */
+
+    /* Premium Offers Start */
+    .premium-offers {
+      background-color: map_get($vars, 'color-7');
+    }
+
+    .premium-offer {
+      &__category {
+        &--blue {
+          color: map_get($vars, 'color-2');
+
+          &::before {
+            background-color: map_get($vars, 'color-2');
+          }
+        }
+
+        &--green {
+          color: map_get($vars, 'color-1');
+
+          &::before {
+            background-color: map_get($vars, 'color-1');
+          }
+        }
+
+        &--purple {
+          color: map_get($vars, 'color-10');
+
+          &::before {
+            background-color: map_get($vars, 'color-10');
+          }
+        }
+
+        &--red {
+          color: map_get($vars, 'color-11');
+
+          &::before {
+            background-color: map_get($vars, 'color-11');
+          }
+        }
+
+        &--telegraph {
+          color: map_get($vars, 'telegraph-green');
+
+          &::before {
+            background-color: map_get($vars, 'telegraph-green');
+          }
+        }
+
+        &--independent {
+          color: map_get($vars, 'independent-red');
+
+          &::before {
+            background-color: map_get($vars, 'independent-red');
+          }
+        }
+
+        &--social {
+          color: map_get($vars, 'social-blue');
+
+          &::before {
+            background-color: map_get($vars, 'social-blue');
+          }
+        }
+
+        &--gold {
+          color: map_get($vars, 'gold-premium');
+
+          &::before {
+            background-color: map_get($vars, 'gold-premium');
+          }
+        }
+
+        &--yellow {
+          color: map_get($vars, 'yellow-paste');
+
+          &::before {
+            background-color: map_get($vars, 'yellow-paste');
+          }
+        }
+
+        &--bubblegum {
+          color: map_get($vars, 'bubblegum-pink');
+
+          &::before {
+            background-color: map_get($vars, 'bubblegum-pink');
+          }
+        }
+
+        &--pastel-purple {
+          color: map_get($vars, 'pastel-purple');
+
+          &::before {
+            background-color: map_get($vars, 'pastel-purple');
+          }
+        }
+
+        &--grey {
+          color: map_get($vars, 'grey');
+
+          &::before {
+            background-color: map_get($vars, 'grey');
+          }
+        }
+      }
+
+      &__see-details {
+        color: map_get($vars, 'color-8');
+
+        svg {
+          fill: map_get($vars, 'color-8');
+        }
+      }
+
+      &--orange-bg {
+        background-color: map_get($vars, 'color-9');
+      }
+
+      &--green-bg {
+        background-color: map_get($vars, 'color-1');
+      }
+
+      &--blue-bg {
+        background-color: map_get($vars, 'color-2');
+      }
+
+      &--telegraph-bg {
+        background-color: map_get($vars, 'telegraph-green');
+      }
+
+      &--independent-bg {
+        background-color: map_get($vars, 'independent-red');
+      }
+
+      &--social-blue-bg {
+        background-color: map_get($vars, 'social-blue');
+      }
+
+      &--gold-bg {
+        background-color: map_get($vars, 'gold-premium');
+      }
+
+      &--yellow-paste-bg {
+        background-color: map_get($vars, 'yellow-paste');
+      }
+
+      &--pastel-purple-bg {
+        background-color: map_get($vars, 'pastel-purple');
+      }
+
+      &--bubblegum-bg {
+        background-color: map_get($vars, 'bubblegum-pink');
+      }
+
+      &--grey-bg {
+        background-color: map_get($vars, 'grey');
+      }
+
+      &--25-colored.premium-offer {
+        &--blue-bg {
+          .premium-offer__cta {
+            color: map_get($vars, 'color-2');
+            border-color: map_get($vars, 'color-2');
+          }
+        }
+
+        &--orange-bg {
+          .premium-offer__cta {
+            color: map_get($vars, 'color-9');
+            border-color: map_get($vars, 'color-9');
+          }
+        }
+
+        &--green-bg {
+          .premium-offer__cta {
+            color: map_get($vars, 'color-1');
+            border-color: map_get($vars, 'color-1');
+          }
+        }
+
+        &--telegraph-bg {
+          .premium-offer__cta {
+            color: map_get($vars, 'telegraph-green');
+            border-color: map_get($vars, 'telegraph-green');
+          }
+        }
+
+        &--independent-bg {
+          .premium-offer__cta {
+            color: map_get($vars, 'independent-red');
+            border-color: map_get($vars, 'independent-red');
+          }
+        }
+
+        &--social-blue-bg {
+          .premium-offer__cta {
+            color: map_get($vars, 'social-blue');
+            border-color: map_get($vars, 'social-blue');
+          }
+        }
+
+        &--gold-bg {
+          .premium-offer__cta {
+            color: map_get($vars, 'gold-premium');
+            border-color: map_get($vars, 'gold-premium');
+          }
+        }
+
+        &--yellow-paste-bg {
+          .premium-offer__cta {
+            color: map_get($vars, 'yellow-paste');
+            border-color: map_get($vars, 'yellow-paste');
+          }
+        }
+
+        &--pastel-purple-bg {
+          .premium-offer__cta {
+            color: map_get($vars, 'pastel-purple');
+            border-color: map_get($vars, 'pastel-purple');
+          }
+        }
+
+        &--bubblegum-bg {
+          .premium-offer__cta {
+            color: map_get($vars, 'bubblegum-pink');
+            border-color: map_get($vars, 'bubblegum-pink');
+          }
+        }
+
+        &--grey-bg {
+          .premium-offer__cta {
+            color: map_get($vars, 'grey');
+            border-color: map_get($vars, 'grey');
+          }
+        }
+      }
+    }
+
+    /* Premium Offers End */
+
+    /* Coupon Start */
+    .item .padding {
+      background: map_get($vars, 'color-bg');
+      box-shadow: inset 0 0 0 1px darken(map_get($vars, 'color-bg'), 10%);
+    }
+
+    .coupon {
+      &-body {
+        .divider {
+          li {
+            background-color: map_get($vars, 'color-light-bg');
+          }
+        }
+
+        .show-coupon-details {
+          color: #24507A;
+        }
+
+        &::before,
+        &::after {
+          background-color: map_get($vars, 'color-light-bg');
+        }
+      }
+
+      button {
+        color: map_get($vars, 'color-primary');
+        //background: map_get($vars, 'color-bg');
+      }
+
+      &-social span {
+        &.coupon-like {
+          color: map_get($vars, 'color-primary');
+        }
+      }
+
+      &-additional-info {
+        color: map_get($vars, 'color-primary');
+      }
+    }
+
+    .coupon-cta {
+      .o-button {
+        color: map_get($vars, 'color-white');
+        background: map_get($vars, 'color-ready');
+      }
+    }
+
+    .pannacotta {
+      .btn-ready {
+        background-color: map_get($vars, 'color-primary');
+      }
+    }
+
+    .show-more {
+      color: map_get($vars, 'color-5');
+      border-color: map_get($vars, 'color-5');
+    }
+
+    /* Coupon End */
+
+    /* About Campaign Start */
+    .about-campaign {
+      @if $theme == 'black-friday' or $theme == 'default' {
+        background: map_get($vars, 'color-white');
+      } @else {
+        background: map_get($vars, 'color-bg');
+      }
+
+      @if $theme == 'cybermonday' {
+        color: map_get($vars, 'color-white');
+        background: map_get($vars, 'header-bg-image') no-repeat;
+        background-size: cover;
+
+        .section {
+          &-header {
+            color: map_get($vars, 'color-white');
+          }
+        }
+      }
+
+      &__title {
+        color: map_get($vars, 'color-6');
+      }
+    }
+
+    /* About Campaign End */
+  }
+}
+
+@each $theme, $vars in $themes {
+  @include colorize($theme, $vars);
+}
+
+.themed {
+  background: #FFF;
+
+  &.custom {
+    margin-top: -28px;
+
+    .themed__header {
+      padding-top: 30px;
+      padding-bottom: 30px;
+      background: none;
+
+      #header_image {
+        height: auto;
+        min-height: 240px;
+        margin-top: 0;
+        padding-top: 50px;
+      }
+    }
+  }
+
+  #accordion {
+    margin-top: 50px;
+  }
+
+  /* Header Start */
+
+  .topbar {
+    font-size: 10px;
+
+    @media (max-width: 768px) {
+      text-align: center;
+    }
+  }
+
+  .attach-newsletter-popup {
+    display: block;
+    padding: 3px 8px 6px 10px;
+    font-size: 10px;
+    cursor: pointer;
+  }
+
+  .roberto-paper-plane {
+    margin-right: 4px;
+    font-size: 16px;
+  }
+
+  .nav.primary {
+    float: right;
+
+    @media (max-width: 768px) {
+      display: inline-block;
+      float: none;
+      line-height: 1;
+    }
+
+    & > li > a {
+      padding: 8px 14px;
+      border-radius: 0;
+
+      &.bookmark-count {
+        margin-right: 21px;
+        padding: 3px 13px 4px 14px;
+
+        i {
+          display: inline-block;
+          margin-right: 2px;
+          font-size: 17px;
+        }
+      }
+    }
+  }
+
+  .themed__navigation {
+    @media (max-width: 768px) {
+      padding: 21px 0 0 3px;
+    }
+
+    .sub-menu__categories {
+      top: 95px;
+
+      @media (max-width: 992px) {
+        top: 72px;
+      }
+
+      a {
+        font-size: 14px;
+      }
+    }
+
+    .navbar-toggle {
+      width: 100%;
+      margin: 0;
+      padding: 14px 0 0 !important;
+      font-size: 24px;
+
+      @media (max-width: 767px) {
+        text-align: right;
+      }
+    }
+  }
+
+  .themed__header {
+    background-position: center center;
+    background-size: cover;
+  }
+
+  .site-logo {
+    margin: 20px 0;
+    padding-right: 8px;
+    text-align: right;
+
+    @media (max-width: 768px) {
+      margin: 9px 0 0;
+      text-align: left;
+    }
+
+    a {
+      display: inline-block;
+      height: 44px;
+
+      img {
+        width: auto;
+        max-height: 100%;
+      }
+    }
+  }
+
+  #main-menu {
+    margin-right: -40px;
+  }
+
+  .nav-justified {
+    white-space: nowrap;
+    text-align: right;
+
+    .open > a {
+      text-decoration: underline;
+      background: none;
+    }
+
+    & > li {
+      display: inline-block;
+      width: auto;
+      padding: 28px 17px;
+
+      & > a {
+        font-weight: 700;
+
+        &:hover {
+          text-decoration: underline;
+          background: none;
+        }
+      }
+    }
+
+    a {
+      font-size: 16px;
+    }
+
+    & > li + li {
+      padding-right: 0;
+    }
+  }
+
+  /* Header End */
+
+  /* Hero Start */
+
+  .hero {
+    padding-top: 19px;
+    padding-bottom: 91px;
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: right center;
+
+    @media (max-width: 1199px) {
+      padding-bottom: 103px;
+    }
+
+    @media (max-width: 768px) {
+      padding-bottom: 29px;
+    }
+
+    &__h1 {
+      margin-top: -11px;
+      font-size: 62px;
+      font-family: serif;
+      text-transform: uppercase;
+
+      @media (max-width: 1199px) {
+        margin-top: -13px;
+        font-size: 53px;
+      }
+
+      @media (max-width: 768px) {
+        margin-top: -11px;
+        font-size: 35px;
+      }
+    }
+
+    &__h2 {
+      font-weight: 300;
+      font-size: 24px;
+      text-transform: uppercase;
+
+      @media (max-width: 1199px) {
+        font-size: 21px;
+      }
+
+      @media (max-width: 768px) {
+        margin-top: 17px;
+        font-size: 14px;
+      }
+    }
+
+    &__sale {
+      margin-top: -34px;
+
+      @media (max-width: 1199px) {
+        max-height: 116px;
+      }
+
+      @media (max-width: 768px) {
+        max-height: 76px;
+        margin-top: -25px;
+      }
+    }
+
+    #counter {
+      margin-top: 50px;
+
+      @media (max-width: 1199px) {
+        margin-top: 139px;
+      }
+
+      @media (max-width: 768px) {
+        margin-top: 290px;
+      }
+    }
+
+    #countdown {
+      margin: 0 auto;
+    }
+
+    .countdown {
+      &-time {
+        font-weight: 700;
+        font-size: 63px;
+        line-height: 1;
+
+        @media (max-width: 1199px) {
+          font-size: 53px;
+        }
+      }
+
+      &-labels {
+        font-size: 12px;
+        text-transform: uppercase;
+        opacity: 0.5;
+      }
+    }
+
+    &__cta {
+      padding: 6px 30px;
+      font-size: 21px;
+    }
+  }
+
+  /* Hero end */
+
+  /* Coupon Start */
+  .item {
+    position: relative;
+    display: flex;
+    flex: 0 1 49%;
+    min-height: 160px;
+    margin-right: 5px;
+    margin-bottom: 6px;
+    padding: 0;
+    border-radius: 2px;
+
+    @media (max-width: 992px) {
+      flex: 0 1 100%;
+      flex-direction: column;
+    }
+  }
+
+  .coupon {
+    &-header,
+    &-body,
+    &-footer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0;
+      padding: 0;
+    }
+
+    &-header,
+    &-body {
+      height: 160px;
+    }
+
+    &-header {
+      flex: 0 27%;
+      max-width: 27%;
+      padding: 0 5px;
+
+      @media (max-width: 1199px) {
+        flex: 0 20%;
+        max-width: 20%;
+      }
+
+      @media (max-width: 992px) {
+        flex: 1 100%;
+        min-width: 100%;
+      }
+    }
+
+    &-body {
+      position: relative;
+      flex: 0 0 47%;
+      flex-direction: column;
+      max-width: 47%;
+      padding-right: 4px;
+      padding-left: 24px;
+
+      @media (max-width: 1199px) {
+        flex: 0 0 53%;
+        max-width: 53%;
+      }
+
+      @media (max-width: 992px) {
+        flex: 1 100%;
+        min-width: 100%;
+      }
+
+      .divider {
+        position: absolute;
+        top: 0;
+        left: -4px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: auto;
+        height: 100%;
+        padding: 18px 0;
+        list-style-type: inherit;
+
+        @media (max-width: 992px) {
+          top: -15px;
+          flex-direction: row;
+          width: 100%;
+          height: 8px;
+          padding: 0 8px;
+        }
+
+        li {
+          display: block;
+          width: 8px;
+          height: 8px;
+          border-radius: 100%;
+        }
+      }
+
+      .show-coupon-details {
+        cursor: pointer;
+      }
+
+      &::before,
+      &::after {
+        position: absolute;
+        left: -12px;
+        display: block;
+        width: 24px;
+        height: 24px;
+        content: "";
+        border-radius: 100%;
+      }
+
+      &::before {
+        top: -12px;
+
+        @media (max-width: 992px) {
+          top: -22px;
+        }
+      }
+
+      &::after {
+        bottom: -12px;
+
+        @media (max-width: 992px) {
+          top: -22px;
+          right: -12px;
+          left: auto;
+        }
+      }
+    }
+
+    &-footer {
+      flex: 0 0 26%;
+      flex-direction: column;
+      max-width: 26%;
+      padding-top: 40px;
+
+      @media (max-width: 1199px) {
+        flex: 0 0 30%;
+        max-width: 30%;
+      }
+
+      @media (max-width: 992px) {
+        flex: 1 100%;
+        min-width: 100%;
+      }
+    }
+
+    &-social {
+      position: absolute;
+      top: 0;
+      right: 0;
+      margin-right: 5px;
+
+      span {
+        display: inline-block;
+        margin: 9px 9px 0 0;
+        font-size: 16px;
+        line-height: 1;
+        cursor: pointer;
+
+        & > span {
+          margin: 0;
+        }
+
+        &.coupon-share {
+          float: right;
+        }
+      }
+    }
+
+    &-title {
+      margin-top: 12px;
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    &-description {
+      font-weight: 300;
+      font-size: 12px;
+    }
+
+    &-info {
+      margin: 15px 0;
+      font-size: 12px;
+      text-align: left;
+    }
+
+    &-additional-info {
+      width: 100%;
+      font-weight: 300;
+      font-size: 12px;
+
+      @media (max-width: 992px) {
+        display: none;
+      }
+    }
+  }
+
+  .show-more {
+    max-width: 175px;
+    margin-top: 38px;
+    font-size: 15px;
+    text-transform: uppercase;
+    border: 1px solid;
+    border-radius: 4px;
+
+    span {
+      &::before {
+        display: inline-block;
+        float: left;
+        width: 20px;
+        height: 18px;
+        content: url('data:image/svg+xml;utf8,<?xml version="1.0" encoding="UTF-8"?><svg version="1.1" viewBox="0 0 18 19" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g transform="translate(-905 -5314)"><use transform="translate(905 5314)" fill="#627A89" xlink:href="#b"/><use transform="translate(907.26 5321.2)" fill="#627A89" xlink:href="#a"/></g><defs><path id="b" d="m3.6653 3.7678c2.9066-2.5374 7.2563-2.5762 10.203-0.25994l-2.3357 0.08535c-0.3015 0.01164-0.5347 0.25219-0.5226 0.54318 0.012 0.28323 0.2532 0.50438 0.5427 0.50438h0.0201l3.5859-0.12804c0.2935-0.01164 0.5227-0.24055 0.5227-0.52377v-0.0388-0.0194-0.00388l-0.1327-3.422c-0.0121-0.29099-0.2653-0.51602-0.5628-0.50438-0.3015 0.01164-0.5347 0.25219-0.5226 0.54318l0.0844 2.1456c-1.4593-1.1523-3.2563-1.8196-5.178-1.9128-2.3799-0.1164-4.6674 0.67121-6.4322 2.2154-2.4282 2.1223-3.4573 5.3503-2.6854 8.4231 0.060302 0.2406 0.28141 0.3996 0.52664 0.3996 0.044221 0 0.084422-0.0038 0.12864-0.0155 0.28944-0.0698 0.47036-0.353 0.398-0.6324-0.67538-2.7004 0.22512-5.5365 2.3598-7.3988z"/><path id="a" d="m15.484 0.3995c-0.0723-0.27935-0.3658-0.45394-0.6553-0.3841-0.2894 0.069837-0.4703 0.35307-0.3979 0.63241 0.6794 2.7004-0.2252 5.5365-2.3599 7.3988-1.4995 1.3075-3.3809 1.9516-5.2543 1.9516-1.789 0-3.5739-0.58585-5.0131-1.742l2.3638-0.20564c0.29749-0.02715 0.51859-0.27934 0.49045-0.57033s-0.28945-0.5005-0.59096-0.47334l-3.5739 0.31039c-0.29749 0.02715-0.5186 0.27934-0.49045 0.57033l0.32161 3.4492c0.024121 0.2716 0.26131 0.4772 0.5387 0.4772 0.01608 0 0.032161 0 0.048242-0.0039 0.29749-0.0272 0.5186-0.2793 0.49046-0.5703l-0.19297-2.099c1.4593 1.1407 3.2483 1.8041 5.1578 1.8972 0.15276 0.0078 0.30552 0.0117 0.45427 0.0117 2.2151 0 4.3216-0.7838 5.978-2.2271 2.4281-2.1223 3.4573-5.3464 2.6854-8.4231z"/></defs></svg>');
+        margin-top: 1px;
+      }
+    }
+
+    .fa {
+      display: none;
+    }
+  }
+
+  /* Coupon stop */
+
+  /* Fallback Header Image */
+
+  #header_image {
+    margin-top: -28px;
+    margin-bottom: 0;
+  }
+
+  /* Fallback modifiers Start */
+
+  &--grid-fallback {
+    .container {
+      width: 100% !important;
+      padding: 0;
+      background: none;
+    }
+
+    .row {
+      margin-right: 0;
+      margin-left: 0;
+    }
+
+    .deals {
+      background: transparent !important;
+    }
+
+    .col-lg-10.col-lg-offset-1 {
+      width: 100%;
+      margin-left: 0;
+    }
+
+    @media (min-width: 767px) {
+      .subpage-teaser__wrapper {
+        padding-right: 30px;
+        padding-left: 30px;
+      }
+
+      .top-sales__wrapper {
+        padding-right: 15px;
+        padding-left: 15px;
+      }
+    }
+
+    .discount-bubble {
+      $size: 170px;
+      $padding: 5px;
+
+      width: $size;
+      height: $size;
+
+      &::before {
+        top: $padding;
+        left: $padding;
+        width: $size - 2*$padding;
+        height: $size - 2*$padding;
+      }
+
+      &__value {
+        padding-bottom: 24px;
+        font-size: 44px;
+      }
+    }
+
+    .sponsor-bar {
+      padding: 10px 30px;
+    }
+
+    .premium-hero {
+      &__bg {
+        @media (max-width: 1199px) {
+          background-position: calc(100% + 150px);
+        }
+
+        @media (max-width: 992px) {
+          background: none !important;
+        }
+      }
+    }
+
+    .premium-offers {
+      &__offers {
+        margin-right: 0;
+        margin-left: 0;
+      }
+    }
+  }
+
+  /* Fallback modifiers Stop */
+}
+
+/* grid-fallback Start */
+
+#header_image {
+  &.hero {
+    justify-content: center;
+    padding: 19px 26px;
+    text-align: center;
+
+    &.themed--default #countdown {
+      color: #F12850;
+    }
+
+    h1 {
+      display: inline-block;
+      margin-bottom: 7px;
+      padding: 8px 15px 4px;
+      line-height: 1;
+    }
+
+    h2 {
+      margin-top: 0;
+      padding: 4px 7px;
+    }
+
+    &--text-bg h1,
+    &--text-bg h2 {
+      background: rgba(53, 64, 67, 0.8);
+    }
+
+    &--align {
+      &-top {
+        align-items: flex-start;
+      }
+
+      &-middle {
+        align-items: center;
+      }
+
+      &-bottom {
+        align-items: flex-end;
+      }
+
+      &-center {
+        justify-content: center;
+      }
+
+      &-left {
+        justify-content: flex-start;
+        text-align: left;
+      }
+
+      &-right {
+        justify-content: flex-end;
+        text-align: right;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .themed.themed--grid-fallback .shop-bubbles {
+    margin-right: -15px;
+    margin-left: -15px;
+  }
+}
+
+/* grid-fallback Stop */

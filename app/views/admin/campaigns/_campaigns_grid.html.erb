@@ -1,0 +1,77 @@
+<% model_class = Campaign %>
+
+<%= grid(@campaigns_grid, upper_pagination_panel: false) do |g|
+
+  g.column html: {width: '5%'} do |task|
+
+    if can? :edit, model_class
+
+      link_to('<i class="icon-pencil"></i>'.html_safe, edit_admin_campaign_path(task), class: 'btn btn-primary')
+
+    end
+
+  end
+
+  g.column name: 'Status', attribute: 'status', auto_reload: true, custom_filter: [['active', 'active'], ['blocked', 'blocked'], ['gone', 'gone']], html: {width: '10%'} do |task|
+
+    case task.status
+
+    when 'active'
+
+      tag('i', class: 'text-success icon-thumbs-up text-center big-icon')
+
+    when 'gone'
+
+      tag('i', class: 'icon-signout text-center  big-icon')
+
+    when 'blocked'
+
+      tag('i', class: 'text-danger icon-thumbs-down text-center big-icon')
+
+    end
+
+  end
+
+  g.column name: 'Site', attribute: 'name',  assoc: :site, html: {width: '5%'} do |task|
+
+    task.site.name if task.site
+
+  end
+
+  g.column name: 'Name', attribute: 'name', html: {width: '10%'} do |task|
+
+    task.name.titleize if task.name
+
+  end
+
+  g.column name: 'Slug', attribute: 'slug', html: {width: '10%'}
+
+  g.column name: 'Parent', attribute: 'parent_id', html: {width: '10%'} do |task|
+
+    link_to task.parent.name, edit_admin_campaign_url(task.parent), target: '_blank' if task.parent_id.present?
+
+  end
+
+  g.column name: 'Shop', attribute: 'shop_id', html: {width: '10%'} do |task|
+
+    link_to task.shop.title, edit_admin_shop_url(task.shop), target: '_blank' if task.shop_id.present?
+
+  end
+
+  g.column name: 'Blog Feed URL', attribute: 'blog_feed_url', html: {width: '15%'} do |task|
+
+    link_to task.blog_feed_url, task.blog_feed_url, target: 'blank' if task.blog_feed_url
+
+  end
+
+  # g.column name: 'Content', attribute: 'html_document.content', html: {width: '15%'} do |task|
+
+  #   truncate(task.html_content.try(content).try(to_s), length: 100)
+
+  # end
+
+  g.column name: 'Start Date', attribute: 'start_date', html: {width: '10%'}
+
+  g.column name: 'End Date', attribute: 'end_date', html: {width: '10%'}
+
+end %>

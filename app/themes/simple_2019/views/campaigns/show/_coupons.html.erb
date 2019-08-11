@@ -1,0 +1,18 @@
+<%- show_filters = show_filters.nil? ? true : show_filters -%>
+
+<%= render('shared/coupon_filters', coupons: @coupons_no_pagination ) if show_filters === true  %>
+
+<%- if @coupons_no_pagination.present? -%>
+
+  <div class="row" id="campaign-coupons">
+
+    <div class="col-xs-12">
+
+      <%= render partial: 'coupons/shared/card_coupons_grid', locals: {coupons: @coupons_no_pagination} %>
+
+    </div>
+
+  </div>
+
+<%- end -%>
+

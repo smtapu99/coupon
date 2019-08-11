@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+
+    <%= t(:CONTACT_CONFIRMATION_EMAIL, default: render(partial: 'application_mailer/default_contact_confirmation')).html_safe -%>
+
+    <%= t(:SUPPORT_EMAIL_SIGNATURES, default: render(partial: 'application_mailer/default_support_email_signature')).html_safe -%>
+
+  </body>
+</html>

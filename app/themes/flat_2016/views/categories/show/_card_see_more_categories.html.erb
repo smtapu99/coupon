@@ -1,0 +1,57 @@
+<% if categories.present? %>
+
+  <div class="card card-see-more-categories pannacotta">
+
+    <div class="card-header">
+
+      <h2 class="card-title"><%= t(:SEE_MORE_CATEGORIES, default: 'See More Categories') %></h2>
+
+      <!-- /.card-title -->
+      
+    </div>
+
+    <!-- /.card-header -->
+
+    <div class="card-content">
+
+      <ul class="list-unstyled">
+
+        <% categories.each do |category| %>
+
+          <% if category.name.present? && category.slug.present? %>
+
+            <% category_url = dynamic_url_for('categories', 'show', slug: category.slug, parent_slug: category.parent_slug) %>
+
+            <% add_collection_page_element(category.name, category_url) %>
+
+            <li class="<%= 'active' if params[:slug] === category.slug %>">
+
+              <span class="list-circle"></span>
+
+              <a href="<%= category_url %>">
+
+                <%= category.name%>
+
+              </a>
+
+            </li>
+
+            <% '<!-- /.active -->'.html_safe if params[:slug] === category.slug %>
+
+          <% end %>
+
+        <% end %>
+
+      </ul>
+
+      <!-- /.list-unstyled -->
+
+    </div>
+
+    <!-- /.card-content -->
+
+  </div>
+
+  <!-- /.card card-see-more-categories pannacotta -->
+
+<% end %>

@@ -1,0 +1,71 @@
+<div class="topbar">
+
+  <div class="container">
+
+    <div class="row">
+
+      <div class="col-xs-12 col-sm-8 col-sm-push-4">
+
+        <ul class="nav nav-pills primary">
+
+          <% if Setting::get('publisher_site.allow_coupon_bookmarks', default: 0).to_i != 0 %>
+
+          <li>
+
+            <a href="<%= dynamic_url_for('bookmarks') %>" class="bookmark-count pannacotta" rel="nofollow"><i class="roberto-heart-empty"></i> <span>0</span></a>
+
+          </li>
+
+          <%- end -%>
+
+          <% if Setting::get('publisher_site.blog_link_title').present? %>
+
+          <li>
+
+            <a href="<%= Setting::get('publisher_site.blog_link_url') %>" target="_blank" data-event-category="navlink" data-event-action="blog">
+
+                <%= Setting::get('publisher_site.blog_link_title') || t(:MAIN_BLOG, default: 'MAIN_BLOG') %>
+
+            </a>
+
+          </li>
+
+          <% end %>
+
+        </ul>
+
+      </div>
+
+      <!-- /.col-xs-12 .col-sm-8 .col-sm-push-4 -->
+
+      <%- if newsletter_enabled? -%>
+
+        <div class="hidden-xs col-sm-4 col-sm-pull-8">
+
+          <ul class="nav nav-pills secondary">
+
+            <li>
+
+              <span href="#" class="pannacotta attach-newsletter-popup"><i class="roberto-paper-plane"></i> <%= t(:JOIN_OUR_NEWSLETTER, default: 'Join our newsletter!') %></span>
+
+            </li>
+
+          </ul>
+
+        </div>
+
+      <% end %>
+
+      <!-- /.hidden-xs .col-sm-4 .col-sm-pull-8 -->
+
+    </div>
+
+    <!-- /.row -->
+
+  </div>
+
+  <!-- /.container -->
+
+</div>
+
+<!-- /.topbar -->

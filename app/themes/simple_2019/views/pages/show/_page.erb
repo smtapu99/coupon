@@ -1,0 +1,31 @@
+<% if page.title.present? || @content %>
+
+  <!-- .page -->
+
+  <div class="page">
+
+    <% if page.title.present? %>
+
+    <div class="page__header">
+
+      <h2 class="page__title"><%= page.title %></h2>
+
+    </div>
+
+    <% end %>
+
+    <% if @content.present? %>
+
+      <div class="page__content">
+
+        <%= @content.html_safe %>
+
+      </div>
+
+    <% end %>
+
+  </div>
+
+  <!-- ./page -->
+
+<% end %>

@@ -1,0 +1,58 @@
+<div class="card card-empty-shop pannacotta bg-ashes" data-event-category="content_emptyshop_nl">
+
+  <div class="card-header">
+
+    <p class="card-title text-center">
+
+      <%= t(:SORRY_ALL_OUR_COUPONS_FOR_SHOP_ARE_GONE, default: 'Sorry, all our coupons for <b>{shop}</b> are gone').gsub('{shop}', shop.title).html_safe %>
+
+      <%- if newsletter_enabled? -%>
+
+        <br>
+
+        <%= t(:WE_WILL_NOTIFY_YOU_AS_SOON_AS_WE_HAVE_SOMETHING_NEW, default: 'We will notify you as soon as we have something new') %>.
+
+      <%- end -%>
+
+    </p>
+
+  </div>
+
+  <%- if newsletter_enabled? -%>
+
+    <div class="card-content text-center">
+
+      <%= form_tag send("subscribe_#{@site.site.id}_path"), class: 'form-inline', method: :post, role: 'form', remote: :true, data:{'event-action' => 'form_submit'} do |f| %>
+
+        <div class="form-group">
+
+          <div class="input-wrapper">
+
+            <%= email_field_tag :email, nil, class: 'form-control', id: 'empty_shop_newsletter_email', placeholder: t(:TYPE_HERE_YOUR_EMAIL, default: 'Type here your email'), :required => true, "aria-label" => t(:TYPE_HERE_YOUR_EMAIL, default: 'Type here your email') %>
+
+          </div>
+
+        </div>
+
+        <%= button_tag(t(:SUBSCRIBE, default: 'Subscribe'), class: 'btn btn-small btn-cloud') %>
+
+        <p class="privacy-note">
+
+          <%= render 'shared/privacy_note_checkbox' %>
+
+          <span class="text-truncated">
+            <%= truncate(t(:BY_SUBSCRIBING_YOU_ACCEPT_OUR_PRIVACY_POLICY, default: 'By subscribing you accept our <a href="%{policy_url}" rel="nofollow" target="_blank">privacy policy</a>', policy_url: policy_url).html_safe, length: 75, escape: false) %>
+          </span>
+          <span class="text-full hidden">
+            <%= t(:BY_SUBSCRIBING_YOU_ACCEPT_OUR_PRIVACY_POLICY, default: 'By subscribing you accept our <a href="%{policy_url}" rel="nofollow" target="_blank">privacy policy</a>', policy_url: policy_url).html_safe %>
+          </span>
+
+        </p>
+
+    <% end %>
+
+    </div>
+
+  <%- end -%>
+
+</div>

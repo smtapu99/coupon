@@ -1,0 +1,69 @@
+  <div class="col-sm-12">
+
+    <div class="box bordered-box blue-border">
+
+      <div class="box-header blue-background">
+
+        <div class="title">
+
+          <i class="icon-edit"></i>
+
+          Country Form
+
+        </div>
+
+      </div>
+
+      <div class="box-content">
+
+        <%= form_for [:admin, @country], html: {class: 'form form-horizontal', style: 'margin-bottom: 0'} do |f| %>
+
+        <%= render partial: 'admin/shared/form_errors', locals: {ancestor: @country} %>
+
+        <div class="form-group <%= 'has-error' unless @country.errors.messages[:name].blank? %>">
+
+          <%= f.label :name, class: 'col-md-2 control-label' %>
+
+          <div class="col-md-5">
+
+            <%= f.text_field :name, class: 'form-control' %>
+
+          </div>
+
+        </div>
+
+        <div class="form-group <%= 'has-error' unless @country.errors.messages[:locale].blank? %>">
+
+          <%= f.label :locale, class: 'col-md-2 control-label' %>
+
+          <div class="col-md-5">
+
+            <%= f.select :locale, I18n.available_locales, {include_blank: true}, class: 'form-control' %>
+
+          </div>
+
+        </div>
+
+        <div class="form-actions form-actions-padding-sm">
+
+          <div class="row">
+
+            <div class="col-md-10 col-md-offset-2">
+
+              <%= f.submit nil, class: 'btn btn-primary' if can? :create, Country %>
+
+              <%= link_to t('.cancel', default: t('helpers.links.cancel')), admin_countries_path, class: 'btn' %>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <% end %>
+
+      </div>
+
+    </div>
+
+  </div>

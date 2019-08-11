@@ -1,0 +1,86 @@
+.pannacotta {
+  &.card-shop-filter {
+    .card-content {
+      padding: 0px 0px 0px 20px;
+
+      p {
+        color: $color-title;
+        font-size: 14px;
+        font-weight: lighter;
+      }
+
+      ul {
+        margin-bottom: 0px;
+
+        li {
+          margin-bottom: 4px;
+        }
+      }
+
+      .checkbox {
+        input[type=checkbox]{
+          margin-left: -16px;
+        }
+        margin-top: 5px;
+        margin-bottom: 5px;
+      }
+
+      // .checkboxx {
+      //   padding-left: 0;
+
+      //   label {
+      //     padding-left: 0px;
+
+      //     &:hover {
+      //       span:not(.count) {
+      //         background: $color-white image-url("#{$image-base-url}default/sprite-redesign.png") -130px -409px no-repeat scroll;
+      //       }
+      //     }
+
+      //     input[type="checkbox"] {
+      //       bottom: 0;
+      //       left: -99999px;
+      //       position: absolute;
+      //       visibility: hidden;
+
+      //       // @include opacity(0);
+
+      //       &:checked {
+      //         + span:not(.count) {
+      //           background: $color-white image-url("#{$image-base-url}default/sprite-redesign.png") -130px -409px no-repeat scroll;
+      //         }
+      //       }
+      //     }
+
+      //     &.active {
+      //       input[type="checkbox"] + span:not(.count) {
+      //         background: $color-white image-url("#{$image-base-url}default/sprite-redesign.png") -130px -409px no-repeat scroll;
+      //       }
+      //     }
+
+      //     span:not(.count) {
+      //       background-color: $color-white;
+      //       border: 1px solid $color-ashes;
+      //       content: "";
+      //       display: inline-block;
+      //       height: 21px;
+      //       margin-right: 5px;
+      //       vertical-align: -5px;
+      //       width: 21px;
+
+      //       @include border-radius(7px);
+      //     }
+      //   }
+      // }
+
+      .filters-list {
+        max-height: 285px;
+        overflow-x: hidden;
+
+        .more, .less {
+          display: none;
+        }
+      }
+    }
+  }
+}

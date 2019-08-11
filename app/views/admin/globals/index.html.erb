@@ -1,0 +1,89 @@
+<%- content_for(:head_scripts) do -%>
+
+  <script type="text/javascript">var authorized_to_edit = <%= can?(:manage, Global).to_s %></script>
+
+<%- end -%>
+
+<% model_class = Global %>
+
+<div class="row">
+
+  <div class="col-xs-12">
+
+    <div class="page-header">
+
+      <h1 class="pull-left">
+
+        <i class="icon-map-marker"></i>
+
+        <span><%= t '.title', default: model_class.model_name.human.pluralize.titleize %></span>
+
+      </h1>
+
+      <div class="pull-right">
+
+        <ul class="breadcrumb">
+
+          <li>
+
+            <a href="/pcadmin">
+
+              <i class="icon-home"></i>
+
+            </a>
+
+          </li>
+
+          <li class="separator">
+
+            <i class="icon-angle-right"></i>
+
+          </li>
+
+          <li><%= model_class.model_name.human.pluralize.titleize %></li>
+
+          <li class="separator">
+
+            <i class="icon-angle-right"></i>
+
+          </li>
+
+          <li class="active"><%= model_class.model_name.human.pluralize.titleize %></li>
+
+        </ul>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<%= render :partial => 'admin/shared/flash' %>
+
+<div class="box">
+
+  <div class="box-content">
+
+    <% if can? :create, model_class %>
+
+      <div class="btn-toolbar">
+
+        <%= link_to '<i class="icon-plus"></i> New Global'.html_safe, new_admin_global_path, class: 'btn btn-success' %>
+
+        <%= link_to '<i class="icon-download"></i> Export XLS'.html_safe, export_modal_admin_globals_path, data: { remote: true }, class: 'btn btn-info' %>
+
+        <%= link_to '<i class="icon-shopping-cart"></i> Shop Mappings'.html_safe, shop_mappings_admin_globals_path, class: 'btn btn-danger' %>
+
+      </div>
+
+    <% end %>
+
+    <div class="table-responsive">
+      <div id="app"></div>
+    </div>
+
+  </div>
+
+</div>

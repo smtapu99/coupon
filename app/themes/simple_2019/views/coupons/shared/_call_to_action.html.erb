@@ -1,0 +1,17 @@
+<span style="width: 110px; display: block;" <%= clickout_params_for_element(coupon, 'button') %> class="clickout btn">
+
+  <%- if coupon.has_expired? -%>
+
+    <%= t(:EXPIRED, default: 'Expired') %>
+
+  <% elsif coupon.coupon_type == 'coupon' && coupon.code.present? %>
+
+    <%= coupon_code_btn_text(coupon) %> <span class="code">***</span>
+
+  <%- else -%>
+
+    <%= coupon_btn_text(coupon) %>
+
+  <%- end -%>
+
+</span>

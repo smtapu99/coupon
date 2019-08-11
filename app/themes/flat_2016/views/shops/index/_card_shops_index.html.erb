@@ -1,0 +1,25 @@
+<div class="card card-shops-index pannacotta">
+
+  <div class="card-header">
+
+    <h3 class="card-title"><%= t(:POPULAR_SHOPS, default: 'Popular Shops') %></h3>
+
+    <!-- /.card-title -->
+
+  </div>
+
+  <!-- /.card-header -->
+
+  <div class="card-content">
+
+    <%= render partial: 'shops/index/popular_shops', locals: { shops_featured: shops_featured } %>
+
+    <%= render partial: 'shops/index/shops_list' %>
+
+  </div>
+
+  <!-- /.card-content -->
+
+</div>
+
+<!-- /.card card-shops-index pannacotta -->

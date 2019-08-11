@@ -1,0 +1,342 @@
+<div class="col-sm-12">
+
+  <div class="box bordered-box blue-border">
+
+    <div class="box-header blue-background">
+
+      <div class="title">
+
+        <i class="icon-edit"></i>
+
+        Campaign Form
+
+      </div>
+
+    </div>
+
+    <div class="box-content">
+
+      <%= form_for [:admin, @campaign], html: {class: 'form form-horizontal', style: 'margin-bottom: 0', multipart: true} do |f| %>
+
+      <%= render partial: 'admin/shared/form_errors', locals: {ancestor: @campaign} %>
+
+      <div class="form-group">
+
+        <%= f.label :status, class: 'col-md-2 control-label' %>
+
+        <div class="col-md-5">
+
+          <%= f.select :status, Campaign.statuses, {prompt: false}, class: 'form-control' %>
+
+          <div class="help-block">
+
+            <small>Changing this status to blocked will create a redirection to the homepage. Changing it back to anything else then blocked will delete this redirection again.</small>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="form-group">
+
+        <%= f.label :template, class: 'col-md-2 control-label' %>
+
+        <div class="col-md-5">
+
+          <%= f.select :template, Option::get_select_options('campaign_template', true), {prompt: false}, class: 'form-control' %>
+
+        </div>
+
+      </div>
+
+      <div class="form-group">
+
+        <%= f.label :related_shop_ids, class: 'col-md-2 control-label' %>
+
+        <div class="col-md-5">
+
+          <%= f.select :related_shop_ids, Site.current.shops.active.collect {|x| [x.title, x.id]}, {}, {:multiple => true, class: 'select2 form-control'} %>
+
+        </div>
+
+      </div>
+
+
+      <% unless Site.current.present? %>
+
+        <div class="form-group">
+
+          <%= f.label :site_id, class: 'col-md-2 control-label' %>
+
+          <div class="col-md-5">
+
+            <%= f.collection_select :site_id, User.current.sites, :id, :name, {prompt: true}, {disabled: !f.object.new_record?, class: 'form-control'} %>
+
+          </div>
+
+        </div>
+
+      <% end %>
+
+      <hr>
+
+      <div class="form-group">
+
+        <%= f.label :is_root_campaign, class: 'col-md-2 control-label' %>
+
+        <div class="col-md-5">
+
+          <%= f.check_box :is_root_campaign, class: 'form-control check_box' %>
+
+          <div class="help-block"><small>CAUTION! Root campaigns need special setup by admin. These campaigns are accessible at root level, e.g. https://publisher.com/vouchercodes/blackfriday would be accessible at https://publisher.com/blackfriday.</small></div>
+
+        </div>
+
+      </div>
+
+      <div class="form-group">
+
+        <%= f.label :coupons_on_top, class: 'col-md-2 control-label' %>
+
+        <div class="col-md-5">
+
+          <%= f.check_box :coupons_on_top, class: 'form-control check_box' %>
+
+          <div class="help-block"><small>Puts coupons block on top of the campaign page</small></div>
+
+        </div>
+
+      </div>
+
+      <%- if Site.current.present? -%>
+
+        <div class="form-group">
+
+          <%= f.label :parent_id, class: 'col-md-2 control-label' %>
+
+          <div class="col-md-5">
+
+            <%- if @campaign.new_record? -%>
+
+              <%= f.collection_select :parent_id, Site.current.campaigns, :id, :name, {include_blank: true}, {class: 'form-control'} %>
+
+            <%- else -%>
+
+              <%= f.collection_select :parent_id, Site.current.campaigns.where('id != ?', @campaign.id), :id, :name, {prompt: true, include_blank: true}, {class: 'form-control'} %>
+
+            <%- end -%>
+
+          </div>
+
+        </div>
+
+        <div class="form-group">
+
+          <%= f.label :shop_id, class: 'col-md-2 control-label' %>
+
+          <div class="col-md-5">
+
+            <%= f.collection_select :shop_id, Site.current.shops, :id, :title, {include_blank: true, prompt: true}, {class: ' form-control'} %>
+
+            <p class="help-block">
+
+              <small class="text-muted">Allows this campaign to be a subpage of a shop. The URL will be /:shop-slug/:slug and it will NOT be accessible with the default campaign URL</small>
+
+            </p>
+
+          </div>
+
+        </div>
+
+      <%- end -%>
+
+      <hr>
+
+      <div class="form-group">
+
+        <%= f.label :name, class: 'col-md-2 control-label' %>*
+
+        <div class="col-md-5">
+
+          <%= f.text_field :name, class: 'form-control' %>
+
+        </div>
+
+      </div>
+
+      <%- if User.current.is_admin? -%>
+
+      <div class="form-group">
+
+        <div class="red-background">You are logged in as Admin and are able to change the slug. Dont forget to also change the Redirections!!!</div>
+
+      </div>
+
+      <%- end -%>
+
+      <div class="form-group">
+
+        <%= f.label :slug, class: 'col-md-2 control-label' %>
+
+        <div class="col-md-5">
+
+          <%= f.text_field :slug, class: 'form-control', disabled: !(@campaign.new_record? || User.current.is_admin?) %>
+
+        </div>
+
+      </div>
+
+      <div class="form-group">
+
+        <%= f.label 'Priority Coupon IDs Order', class: 'col-md-2 control-label' %>
+
+        <div class="col-md-5">
+
+          <%= f.text_field :priority_coupon_ids, class: 'form-control select2-tags' %>
+
+          <div class="help-block"><small>Comma Separated like: 123456,123457; Coupons still need the Tag !!</small></div>
+
+        </div>
+
+      </div>
+
+      <div class="form-group">
+
+        <%= f.label :hide_newsletter_box, class: 'col-md-2 control-label' %>
+
+        <div class="col-md-5">
+
+          <%= f.check_box :hide_newsletter_box, class: 'form-control check_box' %>
+
+        </div>
+
+      </div>
+
+      <div class="form-group">
+
+        <%= f.label :nav_title, class: 'col-md-2 control-label' %>
+
+        <div class="col-md-5">
+
+          <%= f.text_field :nav_title, class: 'form-control' %>
+
+        </div>
+
+      </div>
+
+      <div class="form-group">
+
+        <%= f.label :start_date, class: 'col-md-2 control-label' %>
+
+        <div class="col-md-5">
+
+          <%= f.datetime_select :start_date, {include_blank: true} %>
+
+        </div>
+
+      </div>
+
+      <div class="form-group">
+
+        <%= f.label :end_date, class: 'col-md-2 control-label' %>
+
+        <div class="col-md-5">
+
+          <%= f.datetime_select :end_date, {include_blank: true} %>
+
+        </div>
+
+      </div>
+
+      <div class="form-group">
+
+        <%= f.label :h1_first_line, class: 'col-md-2 control-label' %>
+
+        <div class="col-md-5">
+
+          <%= f.text_field :h1_first_line, class: 'form-control' %>
+
+          <p class="help-block">
+
+            <small class="text-muted"><%=t 'h1_first_line', default: 'The first line of H1 at the top of the page' %></small>
+
+          </p>
+
+        </div>
+
+      </div>
+
+      <div class="form-group">
+
+        <%= f.label :h1_second_line, class: 'col-md-2 control-label' %>
+
+        <div class="col-md-5">
+
+          <%= f.text_field :h1_second_line, class: 'form-control' %>
+
+          <p class="help-block">
+
+            <small class="text-muted"><%=t 'h1_second_line', default: 'The second line of H1 at the top of the page' %></small>
+
+          </p>
+
+        </div>
+
+      </div>
+
+      <div class="form-group">
+
+        <%= f.label 'SEM Page Logo URL', class: 'col-md-2 control-label' %>
+
+        <div class="col-md-5">
+
+          <%= f.text_field :sem_logo_url, class: 'form-control select2-tags' %>
+
+          <div class="help-block"><small>Logo URL for SEM Pages, User Media Uploader</small></div>
+
+        </div>
+
+      </div>
+
+      <div class="form-group">
+
+        <%= f.label 'SEM Page Background URL', class: 'col-md-2 control-label' %>
+
+        <div class="col-md-5">
+
+          <%= f.text_field :sem_background_url, class: 'form-control select2-tags' %>
+
+          <div class="help-block"><small>Background URL for SEM Pages; Use Media Uploader</small></div>
+
+        </div>
+
+      </div>
+
+      <%= render 'admin/html_documents/sub_form', ancestor: @campaign, f: f %>
+
+      <%= render 'settings', ancestor: @campaign, f: f  %>
+
+      <div class="form-actions form-actions-padding-sm">
+
+        <div class="row">
+
+          <div class="col-md-10 col-md-offset-2">
+
+            <%= f.submit nil, class: 'btn btn-primary' if can? :create, Campaign %>
+
+            <%= link_to t('.cancel', default: t('helpers.links.cancel')), admin_campaigns_path, class: 'btn' %>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <% end %>
+
+    </div>
+
+  </div>
+
+</div>

@@ -1,0 +1,27 @@
+<div class="form-group">
+
+  <%= ff.label :rss_feed_url, class: 'col-md-2 control-label' %>
+
+  <div class="col-md-10">
+
+    <%= ff.text_field :rss_feed_url, class: 'form-control' %>
+
+  </div>
+
+</div>
+
+<!-- /.form-group -->
+
+<div class="form-group">
+
+  <%= ff.label :post_count, class: 'col-md-2 control-label' %>
+
+  <div class="col-md-10">
+
+    <%= ff.number_field :post_count, class: 'form-control', min: 2, max: 20 %>
+
+  </div>
+
+</div>
+
+<!-- /.form-group -->

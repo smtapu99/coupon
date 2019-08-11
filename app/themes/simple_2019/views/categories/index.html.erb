@@ -1,0 +1,64 @@
+<h1 class="page-title"><%= t(:CATEGORYPAGE_HEADLINE, default: 'All Categories') %></h1>
+
+<h2 class="page-subtitle"><%= t(:CATEGORYPAGE_SUBTITLE, default: 'CATEGORYPAGE_SUBTITLE') %></h2>
+
+<% if @categories.present? %>
+
+  <!-- .categories -->
+
+  <div class="categories">
+
+    <ul class="categories__list row justify-content-center ">
+
+
+      <% @categories.each do |category| %>
+
+        <% category_url = dynamic_url_for('category', 'show', slug: category.slug, parent_slug: category.parent_slug) %>
+
+        <% add_collection_page_element(category.name, category_url) %>
+
+        <li class="categories__item col-md-3 col-sm-6 col-xs-6">
+
+          <a href="<%= category_url %>" class="categories__link">
+
+            <%- if category.css_icon_class.present? -%>
+
+              <i class="categories__icon roberto roberto-category-<%= category.css_icon_class %>"></i>
+
+            <%- else -%>
+
+              <i class="categories__icon roberto roberto-th-large"></i>
+
+            <%- end -%>
+
+            <span class="categories__name">
+
+              <%= category.name %>
+
+            </span>
+
+          </a>
+
+        </li>
+
+      <% end %>
+
+    </ul>
+
+  </div>
+
+  <div class="col-md-8 offset-md-2">
+
+    <div class="categories__seo-text">
+
+      <i class="icon-info categories__seo-icon"></i>
+
+      <p><%= t(:CATEGORYPAGE_SEO, default: nil).html_safe %></p>
+
+    </div>
+
+  </div>
+
+  <!-- ./categories -->
+
+<% end %>

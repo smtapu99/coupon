@@ -1,0 +1,21 @@
+<% @h1 = t('404_HEADLINE'.to_sym, default: '404 Not Found') %>
+
+<% if @coupons.present? %>
+
+  <%= render partial: 'coupons/shared/card_coupons_list', locals: { coupons: @coupons, hide_pagination: true } %>
+
+<% else %>
+
+  <p class="alert alert-info alert--center">
+
+    <%= t(:THEIRS_NO_COUPON, default: 'There is no coupons') %>
+
+  </p>
+
+<% end %>
+
+<% content_for :sidebar do %>
+
+  <%= render partial: 'shared/widgets_sidebar' %>
+
+<% end %>

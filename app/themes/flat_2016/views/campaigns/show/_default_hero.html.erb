@@ -1,0 +1,56 @@
+<% if @campaign.html_document.header_image_url() %>
+  <style>
+    .themed.themed--default .themed__header {
+      background-image:
+      <%- if @campaign.html_document.darken_header_image? %>
+          linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.2)),
+      <% end %>
+      url(<%= @campaign.html_document.mobile_header_image_url() || @campaign.html_document.header_image_url() %>);
+    }
+
+    .themed.themed--default .hero__h1,
+    .themed.themed--default .nav-justified>li>a {
+      color: <%= @campaign.html_document.header_font_color() %>
+    }
+
+    @media(min-width: 768px) {
+      .themed.themed--default .themed__header {
+        background-image:
+        <%- if @campaign.html_document.darken_header_image? %>
+            linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.2)),
+        <% end %>
+        url(<%= @campaign.html_document.header_image_url() %>);
+      }
+    }
+  </style>
+<% end %>
+<!-- Hero -->
+<div class="container">
+
+  <div class="hero">
+
+    <div class="row">
+
+      <div class="col-md-12">
+
+        <%- if @campaign.h1_first_line.present? -%>
+
+        <h1 class="text-center hero__h1"><%= @campaign.h1_first_line.html_safe %> <br> <%= "#{@campaign.h1_second_line.html_safe}" %></h1>
+
+        <%- end -%>
+
+        <%- if @h2.present? -%>
+
+          <h2 class="text-center hero__h2"><%= @h2.html_safe %></h2>
+
+        <%- end -%>
+
+        <%= campaign_hero_cta(@campaign) %>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

@@ -1,0 +1,135 @@
+<div class="col-sm-12 col-md-6" id="caching">
+
+  <div class="box bordered-box blue-border <%= 'box-collapsed' unless session[:last_setting] == 'caching' %>">
+
+    <div class="box-header green-background">
+
+      <div class="title">
+
+        <i class="icon-rocket"></i>
+
+        Caching Settings
+
+      </div>
+
+      <div class="actions">
+
+        <a class="btn box-collapse btn-xs btn-link" href="#">
+
+          <i></i>
+
+        </a>
+
+      </div>
+
+    </div>
+
+    <div class="box-content">
+
+      <%= form_for [:admin, @setting], method: :patch, html: {class: 'form form-horizontal', style: 'margin-bottom: 0'} do |f| %>
+
+        <%= hidden_field_tag :option_type, 'caching' %>
+
+        <%= fields_for :caching, @setting.caching do |ff| %>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :reverse_proxy_type %>
+
+              <%= ff.select :proxy_server_type, Option::get_select_options('reverse_proxy_type'), {}, class: 'form-control' %>
+
+            </div>
+
+          </div>
+
+          <hr>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :fastly_auth_key %>
+
+              <%= ff.text_field :fastly_auth_key, :class => 'form-control' %>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :fastly_service_id %>
+
+              <%= ff.text_field :fastly_service_id, :class => 'form-control' %>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :fastly_cache_purge_host %>
+
+              <%= ff.text_field :fastly_cache_purge_host, :class => 'form-control' %>
+
+              <small>Defaults to the sites hostname</small>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :use_surrogate_keys %>
+
+              <%= ff.select :use_surrogate_keys, Option::get_select_options('yes_or_no', true), {}, class: 'form-control' %>
+              <small class="text-error">Currently only compatible with Fastly.</small>
+            </div>
+
+          </div>
+
+          <hr>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :cloudflare_zone_id %>
+
+              <%= ff.text_field :cloudflare_zone_id, :class => 'form-control' %>
+
+            </div>
+
+          </div>
+
+          <div class="form-actions form-actions-padding-sm">
+
+            <div class="row">
+
+              <div class="col-md-2">
+
+                <%= f.submit 'Save', class: 'btn btn-primary btn-block' %>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        <% end %>
+
+      <% end %>
+
+    </div>
+
+  </div>
+
+</div>

@@ -1,0 +1,17 @@
+<%= render partial: 'shops/index/page_headlines' %>
+
+<% if @shops.present? %>
+
+  <%= render partial: 'shops/index/card_filter_by_category', locals: { css_classes: 'visible-xs' } %>
+
+  <%= render partial: 'shops/index/card_shops_index', locals: { shop_category_slugs: @shop_category_slugs, shops: @shops, shops_featured: @shops_featured } %>
+
+<% end %>
+
+<% if @shops_empty.present? %>
+
+  <%= render partial: 'shops/index/card_empty_shops', locals: { shops_empty: @shops_empty } %>
+
+<% end %>
+
+<%= render partial: 'shops/index/sidebar', locals: { shops: @shops } %>

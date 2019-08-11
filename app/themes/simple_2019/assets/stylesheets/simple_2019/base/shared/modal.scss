@@ -1,0 +1,59 @@
+.modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1050;
+  overflow: hidden;
+  outline: 0;
+  pointer-events: none;
+
+  &--hidden {
+    display: none;
+  }
+
+  &__dialog {
+    @include default-box;
+
+    position: relative;
+    max-width: 700px;
+    margin: 100px auto;
+    pointer-events: auto;
+
+    @media #{$xs} {
+      margin: 20px auto;
+    }
+  }
+
+  &__close-btn {
+    position: absolute;
+    top: 20px;
+    right: 24px;
+  }
+}
+
+/* Backdrop */
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1040;
+  background-color: rgba(0, 0, 0, 0.4);
+
+  &--hidden {
+    display: none;
+  }
+}
+
+.modal-open {
+  padding-right: 15px;
+  overflow: hidden;
+
+  & > div:not(.modal) {
+    filter: blur(3px);
+  }
+}

@@ -1,0 +1,31 @@
+<% content_for :head do %>
+
+  <% if page.html_document.present? %>
+
+    <% if page.html_document.meta_robots.present? %>
+
+      <meta name="robots" content="<%= page.html_document.meta_robots %>">
+
+    <% end %>
+
+    <% if page.html_document.meta_title.present? %>
+
+      <meta name="title" content="<%= page.html_document.meta_title %>">
+
+    <% end %>
+
+    <% if page.html_document.meta_description.present? %>
+
+      <meta name="description" content="<%= page.html_document.meta_description %>">
+
+    <% end %>
+
+    <% if page.html_document.meta_keywords.present? %>
+
+      <meta name="keywords" content="<%= page.html_document.meta_keywords %>">
+
+    <% end %>
+
+  <% end %>
+
+<% end %>

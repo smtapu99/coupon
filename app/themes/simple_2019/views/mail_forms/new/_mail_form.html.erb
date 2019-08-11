@@ -1,0 +1,23 @@
+<!-- .mail-form -->
+
+<div class="mail-form">
+
+  <div class="mail-form__header">
+
+    <h1 class="mail-form__title"><%= title %></h1>
+
+  </div>
+
+  <div class="mail-form__content">
+
+    <%= render partial: 'shared/flashes' %>
+
+    <%= render partial: "mail_forms/new/#{@type}" %>
+
+    <p class="mail-form__privacy-note"><%= t(:DATA_COLLECTION_AND_PROCESSING_NOTE, default: 'Data collection and processing is carried out in accordance with our <a href="%{policy_url}" rel="nofollow" target="_blank">privacy policy</a>', policy_url: policy_url).html_safe %></p>
+
+  </div>
+
+</div>
+
+<!-- ./mail-form -->

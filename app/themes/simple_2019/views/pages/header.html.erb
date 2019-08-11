@@ -1,0 +1,12 @@
+<%- content_for(:head) do -%>
+  <base target="_parent" />
+  <style type="text/css">
+    .pannacotta#header .navbar-toggle {
+      display: none !important;
+    }
+  </style>
+<%- end -%>
+
+<%= render partial: 'shared/head' %>
+<%= render partial: 'shared/header' %>
+<%= render partial: 'shared/foot' %>

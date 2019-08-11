@@ -1,0 +1,83 @@
+
+  <div class="col-sm-12">
+
+    <div class="box bordered-box green-border">
+
+      <div class="box-header green-background">
+
+        <div class="title">
+
+          <i class="icon-edit"></i>
+
+          <b>Global</b> Coupon Import
+
+        </div>
+
+      </div>
+
+      <div class="box-content">
+
+        <%= form_for [:admin, @coupon_import], html: {class: 'form form-horizontal', multipart: true, style: 'margin-bottom: 0'} do |f| %>
+
+          <%= render partial: 'admin/shared/form_errors', locals: {ancestor: @coupon_import} %>
+
+          <div class="form-group <%= 'has-error' unless @coupon_import.errors.messages[:site_id].blank? %>">
+
+            <%#= f.label :site_id, class: 'col-md-2 control-label' %>
+
+            <div class="col-md-5">
+
+              <%#= f.collection_select :site_id, User.current.sites, :id, :name, {prompt: true}, {class: 'form-control'} %>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <%= f.label 'Note:', class: 'col-md-2 control-label' %>
+
+            <div class="col-md-5">
+
+              <div class="help-block"><small>This is the NEW Coupon Import Form. It allows you to upload coupons to multiple sites at once. Be <b>careful</b> and add the "Site ID" column to your import file. Add one coupon per site.</small></div>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <%= f.label :file, class: 'col-md-2 control-label' %>
+
+            <div class="col-md-5">
+
+              <%= f.file_field :file, class: 'form-control' %>
+
+            </div>
+
+          </div>
+
+          <div class="form-actions form-actions-padding-sm">
+
+            <div class="row">
+
+              <div class="col-md-10 col-md-offset-2">
+
+                <%= f.submit 'Import', class: 'btn btn-success' if can? :create, CouponImport %>
+
+                <%= link_to '<i class="icon icon-file"></i> Download Template'.html_safe, admin_coupons_import_template_path, class: 'btn btn-inverse' %>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        <% end %>
+
+      </div>
+
+    </div>
+
+  </div>
+

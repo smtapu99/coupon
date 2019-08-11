@@ -1,0 +1,37 @@
+.pannacotta {
+  &.cookies-eu {
+    bottom: 0;
+    color: #fff;
+    font-size: 12px;
+    font-weight: normal;
+    left: 0;
+    padding: 15px 30px 15px 15px;
+    position: fixed;
+    right: 0;
+    line-height: 15px;
+    z-index: 999;
+
+    a {
+      @include flat-anchor(#fff);
+      font-size: 12px;
+      font-weight: bold;
+      line-height: 15px;
+    }
+
+    .btn {
+      color: #fff;
+      font-size: 14px;
+      padding: 6px 8px 3px;
+      background: transparent;
+      position: absolute;
+      top: 0px;
+      right: 0px;
+
+      @include flat-transition(color .3s ease);
+
+      &:focus, &:hover {
+        color: $color-ready;
+      }
+    }
+  }
+}

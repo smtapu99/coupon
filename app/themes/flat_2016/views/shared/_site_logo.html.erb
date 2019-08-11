@@ -1,0 +1,15 @@
+<% if @site.image_setting.try(:logo_url).present? %>
+
+  <div class="site-logo">
+
+    <a href="<%= Setting::get('publisher_site.external_logo_url', default: root_url) %>" rel="<%= Setting::get('publisher_site.external_logo_rel_attr', default: '') %>" title="<%= @site.site.name %>">
+
+      <%= image_tag @site.image_setting.logo_url, alt: @site.site.name, title: @site.site.name, class: 'img-responsive', height: 127, width: 346 %>
+
+    </a>
+
+  </div>
+
+  <!-- /.site-logo -->
+
+<% end %>

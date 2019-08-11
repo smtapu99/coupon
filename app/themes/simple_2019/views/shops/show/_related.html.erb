@@ -1,0 +1,118 @@
+<% editors_picks = @site.similar_editors_picks(related_shops.map(&:id)) if related_shops.present? %>
+
+<%- if editors_picks.present? -%>
+
+  <div class="related related--editors-pick">
+
+    <div class="col-md-12">
+
+      <div class="related__col related__col--similar" data-event-category="content_related_shops">
+
+        <h3 class="related__heading"><%= t(:SIMILAR_EDITORS_PICKS, default: "Similar Editor's Picks From Other Shops") %></h3>
+
+        <ul class="related__list">
+
+          <% editors_picks.each do |coupon| %>
+
+            <li class="related__item">
+
+              <a <%= clickout_params_for_element(coupon) %> id="<%= coupon.item_id %>" class="related__link" data-coupon-type="<%= coupon.coupon_type %>" data-coupon-id="<%= coupon.id %>" data-index="0" data-shop-name="<%= coupon.shop_title %>">
+
+                <%= coupon.title %>
+
+              </a>
+
+            </li>
+
+          <% end %>
+
+        </ul>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- ./related -->
+
+<%- end -%>
+
+<!-- .related -->
+
+<div class="related">
+
+  <div class="col-md-12">
+
+    <div class="row">
+
+      <% if related_shops.present? %>
+
+        <div class="col-md-6">
+
+          <div class="related__col related__col--similar" data-event-category="content_related_shops">
+
+            <h3 class="related__heading"><%= t(:SHOPLIST_SIMILAR_SHOPS, default: 'Similar Shops') %></h3>
+
+            <ul class="related__list">
+
+              <% related_shops.each do |shop| %>
+
+                <li class="related__item" data-shop-name="<%= shop.title %>">
+
+                  <a href="<%= dynamic_url_for('shop', 'show', slug: shop.slug) %>" title="<%= h shop.anchor_text_or_title %>" class="related__link">
+
+                    <%= shop.anchor_text_or_title %>
+
+                  </a>
+
+                </li>
+
+              <% end %>
+
+            </ul>
+
+          </div>
+
+        </div>
+
+      <% end %>
+
+      <% if popular_shops.present? %>
+
+        <div class="col-md-6">
+
+          <div class="related__col related__col--similar" data-event-category="content_related_shops">
+
+            <h3 class="related__heading"><%= t(:SHOPLIST_POPULAR_SHOPS, default: 'Popular Shops') %></h3>
+
+            <ul class="related__list">
+
+              <% popular_shops.each do |shop| %>
+
+                <li class="related__item" data-shop-name="<%= shop.anchor_text %>">
+
+                  <a href="<%= dynamic_url_for('shop', 'show', slug: shop.slug) %>" title="<%= h shop.anchor_text_or_title %>" class="related__link">
+
+                    <%= shop.anchor_text_or_title %>
+
+                  </a>
+
+                </li>
+
+              <% end %>
+
+            </ul>
+
+          </div>
+
+        </div>
+
+      <% end %>
+
+    </div>
+
+  </div>
+
+</div>
+<!-- ./related -->

@@ -1,0 +1,179 @@
+<div class="col-sm-12 col-md-6" id="homepage">
+
+  <div class="box bordered-box blue-border <%= 'box-collapsed' unless session[:last_setting] == 'homepage' %>">
+
+    <div class="box-header fb-background">
+
+      <div class="title">
+
+        <i class="icon-home"></i>
+
+        Homepage Settings
+
+      </div>
+
+      <div class="actions">
+
+        <a class="btn box-collapse btn-xs btn-link" href="#">
+
+          <i></i>
+
+        </a>
+
+      </div>
+
+    </div>
+
+    <div class="box-content">
+
+      <%= form_for [:admin, @setting], method: :patch, html: { class: 'form form-horizontal', style: 'margin-bottom: 0' } do |f| %>
+
+        <%= hidden_field_tag :option_type, 'homepage' %>
+
+        <%= fields_for :homepage, @setting.homepage do |ff| %>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :title %>
+
+              <%= ff.text_field :title, class: 'form-control', pattern: ".{0,70}", title: 'Maximum 70 characters' %>
+
+              <div class="help-block">
+
+                <small>Maximum 70 characters</small>
+
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :meta_title %>
+
+              <%= ff.text_field :meta_title, class: 'form-control', pattern: ".{0,70}", title: 'Maximum 70 characters' %>
+
+              <div class="help-block">
+
+                <small>Maximum 70 characters</small>
+
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :meta_description %>
+
+              <%= ff.text_field :meta_description, class: 'form-control', pattern: ".{0,160}", title: 'Maximum 160 characters' %>
+
+              <div class="help-block">
+
+                <small>Maximum 160 characters</small>
+
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :meta_description %>
+
+              <%= ff.select :meta_robots, Option::get_select_options('robots', true), { include_blank: true }, { class: 'form-control' } %>
+
+              <div class="help-block">
+
+                <small>If the "Admin Rules" say "noindex, nofollow" then the page will not be indexed, even if you set
+                  'index,follow' above. Otherwise you can choose if you want to index this page or not.
+                </small>
+
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :head_scripts %>
+
+              <%= ff.text_area :head_scripts, class: 'form-control' %>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label "SearchBox placeholder shops" %>
+
+              <%= ff.select :search_box_shops, @search_box_shops_collection, { include_hidden: false }, { class: 'form-control', multiple: true, id: "search_box_shops" } %>
+
+              <div class="help-block">
+
+                <small>3 shops maximum</small>
+
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label "SearchBox Shops popular" %>
+
+              <%= ff.select :search_box_shops_popular, @search_box_shops_popular_collection, { include_hidden: false }, { class: 'form-control', multiple: true, id: "search_box_shops_popular" } %>
+
+              <div class="help-block">
+
+                <small>8 shops maximum</small>
+
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="form-actions form-actions-padding-sm">
+
+            <div class="row">
+
+              <div class="col-md-2">
+
+                <%= f.submit 'Save', class: 'btn btn-primary btn-block' %>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        <% end %>
+
+      <% end %>
+
+    </div>
+
+  </div>
+
+</div>

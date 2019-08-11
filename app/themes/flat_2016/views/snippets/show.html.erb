@@ -1,0 +1,546 @@
+<%
+if @snippet.show_exclusive
+  if @snippet.manual_mode && @snippet.exclusive_ids
+    exclusive_coupons = Coupon::get_exclusive_coupons(@snippet.quantity, @snippet.exclusive_ids.split(','))
+  else
+    exclusive_coupons = Coupon::get_exclusive_coupons(@snippet.quantity)
+  end
+end
+
+if @snippet.show_free_delivery
+  if @snippet.manual_mode && @snippet.free_delivery_ids
+    free_delivery_coupons = Coupon::get_free_delivery_coupons(@snippet.quantity, @snippet.free_delivery_ids.split(','))
+  else
+    free_delivery_coupons = Coupon::get_free_delivery_coupons(@snippet.quantity)
+  end
+end
+
+if @snippet.show_new
+  if @snippet.manual_mode && @snippet.new_ids
+    new_coupons = Coupon::get_new_coupons(@snippet.quantity, @snippet.new_ids.split(','))
+  else
+    new_coupons = Coupon::get_new_coupons(@snippet.quantity)
+  end
+end
+
+if @snippet.show_top
+  if @snippet.manual_mode && @snippet.top_ids
+    top_coupons = Coupon::get_top_coupons(@snippet.quantity, @snippet.top_ids.split(','))
+  else
+    top_coupons = Coupon::get_top_coupons(@snippet.quantity)
+  end
+end
+%>
+
+<% if exclusive_coupons || free_delivery_coupons || new_coupons || top_coupons %>
+  <style>
+    .snippet-publisher * { border: 0; font-size: 100%; margin: 0; padding: 0; vertical-align: baseline; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; -ms-box-sizing: border-box; box-sizing: border-box; }
+    .snippet-publisher .container { margin-left: 4%; margin-right: 4%; width: 92%; }
+    /*.span-1, .span-2, .span-3, .span-4, .span-5, .span-6 { display:inline; float: left; margin-left: 1%; margin-right: 1%; position: relative; }
+    .container .span-1 { width:14.667%; }
+    .container .span-2 { width:31.333%; }
+    .container .span-3 { width:48.0%; }
+    .container .span-4 { width:64.667%; }
+    .container .span-5 { width:81.333%; }
+    .container .span-6 { width:98.0%; }*/
+    .snippet-publisher .span-1, .snippet-publisher .span-2, .snippet-publisher .span-3 { display: inline; float: left; margin-left: 1%; margin-right: 1%; position: relative; }
+    .snippet-publisher .container .span-1 { width: 14.667%; }
+    .snippet-publisher .container .span-2 { width: 31.333%; }
+    .snippet-publisher .container .span-3 { width: 48.0%; }
+    .snippet-publisher .clear { clear: both; display: block; height: 0; overflow: hidden; visibility: hidden; width: 0; }
+    .snippet-publisher .clearfix { display: inline-block; }
+    .snippet-publisher .clearfix:after { clear: both; content: ' '; display: block; font-size: 0; height: 0; line-height: 0; visibility: hidden; width: 0; }
+    .snippet-publisher .img-responsive { display: block; height: auto; width: 100%; }
+    .snippet-publisher {
+      background-color: <%= @snippet.color_one %>;
+      color: <%= @snippet.color_two %>;
+      font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+    .snippet-publisher a {
+      border-bottom: 1px solid transparent;
+      color: <%= @snippet.color_three %>;
+      text-decoration: none;
+
+      -webkit-transition: background 300ms ease, border 300ms ease, color 300ms ease;
+      -moz-transition: background 300ms ease, border 300ms ease, color 300ms ease;
+      -o-transition: background 300ms ease, border 300ms ease, color 300ms ease;
+      -ms-transition: background 300ms ease, border 300ms ease, color 300ms ease;
+      transition: background 300ms ease, border 300ms ease, color 300ms ease;
+    }
+    .snippet-publisher a:hover, .snippet-publisher a:focus {
+      color: <%= @snippet.color_four %>;
+      border-bottom: 1px solid <%= @snippet.color_four %>;
+    }
+    .snippet-publisher .text-center { text-align: center; }
+    .snippet-publisher small { font-size: 85%; }
+    .snippet-publisher .nav-tabs {
+      background-color: <%= @snippet.color_five %>;
+      list-style: none;
+      overflow: hidden;
+    }
+    .snippet-publisher .nav-tabs li {
+      display: inline;
+      float: left;
+      width: 50%;
+    }
+    .snippet-publisher .nav-tabs a {
+      border-bottom: none;
+      color: <%= @snippet.color_two %>;
+      display: block;
+      padding: 10px 4%;
+      text-align: center;
+    }
+    .snippet-publisher .nav-tabs a:hover, .snippet-publisher .nav-tabs a:focus, .snippet-publisher .nav-tabs .active a {
+      background-color: <%= @snippet.color_one %>;
+      border-bottom: none;
+      color: <%= @snippet.color_six %>;
+    }
+    .snippet-publisher .tab-content > .tab-pane { display: none; }
+    .snippet-publisher .tab-content > .active { display: block; }
+    .snippet-publisher .fade {
+      -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+      filter: alpha(opacity=0);
+      opacity: 0;
+
+      -webkit-transition: opacity 0.15s linear;
+      -moz-transition: opacity 0.15s linear;
+      -o-transition: opacity 0.15s linear;
+      -ms-transition: opacity 0.15s linear;
+      transition: opacity 0.15s linear;
+    }
+    .snippet-publisher .fade.in {
+      -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+      filter: alpha(opacity=100);
+      opacity: 1;
+    }
+    .snippet-publisher .thumb, .snippet-publisher .title, .snippet-publisher .more {
+      /* margin-bottom: 4%; */
+      margin: 4% 1%;
+      padding: 0 3%;
+      vertical-align: middle;
+    }
+    .snippet-publisher .thumb { background-color: <%= @snippet.color_five %>; }
+    /*.snippet-publisher .title a { display: inline-block; }*/
+    .snippet-publisher .more a {
+      background-color: <%= @snippet.color_three %>;
+      border: 1px solid <%= @snippet.color_four %>;
+      border-radius: 4px;
+      color: <%= @snippet.color_five %>;
+      display: block;
+      font-size: 75%;
+      margin-top: 75%;
+      padding: 15% 1%;
+      text-align: center;
+    }
+    .snippet-publisher .more a:hover, .snippet-publisher .more a:focus {
+      background-color: <%= @snippet.color_four %>;
+      border: 1px solid <%= @snippet.color_four %>;
+      color: <%= @snippet.color_five %>;
+    }
+  </style>
+
+  <div class="snippet-publisher">
+
+    <ul class="nav nav-tabs">
+
+      <% if top_coupons.present? %>
+
+        <li><%= link_to t(:SNIPPET_TOP_COUPONS, default: 'SNIPPET_TOP_COUPONS'), '#top-coupons', data: {toggle: 'tab'} %></li>
+
+      <% end %>
+
+      <% if new_coupons.present? %>
+
+        <li><%= link_to t(:SNIPPET_NEW_COUPONS, default: 'SNIPPET_NEW_COUPONS'), '#new-coupons', data: {toggle: 'tab'} %></li>
+
+      <% end %>
+
+      <% if exclusive_coupons.present? %>
+
+        <li><%= link_to t(:SNIPPET_EXCLUSIVE_COUPONS, default: 'SNIPPET_EXCLUSIVE_COUPONS'), '#exclusive-coupons', data: {toggle: 'tab'} %></li>
+
+      <% end %>
+
+      <% if free_delivery_coupons.present? %>
+
+        <li><%= link_to t(:SNIPPET_FREE_DELIVERY_COUPONS, default: 'SNIPPET_FREE_DELIVERY_COUPONS'), '#free-delivery-coupons', data: {toggle: 'tab'} %></li>
+
+      <% end %>
+
+    </ul>
+
+    <div class="tab-content">
+
+      <% if top_coupons %>
+
+        <div class="tab-pane" id="top-coupons">
+
+          <% top_coupons.each do |top_coupon| %>
+
+            <% top_coupon_url = send("coupon_clickout_#{@site.id}_path", top_coupon.id) %>
+
+            <% top_coupon_href = "//#{@hostname}#{dynamic_url_for('shop', 'show', slug: top_coupon.shop.slug)}##{top_coupon.id}" %>
+
+            <% top_coupon_data_url = "//#{@hostname}#{top_coupon_url}" %>
+
+            <div class="container">
+
+              <div class="span-2 thumb">
+
+                <% if @snippet.open == 'same_window' %>
+
+                  <%= link_to image_tag(top_coupon.logo_url(:standard), alt: top_coupon.title, class: 'img-responsive'), top_coupon_href, target: 'blank', data: {id: top_coupon.id, 'coupon-url' => top_coupon_data_url} %>
+
+                <% else %>
+
+                  <%= link_to image_tag(top_coupon.logo_url(:standard), alt: top_coupon.title, class: 'img-responsive'), top_coupon_href, target: 'blank', data: {id: top_coupon.id} %>
+
+                <% end %>
+
+              </div>
+
+              <div class="span-3 title">
+
+                <% if @snippet.open == 'same_window' %>
+
+                  <%= link_to(truncate(top_coupon.title, length: 37), top_coupon_href, target: 'blank', title: top_coupon.title, data: {id: top_coupon.id, 'coupon-url' => top_coupon_data_url}) %>
+
+                <% else %>
+
+                  <%= link_to(truncate(top_coupon.title, length: 37), top_coupon_href, target: 'blank', title: top_coupon.title, data: {id: top_coupon.id}) %>
+
+                <% end %>
+
+              </div>
+
+              <div class="span-1 more">
+
+                <% if @snippet.open == 'same_window' %>
+
+                  <%= link_to('&#10095;'.html_safe, top_coupon_href, target: 'blank', data: {id: top_coupon.id, 'coupon-url' => top_coupon_data_url}) %>
+
+                <% else %>
+
+                  <%= link_to('&#10095;'.html_safe, top_coupon_href, target: 'blank', data: {id: top_coupon.id}) %>
+
+                <% end %>
+
+              </div>
+
+              <div class="clear"></div>
+
+            </div>
+
+          <% end %>
+
+        </div>
+
+      <% end %>
+
+      <% if new_coupons %>
+
+        <div class="tab-pane" id="new-coupons">
+
+          <% new_coupons.each do |new_coupon| %>
+
+            <% new_coupon_url = send("coupon_clickout_#{@site.id}_path", new_coupon.id) %>
+
+            <% new_coupon_href = "//#{@hostname}#{dynamic_url_for('shop', 'show', slug: new_coupon.shop.slug)}##{new_coupon.id}" %>
+
+            <% new_coupon_data_url = "//#{@hostname}#{new_coupon_url}" %>
+
+            <div class="container">
+
+              <div class="span-2 thumb">
+
+                <% if @snippet.open == 'same_window' %>
+
+                  <%= link_to image_tag(new_coupon.logo_url(:standard), alt: new_coupon.title, class: 'img-responsive'), new_coupon_href, target: 'blank', data: {id: new_coupon.id, 'coupon-url' => new_coupon_data_url} %>
+
+                <% else %>
+
+                  <%= link_to image_tag(new_coupon.logo_url(:standard), alt: new_coupon.title, class: 'img-responsive'), new_coupon_href, target: 'blank', data: {id: new_coupon.id} %>
+
+                <% end %>
+
+              </div>
+
+              <div class="span-3 title">
+
+                <% if @snippet.open == 'same_window' %>
+
+                  <%= link_to(truncate(new_coupon.title, length: 37), new_coupon_href, target: 'blank', title: new_coupon.title, data: {id: new_coupon.id, 'coupon-url' => new_coupon_data_url}) %>
+
+                <% else %>
+
+                  <%= link_to(truncate(new_coupon.title, length: 37), new_coupon_href, target: 'blank', title: new_coupon.title, data: {id: new_coupon.id}) %>
+
+                <% end %>
+
+              </div>
+
+              <div class="span-1 more">
+
+                <% if @snippet.open == 'same_window' %>
+
+                  <%= link_to '&#10095;'.html_safe, new_coupon_href, target: 'blank', data: {id: new_coupon.id, 'coupon-url' => new_coupon_data_url} %>
+
+                <% else %>
+
+                  <%= link_to '&#10095;'.html_safe, new_coupon_href, target: 'blank', data: {id: new_coupon.id} %>
+
+                <% end %>
+
+              </div>
+
+              <div class="clear"></div>
+
+            </div>
+
+          <% end %>
+
+        </div>
+
+      <% end %>
+
+      <% if exclusive_coupons %>
+
+        <div class="tab-pane" id="exclusive-coupons">
+
+          <% exclusive_coupons.each do |exclusive_coupon| %>
+
+            <% exclusive_coupon_url = send("coupon_clickout_#{@site.id}_path", exclusive_coupon.id) %>
+
+            <% exclusive_coupon_href = "//#{@hostname}#{dynamic_url_for('shop', 'show', slug: exclusive_coupon.shop.slug)}##{exclusive_coupon.id}" %>
+
+            <% exclusive_coupon_data_url = "//#{@hostname}#{exclusive_coupon_url}" %>
+
+            <div class="container">
+
+              <div class="span-2 thumb">
+
+                <% if @snippet.open == 'same_window' %>
+
+                  <%= link_to image_tag(exclusive_coupon.logo_url(:standard), alt: exclusive_coupon.title, class: 'img-responsive'), exclusive_coupon_href, target: 'blank', data: {id: exclusive_coupon.id, 'coupon-url' => exclusive_coupon_data_url} %>
+
+                <% else %>
+
+                  <%= link_to image_tag(exclusive_coupon.logo_url(:standard), alt: exclusive_coupon.title, class: 'img-responsive'), exclusive_coupon_href, target: 'blank', data: {id: exclusive_coupon.id} %>
+
+                <% end %>
+
+              </div>
+
+              <div class="span-3 title">
+
+                <% if @snippet.open == 'same_window' %>
+
+                  <%= link_to(truncate(exclusive_coupon.title, length: 37), exclusive_coupon_href, target: 'blank', title: exclusive_coupon.title, data: {id: exclusive_coupon.id, 'coupon-url' => exclusive_coupon_data_url}) %>
+
+                <% else %>
+
+                  <%= link_to(truncate(exclusive_coupon.title, length: 37), exclusive_coupon_href, target: 'blank', title: exclusive_coupon.title, data: {id: exclusive_coupon.id}) %>
+
+                <% end %>
+
+              </div>
+
+              <div class="span-1 more">
+
+                <% if @snippet.open == 'same_window' %>
+
+                  <%= link_to '&#10095;'.html_safe, exclusive_coupon_href, target: 'blank', data: {id: exclusive_coupon.id, 'coupon-url' => exclusive_coupon_data_url} %>
+
+                <% else %>
+
+                  <%= link_to '&#10095;'.html_safe, exclusive_coupon_href, target: 'blank', data: {id: exclusive_coupon.id} %>
+
+                <% end %>
+
+              </div>
+
+              <div class="clear"></div>
+
+            </div>
+
+          <% end %>
+
+        </div>
+
+      <% end %>
+
+      <% if free_delivery_coupons %>
+
+        <div class="tab-pane" id="free-delivery-coupons">
+
+          <% free_delivery_coupons.each do |free_delivery_coupon| %>
+
+            <% free_delivery_coupon_url = send("coupon_clickout_#{@site.id}_path", free_delivery_coupon.id) %>
+
+            <% free_delivery_coupon_href = "//#{@hostname}#{dynamic_url_for('shop', 'show', slug: free_delivery_coupon.shop.slug)}##{free_delivery_coupon.id}" %>
+
+            <% free_delivery_coupon_data_url = "//#{@hostname}#{free_delivery_coupon_url}" %>
+
+            <div class="container">
+
+              <div class="span-2 thumb">
+
+                <% if @snippet.open == 'same_window' %>
+
+                  <%= link_to image_tag(free_delivery_coupon.logo_url(:standard), alt: free_delivery_coupon.title, class: 'img-responsive'), free_delivery_coupon_href, target: 'blank', data: {id: free_delivery_coupon.id, 'coupon-url' => free_delivery_coupon_data_url} %>
+
+                <% else %>
+
+                  <%= link_to image_tag(free_delivery_coupon.logo_url(:standard), alt: free_delivery_coupon.title, class: 'img-responsive'), free_delivery_coupon_href, target: 'blank', data: {id: free_delivery_coupon.id} %>
+
+                <% end %>
+
+              </div>
+
+              <div class="span-3 title">
+
+                <% if @snippet.open == 'same_window' %>
+
+                  <%= link_to(truncate(free_delivery_coupon.title, length: 37), free_delivery_coupon_href, target: 'blank', title: free_delivery_coupon.title, data: {id: free_delivery_coupon.id, 'coupon-url' => free_delivery_coupon_data_url}) %>
+
+                <% else %>
+
+                  <%= link_to(truncate(free_delivery_coupon.title, length: 37), free_delivery_coupon_href, target: 'blank', title: free_delivery_coupon.title, data: {id: free_delivery_coupon.id}) %>
+
+                <% end %>
+
+              </div>
+
+              <div class="span-1 more">
+
+                <% if @snippet.open == 'same_window' %>
+
+                  <%= link_to '&#10095;'.html_safe, free_delivery_coupon_href, target: 'blank', data: {id: free_delivery_coupon.id, 'coupon-url' => free_delivery_coupon_data_url} %>
+
+                <% else %>
+
+                  <%= link_to '&#10095;'.html_safe, free_delivery_coupon_href, target: 'blank', data: {id: free_delivery_coupon.id} %>
+
+                <% end %>
+
+              </div>
+
+              <div class="clear"></div>
+
+            </div>
+
+          <% end %>
+
+        </div>
+
+      <% end %>
+
+      </div>
+
+      <div class="tab-footer">
+
+        <div class="container">
+
+          <div class="span-3">
+
+            <br>&#10148;&nbsp;
+
+            <%= link_to t(:SNIPPET_MORE_COUPONS, default: 'SNIPPET_MORE_COUPONS'), "//#{@hostname}", target: 'blank', rel: 'nofollow' %>
+
+            <br>
+
+          </div>
+
+          <div class="span-3 text-center">
+
+            <i><small>Powered by</small></i><br>
+
+            <%#= image_tag "//#{@hostname}/assets/logo.png", alt: 'Panna Cotta GmbH', class: 'img-responsive' %>
+            <%= image_tag 'logo.png', alt: 'Panna Cotta GmbH', class: 'img-responsive' %>
+
+            <br>
+
+          </div>
+
+          <div class="clear"></div>
+
+        </div>
+
+      </div>
+
+  </div>
+
+  <script>window.jQuery || document.write('<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"><\/script>')</script>
+
+  <script>
+    ;(function($) {
+      $('.tab-content > div').first().addClass('active');
+      $('ul.nav.nav-tabs li').first().addClass('active');
+      $('ul.nav.nav-tabs').each(function() {
+        // For each set of tabs, we want to keep track of
+        // which tab is active and it's associated content
+        var $active, $content, $links = $(this).find('a');
+
+        // If the location.hash matches one of the links, use that as the active tab.
+        // If no match is found, use the first link as the initial active tab.
+        $active = $($links.filter('[href="'+location.hash+'"]')[0] || $links[0]);
+        $active.addClass('active');
+        $content = $($active.attr('href'));
+
+        // Hide the remaining content
+        $links.not($active).each(function() {
+          $($(this).attr('href')).hide();
+        });
+
+        // Bind the click event handler
+        $(this).find('a').click(function(e) {
+          // Prevent the anchor's default click action
+          e.preventDefault();
+
+          // Make the old tab inactive.
+          $('ul.nav.nav-tabs li').first().removeClass('active');
+          $active.parent().removeClass('active');
+          $active.removeClass('active');
+          $content.removeClass('active');
+          $content.hide();
+
+          // Update the variables with the new link and content
+          $active = $(this);
+          $content = $($(this).attr('href'));
+
+          // Make the tab active.
+          $active.parent().addClass('active');
+          $active.addClass('active');
+          $content.addClass('active');
+          $content.fadeIn();
+        });
+      });
+    })(jQuery);
+  </script>
+
+  <% if @snippet.open == 'same_window' %>
+
+    <script>
+      ;(function($) {
+        var is_safari = navigator.userAgent.indexOf('Safari') > -1;
+
+        if ($('.snippet-publisher').length) {
+          $('.snippet-publisher .thumb a, .snippet-publisher .title a, .snippet-publisher .more a').on('click', function() {
+            var $this = $(this);
+
+            window.location.href = $this.data('coupon-url');
+
+            if (is_safari) {
+              window.open($this.attr('href'));
+              return false;
+            }
+          });
+        }
+      })(jQuery);
+    </script>
+
+  <% end %>
+
+<% end %>

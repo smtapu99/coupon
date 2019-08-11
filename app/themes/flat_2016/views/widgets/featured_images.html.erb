@@ -1,0 +1,36 @@
+<div class="pannacotta" id="featured-images<%= "-" + order_number.to_s if defined?(order_number) %>">
+
+    <div class="row">
+
+      <div class="col-xs-12">
+
+        <h2><%= values[:title] %></h2>
+
+      </div>
+      <!-- /.col-xs-12 -->
+
+      <div class="col-xs-12">
+
+        <div class="featured-images card-newsletter-popup">
+
+          <%- for image in values[:images] -%>
+
+          <a href="<%= image[:url] %>" title="<%= image[:title] %>" class="group-item" style="background-image: linear-gradient(rgba(0,0,0,.4),rgba(0,0,0,.2)), url(<%= image[:src] %>);">
+
+            <h3><%= image[:title] %></h3>
+
+          </a>
+          <!-- /.group-item -->
+
+          <%- end -%>
+
+        </div>
+        <!-- /.featured-images -->
+
+      </div>
+      <!-- /.col-xs-12 -->
+
+    </div>
+    <!-- /.row -->
+
+</div>

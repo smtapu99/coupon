@@ -1,0 +1,27 @@
+<div id="shop_banner_form" style="<%= 'display: none;' if f.object.present? && f.object.banner_type != 'shop_banner' %>">
+
+  <div class="form-group">
+
+    <%= f.label :image_url, class: 'col-md-2 control-label' %>
+
+    <div class="col-md-5">
+
+      <%= f.text_field :image_url, class: 'form-control' %>
+
+    </div>
+
+  </div>
+
+  <div class="form-group">
+
+    <%= f.label :target_url, class: 'col-md-2 control-label' %>
+
+    <div class="col-md-5">
+
+      <%= f.text_field :target_url, class: 'form-control' %>
+
+    </div>
+
+  </div>
+
+</div>

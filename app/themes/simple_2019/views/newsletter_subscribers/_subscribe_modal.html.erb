@@ -1,0 +1,72 @@
+<%
+  color = 'ashes'
+
+  if @subscriber.error?
+    action = 'error'
+    body = t(:NEWSLETTER_REGISTRATION_FAILURE, default: 'NEWSLETTER_REGISTRATION_FAILURE')
+    color = 'ready'
+    headline = t(:NEWSLETTER_ERROR_HEADLINE, default: 'NEWSLETTER_ERROR_HEADLINE')
+  elsif @subscriber.new?
+    action = 'new'
+    body = t(:NEWSLETTER_ALMOST_FINISHED_INSTRUCTION, default: 'NEWSLETTER_ALMOST_FINISHED_INSTRUCTION').gsub('{email}', "<span class='color-sky'>#{@subscriber.email}</span>")
+    color = 'freedom'
+    headline = t(:NEWSLETTER_THANK_YOU, default: 'NEWSLETTER_THANK_YOU')
+  else
+    action = 'duplicated'
+    body = t(:ALREADY_SUBSCRIBED_TO_SHOP, default: 'ALREADY_SUBSCRIBED_TO_SHOP')
+    color = 'freedom'
+    headline = t(:NEWSLETTER_DUPLICATED_HEADLINE, default: 'NEWSLETTER_DUPLICATED_HEADLINE')
+  end
+%>
+
+<div class="newsletter-modal" data-eventLabel="<%=  @shop.title if @shop.present? %>" data-eventAction="<%= action %>" data-event="newsletter-<%= params[:action] == "subscribe" ? "widget" : "inline" %><%= params[:type].present? ? "-#{params[:type]}" : "" %>">
+
+  <% if @subscriber.error? %>
+
+    <ul class="newsletter-modal__icons">
+
+      <li class="newsletter-modal__icon">
+
+        <i class="icon-cross"></i>
+
+      </li>
+
+    </ul>
+
+  <% elsif @subscriber.new? %>
+
+    <ul class="newsletter-modal__icons">
+
+      <li class="newsletter-modal__icon newsletter-modal__icon--<%= color %>"><i class="icon-envelope"></i></li>
+
+      <% 3.times do %>
+
+        <li class="newsletter-modal__dot newsletter-modal__dot--<%= color %>"></li>
+
+      <% end %>
+
+      <li class="newsletter-modal__icon"><i class="icon-click"></i></li>
+
+      <% 3.times do %>
+
+        <li class="newsletter-modal__dot"></li>
+
+      <% end %>
+
+      <li class="newsletter-modal__icon"><i class="icon-check"></i></li>
+
+    </ul>
+
+  <% else %>
+
+    <ul class="newsletter-modal__icons">
+
+      <li class="newsletter-modal__icon newsletter-modal__icon--<%= color %>"><i class="icon-check"></i></li>
+
+    </ul>
+
+  <% end %>
+
+  <p><%= body.html_safe %></p>
+
+</div>

@@ -1,0 +1,58 @@
+<%= form_for @message, :url => send("send_#{@type}_form_#{@site.site.id}_path"), method: :post, html: {class: 'form contact-form ' + @type + '_form'} do |f| %>
+
+  <p><%= t(:WELCOME_TEXT_REPORT_OFFER_PAGE, defaul: 'WELCOME_TEXT_REPORT_OFFER_PAGE') %></p>
+
+  <hr>
+
+  <div class="mail-form__group">
+
+    <%= f.label :name, t(:NAME_CONTACT_PAGE, default: 'Name') %>
+
+    <%= f.text_field :name, class: 'mail-form__control', required: true %>
+
+  </div>
+
+  <div class="mail-form__group">
+
+    <%= f.label :email, t(:EMAIL_ADRESS_USER_CONTACT_PAGE, default: 'Email') %>
+
+    <%= f.email_field :email, class: 'mail-form__control', required: true %>
+
+  </div>
+
+  <div class="mail-form__group">
+
+    <%= f.label :shopname, t(:ONLINE_SHOP_REPORT_OFFER_PAGE, default: 'Shop Name') %>
+
+    <%= f.text_field :shopname, class: 'mail-form__control' %>
+
+  </div>
+
+  <div class="mail-form__group">
+
+    <%= f.label :discount, t(:REBATE_REPORT_OFFER_PAGE, default: 'Discount') %>
+
+    <%= f.text_field :discount, class: 'mail-form__control' %>
+
+  </div>
+
+  <div class="mail-form__group">
+
+    <%= f.label :link_to_offer, t(:LINK_TO_OFFER, default: 'Link To Offer') %>
+
+    <%= f.text_field :link_to_offer, class: 'mail-form__control' %>
+
+  </div>
+
+  <div class="mail-form__group">
+
+    <%= f.label :remark, t(:COMMENT_REPORT_OFFER_PAGE, default: 'Remark') %>
+
+    <%= f.text_area :remark, class: 'mail-form__control' %>
+
+  </div>
+
+
+  <%= f.submit t(:SUBMIT, default: 'Submit'), class: 'mail-form__button', disabled: true %>
+
+<% end %>

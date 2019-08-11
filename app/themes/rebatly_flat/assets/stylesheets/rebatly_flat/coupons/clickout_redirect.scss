@@ -1,0 +1,103 @@
+.pannacotta {
+  &.coupons.clickout {
+    #header {
+      border: none;
+
+      .site-logo {
+        padding: 0;
+      }
+    }
+
+    .redirect-message {
+      color: $color-title;
+      font-size: 20px;
+      font-weight: lighter;
+      margin-bottom: 20px;
+
+      b, strong {
+        font-weight: bold;
+      }
+    }
+
+    .list-redirect {
+      margin-bottom: 40px;
+
+      > li {
+        &:first-child {
+          i {
+            color: $color-ready;
+          }
+        }
+
+        &:last-child {
+          i {
+            background-color: $color-ready;
+            color: #fff;
+          }
+        }
+
+        &:nth-child(2) > span {
+          @include flat-animation-delay(.5s);
+        }
+
+        &:nth-child(3) > span {
+          @include flat-animation-delay(1s);
+        }
+
+        &:nth-child(4) > span {
+          @include flat-animation-delay(1.5s);
+        }
+
+        &:nth-child(5) > span {
+          @include flat-animation-delay(2s);
+        }
+
+        &:nth-child(6) > span {
+          @include flat-animation-delay(2.5s);
+        }
+
+        i {
+          border: 2px solid $color-ready;
+          border-radius: 22px;
+          display: block;
+          font-size: 20px;
+          height: 44px;
+          padding: 8px 10px 4px;
+          width: 44px;
+        }
+
+        span {
+          border-radius: 5px;
+          display: block;
+          height: 8px;
+          margin: -10px auto 0;
+          width: 8px;
+
+          @include flat-animation(LOADER 3s linear infinite);
+        }
+      }
+    }
+  }
+}
+
+@-webkit-keyframes LOADER {
+  0%   { background-color: transparent; }
+  50%  { background-color: $color-ready; }
+  100% { background-color: transparent; }
+}
+
+@-moz-keyframes LOADER {
+  0%   { background-color: transparent; }
+  50%  { background-color: $color-ready; }
+  100% { background-color: transparent; }
+}
+@-o-keyframes LOADER {
+  0%   { background-color: transparent; }
+  50%  { background-color: $color-ready; }
+  100% { background-color: transparent; }
+}
+@keyframes LOADER {
+  0%   { background-color: transparent; }
+  50%  { background-color: $color-ready; }
+  100% { background-color: transparent; }
+}

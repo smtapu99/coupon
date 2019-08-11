@@ -1,0 +1,47 @@
+    <%= webpack_javascript_pack_tag "flat_2016/#{Site.current.id}/index.js", "flat_2016/index.js"  %>
+
+    <%- if banner = sticky_banner and show_sticky_banner?(banner) -%>
+
+      <%= render partial: "banners/#{banner.theme}/sticky", locals: { banner: banner } %>
+
+    <% end %>
+
+    <%= render partial: 'shared/modal' %>
+
+    <div class="bg-sky cookies-eu text-center pannacotta" style="display: none;">
+
+      <%= t('cookies_eu.cookies_text', default: 'Cookies help us deliver our services. By using our services, you agree to our use of cookies.') %>
+
+      <% if cookie_url.present? %>
+
+        <a href="<%= cookie_url %>"><%= t('cookies_eu.learn_more', default: 'Learn more') %></a>
+
+      <% end %>
+
+      <button class="btn btn-white" type="button" role="button" aria-label="Close">
+
+        <i class="roberto roberto-remove"></i>
+
+      </button>
+
+    </div>
+
+    <% if show_flyout_notification? %>
+
+      <%= render partial: 'shared/flyout', locals: { coupon: shop_flyout_coupon(@coupons) } %>
+
+    <% end %>
+
+    <%= render partial: 'shared/custom_footer_scripts' %>
+
+    <%= yield(:footer_script) if content_for?(:footer_script) %>
+
+    <span class="scroll-to-top">
+
+      <i class="roberto-chevron-right"></i>
+
+    </span>
+
+  </body>
+
+</html>

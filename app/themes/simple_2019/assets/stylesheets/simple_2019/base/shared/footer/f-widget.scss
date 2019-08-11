@@ -1,0 +1,49 @@
+$list-left-padding: 22px;
+
+.f-widget {
+  &__title {
+    font-weight: 300;
+    font-size: 24px;
+    line-height: 1;
+  }
+
+  &__content {
+    margin-top: 16px;
+  }
+
+  &__list {
+    padding-left: $list-left-padding;
+    list-style-type: none;
+  }
+
+  &__item {
+    @include default-list($list-left-padding);
+
+    &--no-bullet {
+      margin-left: -$list-left-padding;
+
+      &::before {
+        display: none;
+      }
+    }
+
+    a {
+      color: #FFF;
+      font-weight: 700;
+      font-size: 14px;
+    }
+  }
+
+  &__help-btn {
+    padding: 7px 9px;
+    font-weight: 300;
+    font-size: 15px;
+    background: #FFF;
+    border: none;
+  }
+
+  &__logo img {
+    max-width: 100%;
+    height: auto;
+  }
+}

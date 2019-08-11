@@ -1,0 +1,38 @@
+<%- if values[:teaser_links].present? -%>
+
+  <%- teaser_links = values[:teaser_links].split(',').map{|li| li.split('|')} -%>
+
+  <%- if teaser_links.present? -%>
+
+    <div class="top-links" id="top-links">
+
+      <div class="container">
+
+        <div class="row">
+
+          <div class="col-md-12">
+
+            <div class="top-links__inner">
+
+              <%- teaser_links.each do |li| -%>
+
+                 <a href="<%= li[1] %>" class="btn btn-default top-links__btn"><%= li[0] %></a>
+
+              <%- end -%>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- ./top-links -->
+
+  <%- end -%>
+
+<%- end -%>
+

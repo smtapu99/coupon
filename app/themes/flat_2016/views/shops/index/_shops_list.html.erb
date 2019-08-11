@@ -1,0 +1,80 @@
+<% if @category_groups.present? %>
+
+  <% @category_groups.each do |group| %>
+
+    <%- category = group[0] -%>
+
+    <%- shops = group[1] -%>
+
+    <%- category_welcome_text = group[2] %>
+
+    <hr>
+
+    <%- if category.present? -%>
+
+      <h3 id="<%= category.slug %>"><%= link_to category.name, dynamic_url_for('categories', 'show', slug: category.slug, parent_slug: category.parent_slug) %></h3>
+
+      <%- if category_welcome_text.present? -%>
+
+        <div class="category-description">
+
+          <p class="">
+
+            <% if category_welcome_text.length > 220 %>
+
+              <span class="text-truncated"><%= category_welcome_text.truncate(180).html_safe %></span>
+
+              <span class="text-full hidden"><%= category_welcome_text.html_safe %></span>
+
+              <a href="#" class="show-details text-ellipsis" data-more-text="[<%= t(:MORE_DETAILS, default: 'More details') %>]" data-less-text="[<%= t(:LESS_DETAILS, default: 'Less details') %>]">[<%= t(:MORE_DETAILS, default: 'More details') %>]</a>
+
+            <%- else -%>
+
+              <span class="text"><%= category_welcome_text.html_safe %></span>
+
+            <%- end -%>
+
+          </p>
+
+        </div>
+
+      <%- end -%>
+
+    <%- else -%>
+
+      <h3 id="cat-others"><%= t(:OTHERS, default: 'OTHERS') %></h3>
+
+    <%- end -%>
+
+    <% if shops.present? %>
+
+      <ol class="list-unstyled list-three-cols">
+
+        <% shops.each do |shop| %>
+
+          <% shop_url = dynamic_url_for('shop', 'show', slug: shop.slug) %>
+
+          <% add_collection_page_element(shop.title, shop_url) %>
+
+          <li>
+
+            <a href="<%= shop_url %>" title="<%= shop.title if shop.title.present? %>">
+
+              <%= shop.title if shop.title.present? %>
+
+            </a>
+
+          </li>
+
+        <% end %>
+
+      </ol>
+
+      <!-- /.list-unstyled list-three-cols -->
+
+    <% end %>
+
+  <% end %>
+
+<% end %>
+

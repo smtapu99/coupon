@@ -1,0 +1,165 @@
+<div id="sticky_banner_form">
+
+  <div class="form-group">
+
+    <%= f.label :theme, 'Theme', class: 'col-md-2 control-label' %>
+
+    <div class="col-sm-5">
+
+      <%= f.select :theme, Option::get_select_options('banner_themes', true), {}, class: 'form-control' %>
+
+    </div>
+
+  </div>
+
+  <fieldset id="default-banner-fieldset" style="<%= 'display: none;' if f.object.present? && f.object.theme != 'default' %>">
+
+    <div class="form-group">
+
+      <%= f.label :image_url, 'Image URL (1920*80)', class: 'col-md-2 control-label' %>
+
+      <div class="col-sm-5">
+
+        <%= f.text_field :image_url, class: 'form-control' %>
+
+      </div>
+
+    </div>
+
+    <div class="form-group">
+
+      <%= f.label :logo_url, 'Logo URL', class: 'col-md-2 control-label' %>
+
+      <div class="col-sm-5">
+
+        <%= f.text_field :logo_url, class: 'form-control' %>
+
+      </div>
+
+    </div>
+
+    <div class="form-group">
+
+      <%= f.label :font_color, 'Font colour', class: 'col-md-2 control-label' %>
+
+      <div class="col-sm-5">
+
+        <%= f.text_field :font_color, class: 'form-control' %>
+
+      </div>
+
+    </div>
+
+    <div class="form-group">
+
+      <%= f.label :cta_background, 'CTA background colour', class: 'col-md-2 control-label' %>
+
+      <div class="col-sm-5">
+
+        <%= f.text_field :cta_background, class: 'form-control' %>
+
+      </div>
+
+    </div>
+
+    <div class="form-group">
+
+      <%= f.label :cta_color, 'CTA font colour', class: 'col-md-2 control-label' %>
+
+      <div class="col-sm-5">
+
+        <%= f.text_field :cta_color, class: 'form-control' %>
+
+      </div>
+
+    </div>
+
+  </fieldset>
+
+  <div class="form-group">
+
+    <%= f.label :caption_heading, class: 'col-md-2 control-label' %>
+
+    <div class="col-sm-5">
+
+      <%= f.text_field :caption_heading, class: 'form-control' %>
+
+    </div>
+
+  </div>
+
+  <div class="form-group">
+
+    <%= f.label :caption_body, class: 'col-md-2 control-label' %>
+
+    <div class="col-sm-5">
+
+      <%= f.text_field :caption_body, class: 'form-control' %>
+
+    </div>
+
+  </div>
+
+  <div class="form-group">
+
+    <%= f.label :button_text, class: 'col-md-2 control-label' %>
+
+    <div class="col-sm-5">
+
+      <%= f.text_field :button_text, class: 'form-control' %>
+
+    </div>
+
+  </div>
+
+  <div class="form-group">
+
+    <%= f.label :target_url, class: 'col-md-2 control-label' %>
+
+    <div class="col-sm-5">
+
+      <%= f.text_field :target_url, class: 'form-control' %>
+
+    </div>
+
+  </div>
+
+  <div class="form-group">
+
+    <%= f.label :countdown_date, class: 'col-md-2 control-label' %>
+
+    <div class="col-sm-5">
+
+      <%= f.date_field :countdown_date, value: @banner.countdown_date, class: 'form-control' %>
+
+    </div>
+    <%=  %>
+
+  </div>
+
+  <div class="form-group">
+
+    <%= f.label :show_on_home_page, class: 'col-md-2 control-label' %>
+
+    <div class="col-md-5">
+
+      <%= f.check_box :show_on_home_page, class: 'form-control' %>
+
+    </div>
+
+  </div>
+
+  <div class="form-group">
+
+    <%= f.label :excluded_for_mobile_resolution, class: 'col-md-2 control-label' %>
+
+    <div class="col-md-5">
+
+      <%= f.check_box :excluded_for_mobile_resolution, class: 'form-control' %>
+
+    </div>
+
+  </div>
+
+
+</div>

@@ -1,0 +1,17 @@
+<div class="card card-alert pannacotta">
+
+  <div class="bg-sky card-header">
+
+    <p class="card-title text-center"><%= t(:THEIRS_NO_COUPON, default: 'There is no coupons') %></p>
+
+    <!-- /.card-title text-center -->
+
+  </div>
+
+  <!-- /.bg-sky card-header -->
+
+</div>
+
+<!-- /.card card-alert pannacotta -->
+
+<%= render partial: 'coupons/shared/card_coupons_list', locals: {coupons: top_coupons, hide_pagination: true} if top_coupons.present? %>

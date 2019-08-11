@@ -1,0 +1,41 @@
+<% css_classes ||= '' %>
+
+<% if @category_groups.present? %>
+
+  <div class="filter-by-category <%= css_classes %>">
+
+    <div class="filter-by-category__header">
+
+      <h3 class="filter-by-category__title"><%= t(:SHOP_NAVIGATION_HEADLINE, default: 'Filter Your Results') %></h3>
+
+    </div>
+
+    <div class="filter-by-category__content">
+
+      <p><%= t(:SHOP_NAVIGATION_CALLTOACTION, default: 'By Category') %></p>
+
+      <ul class="filter-by-category__list">
+
+        <% @category_groups.each do |group| %>
+
+          <% category = group[0] %>
+
+          <%- if category.present? -%>
+
+            <li><a href="#<%= category.slug %>"><%= category.name %></a></li>
+
+          <%- else -%>
+
+            <li><a href="#cat-others"><%= t(:OTHERS, default: 'Others') %></a></li>
+
+          <%- end -%>
+
+        <% end %>
+
+      </ul>
+
+    </div>
+
+  </div>
+
+<% end %>

@@ -1,0 +1,279 @@
+.card-coupons-grid {
+  ul.list-unstyled {
+    display: flex;
+    flex-wrap: wrap;
+
+    .coupon-cta {
+      width: 100%;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 65px;
+      text-align: center;
+    }
+
+    > li {
+      text-align: center;
+      margin: 0;
+      padding: 10px;
+      flex: 0 1 100%;
+      position: relative;
+
+      &.item {
+        .padding {
+          padding: 40px 20px 80px;
+          width: 100%;
+          height: 100%;
+          border-radius: 2px;
+          background: #FFF;
+          text-align: center;
+          box-shadow: inset 0 0 0 1px #DEDED4;
+        }
+
+        img {
+          max-height: 100%;
+          max-width: 100%;
+          width: auto;
+          height: auto;
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          margin: auto;
+        }
+
+        .coupon-img {
+          width: 120px;
+          height: 120px;
+          margin: 0 auto;
+          position: relative;
+        }
+
+        .coupon-title {
+          color: $color-title;
+          font-size: 16px;
+          font-weight: 200;
+          line-height: 22px;
+          margin: 8px 0;
+          padding: 0 12px;
+          text-align: center;
+
+          a {
+            color: inherit;
+          }
+        }
+
+        .coupon-exclusive {
+          color: $color-text;
+          font-size: 12px;
+          position: absolute;
+          left: 20px;
+          white-space: nowrap;
+          top: 14px;
+        }
+
+        .coupon-logo {
+          display: inline-block;
+        }
+      }
+    }
+  }
+}
+
+.show-more {
+  width: 300px;
+  margin: 0 auto;
+  display: block;
+  max-width: 80%;
+  font-size: 16px;
+  text-decoration: none;
+
+  &:hover,
+  &:active {
+    text-decoration: none;
+
+    span {
+      text-decoration: underline;
+    }
+  }
+}
+
+#campaign-featured-images {
+  margin-top: 30px;
+
+  .featured-images {
+    margin-top: 10px;
+  }
+}
+
+#campaign-related-shops {
+  margin-top: 50px;
+
+  h2 {
+    margin-top: 0;
+  }
+
+  ul {
+    margin-left: -10px;
+    margin-right: -10px;
+    font-size: 0;
+    flex-flow: row wrap;
+    display: flex;
+
+    > li {
+      text-align: center;
+      margin: 10px 3%;
+      flex: 0 1 43%;
+
+      img {
+        margin: 0 auto;
+
+        &:hover {
+          opacity: 0.8;
+          transition: opacity 0.3s ease, right 0.33s ease;
+        }
+      }
+    }
+  }
+}
+
+.widget-newsletter-full {
+  padding: 0;
+
+  .btn-small {
+    padding: 0 3px !important;
+    line-height: 38px;
+    width: 100%;
+  }
+
+  .form-group input {
+    margin-bottom: 5px;
+  }
+
+  h2 {
+    color: #FFF;
+    margin-top: 0;
+  }
+
+  p {
+    margin-right: 0;
+    padding-right: 0;
+  }
+
+  input[type=email] {
+    width: 100%;
+  }
+
+  .privacy-note {
+    text-align: left;
+    width: 100%;
+
+    input {
+      height: auto;
+      min-width: 0;
+    }
+  }
+}
+
+
+@media (min-width: 400px) {
+  #campaign-related-shops {
+    ul > li {
+      margin: 10px 1%;
+      flex: 0 1 30%;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .card-coupons-grid {
+    ul.list-unstyled {
+      > li {
+        flex: 0 1 50%;
+        max-width: 50%;
+
+        &.item {
+          .coupon-title {
+            font-size: 16px;
+            margin-top: 12px;
+            overflow: hidden;
+            padding: 0;
+          }
+        }
+      }
+    }
+  }
+
+  #campaign-related-shops {
+    ul {
+      > li {
+        flex: 0 1 30.6%;
+      }
+    }
+  }
+
+  .widget-newsletter-full {
+    padding: 42px 20px 24px;
+
+    .btn-small {
+      padding: 0 10px !important;
+    }
+  }
+}
+
+@media (min-width: 992px) {
+  .card-coupons-grid {
+    ul.list-unstyled {
+      > li {
+        flex: 0 1 33%;
+        max-width: 33%;
+      }
+    }
+  }
+
+  .widget-newsletter-full {
+    .btn-small {
+      width: auto;
+    }
+  }
+
+  #campaign-related-shops {
+    ul {
+      > li {
+        flex: 0 1 22.9%;
+      }
+    }
+  }
+}
+
+@media (min-width: 1200px) {
+  .card-coupons-grid {
+    ul.list-unstyled {
+      > li {
+        &.item {
+          flex: 0 1 25%;
+          max-width: 25%;
+
+          .coupon-title {
+            font-size: 16px;
+            line-height: 24px;
+          }
+        }
+      }
+    }
+  }
+
+  #campaign-related-shops {
+    ul {
+      > li {
+        flex: 0 1 14.64%;
+
+        img {
+          width: 100%;
+        }
+      }
+    }
+  }
+}

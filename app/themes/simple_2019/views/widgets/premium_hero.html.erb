@@ -1,0 +1,108 @@
+<%- if values[:image_url].present? -%>
+
+  <style>
+    .premium-hero__bg .row,
+    .premium-hero__mobile-pic {
+      background: url(<%= values[:image_url] %>) center right;
+      background-repeat: no-repeat;
+    }
+
+    .themed--grid-fallback .premium-hero__bg {
+      background: url(<%= values[:image_url] %>) center right;
+      background-repeat: no-repeat;
+    }
+
+    .themed--grid-fallback .premium-hero__bg .row {
+      background: none;
+    }
+
+  </style>
+
+<%- end -%>
+
+
+<div class="premium-hero" id="premium-hero-<%= order_number.to_s if defined?(order_number) %>">
+
+  <div class="container">
+
+    <div class="premium-hero__bg">
+
+      <div class="row">
+
+        <div class="col-md-6">
+
+          <div class="premium-hero__header">
+
+            <h3 class="premium-hero__title"><%= values[:title] %></h3>
+
+            <%- if values[:subtitle].present? -%>
+
+              <h4 class="premium-hero__subtitle"><%= values[:subtitle] %></h4>
+
+            <%- end -%>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="premium-hero__mobile-pic visible-sm visible-xs d-block d-lg-none d-md-none">
+
+    </div>
+
+    <div class="premium-hero__bottom">
+
+      <div class="row">
+
+        <%- for offer in values[:premium_hero].take(3) -%>
+
+          <%- coupon = offer[:coupon] -%>
+
+          <%- next unless coupon.present? -%>
+
+          <div class="col-sm-4">
+
+            <%- if coupon.logo? -%>
+
+              <%= image_tag "", data: { normal: coupon.logo_url('_110x110') }, class: 'premium-hero__img' %>
+
+            <%- elsif coupon.shop.logo? -%>
+
+              <%= image_tag "", data: { normal: coupon.shop.logo_url('_110x110') }, alt: (coupon.shop.logo_alt_text.present? ? coupon.shop.logo_alt_text : coupon.shop.anchor_text_or_title), title: (coupon.shop.logo_title_text.present? ? coupon.shop.logo_title_text : coupon.shop.title), class: 'premium-hero__img', height: 110, width: 110 %>
+
+            <%- end -%>
+
+            <div class="premium-hero-item__wrapper">
+
+              <span class="premium-hero-item__title"><%= coupon.title.truncate(48) if coupon.title? %></span>
+
+              <span class="premium-hero-item__desc"><%= coupon.description.truncate(120) if coupon.description? %></span>
+
+              <% if offer['clickout_url'].present? %>
+
+                <a href="<%= offer['clickout_url'] %>" class="btn offer__cta premium-hero__cta"><%= t("grab_it", default: 'GRAB IT') %></a>
+
+              <% else %>
+
+                <a <%= clickout_params_for_element(coupon) %> class="btn offer__cta premium-hero__cta"><%= t("grab_it", default: 'GRAB IT') %></a>
+
+              <% end %>
+
+            </div>
+
+          </div>
+
+        <%- end -%>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+

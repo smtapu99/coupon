@@ -1,0 +1,136 @@
+
+<div class="col-sm-12">
+
+  <div class="box bordered-box blue-border">
+
+    <div class="box-header blue-background">
+
+      <div class="title">
+
+        <i class="icon-group"></i>
+
+        Affiliate Network Form
+
+      </div>
+
+    </div>
+
+    <div class="box-content">
+
+      <%= form_for [:admin, @affiliate_network], html: {class: 'form form-horizontal', style: 'margin-bottom: 0'} do |f| %>
+
+      <%= render partial: 'admin/shared/form_errors', locals: {ancestor: @affiliate_network} %>
+
+      <div class="form-group <%= 'has-error' unless @affiliate_network.errors.messages[:name].blank? %>">
+
+        <%= f.label :name, class: 'col-md-2 control-label' %>
+
+        <div class="col-md-5">
+
+          <%= f.text_field :name, class: 'form-control' %>
+
+        </div>
+
+      </div>
+
+      <div class="form-group <%= 'has-error' unless @affiliate_network.errors.messages[:status].blank? %>">
+
+        <%= f.label :status, class: 'col-md-2 control-label' %>
+
+        <div class="col-md-5">
+
+          <%= f.select :status, AffiliateNetwork.statuses, {}, { class: 'form-control', :disabled => @affiliate_network.new_record? } %>
+
+        </div>
+
+      </div>
+
+      <div class="form-group <%= 'has-error' unless @affiliate_network.errors.messages[:slug].blank? %>">
+
+        <%= f.label :slug, class: 'col-md-2 control-label' %>
+
+        <div class="col-md-5">
+
+          <%= f.text_field :slug, class: 'form-control', :disabled => !@affiliate_network.new_record? %>
+
+        </div>
+
+      </div>
+
+      <div class="form-group <%= 'has-error' unless @affiliate_network.errors.messages[:validate_subid].blank? %>">
+
+        <%= f.label :validate_subid, class: 'col-md-2 control-label' %>
+
+        <div class="col-md-5">
+
+          <%= f.check_box :validate_subid, class: 'form-control' %>
+
+          <p class="help-block">
+
+            <small>This validates for the subid parameter defined in the <%= link_to 'affiliate networks settings', admin_settings_path, target: '_blank' %>; the default parameter is: 'pctracking'</small>
+
+          </p>
+
+        </div>
+
+      </div>
+
+      <div class="form-group <%= 'has-error' unless @affiliate_network.errors.messages[:slug].blank? %>">
+
+        <%= f.label :validation_regex, class: 'col-md-2 control-label' %>
+
+        <div class="col-md-5">
+
+          <%= f.text_field :validation_regex, class: 'form-control' %>
+
+          <div class="help-small">
+
+            Regex used to validate whether the coupon has a valid or invalid URL, or if the URL matches to the assigned Affiliate Network.
+
+            Example: URL that starts with `https://www.awin1.com` and ends with `p=`
+
+            <code>^https:\/\/www\.awin1\.com(.*)p=$</code>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="form-actions form-actions-padding-sm">
+
+        <div class="row">
+
+          <div class="col-md-10 col-md-offset-2">
+
+            <%= f.submit nil, class: 'btn btn-primary' if can? :create, AffiliateNetwork %>
+
+            <%= link_to t('.cancel', :default => t('helpers.links.cancel')), admin_affiliate_networks_path, class: 'btn' %>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <% end %>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<script type="text/javascript">
+
+document.ready = function(){
+
+  <%- unless can? :manage, AffiliateNetwork -%>
+    $("form.form-horizontal :input").attr("disabled", true);
+  <%- end -%>
+}
+
+</script>
+

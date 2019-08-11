@@ -1,0 +1,14 @@
+<%= render partial: 'errors/not_found/page_headlines' %>
+
+<% if @coupons.present? %>
+
+  <%= render partial: 'coupons/shared/card_coupons_list', locals: { coupons: @coupons, hide_pagination: true } %>
+
+<% else %>
+
+  <%= render partial: 'errors/shared/card_alert' %>
+
+<% end %>
+
+<%= render partial: 'errors/shared/sidebar' %>
+

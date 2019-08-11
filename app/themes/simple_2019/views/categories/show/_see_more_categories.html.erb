@@ -1,0 +1,45 @@
+<% if categories.present? %>
+
+  <div class="see-more-categories" style="<%= "background-image: url(#{@site.image_setting.see_more_categories_background_url})" if @site.image_setting.see_more_categories_background_url.present? %>">
+
+    <h2 class="see-more-categories__title">
+
+      <%= t(:SEE_MORE_CATEGORIES, default: 'See More Categories') %>
+
+    </h2>
+
+    <div class="see-more-categories__content">
+
+      <%- categories.in_groups(2).each do |group| -%>
+
+        <ul class="see-more-categories__list">
+
+          <% group.each do |category| %>
+
+            <%- next if @category == category || category.nil? -%>
+
+            <% category_url = dynamic_url_for('categories', 'show', slug: category.slug, parent_slug: category.parent_slug) %>
+
+            <% add_collection_page_element(category.name, category_url) %>
+
+            <li class="see-more-categories__item">
+
+              <a href="<%= category_url %>">
+
+                <%= category.name %>
+
+              </a>
+
+            </li>
+
+          <% end %>
+
+        </ul>
+
+      <%- end -%>
+
+    </div>
+
+  </div>
+
+<% end %>

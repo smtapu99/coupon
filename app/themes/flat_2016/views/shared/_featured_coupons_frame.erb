@@ -1,0 +1,77 @@
+<%- h1 = coupon.shop.try(:html_document).try(:h1) -%>
+
+<div class="frame">
+
+  <% if is_ad_code %>
+
+    <%= values[:ad_code].html_safe %>
+
+  <%- else -%>
+
+    <a <%= clickout_params_for_element(coupon) %> title="<%= coupon.title %>">
+
+      <%- if is_teaser -%>
+
+        <img class="coupon-hero" src="<%= coupon.widget_or_shop_header %>" alt="<%= h1 %>">
+
+      <%- end -%>
+
+      <% unless coupons_belong_to_same_shop && i != 0 %>
+
+        <% if coupon.use_logo_on_home_page && coupon.try(:logo_url, '_110x110') %>
+
+          <img alt="<%= h1 %>" alt="<%= h1 %>" class="img-responsive pull-left" height="220" src="<%= coupon.logo_url('_110x110') %>" width="220">
+
+        <% else %>
+
+          <img alt="<%= h1 %>" alt="<%= h1 %>" class="img-responsive pull-left" height="220" src="<%= coupon.shop.logo_url('_110x110') %>" width="220">
+
+        <% end %>
+
+      <% end %>
+
+      <%- if widget.featured_coupons_type == 'last_chance' -%>
+
+        <span class="content">
+
+          <div class="clearfix">
+
+            <span class="text-left text-ready pull-left" data-time="<%= coupon.end_date.to_time.iso8601 %>">
+
+              <span class="hours">00</span>:<span class="minutes">00</span>:<span class="seconds">00</span>
+
+            </span>
+
+          </div>
+
+          <%= coupon.title.truncate(60) %>
+
+          <%= render partial: "coupons/shared/type", locals: {coupon: coupon} %>
+
+        </span>
+
+      <%- else -%>
+
+        <span class="content">
+
+          <b class="color-sky text-uppercase"><%= coupon.shop.title %></b>
+
+          <%= coupon.title.truncate(60) %>
+
+          <%= render partial: "coupons/shared/type", locals: {coupon: coupon} %>
+
+        </span>
+
+      <%- end -%>
+
+      <% if coupons_belong_to_same_shop && i != 0 %>
+        <span class="cta-arrow pull-right">
+          <i class="roberto-chevron-right"></i>
+        </span>
+      <% end %>
+
+    </a>
+
+  <%- end -%>
+
+</div>

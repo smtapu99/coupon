@@ -1,0 +1,63 @@
+.pannacotta.featured-shops {
+  ul {
+    > li {
+      display: none;
+
+      > ol {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+
+        > li {
+          background-color: $color-white;
+          border: 1px solid $color-border;
+          flex-basis: 32%;
+          margin-bottom: 4px;
+          overflow: hidden;
+        }
+      }
+    }
+  }
+
+  .flexslider--home {
+    position: relative;
+  }
+}
+
+@media (min-width: 768px) {
+  .pannacotta.featured-shops {
+    ul {
+      > li {
+        > ol {
+          flex-wrap: nowrap;
+
+          > li {
+            flex-basis: 16%;
+            margin-bottom: 3px;
+
+            &:nth-child(6n),
+            &:nth-child(12n),
+            &:last-child {
+              margin-right: 3px;
+            }
+          }
+        }
+      }
+    }
+
+    .flexslider--home {
+      .flex-control-nav {
+        bottom: -28px;
+      }
+    }
+  }
+}
+
+@media (min-width: 992px) {
+  .pannacotta.featured-shops {
+
+    .flexslider--home {
+
+    }
+  }
+}

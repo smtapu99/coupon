@@ -1,0 +1,21 @@
+<% if shops_empty.present? %>
+
+  <ul class="shops-index__list shops-index__list--three-cols shops-index__list--empty">
+
+    <% shops_empty.each do |shop| %>
+
+      <li class="shops-index__item">
+
+        <a href="<%= dynamic_url_for('shop', 'show', slug: shop.slug) %>" title="<%= shop.title if shop.title.present? %>">
+
+          <%= shop.title if shop.title.present? %>
+
+        </a>
+
+      </li>
+
+    <% end %>
+
+  </ul>
+
+<% end %>

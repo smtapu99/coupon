@@ -1,0 +1,17 @@
+<% if coupon.is_exclusive %>
+
+  <div class="w-featured__exclusive">
+
+    <% if coupon.is_exclusive? %>
+
+      <div class="coupon__label coupon__label--exclusive"><i class="icon-star"></i><%= t('COUPON_IS_EXCLUSIVE', default: 'Exclusive') %></div>
+
+    <% elsif defined? is_redirect.is and is_redirect.is === true %>
+
+      <%= t(:GET_THIS_DEAL_NOW, default: 'Get This Deal Now') %>
+
+    <% end %>
+
+  </div>
+
+<% end %>

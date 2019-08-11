@@ -1,0 +1,138 @@
+<div class="modal-dialog">
+
+  <div class="modal-content">
+
+    <%= form_for [:admin, @campaign], method: :get, url: export_admin_campaigns_path, :html => { :class => 'form form-horizontal',
+      id: 'export-form',
+      style: 'margin-bottom: 0',
+      onsubmit: 'jQuery(this).find(".btn.btn-primary").val("Loading, please wait...").attr("disabled", true);'} do |f| %>
+
+    <div class="modal-header">
+
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+
+      <h4 class="modal-title" id="myModalLabel">Export Form</h4>
+
+    </div>
+
+    <div class="modal-body">
+
+      <div class="form-group">
+
+        <%= f.label :sites, class: 'col-md-2 control-label' %>
+
+        <div class="col-md-10">
+
+          <%= select_tag 'campaign[site_ids]', options_from_collection_for_select(User.current.sites.active, :id, :name), multiple: true, class: 'select2 form-control' %>
+
+        </div>
+
+      </div>
+
+      <div class="form-group">
+
+        <%= f.label :status, class: 'col-md-2 control-label' %>
+
+        <div class="col-md-10">
+
+          <%= f.select :status, options_for_select(Campaign.statuses), { include_blank: true }, multiple: true, class: 'select2 form-control' %>
+
+        </div>
+
+      </div>
+
+      <div class="form-group">
+
+        <%= f.label :templates, class: 'col-md-2 control-label' %>
+
+        <div class="col-md-10">
+
+          <%= select_tag 'campaign[templates]', options_for_select(Option::get_select_options('campaign_template', true)), multiple: true, class: 'select2 form-control' %>
+
+        </div>
+
+      </div>
+
+      <div class="form-group">
+
+        <%= f.label :slugs, class: 'col-md-2 control-label' %>
+
+        <div class="col-md-10">
+
+          <%= text_field_tag 'campaign[slugs]', nil, include_blank: true, class: 'form-control' %>
+
+        </div>
+
+      </div>
+
+      <div class="form-group">
+
+        <%= f.label :parent_ids, class: 'col-md-2 control-label' %>
+
+        <div class="col-md-10">
+
+          <%= text_field_tag 'campaign[parent_ids]', nil, include_blank: true, class: 'form-control' %>
+
+        </div>
+
+      </div>
+
+      <div class="form-group">
+
+        <%= f.label :created_at_from, class: 'col-md-2 control-label' %>
+
+        <div class="col-md-10">
+
+          <%= f.datetime_select :created_at_from, include_blank: true, class: 'form-control' %>
+
+        </div>
+
+      </div>
+
+      <div class="form-group">
+
+        <%= f.label :created_at_to, class: 'col-md-2 control-label' %>
+
+        <div class="col-md-10">
+
+          <%= f.datetime_select :created_at_to, include_blank: true, class: 'form-control' %>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="modal-footer">
+
+        <%= f.submit 'Export Campaigns', :class => 'btn btn-primary' %>
+
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+    </div>
+
+    <% end # form %>
+
+  </div><!-- /.modal-content -->
+
+</div><!-- /.modal-dialog -->
+
+<script type="text/javascript">
+
+jQuery('.select2').select2();
+select2_select_all();
+
+jQuery("#export-form").on('submit', function(){
+  var downloadTimer = window.setInterval( function() {
+    var token = getCookie( "download_complete" );
+
+    if( token == 'true' ) {
+      window.clearInterval( downloadTimer );
+      expireCookie('download_complete');
+      jQuery('#myModal').modal('hide');
+    }
+  }, 1000 );
+});
+
+
+</script>

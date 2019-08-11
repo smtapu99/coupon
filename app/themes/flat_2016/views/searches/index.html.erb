@@ -1,0 +1,19 @@
+<%= render partial: 'searches/index/page_headlines', locals: { query: @query } %>
+
+<% if @coupons.present? %>
+
+  <div class="category-featured-shops pannacotta">
+
+    <%= render partial: 'shops/index/popular_shops', locals: { shops_featured: @shops.take(6) } %>
+
+  </div>
+
+  <%= render partial: 'coupons/shared/card_coupons_list', locals: { coupons: @coupons } %>
+
+<% else %>
+
+  <%= render partial: 'searches/index/card_alert', locals: { query: @query, top_coupons: @top_coupons } %>
+
+<% end %>
+
+<%= render partial: 'searches/index/sidebar' %>

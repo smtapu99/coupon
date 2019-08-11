@@ -1,0 +1,67 @@
+<%- if @success -%>
+
+<%= render 'admin/shared/flash' -%>
+
+<%- else -%>
+
+  <%= form_for [:admin, @expired_exclusive], url: update_admin_expired_exclusives_path, html: { class: 'form form-horizontal', style: 'margin-bottom: 0' } do |f| %>
+
+    <div class="form-group">
+
+      <div class="col-xs-12">
+
+        <h4>You are about to update <%= @expired_exclusive.coupon_ids.count %> Coupon/s</h4>
+
+      </div>
+
+    </div>
+
+    <%= render partial: 'admin/shared/form_errors', locals: { ancestor: @expired_exclusive } %>
+
+    <% f.object.coupon_ids.each do |id| %>
+
+      <%= f.hidden_field :coupon_ids, multiple: true, value: id %>
+
+    <% end %>
+
+    <div class="form-group">
+
+      <%= f.label :status, class: 'col-md-2 control-label' %>
+
+      <div class="col-md-5">
+
+        <%= f.select :status, Coupon.statuses, {prompt: true}, class: 'form-control' %>
+
+      </div>
+
+    </div>
+
+    <div class="form-group">
+
+      <%= f.label :end_date, class: 'col-md-2 control-label' %>
+
+      <div class="col-md-5">
+
+        <%= f.date_field :end_date, include_blank: true, min: Time.zone.now.to_date, class: 'form-control' %>
+
+      </div>
+
+    </div>
+
+    <div class=" form-actions-padding-sm">
+
+      <div class="row">
+
+        <div class="col-md-10 col-md-offset-2">
+
+          <%= f.submit 'Update', class: 'btn btn-primary' %>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  <% end # form %>
+
+<%- end -%>

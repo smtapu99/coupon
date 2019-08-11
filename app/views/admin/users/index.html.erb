@@ -1,0 +1,106 @@
+<% model_class = User %>
+
+<div class="row">
+
+  <div class="col-xs-12">
+
+    <div class="page-header">
+
+      <h1 class="pull-left">
+
+        <i class="icon-user"></i>
+
+        <span><%= t '.title', default: model_class.model_name.human.pluralize.titleize %></span>
+
+      </h1>
+
+      <div class="pull-right">
+
+        <ul class="breadcrumb">
+
+          <li>
+
+            <a href="/pcadmin">
+
+              <i class="icon-home"></i>
+
+            </a>
+
+          </li>
+
+          <li class="separator">
+
+            <i class="icon-angle-right"></i>
+
+          </li>
+
+          <li class="active"><%= model_class.model_name.human.pluralize.titleize %></li>
+
+        </ul>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<%= render 'admin/shared/flash' %>
+
+<div class="box">
+
+  <div class="box-content">
+    <% if can? :create, model_class && User.current.allowed_user_roles.any? %>
+      <div class="btn-toolbar">
+        <div class="btn-group dropdown" style="margin-bottom:5px">
+          <button class="btn btn-success dropdown-toggle" data-toggle="dropdown" style="margin-bottom:5px">
+            Create User
+            <span class="caret"></span>
+          </button>
+          <%# binding.pry %>
+          <ul class="dropdown-menu">
+            <% if User.current.allowed_to_manage 'freelancer' %>
+              <li>
+                <%= link_to 'Freelancer', new_admin_user_path(type: 'freelancer') %>
+              </li>
+            <% end %>
+            <% if User.current.allowed_to_manage 'partner' %>
+              <li>
+                <%= link_to 'Partner', new_admin_user_path(type: 'partner') %>
+              </li>
+            <% end %>
+            <% if User.current.allowed_to_manage 'country_editor' %>
+              <li>
+                <%= link_to 'Country Editor', new_admin_user_path(type: 'country_editor') %>
+              </li>
+            <% end %>
+            <% if User.current.allowed_to_manage 'country_manager' %>
+              <li>
+                <%= link_to 'Country Manager', new_admin_user_path(type: 'country_manager') %>
+              </li>
+            <% end %>
+            <% if User.current.allowed_to_manage 'regional_manager' %>
+              <li>
+                <%= link_to 'Regional Manager', new_admin_user_path(type: 'regional_manager') %>
+              </li>
+            <% end %>
+            <% if User.current.allowed_to_manage 'super_user' %>
+              <li>
+                <%= link_to 'Admin', new_admin_user_path(type: 'super_user') %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    <% end %>
+
+    <div class="table-responsive">
+
+      <div id="app"></div>
+
+    </div>
+
+  </div>
+
+</div>

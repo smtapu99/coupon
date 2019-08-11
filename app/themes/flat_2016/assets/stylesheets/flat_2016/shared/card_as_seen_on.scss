@@ -1,0 +1,19 @@
+.pannacotta {
+  &.card-as-seen-on {
+    border: none;
+    border-radius: 0;
+    margin-bottom: 0;
+
+    .card-header .card-title {
+      font-size: 24px;
+    }
+
+    .card-content {
+      padding-bottom: 30px;
+
+      img {
+        margin: 0 auto;
+      }
+    }
+  }
+}

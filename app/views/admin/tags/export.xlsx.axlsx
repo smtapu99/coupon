@@ -1,0 +1,10 @@
+require 'axlsx'
+
+p = Axlsx::Package.new
+wb = xlsx_package.workbook
+wb.add_worksheet(name: "tags_#{Time.now.to_date}") do |sheet|
+ sheet.add_row Tag::CSV_EXPORT_COLUMN_HEADERS[:tag].values
+ @tags.find_each do |tag, index|
+   sheet.add_row tag.csv_mapped_attributes
+ end
+end

@@ -1,0 +1,205 @@
+<% if @coupon.present? %>
+
+  <div class="modal-header border-top-ashes text-right">
+
+    <button aria-label="<%= t(:CLOSE, default: 'Close') %>" class="btn btn-white close" data-dismiss="modal" type="button">
+
+        <span aria-hidden="true">
+
+          <i class="roberto roberto-remove"></i>
+
+        </span>
+
+    </button>
+
+  </div>
+
+  <!-- modal-header -->
+
+  <div class="modal-body coupon-clickout-modal pannacotta">
+
+    <div class="coupon-info-box clearfix">
+
+      <div class="coupon-header">
+
+        <%= render partial: 'coupons/shared/thumbnail', locals: {coupon: @coupon, is_redirect: true} %>
+
+      </div>
+
+      <div class="coupon-title-box">
+
+        <div class="coupon-time-box clearfix">
+
+          <%- if @coupon.end_date.present? && @coupon.end_date < (Time.zone.now + 2.days) -%>
+
+            <span class="pull-left"><b><i class="color-ready fa fa-clock-o"></i></b> <%= @coupon.end_date.to_date.strftime("%d.%m.%Y") %></span>
+
+          <%- end -%>
+
+          <%- if @coupon.updated_at.present? -%>
+
+            <span class="pull-right">
+
+              <%- if @coupon.updated_at >= (Time.zone.now - 1.day).beginning_of_day -%>
+
+                <%- if @coupon.updated_at > (Time.zone.now - 1.day).end_of_day -%>
+
+                  <%= t(:UPDATED_TODAY, default: 'Updated today') %>
+
+                <%- else -%>
+
+                  <%= t(:UPDATED_YESTERDAY, default: 'Updated yesterday') %>
+
+                <%- end -%>
+
+              <%- end -%>
+
+            </span>
+
+          <%- end -%>
+
+        </div>
+
+        <%= render partial: 'coupons/shared/title', locals: {coupon: @coupon, is_redirect: true} %>
+
+      </div>
+
+    </div>
+
+    <%#= render partial: 'coupons/shared/card_coupons_list', locals: {coupons: [@coupon], hide_pagination: true, is_redirect: true} %>
+
+    <% if @coupon.coupon_type == 'coupon' && @coupon.code.present? %>
+
+      <div class="border-ashes the-code text-center">
+
+        <span class='coupon-code'>
+          <%= uniq_code = @coupon.uniq_coupon_code(@tracking_user) %>
+        </span>
+
+        <span class="cursor"></span>
+
+        <button class="btn btn-ashes zclip" data-clippboard-action='copy' data-clipboard-target=".coupon-code" data-coupon-code="<%= Base64.encode64(uniq_code) %>" >
+
+          <span class="copy-text"><%= t(:COPY_TEXT, default: 'Copy code') %></span>
+
+          <span class="copied-text hidden">
+
+            <%= t(:COPIED_TEXT, default: 'Code was copied') %>
+
+          </span>
+
+        </button>
+
+      </div>
+
+      <!-- /.border-ashes the-code text-center -->
+
+
+      <p class="the-message text-center" data-message="<%= t(:PASTE_THE_CODE_DURING_CHECKOUT, default: 'Enter this code during the checkout at') %> <%= @coupon.shop.title if @coupon.shop.title.present? rescue nil %>">
+
+        <%= t(:PASTE_THE_CODE_DURING_CHECKOUT, default: 'Enter this code during the checkout at') %>
+
+        <% if @coupon.shop.present? && @coupon.shop.title.present? %>
+
+          <br>
+
+          <a class="btn btn-ready" href="<%= dynamic_url_for('coupon', 'clickout', id: @coupon.id, popup: :true) %>" target="_blank" rel="nofollow">
+
+            <%= t(:GO_TO_SHOP_NAME, default: 'Go To {shop_name}').gsub('{shop_name}', @coupon.shop.title) %>
+
+          </a>
+
+        <% end %>
+
+      </p>
+
+      <!-- /.the-message text-center -->
+
+    <% else %>
+
+      <div class="border-ashes text-center text-uppercase the-code">
+
+        <%= t(:NO_CODE_NEEDED, default: 'No code needed') %>
+
+      </div>
+
+      <!-- /.border-ashes text-center text-uppercase the-code -->
+
+      <p class="the-message text-center" data-message="<%= t(:GET_IT_WHILE_STILL_AVAILABLE, default: 'Get this offer while it is still available') %> <%= @coupon.shop.title if @coupon.shop.title.present? rescue nil %>">
+
+        <%= t(:GET_IT_WHILE_STILL_AVAILABLE, default: 'Get this offer while it is still available') %>
+
+        <% if @coupon.shop.present? && @coupon.shop.title.present? %>
+
+          <br>
+
+          <a class="btn btn-ready" href="<%= dynamic_url_for('coupon', 'clickout', id: @coupon.id, popup: :true) %>" target="_blank" rel="nofollow">
+
+            <%= t(:GO_TO_SHOP_NAME, default: 'Go To {shop_name}').gsub('{shop_name}', @coupon.shop.title) %>
+
+          </a>
+
+        <% end %>
+
+      </p>
+
+      <!-- /.the-message text-center -->
+
+    <% end %>
+
+
+    <% if (%w(description info_discount info_min_purchase info_limited_clients info_limited_brands info_conditions).map {|a| @coupon.send(a).present? }).any? %>
+
+      <hr class="hidden-xs">
+
+      <div class="coupon-info-box clearfix hidden-xs" style="margin-top: 15px;">
+
+          <%= render 'coupons/shared/description', coupon: @coupon %>
+
+      </div>
+
+    <%- end -%>
+
+  </div>
+
+  <!-- /.modal-body -->
+
+  <div class="modal-footer">
+
+    <ul class="list-inline list-unstyled list-voting text-center">
+
+      <li><%= t(:FRAME_IS_COUPON_WORKING, default: 'Did the coupon worked?') %></li>
+
+      <li>
+
+        <button class="add-positive-vote btn btn-no-border btn-white" data-id="<%= @coupon.id %>" type="button">
+
+          <i class="roberto roberto-thumb-up"></i>
+
+        </button>
+
+      </li>
+
+      <li>
+
+        <button class="add-negative-vote btn btn-no-border btn-white" data-id="<%= @coupon.id %>" type="button">
+
+          <i class="roberto roberto-thumb-down"></i>
+
+        </button>
+
+      </li>
+
+    </ul>
+
+    <!-- /.list-inline list-unstyled list-voting text-center -->
+
+  </div>
+
+  <!-- /.modal-footer -->
+
+<% else %>
+
+  <script>$('#my-modal').modal('hide');</script>
+
+<% end %>

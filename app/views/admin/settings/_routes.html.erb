@@ -1,0 +1,321 @@
+<div class="col-sm-12 col-md-6" id="routes">
+
+  <div class="box bordered-box blue-border <%= 'box-collapsed' unless session[:last_setting] == 'routes' %>">
+
+    <div class="box-header brown-background">
+
+      <div class="title">
+
+        <i class="icon-road"></i>
+
+        Routes Settings
+
+      </div>
+
+      <div class="actions">
+
+        <a class="btn box-collapse btn-xs btn-link" href="#">
+
+          <i></i>
+
+        </a>
+
+      </div>
+
+    </div>
+
+    <div class="box-content">
+
+      <%= form_for [:admin, @setting], method: :patch, html: {class: 'form form-horizontal', style: 'margin-bottom: 0'} do |f| %>
+
+        <%= hidden_field_tag :option_type, 'routes' %>
+
+        <%= fields_for :routes, @setting.routes do |ff| %>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :application_root_dir %>
+
+              <%= ff.text_field :application_root_dir, class: 'form-control', placeholder: 'e.g. /subdir', pattern: '^/.*', title: 'Must start with a /' %>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :static_pages %>
+
+              <%= ff.text_field :page_show, class: 'form-control', placeholder: 'e.g. /:slug.html', pattern: '^/.*:slug.*', title: 'Must contain the placeholder :slug and start with a /' %>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :category %>
+
+              <%= ff.text_field :category, class: 'form-control', placeholder: 'e.g. /categories', pattern: '^/.+', title: 'Must start with a /' %>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :category_show %>
+
+              <%= ff.text_field :category_show, class: 'form-control', placeholder: 'e.g. /category/:slug', pattern: '^/.*:slug.*', title: 'Must contain the placeholder :slug and start with a /' %>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :subcategory_show %>
+
+              <%= ff.text_field :subcategory_show, class: 'form-control', placeholder: 'e.g. /category/:parent_slug/:slug', pattern: '^/.*:parent_slug.*:slug.*', title: 'Must contain the placeholder :parent_slug and :slug and start with a /' %>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :go_to_coupon %>
+
+              <%= ff.text_field :go_to_coupon, class: 'form-control', placeholder: 'e.g. /go-to-coupon/:id', pattern: '^/.+:id', title: 'Must contain the placeholder :id and start with a /' %>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :popular_coupons %>
+
+              <%= ff.text_field :popular_coupons, class: 'form-control', placeholder: 'e.g. /popular-coupons', pattern: '^/.+', title: 'Must start with a /' %>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :top_coupons %>
+
+              <%= ff.text_field :top_coupons, class: 'form-control', placeholder: 'e.g. /top-coupons', pattern: '^/.+', title: 'Must start with a /' %>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :new_coupons %>
+
+              <%= ff.text_field :new_coupons, class: 'form-control', placeholder: 'e.g. /new-coupons', pattern: '^/.+', title: 'Must start with a /' %>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :expiring_coupons %>
+
+              <%= ff.text_field :expiring_coupons, class: 'form-control', placeholder: 'e.g. /expiring-coupons', pattern: '^/.+', title: 'Must start with a /' %>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :free_delivery_coupons %>
+
+              <%= ff.text_field :free_delivery_coupons, class: 'form-control', placeholder: 'e.g. /free-delivery', pattern: '^/.+', title: 'Must start with a /' %>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :free_coupons %>
+
+              <%= ff.text_field :free_coupons, class: 'form-control', placeholder: 'e.g. /free-coupons', pattern: '^/.+', title: 'Must start with a /' %>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :exclusive_coupons %>
+
+              <%= ff.text_field :exclusive_coupons, class: 'form-control', placeholder: 'e.g. /exclusive-coupons', pattern: '^/.+', title: 'Must start with a /' %>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :campaign_page %>
+
+              <%= ff.text_field :campaign_page, class: 'form-control', placeholder: 'e.g. /campaign/:slug', pattern: '^/.*:slug.*', title: 'Must contain the placeholder :slug and start with a /' %>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :campaign_sub_page %>
+
+              <%= ff.text_field :campaign_sub_page, class: 'form-control', placeholder: 'e.g. /campaign/:parent_slug/:slug', pattern: '^/.*:parent_slug.*:slug.*', title: 'Must contain the placeholder :parent_slug before :slug and start with a /' %>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :shop_campaign_page %>
+
+              <%= ff.text_field :shop_campaign_page, class: 'form-control', placeholder: 'e.g. /:shop_slug/:slug', pattern: '^/.*:shop_slug.*:slug.*', title: 'Must contain the placeholder :shop_slug before :slug and start with a /' %>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :search_page %>
+
+              <%= ff.text_field :search_page, class: 'form-control', placeholder: 'e.g. /search', pattern: '^/.+', title: 'Must start with a /' %>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :shop_index %>
+
+              <%= ff.text_field :shop_index, class: 'form-control text_field', placeholder: 'e.g. /shops', pattern: '^/.+', title: 'Must start with a /' %>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :shop_show %>
+
+              <%= ff.text_field :shop_show, class: 'form-control', placeholder: 'e.g. /shop/:slug', pattern: '^/.*:slug.*', title: 'Must contain the placeholder :slug and start with a /' %>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :contact_form_page %>
+
+              <%= ff.text_field :contact_form, class: 'form-control', placeholder: 'e.g. /contact', pattern: '^/.*', title: 'Must start with a /' %>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :partner_form_page %>
+
+              <%= ff.text_field :partner_form, class: 'form-control', placeholder: 'e.g. /partner', pattern: '^/.*', title: 'Must start with a /' %>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :report_form_page %>
+
+              <%= ff.text_field :report_form, class: 'form-control', placeholder: 'e.g. /report', pattern: '^/.*', title: 'Must start with a /' %>
+
+            </div>
+
+          </div>
+
+          <div class="form-actions form-actions-padding-sm">
+
+            <div class="row">
+
+              <div class="col-md-2">
+
+                <%= f.submit 'Save', class: 'btn btn-primary btn-block' %>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        <% end %>
+
+      <% end %>
+
+    </div>
+
+  </div>
+
+</div>

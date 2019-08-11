@@ -1,0 +1,50 @@
+@critical common.css {
+  .breadcrumbs {
+    overflow: hidden;
+    font-size: 14px;
+    font-family: $font-family-breadcrumbs;
+    line-height: 1;
+
+    @media #{$md} {
+      overflow-x: scroll;
+    }
+
+    &__list {
+      padding-left: 0;
+      list-style-type: none;
+
+      @media #{$md} {
+        display: flex;
+        margin-bottom: 0;
+      }
+    }
+
+    &__item {
+      float: left;
+      padding-right: 6px;
+      padding-left: 6px;
+      white-space: nowrap;
+
+      &::before {
+        margin-right: 6px;
+        color: $bullets-color;
+        font-size: 9px;
+        font-family: 'simple';
+        content: "\e906";
+      }
+
+      &:first-of-type {
+        padding-left: 0;
+
+        &::before {
+          display: none;
+        }
+      }
+
+      a {
+        color: $breadcrumbs-color;
+        font-style: italic;
+      }
+    }
+  }
+}

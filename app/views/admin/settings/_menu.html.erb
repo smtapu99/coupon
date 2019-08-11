@@ -1,0 +1,232 @@
+<div class="col-sm-12 col-md-6" id="publisher-site">
+
+  <div class="box bordered-box blue-border <%= 'box-collapsed' unless session[:last_setting] == 'menu' %>">
+
+    <div class="box-header green-background">
+
+      <div class="title">
+
+        <i class="icon-sitemap"></i>
+
+        Menu Settings
+
+      </div>
+
+      <div class="actions">
+
+        <a class="btn box-collapse btn-xs btn-link" href="#">
+
+          <i></i>
+
+        </a>
+
+      </div>
+
+    </div>
+
+    <div class="box-content">
+
+      <%= form_for [:admin, @setting], method: :patch, html: {class: 'form form-horizontal', style: 'margin-bottom: 0'} do |f| %>
+
+        <%= hidden_field_tag :option_type, 'menu' %>
+
+        <%= fields_for :menu , @setting.menu do |ff| %>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :show_home_link %>
+
+              <%= ff.check_box :show_home_link, { checked: ff.object.try(:show_home_link).nil? ? false : !ff.object.show_home_link.to_i.zero? } %>
+
+              <p class="help-block">
+
+                <small class="text-muted">Default: no, Shows link with home icon in navigation. Use this if logo doesnt lead to home (e.g. if you changed external logo url)</small>
+
+              </p>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :show_categories %>
+
+              <%= ff.check_box :show_categories, { checked: ff.object.try(:show_categories).nil? ? true : !ff.object.show_categories.to_i.zero? } %>
+
+              <p class="help-block">
+
+                <small class="text-muted">Default: yes</small>
+
+              </p>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :show_coupons %>
+
+              <%= ff.check_box :show_coupons, { checked: ff.object.try(:show_coupons).nil? ? true : !ff.object.show_coupons.to_i.zero? } %>
+
+              <p class="help-block">
+
+                <small class="text-muted">Default: yes</small>
+
+              </p>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :show_campaigns %>
+
+              <%= ff.check_box :show_campaigns, { checked: ff.object.try(:show_campaigns).nil? ? true : !ff.object.show_campaigns.to_i.zero? } %>
+
+              <p class="help-block">
+
+                <small class="text-muted">Default: yes</small>
+
+              </p>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :navigation_shop_ids %>
+
+              <%= ff.select :navigation_shop_ids, @navigation_shop_ids_collection, { prompt: true }, { class: 'select2 form-control', multiple: true } %>
+
+              <div class="help-block">
+
+                <small>Please select just Tier 1 shops</small>
+
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :navigation_category_ids %>
+
+              <%= ff.select :navigation_category_ids, @navigation_category_ids_collection, { prompt: true }, { class: 'select2 form-control', multiple: true } %>
+
+              <div class="help-block">
+
+                <small>Please select just Tier 1 categories</small>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :main_shop_ids %>
+
+              <%= ff.select :main_shop_ids, @main_shop_ids_collection, { prompt: true }, { class: 'select2 form-control', multiple: true } %>
+
+              <div class="help-block">
+
+                <small>Please select just Tier 1 shops</small>
+
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :main_campaign_ids %>
+
+              <%= ff.select :main_campaign_ids, @main_campaign_ids_collection, { prompt: true }, { class: 'select2 form-control', multiple: true } %>
+
+              <div class="help-block">
+
+                <small>Will not show if "Show Campaigns" is not checked</small>
+
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :footer_shop_ids %>
+
+              <%= ff.select :footer_shop_ids, @footer_shop_ids_collection, { prompt: true }, { class: 'select2 form-control', multiple: true } %>
+
+              <div class="help-block">
+
+                <small>Please select just Tier 2 shop to show in homepage footer</small>
+
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :footer_campaign_ids %>
+
+              <%= ff.select :footer_campaign_ids, @footer_campaign_ids_collection, { prompt: true }, { class: 'select2 form-control', multiple: true  } %>
+
+            </div>
+
+          </div>
+
+          <div class="form-actions form-actions-padding-sm">
+
+            <div class="row">
+
+              <div class="col-md-2">
+
+                <%= f.submit 'Save', class: 'btn btn-primary btn-block' %>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        <% end %>
+
+      <% end %>
+
+    </div>
+
+  </div>
+
+</div>

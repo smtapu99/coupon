@@ -1,0 +1,731 @@
+<div class="col-sm-12 col-md-6" id="publisher-site">
+
+  <div class="box bordered-box blue-border <%= 'box-collapsed' unless session[:last_setting] == 'publisher_site' %>">
+
+    <div class="box-header blue-background">
+
+      <div class="title">
+
+        <i class="icon-cogs"></i>
+
+        Site Settings
+
+      </div>
+
+      <div class="actions">
+
+        <a class="btn box-collapse btn-xs btn-link" href="#">
+
+          <i></i>
+
+        </a>
+
+      </div>
+
+    </div>
+
+    <div class="box-content">
+
+      <%= form_for [:admin, @setting], method: :patch, html: {class: 'form form-horizontal', style: 'margin-bottom: 0'} do |f| %>
+
+        <%= hidden_field_tag :option_type, 'publisher_site' %>
+
+        <%= fields_for :publisher_site , @setting.publisher_site do |ff| %>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :home_breadcrumb_name %>
+
+              <%= ff.text_field :home_breadcrumb_name, class: 'form-control' %>
+
+              <p class="help-block">
+
+                <small class="text-muted">Default: Hostname. For best results on subdirectory-based sites, set the home breadcrumb name to "Voucher Codes", "Descuentos", "Codice Sconto" or similar in site's language.</small>
+
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :hide_star_rating, 'Rating threshold' %>
+
+              <%= ff.number_field :hide_star_rating, step: 0.5, min: 0, max: 5, value: (ff.object.try(:hide_star_rating) || 2.5), class: 'form-control' %>
+
+              <p class="help-block">
+
+                <small class="text-muted">Default: 2.5. Ratings below this threshold will not be shown in JSON+LD.</small>
+
+              </p>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.check_box :hide_expired_coupons, {}, checked_value = "1", unchecked_value = "0" %>
+
+              <%= ff.label :hide_expired_coupons, 'Hide Expired Coupons' %>
+
+              <p class="help-block">
+
+                <small class="text-muted">Default: no. Hides expired coupons from shop page</small>
+
+              </p>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :featured_shop_ids %>
+
+              <%= ff.select :featured_shop_ids, @featured_shop_ids_collection, {prompt: true}, {class: 'select2 form-control', multiple: true} %>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :blog_link_title %>
+
+              <%= ff.text_field :blog_link_title, class: 'form-control' %>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :blog_link_url %>
+
+              <%= ff.text_field :blog_link_url, class: 'form-control' %>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :external_logo_url %>
+
+              <%= ff.text_field :external_logo_url, class: 'form-control' %>
+
+              <p class="help-block">
+
+                <small class="text-muted">Default: Homepage; This allows to link the logo to another url (e.g. if the logo is used as powered by logo on publisher pages)</small>
+
+              </p>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :external_logo_rel_attr %>
+
+              <%= ff.select :external_logo_rel_attr, Option::get_select_options('follow', true), {:selected => ff.object.present? ? (ff.object.external_logo_rel_attr || 0) : 0}, class: 'form-control' %>
+
+              <p class="help-block">
+
+                <small class="text-muted">Default: Follow; This option sets the logo link to rel=nofollow</small>
+
+              </p>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :allow_coupon_bookmarks %>
+
+              <%= ff.select :allow_coupon_bookmarks, Option::get_select_options('yes_or_no', true), {:selected => ff.object.present? ? (ff.object.allow_coupon_bookmarks || 0) : 0}, class: 'form-control' %>
+
+              <p class="help-block">
+
+                <small class="text-muted">Default: no, Allows to bookmark coupons... needs styling, a route and translations to be used properly</small>
+
+              </p>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :show_news_popup_for_empty_shop %>
+
+              <%= ff.select :show_news_popup_for_empty_shop, Option::get_select_options('yes_or_no', true), {}, class: 'form-control' %>
+
+              <p class="help-block">
+
+                <small class="text-muted">Default: Yes</small>
+
+              </p>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :show_disclaimer %>
+
+              <%= ff.select :show_disclaimer, Option::get_select_options('yes_or_no', true), {}, class: 'form-control' %>
+
+              <p class="help-block">
+
+                <small class="text-muted">Default: Yes</small>
+
+              </p>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :disclaimer_text %>
+
+              <%= ff.text_field :disclaimer_text, class: 'form-control' %>
+
+              <p class="help-block">
+
+                <small class="text-muted">Default: © Copyright 2014 PROJECT – CLAIM</small>
+
+              </p>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :show_footer %>
+
+              <%= ff.select :show_footer, Option::get_select_options('yes_or_no', true), {}, class: 'form-control' %>
+
+              <p class="help-block">
+
+                <small class="text-muted">Default: Yes</small>
+
+              </p>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :wls_footer_style %>
+
+              <%= ff.select :wls_footer_style, Option::get_select_options('wls_footer_styles', true), { include_blank: true }, class: 'form-control' %>
+
+              <p class="help-block">
+
+                <small class="text-muted">Default: First</small>
+
+              </p>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :show_social_media_column %>
+
+              <%= ff.select :show_social_media_column, Option::get_select_options('yes_or_no', true), {}, class: 'form-control' %>
+
+              <p class="help-block">
+
+                <small class="text-muted">Default: Yes</small>
+
+              </p>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :currency_symbol_position %>
+
+              <%= ff.select :currency_symbol_position, ['left', 'right'], {include_blank: true}, class: 'form-control' %>
+
+              <p class="help-block">
+
+                <small class="text-muted">Default: right</small>
+
+              </p>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :days_within_a_coupon_is_new %>
+
+              <%= ff.text_field :days_coupon_is_new, class: 'form-control' %>
+
+              <p class="help-block">
+
+                <small class="text-muted">Default: 3</small>
+
+              </p>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :shop_pages_title_structure %>
+
+              <%= ff.text_field :shop_pages_title_structure, class: 'form-control', placeholder: '<shop_name> <meta_title> Coupons <month> <year> | <shop_name> Coupons' %>
+
+              <p class="help-block">
+
+                <small class="text-muted"><%='Available replacement tags: <shop_name>, <meta_title>, <year>, <month> and <day>' %></small>
+
+              </p>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :inline_newsletter_position %>
+
+              <%= ff.number_field :inline_newsletter_position, class: 'form-control' %>
+
+              <p class="help-block">
+
+                <small class="text-muted">Default: 3 (-1 disables the widget); Defines after which position the inline newsletter in shop pages should appear. 1 means the newsletter comes after the 1st coupon aso!</small>
+
+              </p>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.check_box :hide_coupons_of_sub_pages, { checked: ff.object.nil? || ff.object.hide_coupons_of_sub_pages.nil? ? true : !ff.object.hide_coupons_of_sub_pages.to_i.zero? } %>
+
+              <%= ff.label :hide_coupons_of_sub_pages %>
+
+              <p class="help-block">
+
+                <small class="text-muted">Default: 1; Coupons of Subpages (Campaigs) normally dont show up on the main Shop page too. </small>
+
+              </p>
+
+            </div>
+
+          </div>
+
+          <hr>
+
+          <h3>Theme Options:</h3>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :show_prominent_search_on_homepage %>
+
+              <%= ff.select :show_prominent_search_on_homepage, Option::get_select_options('yes_or_no', true), {:selected => ff.object.present? ? (ff.object.show_prominent_search_on_homepage || 1) : 1}, class: 'form-control' %>
+
+              <p class="help-block">
+
+                <small class="text-muted">Default: 1, defines if we show the improved prominent search field on the startpage or the standard search in the navigation as in subpages</small>
+
+              </p>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :twitter_site %>
+
+              <%= ff.text_field :twitter_site, class: 'form-control', placeholder: 'e.g. @cupon_es' %>
+
+              <p class="help-block">
+
+                <small class="text-muted">The Twitter Site Tag, eg @cupon_es. Used in twitter:site meta tag</small>
+
+              </p>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :facebook_site %>
+
+              <%= ff.text_field :facebook_site, class: 'form-control', placeholder: 'e.g. cupon_es' %>
+
+              <p class="help-block">
+
+                <small class="text-muted">The Facebook Site Tag, eg cupon_es. Used in og:site_name meta tag</small>
+
+              </p>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :facebook_app_id %>
+
+              <%= ff.text_field :facebook_app_id, class: 'form-control', placeholder: 'e.g. 6540654604640654065406' %>
+
+              <p class="help-block">
+
+                <small class="text-muted">The Facebook App ID. Can be created in https://developers.facebook.com</small>
+
+              </p>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :facebook_admin_ids %>
+
+              <%= ff.text_field :facebook_admin_ids, class: 'form-control', placeholder: 'e.g. 3232123,65465465' %>
+
+              <p class="help-block">
+
+                <small class="text-muted">The Facebook admin ids, comma separated if more then one. e.g. 3232123,65465465</small>
+
+              </p>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :open_graph_image %>
+
+              <%= ff.text_field :open_graph_image, class: 'form-control', placeholder: 'image url ' %>
+
+              <p class="help-block">
+
+                <small class="text-muted">An image url that is used instead of the logo in open graph meta tags</small>
+
+              </p>
+
+            </div>
+
+          </div>
+
+          <hr>
+
+          <h3>Theme Options: Flat 2016</h3>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+
+              <%= ff.check_box :show_topbar, { checked: ff.object.nil? || ff.object.show_topbar.nil? ? true : !ff.object.show_topbar.to_i.zero? } %>
+
+              <%= ff.label :show_topbar %>
+
+              <p class="help-block">
+
+                <small class="text-muted">Default: 1, Shows the dark top navigation above the main nav, showing a newsletter signup and links to blogs etc.</small>
+
+              </p>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :show_crosslinks %>
+
+              <%= ff.select :show_crosslinks, Option::get_select_options('yes_or_no', true), {:selected => ff.object.present? ? (ff.object.show_crosslinks || 0) : 0}, class: 'form-control' %>
+
+              <p class="help-block">
+
+                <small class="text-muted">Default: no, Shows a cross link section to other sites of Savings United in the home footer area</small>
+
+              </p>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.check_box :paginate_categories, { checked: ff.object.nil? || ff.object.paginate_categories.nil? ? true : !ff.object.paginate_categories.to_i.zero? } %>
+
+              <%= ff.label :paginate_categories, 'Paginate Categories' %>
+
+              <p class="help-block">
+
+                <small class="text-muted">Default: yes. If deselected, category pages will only show 25 coupons and no pagination.</small>
+
+              </p>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :unpaginate_coupons_count, 'Coupons on unpaginated categories' %>
+
+              <%= ff.number_field :unpaginate_coupons_count, step: 1, min: 0, max: 30, value: (ff.object.try(:unpaginate_coupons_count) || 25), class: 'form-control' %>
+
+              <p class="help-block">
+
+                <small class="text-muted">Default: 25. The number of coupons shown in unpaginated categories.</small>
+
+              </p>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :summary_widget %>
+
+              <%= ff.select :summary_widget, Option::get_select_options('summary_widget', true), {:selected => ff.object.present? ? (ff.object.summary_widget || '') : '', include_blank: true }, class: 'form-control' %>
+
+              <p class="help-block">
+
+                <small class="text-muted">Default: None; This will show a tabular coupon summary widget on the sidebar.</small>
+
+              </p>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :summary_shop_ids %>
+
+              <%= ff.select :summary_shop_ids, @summary_shop_ids_collection, { prompt: true }, { class: 'select2 form-control', multiple: true } %>
+
+              <div class="help-block">
+
+                <small>Selected Shops show Summary Widget in content area instead of sidebar, below coupon list</small>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :secondary_summary_widget %>
+
+              <%= ff.select :secondary_summary_widget, Option::get_select_options('summary_widget', true), {:selected => ff.object.present? ? (ff.object.secondary_summary_widget || '') : '', include_blank: true }, class: 'form-control' %>
+
+              <p class="help-block">
+
+                <small class="text-muted">Default: None; Shows 2nd tabular coupon summary widget at the end of sidebar.</small>
+
+              </p>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.check_box :anchors_for_summary_widget, {}, checked_value = "1", unchecked_value = "0" %>
+
+              <%= ff.label :add_anchors_for_summary_widget %>
+
+              <div class="help-block">
+
+                <small>Add anchor to the list of Best Deals Summary and Best Deals Summary Advanced</small>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :premium_summary_shop_ids %>
+
+              <%= ff.select :premium_summary_shop_ids, @premium_summary_shop_ids_collection, { prompt: true }, { class: 'select2 form-control', multiple: true } %>
+
+              <div class="help-block">
+
+                <small>Selected Shops show Summary Widget directly below H1 instead of welcome text. Welcome text will be moved to sidebar</small>
+
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.check_box :reduced_js_features, { checked: ff.object.nil? || ff.object.reduced_js_features.nil? ? false : !ff.object.reduced_js_features.to_i.zero? } %>
+
+              <%= ff.label :reduced_js_features %>
+
+              <p class="help-block">
+
+                <small class="text-muted">
+                  Default: No. This will reduce some features in order to keep site functionality up in complicated WLS integrations (e.g. behind Cloudflare)
+                  <br>
+                  The following features will get reduced:
+                  <ul>
+                    <li>Search will always show the SERP page instead of redirecting to the shop if only one shop is found</li>
+                    <li>Category Filters wont load coupons with AJAX, but will forward to the filtered category page</li>
+                  </ul>
+                </small>
+
+              </p>
+
+            </div>
+
+          </div>
+
+          <h3>Theme Options: Simple 2019</h3>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <p class="help-block">
+
+                <small class="text-muted">
+                  One Link per line (max 5). Format: Text|URL. Example:<br>
+                  My first Link|http://url1.com<br>
+                  My second Link|http://url2.com
+                </small>
+
+              </p>
+
+              <%= ff.label :hero_links %>
+
+              <%= ff.text_area :hero_links, class: 'form-control', rows: 5, style: 'min-height: auto' %>
+
+            </div>
+
+          </div>
+
+          <div class="form-actions form-actions-padding-sm">
+
+            <div class="row">
+
+              <div class="col-md-2">
+
+                <%= f.submit 'Save', class: 'btn btn-primary btn-block' %>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        <% end %>
+
+      <% end %>
+
+    </div>
+
+  </div>
+
+</div>

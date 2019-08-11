@@ -1,0 +1,26 @@
+<% widgets = @site.widgets_for_area('sidebar') %>
+
+<% widgets.each do |widget| %>
+
+  <%- next if widget.name == 'newsletter' && !newsletter_enabled? -%>
+
+  <%- if widget.name == 'raw_html' -%>
+
+    <div class="hidden-xs hidden-sm">
+
+  <%- end -%>
+
+  <%- cache([widget, @site.relevant_categories], expires_in: 1.hour) do  -%>
+
+    <%= render_widget(widget, site: @site) %>
+
+  <%- end -%>
+
+  <%- if widget.name == 'raw_html' -%>
+
+    </div>
+
+  <%- end -%>
+
+<% end %>
+

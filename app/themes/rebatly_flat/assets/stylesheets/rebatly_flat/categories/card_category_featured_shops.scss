@@ -1,0 +1,60 @@
+.pannacotta.category-featured-shops {
+  ul {
+    margin: 0px 0 25px 0;
+    display: flex;
+
+    li {
+      cursor: pointer;
+      flex-direction: row;
+      background-color: white;
+      border: 1px solid #d8d8d8;
+      margin: 0 4px;
+
+      a {
+        height: 100%;
+        display: block;
+        text-align: center;
+        white-space: nowrap;
+        overflow: hidden;
+        
+        &:before {
+          content: "";
+          display: inline-block;
+          height: 100%;
+          vertical-align: middle;
+        }
+        img.img-responsive {
+          display: inline-block;
+          vertical-align: middle;
+          position: relative; 
+          left: -4px;
+        }
+      }
+
+      &:nth-last-child(-n+1) { display: none }
+      &:nth-child(3) { margin-right: 0px }
+      &:nth-child(4) { margin-left: 8px }
+      &:first-child { margin-left: 0px; }
+      &:last-child { margin-right: 0px; }
+    }
+  }
+}
+
+@media(min-width: 768px){
+  .pannacotta.category-featured-shops {
+
+    ul {
+      li {
+        max-width: 150px;
+
+        a {
+          min-height: 100px;
+        }
+
+        &:nth-last-child(-n+1) { display: list-item; }
+        &:nth-child(3) { margin-right: 0px }
+        &:nth-child(4) { margin-left: 8px }
+      }
+    }
+  }
+}

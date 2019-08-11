@@ -1,0 +1,71 @@
+<% if shop.present? %>
+
+  <div class="w-newsletter w-newsletter--for-coupons">
+
+    <%= form_tag send("subscribe_#{@site.site.id}_path"), class: 'w-newsletter__form', method: :post, role: 'form', data: { 'event-action' => 'form_submit' } do |f| %>
+
+      <div class="coupon__body">
+
+        <div class="coupon__aside">
+
+          <div class="w-newsletter__envelope">
+
+          </div>
+
+        </div>
+
+        <div class="coupon__right">
+
+          <div class="coupon__desc">
+
+              <span class="coupon__text">
+
+            <% if shop.title.present? %>
+
+              <%= t(:GET_THE_BEST_SHOPTITLE_COUPONS_STRAIGHT_TO_YOUR_INBOX, default: 'Get the best <strong>{shop_title}</strong> coupons straight to your inbox!').gsub('{shop_title}', shop.title).html_safe %>
+
+            <% else %>
+
+              <%= t(:GET_THE_BEST_COUPONS_STRAIGHT_TO_YOUR_INBOX, default: 'Get the best coupons straight to your inbox!') %>
+
+            <% end %>
+
+            </span>
+
+            <%= email_field_tag :email, nil, class: 'w-newsletter__input', id: 'newsletter_email', placeholder: t(:TYPE_HERE_YOUR_EMAIL, default: 'Type here your email'), :required => true, "aria-label" => t(:TYPE_HERE_YOUR_EMAIL, default: 'Type here your email') %>
+
+
+          </div>
+
+          <div class="coupon__action">
+
+            <%= button_tag t(:SUBSCRIBE, default: 'Subscribe'), class: 'btn w-newsletter__submit' %>
+
+          </div>
+
+        </div>
+
+
+      </div>
+
+      <div class="coupon__footer">
+
+        <p class="w-newsletter__privacy">
+
+          <%= label_tag :privacy_policy_sb, class: 'privacy-policy' do %>
+
+            <%= check_box_tag :privacy_policy_sb, '', false, :required => true %>
+
+            <%= t(:BY_SUBSCRIBING_YOU_ACCEPT_OUR_PRIVACY_POLICY, default: 'By subscribing you accept our <a href="%{policy_url}" rel="nofollow" target="_blank">privacy policy</a>', policy_url: policy_url).html_safe %>
+
+          <%- end -%>
+
+        </p>
+
+      </div>
+
+    <% end %>
+
+  </div>
+
+<% end %>

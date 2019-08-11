@@ -1,0 +1,69 @@
+<% content_for(:head) do %>
+  <style>
+    body {
+      background: url(<%= @campaign.sem_background_url %>) no-repeat;
+      background-size: cover;
+    }
+  </style>
+<% end %>
+
+<header class="sem-header">
+
+  <div class="container">
+
+    <div class="row">
+
+      <div class="col-sm-2">
+
+        <% if @site.image_setting.logo_url.present? %>
+
+          <%= image_tag @site.image_setting.logo_url, alt: @campaign.name, class: 'sem-header__logo' %>
+
+        <% end %>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</header>
+<!-- ./Header -->
+<div class="container">
+
+  <div class="sem-campaign">
+
+    <div class="row">
+
+      <div class="col-md-12">
+
+        <img src="<%= @campaign.sem_logo_url %>" alt="<%= @campaign.name %>" class="sem-campaign__logo">
+
+        <h1 class="sem-campaign__header"><%= @campaign.h1_first_line %></h1>
+
+        <h2 class="sem-campaign__subheader"><%= @campaign.html_document_h2 %></h2>
+
+      </div>
+
+    </div>
+
+  </div>
+  <!-- ./Campaign -->
+
+  <%= render 'campaigns/show/widgets', only: [:hot_offers, :sponsor_bar, :shop_bubbles, :discount_bubbles, :subpage_teaser, :premium_hero, :premium_offers, :top_sales, :quicklinks, :rotated_coupons] %>
+
+  <div class="row">
+
+    <div class="col-md-12">
+
+      <div class="sem-coupons">
+
+        <%= render 'campaigns/show/coupons', show_filters: false %>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

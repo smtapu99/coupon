@@ -1,0 +1,59 @@
+<div class="widget widget--summary">
+
+  <% if !without_h2 %>
+
+    <h2><%= t(:HEADER_COUPONS_SUMMARY, default: t(:ALL_CURRENT_DEALS_IN_SHOP, default: 'ALL_CURRENT_DEALS_IN_SHOP')).gsub('{shop}', title) %></h2>
+
+  <% end %>
+
+  <%- if counts.present? -%>
+
+    <table class="table">
+
+      <tr>
+
+        <th><%= t(:CURRENT_SHOP_DEALS, default: 'CURRENT_SHOP_DEALS').gsub('{shop}', title) %></th>
+
+        <th><%= t(:DISCOUNT, default: 'DISCOUNT') %></th>
+
+        <th><%= t(:CATEGORY, default: 'CATEGORY') %></th>
+
+      </tr>
+
+      <%- counts.keys.each do |key| -%>
+
+        <%- next unless counts.value_of_interest?(key) -%>
+
+        <tr>
+
+          <%- if key.to_sym == :total -%>
+
+            <td><%= t(:SUMMARY_VERIFIED, default: 'SUMMARY_VERIFIED') %></td>
+
+            <td><%= counts.count(key) %></td>
+
+            <td>&nbsp;</td>
+
+          <%- else -%>
+
+            <td><%= counts.count(key) %> <%= t("SUMMARY_#{key.to_s.upcase}", default: "SUMMARY_#{key.to_s.upcase}") %></td>
+
+            <% if key == :free_delivery %>
+              <td><%= [counts.coupon(key).logo_text_first_line, counts.coupon(key).logo_text_second_line].join(' ') %></td>
+            <% else %>
+              <td><%= counts.coupon(key).savings_in_string(false) %></td>
+            <% end %>
+
+            <td><%= counts.coupon(key).categories.try(:first).try(:name) %></td>
+
+          <%- end -%>
+
+        </tr>
+
+      <%- end -%>
+
+    </table>
+
+  <%- end -%>
+
+</div>

@@ -1,0 +1,138 @@
+<%
+
+  active_item = case params[:type]
+  when 'popular'
+    t(:COUPON_LIST_NAV_POPULAR, default: 'COUPON_LIST_NAV_POPULAR')
+  when 'exclusive'
+    t(:COUPON_LIST_NAV_EXCLUSIVE, default: 'COUPON_LIST_NAV_EXCLUSIVE')
+  when 'new'
+    t(:COUPON_LIST_NAV_NEW, default: 'COUPON_LIST_NAV_NEW')
+  when 'top'
+    t(:COUPON_LIST_NAV_TOP, default: 'COUPON_LIST_NAV_TOP')
+  when 'free_delivery'
+    t(:COUPON_LIST_NAV_FREE_DELIVERY, default: 'COUPON_LIST_NAV_FREE_DELIVERY')
+  else
+    t(:COUPON_LIST_NAV_EXPIRING, default: 'COUPON_LIST_NAV_EXPIRING')
+  end
+
+%>
+
+<div class="filter-by-type">
+
+  <div class="filter-by-type__header">
+
+    <h2 class="filter-by-type__title"><%= t(:FILTER_TOP_HEADLINE, default: 'FILTER_TOP_HEADLINE') %></h2>
+
+  </div>
+
+  <div class="filter-by-type__content">
+
+    <nav>
+
+      <ul class="filter-by-type__toggle">
+        <li>
+          <a href="#" tabindex="0">
+
+            <%= active_item %>
+
+            <i class="icon-chevron-down filter-by-type__icon"></i>
+
+          </a>
+
+        </li>
+
+      </ul>
+
+      <ul class="filter-by-type__dropdown">
+
+        <% unless params[:type] === 'popular' %>
+
+          <li>
+
+            <a href="<%= dynamic_url_for 'coupons', 'index', type: 'popular' %>" tabindex="0">
+
+              <%= t(:COUPON_LIST_NAV_POPULAR, default: 'COUPON_LIST_NAV_POPULAR') %>
+
+            </a>
+
+          </li>
+
+        <% end %>
+
+        <% unless Setting::get('publisher_site.show_exclusive', default: 1).to_i.zero? || params[:type] === 'exclusive' %>
+
+          <li>
+
+            <a href="<%= dynamic_url_for 'coupons', 'index', type: 'exclusive' %>" tabindex="0">
+
+              <span><%= t(:COUPON_LIST_NAV_EXCLUSIVE, default: 'COUPON_LIST_NAV_EXCLUSIVE') %></span>
+
+            </a>
+
+          </li>
+
+        <% end %>
+
+        <% unless params[:type] === 'new' %>
+
+          <li>
+
+            <a href="<%= dynamic_url_for 'coupons', 'index', type: 'new' %>" tabindex="0">
+
+              <%= t(:COUPON_LIST_NAV_NEW, default: 'COUPON_LIST_NAV_NEW') %>
+
+            </a>
+
+          </li>
+
+        <% end %>
+
+        <% unless params[:type] === 'top' %>
+
+          <li>
+
+            <a href="<%= dynamic_url_for 'coupons', 'index', type: 'top' %>" tabindex="0">
+
+              <%= t(:COUPON_LIST_NAV_TOP, default: 'COUPON_LIST_NAV_TOP') %>
+
+            </a>
+
+          </li>
+
+        <% end %>
+
+        <% unless params[:type] === 'free_delivery' %>
+
+          <li>
+
+            <a href="<%= dynamic_url_for 'coupons', 'index', type: 'free_delivery' %>" tabindex="0">
+
+              <%= t(:COUPON_LIST_NAV_FREE_DELIVERY, default: 'COUPON_LIST_NAV_FREE_DELIVERY') %>
+
+            </a>
+
+          </li>
+
+        <% end %>
+
+        <% unless params[:type] === 'expiring' %>
+
+          <li>
+
+            <a href="<%= dynamic_url_for 'coupons', 'index', type: 'expiring' %>" tabindex="0">
+
+              <%= t(:COUPON_LIST_NAV_EXPIRING, default: 'COUPON_LIST_NAV_EXPIRING') %>
+
+            </a>
+
+          </li>
+
+        <% end %>
+
+      </ul>
+
+    </nav>
+
+  </div>
+
+</div>

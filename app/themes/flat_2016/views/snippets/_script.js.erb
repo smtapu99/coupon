@@ -1,0 +1,86 @@
+function fancyCode() {
+  /*!
+   * jQuery-ajaxTransport-XDomainRequest - v1.0.1 - 2013-10-17
+   * https://github.com/MoonScript/jQuery-ajaxTransport-XDomainRequest
+   * Copyright (c) 2013 Jason Moon (@JSONMOON)
+   * Licensed MIT (/blob/master/LICENSE.txt)
+   */
+  if(!$.support.cors&&$.ajaxTransport&&window.XDomainRequest){var n=/^https?:\/\//i;var o=/^get|post$/i;var p=new RegExp('^'+location.protocol,'i');var q=/text\/html/i;var r=/\/json/i;var s=/\/xml/i;$.ajaxTransport('* text html xml json',function(i,j,k){if(i.crossDomain&&i.async&&o.test(i.type)&&n.test(i.url)&&p.test(i.url)){var l=null;var m=(j.dataType||'').toLowerCase();return{send:function(f,g){l=new XDomainRequest();if(/^\d+$/.test(j.timeout)){l.timeout=j.timeout}l.ontimeout=function(){g(500,'timeout')};l.onload=function(){var a='Content-Length: '+l.responseText.length+'\r\nContent-Type: '+l.contentType;var b={code:200,message:'success'};var c={text:l.responseText};try{if(m==='html'||q.test(l.contentType)){c.html=l.responseText}else if(m==='json'||(m!=='text'&&r.test(l.contentType))){try{c.json=$.parseJSON(l.responseText)}catch(e){b.code=500;b.message='parseerror'}}else if(m==='xml'||(m!=='text'&&s.test(l.contentType))){var d=new ActiveXObject('Microsoft.XMLDOM');d.async=false;try{d.loadXML(l.responseText)}catch(e){d=undefined}if(!d||!d.documentElement||d.getElementsByTagName('parsererror').length){b.code=500;b.message='parseerror';throw'Invalid XML: '+l.responseText;}c.xml=d}}catch(parseMessage){throw parseMessage;}finally{g(b.code,b.message,c,a)}};l.onprogress=function(){};l.onerror=function(){g(500,'error',{text:l.responseText})};var h='';if(j.data){h=($.type(j.data)==='string')?j.data:$.param(j.data)}l.open(i.type,i.url);l.send(h)},abort:function(){if(l){l.abort()}}}}})}
+
+  /*!
+   * Our Snippet Call
+   */
+  $.ajax({method: 'get',url: '//<%= hostname %>/snippets/<%= snippet_id %>/',context: document.body,success: function(data){$('script[src*="/api/publisher/"]').after(data);},error: function(){console.log('Oops! An error has occurred. Please try again!');}});
+}
+
+// Only do anything if jQuery isn't defined
+if (typeof jQuery == 'undefined') {
+
+  if (typeof $ == 'function') {
+    // warning, global var
+    thisPageUsingOtherJSLibrary = true;
+  }
+  
+  function getScript(url, success) {
+  
+    var script     = document.createElement('script');
+        script.src = url;
+    
+    var head = document.getElementsByTagName('head')[0],
+    done = false;
+    
+    // Attach handlers for all browsers
+    script.onload = script.onreadystatechange = function() {
+    
+      if (!done && (!this.readyState || this.readyState == 'loaded' || this.readyState == 'complete')) {
+      
+      done = true;
+        
+        // callback function provided as param
+        success();
+        
+        script.onload = script.onreadystatechange = null;
+        head.removeChild(script);
+        
+      };
+    
+    };
+    
+    head.appendChild(script);
+  
+  };
+  
+  getScript('http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js', function() {
+  
+    if (typeof jQuery=='undefined') {
+    
+      // Super failsafe - still somehow failed...
+    
+    } else {
+    
+      // jQuery loaded! Make sure to use .noConflict just in case
+      fancyCode();
+      
+      if (thisPageUsingOtherJSLibrary) {
+
+        // Run your jQuery Code
+
+      } else {
+
+        // Use .noConflict(), then run your jQuery Code
+
+      }
+    
+    }
+  
+  });
+  
+} else { // jQuery was already loaded
+  
+  // Run your jQuery Code
+  
+  jQuery(document).ready(function($) {
+    fancyCode();
+  });
+
+};

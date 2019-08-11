@@ -1,0 +1,11 @@
+@import "f-widget";
+@import "copyright";
+@import "shops";
+@import "footer_2019";
+
+.footer {
+  margin-top: 26px;
+  padding: 47px 0 20px;
+  color: #FFF;
+  background-color: $footer_bg;
+}

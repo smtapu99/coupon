@@ -1,0 +1,151 @@
+/*
+ * This is a manifest file that'll automatically include all the stylesheets available in this directory
+ * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
+ * the top of the compiled file, but it's generally better to create a new file per style scope.
+ *
+ * require_tree .
+ * require_self
+ */
+@import 'shared/variables';
+
+@import "../../../../flat_2016/assets/stylesheets/flat_2016/vendor/bootstrap.min.css";
+@import '../../../../flat_2016/assets/stylesheets/flat_2016/vendor/jasny-bootstrap.min.css';
+
+@import '../../../../flat_2016/assets/stylesheets/flat_2016/shared/mixins.scss';
+@import '../../../../flat_2016/assets/stylesheets/flat_2016/modules/header_image';
+@import '../../../../flat_2016/assets/stylesheets/flat_2016/modules/rotated_coupons';
+@import '../../../../flat_2016/assets/stylesheets/flat_2016/modules/featured_coupons';
+@import '../../../../flat_2016/assets/stylesheets/flat_2016/modules/featured_images';
+@import '../../../../flat_2016/assets/stylesheets/flat_2016/modules/headlines';
+@import '../../../../flat_2016/assets/stylesheets/flat_2016/modules/lists';
+@import '../../../../flat_2016/assets/stylesheets/flat_2016/shared/icons';
+@import '../../../../flat_2016/assets/stylesheets/flat_2016/shared/fonts';
+@import '../../../../flat_2016/assets/stylesheets/flat_2016/shared/backgrounds';
+@import '../../../../flat_2016/assets/stylesheets/flat_2016/shared/buttons';
+@import '../../../../flat_2016/assets/stylesheets/flat_2016/shared/cards';
+@import '../../../../flat_2016/assets/stylesheets/flat_2016/shared/colors';
+@import '../../../../flat_2016/assets/stylesheets/flat_2016/shared/helpers';
+@import '../../../../flat_2016/assets/stylesheets/flat_2016/shared/additional_info';
+@import '../../../../flat_2016/assets/stylesheets/flat_2016/shared/alerts';
+@import '../../../../flat_2016/assets/stylesheets/flat_2016/shared/borders';
+@import '../../../../flat_2016/assets/stylesheets/flat_2016/shared/flexslider';
+@import '../../../../flat_2016/assets/stylesheets/flat_2016/shared/card_as_seen_on';
+@import '../../../../flat_2016/assets/stylesheets/flat_2016/shared/card_breadcrumbs';
+@import '../../../../flat_2016/assets/stylesheets/flat_2016/shared/card_search_mobile';
+@import '../../../../flat_2016/assets/stylesheets/flat_2016/shared/card_shop_filter';
+@import '../../../../flat_2016/assets/stylesheets/flat_2016/shared/card_coupon_filter';
+@import '../../../../flat_2016/assets/stylesheets/flat_2016/shared/header';
+@import '../../../../flat_2016/assets/stylesheets/flat_2016/shared/header_search_results';
+@import '../../../../flat_2016/assets/stylesheets/flat_2016/shared/footer';
+@import '../../../../flat_2016/assets/stylesheets/flat_2016/shared/scroll_to_top';
+@import '../../../../flat_2016/assets/stylesheets/flat_2016/shared/newsletter';
+@import '../../../../flat_2016/assets/stylesheets/flat_2016/shared/sidebar';
+@import '../../../../flat_2016/assets/stylesheets/flat_2016/shared/modals';
+@import '../../../../flat_2016/assets/stylesheets/flat_2016/shared/shop_banner';
+@import '../../../../flat_2016/assets/stylesheets/flat_2016/shared/footer_2019';
+@import '../../../../flat_2016/assets/stylesheets/flat_2016/shared/flyout';
+@import '../../../../flat_2016/assets/stylesheets/flat_2016/bookmarks/card_starter_guide';
+@import '../../../../flat_2016/assets/stylesheets/flat_2016/campaigns/sem';
+@import '../../../../flat_2016/assets/stylesheets/flat_2016/widget/image';
+@import '../../../../flat_2016/assets/stylesheets/flat_2016/widget/text';
+@import '../../../../flat_2016/assets/stylesheets/flat_2016/widget/top_x_coupons';
+@import '../../../../flat_2016/assets/stylesheets/flat_2016/widget/shop_list_columns';
+@import '../../../../flat_2016/assets/stylesheets/flat_2016/categories/card_back_to';
+@import '../../../../flat_2016/assets/stylesheets/flat_2016/categories/card_categories_index';
+@import '../../../../flat_2016/assets/stylesheets/flat_2016/categories/card_categories_description';
+@import '../../../../flat_2016/assets/stylesheets/flat_2016/categories/card_category_description';
+@import '../../../../flat_2016/assets/stylesheets/flat_2016/categories/card_category_featured_shops';
+@import '../../../../flat_2016/assets/stylesheets/flat_2016/categories/card_see_more_categories';
+@import '../../../../flat_2016/assets/stylesheets/flat_2016/cookies_eu/cookies_eu';
+@import '../../../../flat_2016/assets/stylesheets/flat_2016/coupons/card_coupons_list';
+@import '../../../../flat_2016/assets/stylesheets/flat_2016/coupons/card_coupons_grid';
+@import '../../../../flat_2016/assets/stylesheets/flat_2016/coupons/coupon_cta';
+@import '../../../../flat_2016/assets/stylesheets/flat_2016/coupons/card_list_coupon_type';
+@import '../../../../flat_2016/assets/stylesheets/flat_2016/coupons/card_pagination';
+@import '../../../../flat_2016/assets/stylesheets/flat_2016/coupons/coupon_banner';
+@import '../../../../flat_2016/assets/stylesheets/flat_2016/coupons/coupons_as_items';
+@import '../../../../flat_2016/assets/stylesheets/flat_2016/coupons/clickout_redirect';
+@import '../../../../flat_2016/assets/stylesheets/flat_2016/coupons/dropdown_list_coupon_type';
+@import '../../../../flat_2016/assets/stylesheets/flat_2016/mail_forms/card_contact_forms';
+@import '../../../../flat_2016/assets/stylesheets/flat_2016/pages/card_pages_show';
+@import '../../../../flat_2016/assets/stylesheets/flat_2016/pages/home';
+@import '../../../../flat_2016/assets/stylesheets/flat_2016/shops/featured_shops';
+@import '../../../../flat_2016/assets/stylesheets/flat_2016/shops/seo_text_container';
+@import '../../../../flat_2016/assets/stylesheets/flat_2016/shops/card_empty_shop';
+@import '../../../../flat_2016/assets/stylesheets/flat_2016/shops/card_empty_shops';
+@import '../../../../flat_2016/assets/stylesheets/flat_2016/shops/card_expired_coupons_list';
+@import '../../../../flat_2016/assets/stylesheets/flat_2016/shops/card_filter_by_category';
+@import '../../../../flat_2016/assets/stylesheets/flat_2016/shops/more_from_this_shop';
+@import '../../../../flat_2016/assets/stylesheets/flat_2016/shops/related_items';
+@import '../../../../flat_2016/assets/stylesheets/flat_2016/shops/popular_shops';
+@import '../../../../flat_2016/assets/stylesheets/flat_2016/shops/card_shops_index';
+@import '../../../../flat_2016/assets/stylesheets/flat_2016/shops/card_shop_header';
+@import '../../../../flat_2016/assets/stylesheets/flat_2016/shops/shop_rating';
+// Campaign Templates
+@import '../../../../flat_2016/assets/stylesheets/flat_2016/campaigns/themed';
+
+body {
+  background-attachment: $background-attachment;
+  background-color: $color-body-bg;
+  background-position: $background-position;
+  background-repeat: $background-repeat;
+  background-size: $background-size;
+  font-family: "Open Sans", "Helvetica Neue", Arial, Helvetica, sans-serif;
+  text-rendering: optimizeLegibility;
+}
+
+body.only-content {
+  padding-top: 28px;
+}
+
+b,
+strong {
+  font-weight: bold;
+}
+
+.form-control {
+  border-radius: 0;
+}
+
+.text-ellipsis {
+  @include flat-truncate;
+}
+
+.btn-group-lg > .btn,
+.btn-lg {
+  border-radius: 0 !important;
+}
+
+.bold-text {
+  font-weight: bold;
+}
+
+.privacy_policy {
+  font-weight: normal;
+
+  a {
+    color: #FFF;
+    text-decoration: underline;
+  }
+}
+
+.loader {
+  border: 4px solid #F3F3F3;
+  border-top: 4px solid #000;
+  border-bottom: 4px solid #000;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+

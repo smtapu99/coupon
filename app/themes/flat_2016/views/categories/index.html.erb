@@ -1,0 +1,9 @@
+<%= render partial: 'categories/index/page_headlines' %>
+
+<% if @categories.present? %>
+
+  <%= render partial: 'categories/index/card_categories', locals: {categories: @categories} %>
+
+  <%= render partial: 'categories/index/card_categories_description' %>
+
+<% end %>

@@ -1,0 +1,128 @@
+<%
+
+  active_item = case params[:type]
+  when 'popular'
+    "<i class='color-royal pull-left roberto roberto-trophy'></i> #{t(:COUPON_LIST_NAV_POPULAR, default: 'COUPON_LIST_NAV_POPULAR')}".html_safe
+  when 'exclusive'
+    "<i class='color-ready pull-left roberto roberto-star-empty'></i> #{t(:COUPON_LIST_NAV_EXCLUSIVE, default: 'COUPON_LIST_NAV_EXCLUSIVE')}".html_safe
+  when 'new'
+    "<i class='color-sky pull-left roberto roberto-flash'></i> #{t(:COUPON_LIST_NAV_NEW, default: 'COUPON_LIST_NAV_NEW')}".html_safe
+  when 'top'
+    "<i class='color-berry pull-left roberto roberto-heart'></i> #{t(:COUPON_LIST_NAV_TOP, default: 'COUPON_LIST_NAV_TOP')}".html_safe
+  when 'free_delivery'
+    "<i class='color-freedom pull-left roberto roberto-truck'></i> #{t(:COUPON_LIST_NAV_FREE_DELIVERY, default: 'COUPON_LIST_NAV_FREE_DELIVERY')}".html_safe
+  else
+    "<i class='color-ashes pull-left roberto roberto-runner'></i> #{t(:COUPON_LIST_NAV_EXPIRING, default: 'COUPON_LIST_NAV_EXPIRING')}".html_safe
+  end
+
+%>
+
+<div class="dropdown-list-coupon-type pannacotta">
+
+  <h2 class="text-center dropdown-list-coupon-type__title"><%= t(:FILTER_TOP_HEADLINE, default: 'FILTER_TOP_HEADLINE') %></h2>
+
+  <!-- /.text-center -->
+
+  <div class="dropdown">
+
+    <button class="btn btn-block btn-default dropdown-toggle" type="button" id="dropdown-menu-list-coupon-type" data-toggle="dropdown" aria-expanded="true">
+
+      <%= active_item %>
+
+      <i class="color-sky pull-right roberto roberto-triangle-bottom"></i>
+
+    </button>
+
+    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdown-menu-list-coupon-type">
+
+      <% unless params[:type] === 'popular' %>
+
+        <li role="presentation">
+
+          <a href="<%= dynamic_url_for 'coupons', 'index', type: 'popular' %>" role="menuitem" tabindex="-1">
+
+            <%= t(:COUPON_LIST_NAV_POPULAR, default: 'COUPON_LIST_NAV_POPULAR') %>
+
+          </a>
+
+        </li>
+
+      <% end %>
+
+      <% unless Setting::get('publisher_site.show_exclusive', default: 1).to_i.zero? || params[:type] === 'exclusive' %>
+
+        <li role="presentation">
+
+          <a href="<%= dynamic_url_for 'coupons', 'index', type: 'exclusive' %>" role="menuitem" tabindex="-1">
+
+            <span><%= t(:COUPON_LIST_NAV_EXCLUSIVE, default: 'COUPON_LIST_NAV_EXCLUSIVE') %></span>
+
+          </a>
+
+        </li>
+
+      <% end %>
+
+      <% unless params[:type] === 'new' %>
+
+        <li role="presentation">
+
+          <a href="<%= dynamic_url_for 'coupons', 'index', type: 'new' %>" role="menuitem" tabindex="-1">
+
+            <%= t(:COUPON_LIST_NAV_NEW, default: 'COUPON_LIST_NAV_NEW') %>
+
+          </a>
+
+        </li>
+
+      <% end %>
+
+      <% unless params[:type] === 'top' %>
+
+        <li role="presentation">
+
+          <a href="<%= dynamic_url_for 'coupons', 'index', type: 'top' %>" role="menuitem" tabindex="-1">
+
+            <%= t(:COUPON_LIST_NAV_TOP, default: 'COUPON_LIST_NAV_TOP') %>
+
+          </a>
+
+        </li>
+
+      <% end %>
+
+      <% unless params[:type] === 'free_delivery' %>
+
+        <li role="presentation">
+
+          <a href="<%= dynamic_url_for 'coupons', 'index', type: 'free_delivery' %>" role="menuitem" tabindex="-1">
+
+            <%= t(:COUPON_LIST_NAV_FREE_DELIVERY, default: 'COUPON_LIST_NAV_FREE_DELIVERY') %>
+
+          </a>
+
+        </li>
+
+      <% end %>
+
+      <% unless params[:type] === 'expiring' %>
+
+        <li role="presentation">
+
+          <a href="<%= dynamic_url_for 'coupons', 'index', type: 'expiring' %>" role="menuitem" tabindex="-1">
+
+            <%= t(:COUPON_LIST_NAV_EXPIRING, default: 'COUPON_LIST_NAV_EXPIRING') %>
+
+          </a>
+
+        </li>
+
+      <% end %>
+
+    </ul>
+
+  </div>
+
+</div>
+
+<!-- /.dropdown-list-coupon-type pannacotta -->

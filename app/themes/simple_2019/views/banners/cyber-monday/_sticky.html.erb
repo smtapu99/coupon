@@ -1,0 +1,272 @@
+<style>
+  /*CyberMonday*/
+  a.sticky-bar {
+    z-index: 998;
+    background: #000 url(<%=asset_path('flat_2016/cybermonday-banner-bg.jpg') %>) no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 80px;
+    bottom: 0;
+    left: 0;
+    position: fixed;
+    color: #fff;
+    transform: translateY(120px);
+    transition: transform ease-in-out .3s;
+    will-change: transform;
+  }
+
+  a.sticky-bar:hover,
+  a.sticky-bar:visited,
+  a.sticky-bar:active{
+    color: #fff;
+    text-decoration: none;
+  }
+
+  .sticky-bar .container {
+    background: transparent;
+  }
+
+  .sticky-bar__close {
+    position: absolute;
+    right: 8px;
+    top: -40px;
+    display: block;
+    text-align: center;
+    font-size: 13px;
+    cursor: pointer;
+    height: 30px;
+    width: 30px;
+    background: #fff;
+    border-radius: 50%;
+    padding: 6px;
+  }
+
+  .sticky-bar__close svg {
+    vertical-align: top;
+  }
+
+  .sticky-bar__close path {
+    fill: #758897
+  }
+
+  .sticky-bar__wrapper {
+    width: 100%;
+    height: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: distribute;
+    justify-content: space-around;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+  }
+
+  .sticky-bar__label {
+    max-height: 63px;
+    -ms-flex-item-align: end;
+    align-self: flex-end;
+  }
+
+  .sticky-bar__header {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .sticky-bar__name {
+    font-family: 'Arial', sans-serif;
+    text-shadow: 1px 1px 0 #b257d4, -1px -1px 0 #206392;
+    text-transform: uppercase;
+    font-weight: 900;
+    font-size: 25px;
+    line-height: 1;
+  }
+
+  .sticky-bar__name small {
+    font-size: 11px;
+  }
+
+  .sticky-bar__sale {
+    max-width: 103px;
+    margin-top: 2px;
+  }
+
+  .sticky-bar .countdown-time {
+    font-size: 61px;
+    font-weight: 700;
+    text-shadow: 0 0 10px #fff;
+    line-height: 1;
+    font-family: "Open Sans", "Helvetica Neue", Arial, Helvetica, sans-serif;
+  }
+
+  .sticky-bar .countdown-labels {
+    font-size: 10px;
+    text-transform: uppercase;
+  }
+
+  .sticky-bar__cta {
+    -ms-flex-item-align: center;
+    align-self: center;
+    background-color: #BB6BD9;
+    color: #fff;
+    display: inline-block;
+    padding: 10px 25px;
+    margin-right: 57px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+
+  .sticky-bar__cta:hover {
+    background-color: #a15fbd;
+    text-decoration: none;
+    color: #fff;
+  }
+
+  @media (max-width: 992px) {
+    .sticky-bar__cta {
+      margin-right: 0;
+    }
+
+    .sticky-bar__label {
+      display: none;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .sticky-bar__wrapper {
+      padding: 0 10px;
+    }
+
+    .sticky-bar__countdown {
+      display: none;
+    }
+
+    .sticky-bar__cta {
+      padding: 10px 14px;
+    }
+    .sticky-bar .container,
+    .sticky-bar .row {
+      height: 100%;
+    }
+  }
+</style>
+
+<script>
+  window.sticky_banner = {
+    startDate: "<%= banner.start_time %>",
+    endDate: "<%= banner.end_time %>",
+    id: "<%= banner.id %>",
+    <%- if banner.countdown_date.present? -%>
+    countdownDate: "<%= banner.countdown_date %>T23:59:59"
+    <%- end -%>
+  };
+</script>
+
+<a href="<%= banner.target_url %>" class="sticky-bar" data-banner-event-action="<%= banner_event_action(banner) %>" data-banner-event-label="<%= banner.theme %>">
+
+  <span class="sticky-bar__close">
+
+    <?xml version="1.0" encoding="utf-8"?><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1490 1322q0 40-28 68l-136 136q-28 28-68 28t-68-28l-294-294-294 294q-28 28-68 28t-68-28l-136-136q-28-28-28-68t28-68l294-294-294-294q-28-28-28-68t28-68l136-136q28-28 68-28t68 28l294 294 294-294q28-28 68-28t68 28l136 136q28 28 28 68t-28 68l-294 294 294 294q28 28 28 68z"/></svg>
+
+  </span>
+
+  <div class="container">
+
+    <div class="row">
+
+      <div class="sticky-bar__wrapper">
+
+        <img src="<%= asset_path('flat_2016/cybermonday-logo.png') %>" alt="" class="sticky-bar__label">
+
+        <div class="sticky-bar__header">
+
+          <div class="sticky-bar__name">
+            <small> <%= banner.caption_heading %> </small>
+            <br>
+            <%= banner.caption_body %>
+          </div>
+
+          <!--<img src="<%= asset_path('flat_2016/cybermonday-logo.png') %>" alt="" class="sticky-bar__sale">-->
+
+        </div>
+
+        <div class="sticky-bar__countdown">
+
+          <div id="counter">
+
+            <table id="countdown" class="sticky text-center">
+
+              <tbody>
+
+              <tr class="countdown-time">
+
+                <td><span class="days">00</span></td>
+
+                <td><span class="delimiter">:</span></td>
+
+                <td><span class="hours">00</span></td>
+
+                <td><span class="delimiter">:</span></td>
+
+                <td><span class="minutes">00</span></td>
+
+                <td><span class="delimiter">:</span></td>
+
+                <td><span class="seconds">00</span></td>
+
+              </tr>
+
+              <tr class="countdown-labels">
+
+                <td><%= t(:days, default: 'Days') %></td>
+
+                <td></td>
+
+                <td><%= t(:hour_short, default: 'h') %></td>
+
+                <td></td>
+
+                <td><%= t(:minute_short, default: 'm') %></td>
+
+                <td></td>
+
+                <td><%= t(:second_short, default: 's') %></td>
+
+              </tr>
+
+              </tbody>
+
+            </table>
+
+          </div>
+
+        </div>
+        <!-- ./sticky-bar__countdown -->
+
+        <span class="sticky-bar__cta" href="#"> <%= banner.button_text %> </span>
+
+      </div>
+
+      <!-- ./sticky-bar__wrapper -->
+
+    </div>
+
+    <!-- ./row -->
+
+  </div>
+
+  <!-- ./container -->
+
+</a>
+
+<!-- ./sticky-bar -->
+

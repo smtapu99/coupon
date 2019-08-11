@@ -1,0 +1,30 @@
+.pannacotta {
+  &.card-back-to {
+    border: none;
+
+    .card-content {
+      a {
+        background-color: $color-sky;
+        border: 1px solid $color-sky;
+        border-radius: 2px;
+        color: #FFF;
+        display: block;
+        font-size: 14px;
+        font-weight: bold;
+        padding: 25px;
+        text-align: center;
+        text-transform: uppercase;
+
+        transition: background-color 0.3s ease, border-color 0.3s ease;
+
+        &:focus,
+        &:hover {
+          background-color: lighten($color-sky, 10%);
+          border-color: lighten($color-sky, 10%);
+          color: #FFF;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}

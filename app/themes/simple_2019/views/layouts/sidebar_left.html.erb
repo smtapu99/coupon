@@ -1,0 +1,102 @@
+<% content_for :content do %>
+
+  <%- if content_for? :before_content -%>
+
+    <%= yield(:before_content) %>
+
+  <%- end -%>
+
+  <div class="container">
+
+    <div class="row">
+
+      <div class="col">
+
+        <% if @h1.present? %>
+
+          <h1 class="page-title"><%= @h1.html_safe %></h1>
+
+        <% end %>
+
+        <% if @page_subtitle.present? %>
+
+            <p class="page-subtitle"><%= @page_subtitle.html_safe %></p>
+
+        <% end %>
+
+      </div>
+
+    </div>
+
+    <%- if content_for? :after_headings -%>
+
+      <%= yield(:after_headings) %>
+
+    <%- end -%>
+
+    <div class="row">
+
+      <!-- #content -->
+
+      <div class="col-lg-8" id="content" role="main">
+
+        <%= yield %>
+
+      </div>
+
+      <!-- #/content -->
+
+      <% if content_for?(:sidebar) %>
+
+        <!-- .sidebar -->
+
+        <div class="col-lg-4">
+
+          <%- if content_for?(:before_sidebar) -%>
+
+            <%= yield(:before_sidebar) %>
+
+          <%- end -%>
+
+          <div class="sidebar" id="sidebar" role="complementary">
+
+            <% if !is_shops_show? && !is_home? && (sidebar_banner.try(:categories).present? || sidebar_banner.try(:shops).present?) %>
+
+              <%= render partial: "banners/sidebar_banner" %>
+            <% elsif is_coupons_index? %>
+              <%= render partial: "banners/sidebar_banner" %>
+            <%- end -%>
+
+            <%= yield(:sidebar) %>
+
+          </div>
+
+        </div>
+
+        <!-- ./sidebar -->
+
+      <% end %>
+
+    </div>
+
+    <%- if content_for? :after_content -%>
+
+      <div class="row">
+
+        <div class="col">
+
+          <%= yield :after_content %>
+
+        </div>
+
+      </div>
+      <!-- /.row -->
+
+    <%- end -%>
+
+  </div>
+  <!-- /.container -->
+
+<% end %>
+
+<%= render template: "layouts/#{@layout}" %>

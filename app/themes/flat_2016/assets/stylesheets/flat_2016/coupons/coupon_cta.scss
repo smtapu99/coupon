@@ -1,0 +1,78 @@
+$color-ready-dark: darken($color-ready, 10%);
+$color-ready-light: lighten($color-ready, 10%);
+
+.coupon-cta {
+  width: 100%;
+  padding: 20px 0;
+  text-align: center;
+
+  .card-coupons-grid & {
+    padding: 0;
+  }
+
+  @media (min-width: 768px) {
+    padding-top: 0;
+  }
+
+  @media (min-width: 992px) {
+    padding-top: 20px;
+  }
+
+  @media (min-width: 1200px) {
+    padding-top: 0;
+  }
+}
+
+.o-button {
+  display: inline-block;
+  min-width: 175px;
+  height: 40px;
+  background-color: $color-ready;
+  border-radius: 3px;
+  box-shadow: inset -3px -3px 0 rgba(0, 0, 0, 0.2);
+  color: white;
+  text-transform: uppercase;
+  font-weight: 700;
+  line-height: 40px;
+  text-align: center;
+  padding: 0 10px;
+  white-space: nowrap;
+  transition: background-color 0.5s;
+  cursor: pointer;
+  max-width: 90%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  position: relative;
+  left: auto;
+  right: auto;
+  margin: 0 auto;
+  font-size: 11px;
+  padding-right: 20px;
+
+  &:hover {
+    background-color: $color-ready-dark;
+  }
+}
+
+.o-button.c-button {
+  padding: 0 50px 0 8px;
+
+  span.code {
+    display: inline-block;
+    background: lighten($color-ready, 20%);
+    color: #000;
+    position: absolute;
+    right: 0;
+    width: 43px;
+    line-height: 40px;
+    padding-top: 2px;
+    height: 40px;
+    text-align: left;
+    padding-left: 10px;
+    box-shadow: inset 7px 0 9px -6px rgba(0, 0, 0, 0.4);
+  }
+}
+
+.show-coupon-details {
+  cursor: pointer;
+}

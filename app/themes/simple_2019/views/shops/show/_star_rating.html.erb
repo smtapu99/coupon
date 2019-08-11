@@ -1,0 +1,87 @@
+<% existed_vote ||= nil %>
+
+<%- if shop.total_votes > 0 -%>
+
+  <% if Setting::get('publisher_site.hide_star_rating') == '1' %>
+
+    <div class="star-rating <%= 'star-rating--voted' if existed_vote.present? %>" data-shop-id="<%= shop.id %>" data-votes="<%= existed_vote.present? ? existed_vote.stars : shop.rating.round %>" data-total-stars="<%= shop.total_stars %>">
+
+  <% else %>
+
+    <div class='loader loader--star'></div>
+
+    <div class="star-rating <%= 'star-rating--voted' if existed_vote.present? %>" data-shop-id="<%= shop.id %>" data-votes="<%= existed_vote.present? ? existed_vote.stars : shop.rating.round %>" data-total-stars="<%= shop.total_stars %>" style="display:none">
+
+  <% end %>
+
+<%- else -%>
+
+  <div class="star-rating <%= 'star-rating--voted' if existed_vote.present? %>" data-shop-id="<%= shop.id %>" data-votes="<%= existed_vote.present? ? existed_vote.stars : shop.rating.round %>" data-total-stars="<%= shop.total_stars %>">
+
+<%- end -%>
+
+<ul class="star-rating__list">
+
+  <li class="star-rating__item">
+
+      <span class="star-rating__star" data-star="1">
+
+        <i class="icon-star-empty"></i>
+
+      </span>
+
+  </li>
+
+  <li class="star-rating__item">
+
+      <span class="star-rating__star" data-star="2">
+
+        <i class="icon-star-empty"></i>
+
+      </span>
+
+  </li>
+
+  <li class="star-rating__item">
+
+      <span class="star-rating__star" data-star="3">
+
+        <i class="icon-star-empty"></i>
+
+      </span>
+
+  </li>
+
+  <li class="star-rating__item">
+
+      <span class="star-rating__star" data-star="4">
+
+        <i class="icon-star-empty"></i>
+
+      </span>
+
+  </li>
+
+  <li class="star-rating__item">
+
+      <span class="star-rating__star" data-star="5">
+
+        <i class="icon-star-empty"></i>
+
+      </span>
+
+  </li>
+
+</ul>
+
+
+<p class='star-rating__text' style="display: none;"><%= t(:THANK_YOU_FOR_VOTING_TEXT, default: 'THANK_YOU_FOR_VOTING_TEXT') if existed_vote.present? %></p>
+
+<p>
+  <span class="star-rating__count" data-reviewCount="<%= shop.total_votes %>"></span> <%= t(:RATINGS_WITH_AN_AVERAGE_OF, default: "ratings with an average of") %>
+  <span class="star-rating__value" data-separator="<%= translate_from_file('number.format.separator', default: ',') %>" data-ratingValue="<%= (shop.formatted_rating if shop.total_votes != 0) || 0 %>"></span>
+  <b><%= t(:OF_5_STARS, default: "of 5 stars") %></b>.</p>
+
+</div>
+
+<!-- /.star-rating -->

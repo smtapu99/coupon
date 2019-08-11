@@ -1,0 +1,42 @@
+<% if sub_pages.present? %>
+
+  <div class="more-from-this-shop pannacotta hidden-xs hidden-sm">
+
+    <h3><%= t(:MORE_FROM_THIS_SHOP, default: 'More From This Shop') %></h3>
+
+
+    <!-- /.card-header -->
+
+    <div class="card-content">
+
+      <ul class="list-unstyled">
+
+        <% sub_pages.each do |shop| %>
+
+          <% if shop.name.present? %>
+
+            <li class="text-ellipsis">
+
+              <span class="list-circle"></span>
+
+              <%= link_to shop.name, dynamic_campaign_url_for(shop) %>
+
+            </li>
+
+          <% end %>
+
+        <% end %>
+
+      </ul>
+
+      <!-- /.list-unstyled -->
+
+    </div>
+
+    <!-- /.card-content -->
+
+  </div>
+
+  <!-- /.card card-more-from-this-shop pannacotta -->
+
+<% end %>

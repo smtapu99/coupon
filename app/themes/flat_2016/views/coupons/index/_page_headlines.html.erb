@@ -1,0 +1,36 @@
+<% content_for :page_headlines do %>
+
+  <h1 class="page-title">
+
+  <%
+
+    data_page_style = case params[:type]
+    when 'popular'
+      {color: 'royal', icon: 'trophy'}
+    when 'exclusive'
+      {color: 'ready', icon: 'star-empty'}
+    when 'new'
+      {color: 'sky', icon: 'flash'}
+    when 'top'
+      {color: 'berry', icon: 'heart'}
+    when 'free_delivery'
+      {color: 'freedom', icon: 'truck'}
+    else
+      {color: 'ashes', icon: 'runner'}
+    end
+      
+  %>
+
+  <i class="roberto roberto-<%= data_page_style[:icon] %> color-<%= data_page_style[:color] %>"></i>
+
+    <%= data_page_headlines[:title] %>
+
+  </h1>
+
+  <!-- /.page-title -->
+
+  <h2 class="page-subtitle"><%= data_page_headlines[:subtitle] %></h2>
+
+  <!-- /.page-subtitle -->
+
+<% end %>

@@ -1,0 +1,58 @@
+<div class="form-group">
+  <%= ff.label :subtitle, :class => 'col-md-2 control-label' %>
+  <div class="col-md-10">
+    <%= ff.text_field :subtitle, :class => 'form-control text_field', required: true %>
+  </div>
+</div>
+
+<hr>
+
+
+<div class="form-group">
+  <%= ff.label 'Background color', :class => 'col-md-2 control-label' %>
+  <div class="col-md-10">
+    <%= ff.select :background_color, [['default', ''], ['White Smokey LVL 1', '#e5e5e5'], ['White Smokey LVL 2', '#c4c4c4'], ['White Smokey LVL 3', '#9d9d9d']], {}, {class: 'form-control'}  %>
+  </div>
+  <div class="col-md-10 col-md-offset-2 shop-bubbles__helper">Some of the numbers (9, 12, 15, 18, 21) of items look bad
+    and we will remove the last one to correct number. Current numbers of items -
+    <span class="shop-bubbles__items-amount"></span></div>
+</div>
+
+<div class="form-group">
+  <%= ff.label 'Shop', :class => 'col-md-2 control-label' %>
+  <div class="col-md-10">
+    <%= ff.select :shops, Shop.by_site.active.with_logo.order_by_set(ff.object.value[:shops]).collect { |x| [x.title, x.id] }, { include_blank: true }, { :multiple => true, class: 'select2 form-control' } %>
+  </div>
+  <div class="col-md-10 col-md-offset-2 shop-bubbles__helper">Some of the numbers (9, 12, 15, 18, 21) of items look bad
+    and we will remove the last one to correct number. Current numbers of items -
+    <span class="shop-bubbles__items-amount"></span></div>
+</div>
+
+
+<script>
+  $widget = $("#widget_shops");
+
+  $widget.select2({
+    allowClear: true,
+    placeholder: 'Type your shop here... ',
+    width: 'resolve',
+    maximumSelectionSize: 26
+  }).change(function() {
+    countItems($(this))
+
+  });
+
+  function countItems(items) {
+
+    var $placeholder = $(".shop-bubbles__items-amount");
+    var amount = items.val().length;
+
+    var colour = amount > 7 && amount % 3 === 0 ? "#ff0000" : "#333";
+    $placeholder.css("color", colour).text(amount);
+  }
+
+  countItems($widget);
+
+  $widget.select2Sortable({bindOrder: 'sortableStop'});
+
+</script>

@@ -1,0 +1,111 @@
+<div class="widget">
+
+  <div class="widget-header">
+
+    <h4 class="widget-title"><%= t(:NAVIGATION_ABOUT_PANNACOTTA, default: @site.site.name) %></h4>
+
+    <!-- /.widget-title -->
+
+  </div>
+
+  <!-- /.widget-header -->
+
+  <div class="widget-content">
+
+    <ul class="list-unstyled">
+
+      <% if Setting::get('legal_pages.about_us_url').present? %>
+
+        <li>
+
+          <span class="list-circle"></span>
+
+          <%= link_to t(:ABOUT_US, default: 'About Us'), Setting::get('legal_pages.about_us_url'), rel: 'nofollow' %>
+
+        </li>
+
+      <% end %>
+
+      <% if Setting::get('legal_pages.press_url').present? %>
+
+        <li>
+
+          <span class="list-circle"></span>
+
+          <%= link_to t(:Press, default: 'Press'), Setting::get('legal_pages.press_url'), rel: 'nofollow' %>
+
+        </li>
+
+      <% end %>
+
+      <% if Setting::get('legal_pages.imprint_url').present? %>
+
+        <li>
+
+          <span class="list-circle"></span>
+
+          <%= link_to t(:IMPRINT, default: 'Imprint'), Setting::get('legal_pages.imprint_url'), rel: 'nofollow' %>
+
+        </li>
+
+      <% end %>
+
+      <% if Setting::get('legal_pages.terms_and_conditions_url').present? %>
+
+        <li>
+
+          <span class="list-circle"></span>
+
+          <%= link_to t(:TERMS_AND_CONDITIONS, default: 'Terms of Use'), Setting::get('legal_pages.terms_and_conditions_url'), rel: 'nofollow' %>
+
+        </li>
+
+      <% end %>
+
+      <% if Setting::get('legal_pages.privacy_policy_url').present? %>
+
+        <li>
+
+          <span class="list-circle"></span>
+
+          <%= link_to t(:PRIVACY_POLICY, default: 'Privacy Policy'), Setting::get('legal_pages.privacy_policy_url'), rel: 'nofollow' %>
+
+        </li>
+
+      <% end %>
+
+      <% if Setting::get('legal_pages.cookie_policy_url').present? %>
+
+        <li>
+
+          <span class="list-circle"></span>
+
+          <%= link_to t(:COOKIE_POLICY, default: 'Cookie Policy'), Setting::get('legal_pages.cookie_policy_url'), rel: 'nofollow' %>
+
+        </li>
+
+      <% end %>
+
+      <% if Setting::get('legal_pages.faq_url').present? %>
+
+        <li>
+
+          <span class="list-circle"></span>
+
+          <%= link_to t(:FAQ, default: 'FAQ'), Setting::get('legal_pages.faq_url'), rel: 'nofollow' %>
+
+        </li>
+
+      <% end %>
+
+    </ul>
+
+    <!-- /.list-unstyled -->
+
+  </div>
+
+  <!-- /.widget-content -->
+
+</div>
+
+<!-- /.widget -->

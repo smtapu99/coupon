@@ -1,0 +1,46 @@
+<%- info_fields = info_fields_string(coupon) -%>
+<%- description = strip_tags(coupon.description) -%>
+
+<div class="coupon-description">
+
+  <%- if description.present? -%>
+
+    <%- if description.length > 80 -%>
+
+      <span class="text-truncated"><%= truncate(description, length: 75, escape: false) %></span>
+
+    <%- else -%>
+
+      <span class="text-truncated"><%= description %></span>
+
+    <%- end -%>
+
+  <%- else -%>
+
+    <span class="text-truncated" style="display: block;"></span>
+
+  <%- end -%>
+
+  <%- if (description.present? && description.length > 80) || info_fields.present?-%>
+
+    <div class="text-full hidden">
+
+      <%= description.gsub(/<\/?[^>]*>/, '').html_safe if description.present? %>
+
+      <%= info_fields.html_safe if info_fields.present? %>
+
+    </div>
+
+    <span class="show-coupon-details text-ellipsis" data-more-text="<%= t(:MORE_DETAILS, default: 'More details') %>" data-less-text="<%= t(:LESS_DETAILS, default: 'Less details') %>">
+
+      <i class="fa fa-caret-square-o-down"></i>
+
+      <span><%= t(:MORE_DETAILS, default: 'More details') %></span>
+
+    </span>
+
+  <%- end -%>
+
+</div>
+
+<!-- /.coupon-description hidden -->

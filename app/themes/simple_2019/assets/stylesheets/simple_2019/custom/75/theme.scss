@@ -1,0 +1,38 @@
+$xs: '(max-width: 575px)' !default;
+$sm: '(max-width: 767px)' !default;
+$md: '(max-width: 991px)' !default;
+$lg: '(max-width: 1199px)' !default;
+
+$min-xs: '(min-width: 576px)' !default;
+$min-sm: '(min-width: 768px)' !default;
+$min-md: '(min-width: 992px)' !default;
+$min-lg: '(min-width: 1200px)' !default;
+
+// Labels
+
+// general
+$star-one: "\e916";
+
+// desktop
+$color-exclusive-desktop: #FFF;
+$background-color-exclusive-desktop: #00797E;
+$color-exclusive-large-desktop: #00797E;
+$background-color-exclusive-large-desktop: #FFF;
+$border-exclusive-desktop: none;
+$border-radius-desktop: 0;
+$color-editor-desktop: #00797E;
+$color-editor-large-desktop: #FFF;
+$border-top-normal: 2px solid #00797E;
+$editorstag-normal-desktop: url("data:image/svg+xml,%0A%3Csvg width='19' height='25' viewBox='0 0 19 25' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg filter='url(%23filter0_d)'%3E%3Cpath d='M2 21V2.28882e-05H17V21L9.14286 15.4866L2 21Z' fill='white'/%3E%3Cpath d='M2 21V2.28882e-05H17V21L9.14286 15.4866L2 21Z' fill='white'/%3E%3Cpath d='M2 21V2.28882e-05H17V21L9.14286 15.4866L2 21Z' fill='white'/%3E%3Cpath d='M2 21V2.28882e-05H17V21L9.14286 15.4866L2 21Z' fill='%2300797E'/%3E%3C/g%3E%3Cdefs%3E%3Cfilter id='filter0_d' x='0' y='2.28882e-05' width='19' height='25' filterUnits='userSpaceOnUse' color-interpolation-filters='sRGB'%3E%3CfeFlood flood-opacity='0' result='BackgroundImageFix'/%3E%3CfeColorMatrix in='SourceAlpha' type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0'/%3E%3CfeOffset dy='2'/%3E%3CfeGaussianBlur stdDeviation='1'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0'/%3E%3CfeBlend mode='normal' in2='BackgroundImageFix' result='effect1_dropShadow'/%3E%3CfeBlend mode='normal' in='SourceGraphic' in2='effect1_dropShadow' result='shape'/%3E%3C/filter%3E%3C/defs%3E%3C/svg%3E");
+$editorstag-large-desktop: url("data:image/svg+xml,%0A%3Csvg width='23' height='30' viewBox='0 0 23 30' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg filter='url(%23filter0_d)'%3E%3Cpath d='M2 25.2934V2.90187e-05H21V25.2934L11.0476 18.6528L2 25.2934Z' fill='white'/%3E%3Cpath d='M2 25.2934V2.90187e-05H21V25.2934L11.0476 18.6528L2 25.2934Z' fill='white'/%3E%3Cpath d='M2 25.2934V2.90187e-05H21V25.2934L11.0476 18.6528L2 25.2934Z' fill='white'/%3E%3Cpath d='M2 25.2934V2.90187e-05H21V25.2934L11.0476 18.6528L2 25.2934Z' fill='white'/%3E%3C/g%3E%3Cdefs%3E%3Cfilter id='filter0_d' x='0' y='3.05176e-05' width='23' height='29.2934' filterUnits='userSpaceOnUse' color-interpolation-filters='sRGB'%3E%3CfeFlood flood-opacity='0' result='BackgroundImageFix'/%3E%3CfeColorMatrix in='SourceAlpha' type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0'/%3E%3CfeOffset dy='2'/%3E%3CfeGaussianBlur stdDeviation='1'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0'/%3E%3CfeBlend mode='normal' in2='BackgroundImageFix' result='effect1_dropShadow'/%3E%3CfeBlend mode='normal' in='SourceGraphic' in2='effect1_dropShadow' result='shape'/%3E%3C/filter%3E%3C/defs%3E%3C/svg%3E%0A");
+// mobile
+$color-exclusive-mobile: #FFF;
+$background-color-exclusive-mobile: #00797E;
+$color-exclusive-large-mobile: #00797E;
+$background-color-exclusive-large-mobile: #FFF;
+$border-exclusive-mobile: none;
+$border-radius-mobile: 0;
+$color-editor-mobile: #00797E;
+$color-editor-large-mobile: #FFF;
+$editorstag-normal-mobile: $editorstag-normal-desktop;
+$editorstag-large-mobile: $editorstag-large-desktop;

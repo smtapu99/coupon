@@ -1,0 +1,14 @@
+<% if @widget.errors.any? %>
+  $("#myModal").html('').html("<%= escape_javascript render(:partial => 'form') %>");
+<% else %>
+  $('#myModal').modal('hide');
+  $("#widgets ul").html("<%= escape_javascript render :partial => 'widgets', :locals => {widgets: Widget.by_current_site_and_campaign } %>");
+  <% #fetch the widgets for each area %>
+  <% %w(main footer sidebar).each do |area| %>
+    <% widgets = WidgetArea.send("#{area}", @widget.campaign_id).present? ? WidgetArea.send("#{area}", @widget.campaign_id).widgets : [] %>
+    <% if widgets.present? %>
+      <% #and update the widget area list %>
+      $("#<%= area %> ul").html("<%= escape_javascript render :partial => 'widgets', :locals => {widgets: widgets } %>");
+    <% end %>
+  <% end%>
+<% end %>

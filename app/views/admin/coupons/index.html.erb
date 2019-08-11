@@ -1,0 +1,99 @@
+<% model_class = Coupon %>
+
+<%#= render partial: 'grid' %>
+
+<div class="row">
+
+  <div class="col-xs-12">
+
+    <div class="page-header">
+
+      <h1 class="pull-left">
+
+        <i class="icon-tags"></i>
+
+        <span><%= t '.title', default: model_class.model_name.human.pluralize.titleize %></span>
+
+      </h1>
+
+      <div class="pull-right">
+
+        <ul class="breadcrumb">
+
+          <li>
+
+            <a href="/pcadmin">
+
+              <i class="icon-tags"></i>
+
+            </a>
+
+          </li>
+
+          <li class="separator">
+
+            <i class="icon-angle-right"></i>
+
+          </li>
+
+          <li class="active"><%= model_class.model_name.human.pluralize.titleize %></li>
+
+        </ul>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<div class="row">
+
+  <%= render partial: 'admin/shared/flash' %>
+
+</div>
+
+<div class="box">
+
+  <div class="box-content">
+
+      <div class="btn-toolbar">
+
+        <%- if can? :create, model_class -%>
+
+          <%= link_to '<i class="icon-plus"></i> New Coupon'.html_safe, new_admin_coupon_path, class: 'btn btn-success' %>
+
+        <%- end -%>
+
+        <%- if can? :read, CouponImport -%>
+
+          <%= link_to '<i class="icon-upload"></i> Import Coupons'.html_safe, admin_coupon_imports_path, class: 'btn btn-primary' %>
+
+        <%- end -%>
+
+        <%- if can? :read, CsvExport -%>
+
+          <%= link_to '<i class="icon-download"></i> Export XLS'.html_safe, export_modal_admin_coupons_path, data: {remote: true}, class: 'btn btn-info' %>
+
+        <%- end -%>
+
+        <%- if can? :read, CouponCode -%>
+
+          <%= link_to '<i class="icon-list"></i> Unique Coupon Codes'.html_safe, admin_coupon_codes_path, class: 'btn' %>
+
+        <%- end -%>
+
+      </div>
+
+    <%# end %>
+
+    <div class="table-responsive">
+
+      <div id="app"></div>
+
+    </div>
+
+  </div>
+
+</div>

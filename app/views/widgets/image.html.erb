@@ -1,0 +1,51 @@
+<div class="box box-image <%= 'box-transparent' if values[:transparent_widget].to_i == 1 %> <%= 'card-newsletter-popup' if values[:attach_newsletter_popup].to_i == 1 %> <%= values[:css_class] %>"  data-id="<%= values[:id] %>">
+
+  <% if values[:without_header].to_i == 0 %>
+
+    <div class="box-header bg-<%= values[:header_color] %>">
+
+      <h3><i class="picon picon-<%= values[:header_icon] %>"></i> <%= values[:title] %></h3>
+
+    </div>
+
+  <% end %>
+
+  <!-- /.box-header bg-cloud -->
+
+  <div class="box-content <%= (values[:animate].to_i == 1 ? 'box-animated'  : '') %>">
+
+    <%- if values[:href].present? -%>
+
+      <%- if values[:is_external_url].to_i === 1 -%>
+        <a href="<%= cloak_url_string(values[:href]) %>" target="_blank" rel="nofollow" onclick="<%= "location.reload()" if values[:attach_newsletter_popup].to_i != 1 %>">
+      <%- else -%>
+        <a href="<%= values[:href] %>" title="<%= values[:alt] %>" onclick="<%= "location.reload()" if values[:attach_newsletter_popup].to_i != 1 %>">
+      <%- end -%>
+
+    <%- end -%>
+
+      <%- if values[:image_url].present? -%>
+
+        <%= image_tag values[:image_url].html_safe, class: 'img-responsive', alt: values[:alt] if values[:image_url].present? %>
+
+      <%- end -%>
+
+    <%- if values[:href].present? -%>
+
+      </a>
+
+    <%- end -%>
+
+  <%- if values[:text].present? -%>
+
+    <%= values[:text].html_safe %>
+
+  <%- end -%>
+
+  </div>
+
+  <!-- /.box-content -->
+
+</div>
+
+<!-- /.box box-newsletter -->

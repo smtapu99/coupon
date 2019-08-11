@@ -1,0 +1,122 @@
+<div class="form-group">
+  <%= ff.label :subtitle, class: 'col-md-2 control-label' %>
+  <div class="col-md-10">
+      <%= ff.text_field :subtitle, class: 'form-control' %>
+  </div>
+</div>
+
+<div class="form-group">
+  <%= ff.label :background_url, class: 'col-md-2 control-label' %>
+  <div class="col-md-10">
+      <%= ff.text_field :background_url, class: 'form-control' %>
+      <div class="help-block"><small>Put a landscape style image here</small></div>
+  </div>
+</div>
+
+<div class="form-group">
+  <%= ff.label :mobile_background_url, class: 'col-md-2 control-label' %>
+  <div class="col-md-10">
+      <%= ff.text_field :mobile_background_url, class: 'form-control' %>
+      <div class="help-block"><small>Put a portrait style image here</small></div>
+  </div>
+</div>
+
+<div class="form-group">
+  <%= ff.label :logo_url, class: 'col-md-2 control-label' %>
+  <div class="col-md-10">
+      <%= ff.text_field :logo_url, class: 'form-control' %>
+  </div>
+</div>
+
+<div class="form-group">
+  <%= ff.label 'Teaser Image Url', class: 'col-md-2 control-label' %>
+  <div class="col-md-10">
+      <%= ff.text_field :image_url, class: 'form-control' %>
+      <div class="help-block"><small>if iamge url is set then it will use a 2 column layout.</small></div>
+  </div>
+</div>
+
+<div class="form-group">
+  <%= ff.label :teaser_links, class: 'col-md-2 control-label' %>
+  <div class="col-md-10">
+      <%= ff.text_field :teaser_links, class: 'form-control' %>
+      <div class="help-block"><small>like: Coupons|#campaign-coupons,Categories|#campaign-featured-images,Shops|#campaign-related-shops</small></div>
+  </div>
+</div>
+
+<div class="form-group">
+  <%= ff.label :contact_emails, class: 'col-md-2 control-label' %>
+  <div class="col-md-10">
+      <%= ff.text_field :contact_emails, class: 'form-control' %>
+  </div>
+</div>
+<hr>
+
+<div class="form-group">
+  <%= ff.label :newsletter_signup, class: 'col-md-2 control-label' %>
+  <div class="col-md-10">
+    <%= ff.check_box :newsletter_signup, class: 'form-control' %>
+  </div>
+</div>
+
+<div class="form-group">
+  <%= ff.label :newsletter_mailchimp_list, class: 'col-md-2 control-label' %>
+  <div class="col-md-10">
+    <%= ff.text_field :newsletter_mailchimp_list, class: 'form-control' %>
+  </div>
+</div>
+<hr>
+
+<div class="form-group">
+  <%= ff.label :show_countdown, class: 'col-md-2 control-label' %>
+  <div class="col-md-10">
+    <%= ff.check_box :show_countdown, class: 'form-control' %>
+  </div>
+</div>
+
+<div class="form-group">
+  <%= ff.label :countdown_date, class: 'col-md-2 control-label' %>
+  <div class="col-md-10">
+    <%= ff.text_field :countdown_date, include_seconds: true, include_blank: true, class: 'form-control', placeholder: 'e.g. 2016-10-31' %>
+    <div class="help-block"><small>Keep the format yyyy-mm-dd like 2016-10-31</small></div>
+  </div>
+</div>
+<hr>
+
+<div class="form-group">
+  <%= ff.label :email_placeholder, class: 'col-md-2 control-label' %>
+  <div class="col-md-10">
+    <%= ff.text_field :email_placeholder, class: 'form-control' %>
+  </div>
+</div>
+
+<div class="form-group">
+  <%= ff.label :name_placeholder, class: 'col-md-2 control-label' %>
+  <div class="col-md-10">
+    <%= ff.text_field :name_placeholder, class: 'form-control' %>
+    <div class="help-box"><small>Optional: Keep free if no name field is wanted</small></div>
+  </div>
+</div>
+
+<div class="form-group">
+  <%= ff.label :extra_field_placeholder, class: 'col-md-2 control-label' %>
+  <div class="col-md-10">
+    <%= ff.text_field :extra_field_placeholder, class: 'form-control' %>
+    <div class="help-box"><small>Optional: Keep free if no extra field is wanted</small></div>
+  </div>
+</div>
+
+<div class="form-group">
+  <%= ff.label :clickout_url, class: 'col-md-2 control-label' %>
+  <div class="col-md-10">
+    <%= ff.text_field :clickout_url, class: 'form-control' %>
+    <div class="help-box"><small>Optional: Keep free if no clickout is wanted</small></div>
+  </div>
+</div>
+
+<div class="form-group">
+  <%= ff.label :success_modal_text, class: 'col-md-2 control-label' %>
+  <div class="col-md-10">
+    <%= ff.text_field :success_modal_text, class: 'form-control' %>
+  </div>
+</div>

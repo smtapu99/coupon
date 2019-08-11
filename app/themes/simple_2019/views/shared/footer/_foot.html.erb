@@ -1,0 +1,48 @@
+<%- if banner = sticky_banner and show_sticky_banner?(banner) -%>
+
+  <%= render partial: "banners/#{banner.theme}/sticky", locals: { banner: banner } %>
+
+<% end %>
+
+<%= render partial: 'shared/modal' %>
+
+<div class="cookies-eu" style="display: none;">
+
+  <%= t('cookies_eu.cookies_text', default: 'Cookies help us deliver our services. By using our services, you agree to our use of cookies.') %>
+
+  <% if cookie_url.present? %>
+
+    <a href="<%= cookie_url %>"><%= t('cookies_eu.learn_more', default: 'Learn more') %></a>
+
+  <% end %>
+
+  <span class="cookies-eu__close" role="button" aria-label="Close">
+    <!--?xml version="1.0" encoding="utf-8"?-->
+    <svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1490 1322q0 40-28 68l-136 136q-28 28-68 28t-68-28l-294-294-294 294q-28 28-68 28t-68-28l-136-136q-28-28-28-68t28-68l294-294-294-294q-28-28-28-68t28-68l136-136q28-28 68-28t68 28l294 294 294-294q28-28 68-28t68 28l136 136q28 28 28 68t-28 68l-294 294 294 294q28 28 28 68z"></path></svg>
+  </span>
+
+</div>
+
+<% if show_flyout_notification? %>
+
+  <%= render partial: 'shared/flyout', locals: { coupon: shop_flyout_coupon(@coupons) } %>
+
+<% end %>
+
+<%= webpack_stylesheet_pack_tag "simple_2019/#{Site.current.id}/index.css", "simple_2019/index.css" %>
+
+<%= webpack_javascript_pack_tag "simple_2019/#{Site.current.id}/index.js", "simple_2019/index.js" %>
+
+<%= Option.footer_script.html_safe if Option.footer_script.present? %>
+
+<%= yield(:footer_script) if content_for?(:footer_script) %>
+
+<span class="scroll-to-top">
+
+  <i class="icon-chevron-right"></i>
+
+</span>
+
+</body>
+
+</html>

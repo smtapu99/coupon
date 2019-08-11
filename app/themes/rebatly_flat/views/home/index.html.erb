@@ -1,0 +1,46 @@
+<%= render partial: 'home/index/search_form_mobile' %>
+
+<div class="bg-white relative" id="top-shops">
+
+  <%= image_tag 'rebatly_flat/heart-logo.png', class: 'heart-logo', alt: @site.site.name %>
+
+  <div class="container">
+
+    <h2><%= t(:most_popular_shops, default: 'Most popular shops') %></h2>
+
+    <div class="row">
+
+      <%- @shops_featured.take(6).each_with_index do |shop| -%>
+
+        <div class="col-xs-6 col-sm-2">
+
+          <a href="<%= dynamic_url_for('shops', 'show', slug: shop.slug) %>" title="<%= shop.title %>">
+
+            <div class="hover-wrapper">
+
+              <div class="img-wrapper">
+
+                <span></span>
+
+                <img alt="<%= shop.title %>" src="<%= shop.logo_url() %>" class="">
+
+              </div>
+
+            </div>
+
+          </a>
+
+        </div>
+
+      <%- end -%>
+
+    </div>
+
+  </div>
+
+</div>
+
+<%#= render partial: 'home/index/featured_shops' %>
+
+
+<%= render partial: 'home/index/widgets' %>

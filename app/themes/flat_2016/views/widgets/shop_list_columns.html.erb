@@ -1,0 +1,21 @@
+<div class="row">
+
+  <div class="col-xs-12">
+
+    <h2><%= values[:title].present? ? values[:title] : '' %></h2>
+
+    <ul class="shop-list-columns shop-list-columns-<%= values[:shop_list_columns] %>">
+      <%- shop_ids = values[:shop_list_shops] -%>
+      <%- shop_list = @site.shops.where(id: shop_ids) -%>
+      <%- shop_list.each_with_index do |shop, idx| -%>
+
+        <li class="shop-list-columns__item"> <%= link_to(shop.title, dynamic_url_for('shops', 'show', slug: shop.slug)) %></li>
+
+      <%- end -%>
+
+    </ul>
+
+  </div>
+
+</div>
+

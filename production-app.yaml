@@ -1,0 +1,58 @@
+# [START runtime]
+runtime: ruby
+env: flex
+entrypoint: bundle exec foreman start --formation "$FORMATION"
+# [END runtime]
+# [START resources]
+resources:
+  cpu: 4
+  memory_gb: 16
+  disk_size_gb: 10
+# [END resources]
+# [START automatic_scaling]
+automatic_scaling:
+  min_num_instances: 4
+  max_num_instances: 24
+  cool_down_period_sec: 120 # default value
+  cpu_utilization:
+    target_utilization: 0.7
+# [END automatic_scaling]
+# [START environment variables]
+env_variables:
+  #SECRET_KEY_BASE: [SECRET_KEY]
+  APP_NAME: 'PannaCotta App'
+  WEB_CONCURRENCY: 24
+  RAILS_MAX_THREADS: 1  # Keep at 1 until we are 100% sure that the app is threadsafe
+  FORMATION: web=1
+  ALGOLIA_INDEX_SUFFIX: production
+  FOG_PROVIDER: Google
+  FOG_DIRECTORY: static.savings-united.com
+  REDIS_HOST: 10.0.0.4
+  REDIS_PORT: 6379
+  GOOGLE_PROJECT: savingsunited-production
+  DB_USER: suapp_production
+  DB_NAME: suapp_production
+  DB_SOCKET: /cloudsql/savingsunited-production:europe-west1:su-app-production
+  ASSETS_DOMAIN: asset.savings-united.com
+  #TODO: MOVE SENSITIVE VALUES TO KMS (https://cloud.google.com/kms/docs/quickstart)
+  # OR REPLACE THIS VALUES ON BUILD @ CIRCLECI (easier)
+  GS_ACCESS_KEY_ID: GOOGV4V4JOZ5BIJVDAYT
+  GS_SECRET_ACCESS_KEY: pqBIREU60uu3mxLxAuf+Af7VrRbgZ7MdXla1vzgZ
+  DB_PASSWORD: p4s79w2E2VmCyTeEKQYZN9CTb
+  KRAKEN_API_KEY: 74f999fb8df9d35037b69555e973ea57
+  KRAKEN_API_SECRET: 21f9fc7132d5d09f3490f5addd2199901d448e96
+  NODE_ENV: production
+
+# [END environment variables]
+# [START beta settings]
+beta_settings:
+  cloud_sql_instances: savingsunited-production:europe-west1:su-app-production
+
+liveness_check:
+  path: /liveness_check
+
+readiness_check:
+  path: /readiness_check
+  failure_threshold: 3
+  success_threshold: 1
+  app_start_timeout_sec: 1200

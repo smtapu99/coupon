@@ -1,0 +1,38 @@
+<%- if coupons.present? -%>
+
+  <%- if Campaign.current.try(:is_themed?) -%>
+    <div class="container rotated-coupons__container">
+  <%- end -%>
+
+    <div class="row rotated-coupons__row">
+      
+      <div class="col-xs-12">
+
+        <h2><%= values[:title].present? ? values[:title] : category.present? ? category.name : '' %></h2>
+
+        <ol class="pannacotta rotated-coupons list-coupons-as-items list-unstyled hover">
+
+          <%- coupons.each_with_index do |coupon| -%>
+
+            <li class="coupon-item" data-shop-name="<%= coupon.shop.title %>">
+
+              <%=
+                render partial: "shared/rotated_coupons_frame", locals: {
+                  coupon: coupon,
+                  widget: widget
+                }
+              %>
+
+            </li>
+
+          <% end %>
+
+        </ol>
+      </div>
+  </div>
+
+  <%- if Campaign.current.try(:is_themed?) -%>
+    </div>
+  <%- end -%>
+
+<%end%>

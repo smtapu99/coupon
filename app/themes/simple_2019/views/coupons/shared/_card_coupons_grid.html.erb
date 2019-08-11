@@ -1,0 +1,69 @@
+<%
+  hide_pagination ||= false
+  is_redirect ||= false
+  show_logo = Campaign.current.try(:template) != 'sem'
+  coupons_size = coupons.size
+  newsletter_position = Setting::get('publisher_site.inline_newsletter_position', default: 3).to_i
+  max_count_for_show = 16
+%>
+
+<% if coupons.present? %>
+  <!-- .coupons-grid -->
+
+  <div class="coupons-grid container">
+
+    <div class="row">
+
+      <% coupons.each_with_index do |coupon, index| %>
+
+        <% summarize_coupons(coupon, index) %>
+
+        <div class="col-lg-3 col-md-4 p-2
+          <%- if index >= max_count_for_show -%>coupons-grid__extra-item hidden
+          <%- end -%>">
+
+          <div <%= clickout_params_for_element(coupon, 'li') %> id="<%= coupon.item_id %>" data-visible=true class="coupons-grid__item <%= 'hidden' if coupon.is_mobile %>" data-coupon-type="<%= coupon.coupon_type %>" data-coupon-id="<%= coupon.id %>" data-index="<%= index %>" data-filter-ids="shop-<%= coupon.shop_id %>x <%= (coupon.category_ids.map { |c| 'cat-' + c.to_s + 'x' }).join(' ') if coupon.category_ids.present? %>" data-shop-name="<%= coupon.shop_title %>" data-expiration-date <%= coupon.is_mobile ? 'data-is-mobile=true' : '' %>>
+
+            <%- if coupon.is_exclusive -%>
+
+              <span class="coupon__label coupon__label--exclusive">
+
+              <i class="icon-star"></i><%= t(:exclusive, default: 'exclusive') %>
+
+              </span>
+
+            <%- end -%>
+
+            <div class="coupons-grid__logo">
+
+              <%= render partial: 'coupons/shared/thumbnail', locals: { coupon: coupon } %>
+
+            </div>
+
+            <h3 class="coupons-grid__title">
+
+              <%= truncate(coupon.title, length: 100, omission: '...') %>
+
+            </h3>
+
+            <%= render 'coupons/shared/call_to_action', coupon: coupon %>
+
+          </div>
+
+        </div>
+
+      <%- end -%>
+
+    </div>
+
+    <%- if coupons.length > max_count_for_show -%>
+
+      <div id="show-more-coupons" class="show-more-coupons btn btn-link"><%= t(:show_more, default: 'SHOW MORE') %></div>
+
+    <%- end -%>
+
+  </div>
+
+  <!-- ./coupons-grid -->
+
+<% end %>

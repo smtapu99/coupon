@@ -1,0 +1,38 @@
+<%- if coupons.present? -%>
+  <!-- .featured__list -->
+
+  <div class="w-rotated__list">
+
+    <div class="row">
+
+      <div class="col">
+
+        <h2 class="w-rotated__headline h2"><%= values[:title].present? ? values[:title] : category.present? ? category.name : '' %></h2>
+
+      </div>
+
+    </div>
+
+    <div class="row">
+
+      <%- coupons.each_with_index do |coupon| -%>
+
+        <div class="col-lg-4 col-md-6">
+
+          <div class="w-rotated__item w-rotated__item--small data-shop-name="<%= coupon.shop.title %>">
+
+            <%= render partial: "shared/rotated_coupons_frame", locals: { coupon: coupon, widget: widget } %>
+
+          </div>
+
+        </div>
+
+      <% end %>
+
+    </div>
+
+  </div>
+
+<%- end -%>
+
+<!-- .featured__list -->

@@ -1,0 +1,156 @@
+<div id="main-nav-bg"></div>
+<nav id="main-nav">
+  <div class="navigation">
+    <ul class="nav nav-stacked" id="yw1">
+
+      <li class="<%= "active" if params[:controller] == "admin/home" %>">
+        <%= link_to '<i class="icon-home"></i><span>Home</span>'.html_safe, admin_root_path %>
+      </li>
+
+      <% if can? :read, AffiliateNetwork %>
+        <li class="<%= "active" if params[:controller] == "admin/affiliate_networks" %>">
+          <%= link_to '<i class="icon-group"></i><span>Affiliate Networks</span>'.html_safe, admin_affiliate_networks_path %>
+        </li>
+      <% end %>
+
+      <% if Site.current.present? and can? :read, Banner %>
+        <li class="<%= "active" if params[:controller] == "admin/banners" %>">
+          <%= link_to '<i class="icon-google-plus-sign"></i><span>Banners</span>'.html_safe, admin_banners_path %>
+        </li>
+      <% end %>
+
+      <% if Site.current.present? %>
+        <li class="<%= "active" if params[:controller] == "admin/caches" %>">
+          <%= link_to '<i class="icon-rocket"></i><span>Purge Cache</span>'.html_safe, admin_caches_path %>
+        </li>
+      <% end %>
+
+      <% if Site.current.present? and can? :read, Campaign %>
+        <li class="<%= "active" if params[:controller] == "admin/campaigns" %>">
+          <%= link_to '<i class="icon-bullhorn"></i><span>Campaign Pages</span>'.html_safe, admin_campaigns_path %>
+        </li>
+      <% end %>
+
+      <% if Site.current.present? and can? :read, Category %>
+        <li class="<%= "active" if params[:controller] == "admin/categories" %>">
+          <%= link_to '<i class="icon-archive"></i><span>Category Pages</span>'.html_safe, admin_categories_path %>
+        </li>
+      <% end %>
+
+      <% if can? :read, Country %>
+        <li class="<%= "active" if params[:controller] == "admin/countries" %>">
+          <%= link_to '<i class="icon-globe"></i><span>Countries</span>'.html_safe, admin_countries_path %>
+        </li>
+      <% end %>
+
+      <% if Site.current.present? and can? :read, Coupon %>
+        <li class="<%= "active" if params[:controller] == "admin/coupons" %>">
+          <%= link_to '<i class="icon-ticket"></i><span>Coupons</span>'.html_safe, admin_coupons_path %>
+        </li>
+      <% end %>
+
+      <% if can? :read, CsvExport %>
+        <li class="<%= "active" if params[:controller] == "admin/csvExport" %>">
+          <%= link_to '<i class="icon-download-alt"></i><span>XLS Exports</span>'.html_safe, admin_csv_exports_path %>
+        </li>
+      <% end %>
+
+      <% if can? :read, Global %>
+        <li class="<%= "active" if params[:controller] == "admin/globals" %>">
+          <%= link_to '<i class="icon-map-marker"></i><span>Globals</span>'.html_safe, admin_globals_path %>
+        </li>
+      <% end %>
+
+      <% if Site.current.present? and can? :read, Medium %>
+        <li class="<%= "active" if params[:controller] == "admin/media" %>">
+          <%= link_to '<i class="icon-upload-alt"></i><span>Media Uploader</span>'.html_safe, admin_media_path %>
+        </li>
+      <% end %>
+
+      <% if Site.current.present? and can? :read, RedirectRule %>
+        <li class="<%= "active" if params[:controller] == "admin/redirect_rules" %>">
+          <a href="<%= url_for(admin_redirect_rules_path) %>"><i class="icon-undo"></i><span>Redirections</span></a>
+        </li>
+      <% end %>
+
+      <% if Site.current.present? and (can? :read, Setting or can? :read, Option) %>
+        <li class="<%= "active" if params[:controller] == "admin/settings" %>">
+          <a href="<%= url_for(admin_settings_path) %>"><i class="icon-cogs"></i><span>Settings</span></a>
+        </li>
+      <% end %>
+
+      <% if Site.current.present? and can? :read, :quality %>
+        <li class="nav-item--qa">
+          <a class="dropdown-collapse " href="#">
+            <i class="icon-table"></i>
+            <span>QA</span>
+            <i class="icon-angle-down angle-down"></i>
+          </a>
+          <ul class="nav nav-stacked">
+            <li class="<%= "active" if params[:controller] == "admin/expired_exclusive" %>">
+              <a href="<%= url_for(admin_expired_exclusives_path) %>"><i class="icon-table"></i><span>Expired Exclusive Coupons</span></a>
+            </li>
+            <li class="<%= "active" if params[:controller] == "admin/quality" && params[:action] == 'active_coupons' %>">
+              <a href="<%= url_for(admin_active_coupons_path) %>"><i class="icon-table"></i><span>Active Coupons per Shop</span></a>
+            </li>
+            <li class="<%= "active" if params[:controller] == "admin/quality" && params[:action] == 'http_links' %>">
+              <a href="<%= url_for(admin_http_links_path) %>"><i class="icon-table"></i><span>HTTP onpage links on HTTPS sites</span></a>
+            <li class="<%= "active" if params[:controller] == "admin/quality" && params[:action] == 'invalid_urls' %>">
+              <a href="<%= url_for(admin_invalid_urls_path) %>"><i class="icon-table"></i><span>Wrong Affiliate Networks</span></a>
+            </li>
+          </ul>
+        </li>
+      <% end %>
+
+      <% if Site.current.present? and can? :read, Shop %>
+        <li class="<%= "active" if params[:controller] == "admin/shops" %>">
+          <%= link_to '<i class="icon-shopping-cart"></i><span>Shop Pages</span>'.html_safe, admin_shops_path %>
+        </li>
+      <% end %>
+
+      <% if can? :read, Site %>
+        <li class="<%= "active" if params[:controller] == "admin/sites" %>">
+          <%= link_to '<i class="icon-sitemap"></i><span>Sites</span>'.html_safe, admin_sites_path %>
+        </li>
+      <% end %>
+
+      <% if Site.current.present? and can? :read, StaticPage %>
+        <li class="<%= "active" if params[:controller] == "admin/static_pages" %>">
+          <%= link_to '<i class="icon-file-alt"></i><span>Static Pages</span>'.html_safe, admin_static_pages_path %>
+        </li>
+      <% end %>
+
+      <% if Site.current.present? %>
+        <% if can? :use_template, Setting and User.current.is_super_admin? %>
+          <li class="<%= "active" if params[:controller] == "admin/templates" %>">
+            <a href="<%= url_for(admin_templates_path) %>"><i class=" icon-file"></i><span>Templates</span></a>
+          </li>
+        <% end %>
+      <% end %>
+
+      <% if Site.current.present? and can? :read, Translation %>
+        <li class="<%= "active" if params[:controller] == "admin/translation" %>">
+          <a href="<%= url_for(admin_translations_path) %>"><i class=" icon-font"></i><span>Translations</span></a>
+        </li>
+      <% end %>
+
+      <% if Site.current.present? and can? :read, Tag %>
+        <li class="<%= "active" if params[:controller] == "admin/tag" %>">
+          <a href="<%= url_for(admin_tags_path) %>"><i class=" icon-tag"></i><span>Tags</span></a>
+        </li>
+      <% end %>
+
+      <% if can? :read, User %>
+        <li class="<%= "active" if params[:controller] == "admin/users" %>">
+          <%= link_to '<i class="icon-user"></i><span>Users</span>'.html_safe, admin_users_path %>
+        </li>
+      <% end %>
+
+      <% if Site.current.present? and can? :read, Widget %>
+        <li class="<%= "active" if params[:controller] == "admin/widgets" %>">
+          <a href="<%= url_for(admin_widgets_path) %>"><i class="icon-puzzle-piece"></i><span>Widgets</span></a>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</nav>

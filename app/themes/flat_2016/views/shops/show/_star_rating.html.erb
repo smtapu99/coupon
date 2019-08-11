@@ -1,0 +1,76 @@
+<% existed_vote ||= nil %>
+
+<%- if shop.total_votes > 0 -%>
+
+  <div class='loader'></div>
+
+  <div class="star-rating <%= 'voted' if existed_vote.present? %>" data-shop-id="<%= shop.id %>" data-votes="<%= existed_vote.present? ? existed_vote.stars : shop.rating.round %>" data-total-stars="<%= shop.total_stars %>" style="display:none">
+
+<%- else -%>
+
+  <div class="star-rating <%= 'voted' if existed_vote.present? %>" data-shop-id="<%= shop.id %>" data-votes="<%= existed_vote.present? ? existed_vote.stars : shop.rating.round %>" data-total-stars="<%= shop.total_stars %>">
+
+<%- end -%>
+
+  <ul class="list-inline list-unstyled">
+
+    <li>
+
+      <span class="btn btn-transparent" data-star="1">
+
+        <i class="roberto roberto-star-empty"></i>
+
+      </span>
+
+    </li>
+
+    <li>
+
+      <span class="btn btn-transparent" data-star="2">
+
+        <i class="roberto roberto-star-empty"></i>
+
+      </span>
+
+    </li>
+
+    <li>
+
+      <span class="btn btn-transparent" data-star="3">
+
+        <i class="roberto roberto-star-empty"></i>
+
+      </span>
+
+    </li>
+
+    <li>
+
+      <span class="btn btn-transparent" data-star="4">
+
+        <i class="roberto roberto-star-empty"></i>
+
+      </span>
+
+    </li>
+
+    <li>
+
+      <span class="btn btn-transparent" data-star="5">
+
+        <i class="roberto roberto-star-empty"></i>
+
+      </span>
+
+    </li>
+
+  </ul>
+  <!-- /.list-inline list-unstyled -->
+
+  <p class='bold-text'><%= t(:THANK_YOU_FOR_VOTING_TEXT, default: 'THANK_YOU_FOR_VOTING_TEXT') if existed_vote.present? %></p>
+
+  <p><span class="review-count" data-separator="<%= translate_from_file('number.format.separator', default: ',') %>" data-reviewCount="<%= shop.total_votes %>"></span> <%= t(:RATINGS_WITH_AN_AVERAGE_OF, default: "ratings with an average of") %> <span class="rating-value" data-ratingValue="<%= (shop.formatted_rating if shop.total_votes != 0) || 0 %>"></span> <%= t(:OF_5_STARS, default: "of 5 stars") %>.</p>
+
+</div>
+
+<!-- /.star-rating -->

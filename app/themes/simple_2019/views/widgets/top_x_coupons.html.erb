@@ -1,0 +1,59 @@
+<% if coupons.present? %>
+
+  <div class="widget widget--top-x" id="top-x-coupons<%= "-" + order_number.to_s if defined?(order_number) %>">
+
+    <h3><%= values[:title] %></h3>
+
+    <% coupons.in_groups_of(5) do |group_of_coupons| %>
+
+      <div class="w-top-x">
+
+        <ol class="w-top-x__list">
+
+          <% group_of_coupons.each do |coupon| %>
+
+            <% if coupon.present? %>
+
+              <li data-shop-name="<%= coupon.shop_title %>" class="w-top-x__item">
+
+                <a <%= clickout_params_for_element(coupon) %> title="<%= coupon.title if coupon.title.present? %>">
+
+                  <%= render partial: 'shops/shared/logo', locals: { shop: coupon.shop, css_class: 'w-top-x__img', height: 110, width: 110 } %>
+
+                  <span class="w-top-x__content">
+
+                        <% if coupon.shop.present? && coupon.shop.title.present? %>
+
+                          <span class="w-top-x__title"><%= coupon.shop.title %></span>
+
+                        <% end %>
+
+                    <% if coupon.title.present? %>
+
+                          <%= truncate(coupon.title, length: 50) %>
+
+                        <% end %>
+
+                      </span>
+
+                </a>
+
+              </li>
+
+            <% end %>
+
+          <% end %>
+
+        </ol>
+
+        <!--<span id="show-all" class="w-top-x__show-all"><%= t(:SEE_MORE_TOP_COUPONS, default: 'SEE_MORE_TOP_COUPONS') %></span>-->
+
+      </div>
+
+      </div>
+
+    <% end %>
+
+
+
+<% end %>

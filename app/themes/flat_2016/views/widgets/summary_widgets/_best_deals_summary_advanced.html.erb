@@ -1,0 +1,121 @@
+<div class="pannacotta summary-widget">
+
+  <div class="row">
+
+    <div class="col-xs-12 col-sm-6 col-md-12">
+
+      <div class="shop-official">
+
+        <% if !without_h2 %>
+
+          <%- if with_code -%>
+
+            <h2><%= t(:HEADER_BEST_DEALS_SUMMARY_ADVANCED_CODE, default: t(:BEST_DEALS_IN_SHOP, default: 'BEST_DEALS_IN_SHOP')).gsub('{shop}', title) %></h2>
+
+          <%- else -%>
+
+            <h2><%= t(:HEADER_BEST_DEALS_SUMMARY_ADVANCED, default: t(:BEST_DEALS_IN_SHOP, default: 'BEST_DEALS_IN_SHOP')).gsub('{shop}', title) %></h2>
+
+          <%- end -%>
+
+        <% end %>
+
+        <table class="table table-responsive table-condensed">
+
+          <tr>
+
+            <th><%= t(:SHOP_VOUCHER_CODES, default: 'SHOP_VOUCHER_CODES').gsub('{shop}', title) %></th>
+
+            <%- if with_code -%>
+              <th><%= t(:CODE, default: 'Code') %></th>
+            <%- else -%>
+              <th><%= t(:DISCOUNT, default: 'DISCOUNT') %></th>
+            <%- end -%>
+
+            <th><%= t(:EXPIRES, default: 'EXPIRES') %></th>
+
+          </tr>
+
+          <%- summarize_coupons_advanced(coupons).each do |coupon| -%>
+
+            <%- if coupon.is_a?(Coupon) -%>
+
+              <%- if Setting.get('publisher_site.anchors_for_summary_widget', default: 0).to_i == 1 %>
+
+                <tr class="tr-hover">
+
+              <% else %>
+
+                <tr>
+
+              <% end %>
+
+                <td>
+                  <%= anchorize_title(coupon.title, "#coupon-#{coupon.id}") %>
+                </td>
+
+                <%- if with_code -%>
+
+                  <td>*****</td>
+
+                <%- elsif coupon.savings.to_i == 0 -%>
+
+                  <td>
+
+                    <% if coupon.logo_text_first_line.present? && coupon.logo_text_second_line.present? %>
+
+                      <%= strip_tags(coupon.logo_text_first_line).html_safe %>
+
+                      <%= coupon.logo_text_second_line %>
+
+                    <% else %>
+
+                      <% default_texts = default_logo_texts(coupon) %>
+
+                      <%= default_texts[:first_line] %>
+
+                      <%= default_texts[:second_line] %>
+
+                    <% end %>
+
+                  </td>
+
+                <%- else -%>
+
+                  <td><%= coupon.savings_in_string(false) %></td>
+
+                <%- end -%>
+
+                <td><%= localize_end_date(coupon.end_date) %></td>
+
+              </tr>
+
+            <%- else -%>
+
+              <tr>
+
+                <td><%= t(:LAST_UPDATED, default: 'LAST_UPDATED') %></td>
+
+                <td>&nbsp;</td>
+
+                <td><%= localize_updated_at(coupon) %></td>
+
+              </tr>
+
+            <%- end -%>
+
+          <%- end -%>
+
+        </table>
+
+      </div>
+
+      <!-- /.shop-official -->
+
+    </div>
+    <!-- /.col-xs-12 -->
+
+  </div>
+  <!-- /.row -->
+
+</div>

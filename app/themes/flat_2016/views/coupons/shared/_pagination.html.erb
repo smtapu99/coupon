@@ -1,0 +1,1 @@
+<%= paginate coupons, :params => { controller: params[:controller], action: params[:action] } if coupons.respond_to?(:total_pages) %>

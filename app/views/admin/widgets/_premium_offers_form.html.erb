@@ -1,0 +1,21 @@
+<div data-widget-type="premium-offers" class="widget-type" style="display: none;" data-json="<%= @widget.value[:premium_offer_rows].to_json %>"></div>
+
+<div class="form-group">
+
+  <%= ff.label :subtitle, class: 'col-md-2 control-label' %>
+
+  <div class="col-md-10">
+
+    <%= ff.text_field :subtitle, class: 'form-control' %>
+
+  </div>
+
+</div>
+
+<div id="vueModal"></div>
+
+<script>
+  //Fire show Modal Event to listen it from vue
+  var showModal = new CustomEvent("shownModal");
+  document.body.dispatchEvent(showModal);
+</script>

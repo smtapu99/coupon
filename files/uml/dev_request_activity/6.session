@@ -1,0 +1,14 @@
+window_sizes 1280 704 300 974 588 64
+cleanlooks_style
+diagrams
+  active  activitydiagram_ref 128262 // Activity
+    974 588 200 A4 0 0
+end
+show_stereotypes
+selected activityaction_ref 128134 // activity action start'
+open
+  interruptibleactivityregion_ref 128006 // PM evaluation
+  interruptibleactivityregion_ref 128390 // Ticketing
+  interruptibleactivityregion_ref 128518 // Development
+end
+end

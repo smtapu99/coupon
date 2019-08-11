@@ -1,0 +1,60 @@
+<%-
+
+  cloaked = cloak_urls(text)
+
+  cloaked = cloaked.gsub('<script', '<pc_script') # prevent scripts from beeing emptied
+
+  cloaked = cloaked.gsub('/script>', '/pc_script>')
+
+  html = sanitize(cloaked, tags:  %w(h2 h3 strong b br p ul li ol img a script iframe embed object pc_script section), attributes: %w(href target src width height alt title))
+
+  html = html.split('<h2');
+
+  html.each_with_index{|c, i| html[i] = (html[i].present? ? '<h2' : '') + html[i]}
+
+-%>
+
+<%- if html.is_a?(Array) and html.size > 0 -%>
+
+  <div class="seo-text-container">
+
+    <%- html.each_with_index do |part, index| -%>
+
+      <%- uid = (defined? widget_id) ? widget_id.to_s + index.to_s : index %>
+
+      <%- next unless part.start_with?('<h2') -%>
+
+      <%- splitted = part.split('</h2>') -%>
+
+      <%- next unless splitted[0].gsub('<h2>', '').present? && splitted[1].present? -%>
+
+      <div class="pannacotta card card-text">
+
+        <div class="card-header">
+
+          <div class="card-title" id="heading_<%= uid %>">
+
+              <%= sanitize(splitted[0].html_safe, tags: %w(h2)) %></h2>
+
+          </div>
+
+        </div>
+
+        <div aria-labelledby="heading_<%= uid %>">
+
+          <div class="card-content seo-text">
+
+            <%= splitted[1].gsub('<pc_script', '<script').gsub('/pc_script>', '/script>').html_safe %>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    <%- end -%>
+
+  </div>
+
+<%- end -%>
+

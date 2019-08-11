@@ -1,0 +1,11 @@
+require 'axlsx'
+
+p = Axlsx::Package.new
+wb = xlsx_package.workbook
+wb.add_worksheet(name: "coupon_codes_#{Time.now.to_date}") do |sheet|
+ sheet.add_row CouponCode::CSV_EXPORT_COLUMN_HEADERS[:coupon_code].values
+
+ @coupon_codes.find_each do |code, index|
+   sheet.add_row code.csv_mapped_attributes
+ end
+end

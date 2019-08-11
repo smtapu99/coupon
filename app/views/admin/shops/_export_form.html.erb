@@ -1,0 +1,188 @@
+<div class="modal-dialog">
+
+  <div class="modal-content">
+
+    <%= form_for [:admin, @shop], method: :get, url: export_admin_shops_path, :html => { :class => 'form form-horizontal',
+      id: 'export-form',
+      style: 'margin-bottom: 0',
+      onsubmit: 'jQuery(this).find(".btn.btn-primary").val("Loading, please wait...").attr("disabled", true);'} do |f| %>
+
+    <div class="modal-header">
+
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+
+      <h4 class="modal-title" id="myModalLabel">Export Form</h4>
+
+    </div>
+
+    <div class="modal-body">
+
+      <div class="form-group">
+
+        <%= f.label :site_ids, class: 'col-md-2 control-label' %>
+
+        <div class="col-md-10">
+
+            <%= f.select :site_ids, User.current.sites.active.collect {|i| [i.id_and_name, i.id]}, {include_blank: true}, {class: 'select2 form-control', multiple: true} %>
+
+            <p class="help-block">
+
+              <small class="text-danger">Please select site first!</small>
+
+            </p>
+
+        </div>
+
+      </div>
+
+      <div class="form-group">
+
+        <%= label_tag :shops, nil, class: 'col-md-2 control-label' %>
+
+        <div class="col-md-10 shops-by-site">
+
+            <%= select_tag 'shop[shop_ids]', [], multiple: true, class: 'select2 form-control' %>
+
+        </div>
+
+      </div>
+
+      <div class="form-group">
+
+        <%= f.label :status, class: 'col-md-2 control-label' %>
+
+        <div class="col-md-10">
+
+          <%= f.select :status, options_for_select(Shop.statuses), {include_blank: true}, multiple: true, class: 'select2 form-control' %>
+
+        </div>
+
+      </div>
+
+      <div class="form-group">
+
+        <%= f.label :tier_group, class: 'col-md-2 control-label' %>
+
+        <div class="col-md-10">
+
+          <%= f.select :tier_group, options_for_select(Option::get_select_options('shop_tier_groups', true)), {include_blank: true}, multiple: true, class: 'select2 form-control' %>
+
+        </div>
+
+      </div>
+
+      <div class="form-group">
+
+        <%= f.label :person_in_charge_id, class: 'col-md-2 control-label' %>
+
+        <div class="col-md-10">
+
+          <%= f.collection_select :person_in_charge_id, Site.current.all_users, :id, :email, { prompt: true }, { class: 'select2 form-control' } %>
+
+        </div>
+
+      </div>
+
+      <div class="form-group">
+
+        <%= f.label :created_at_from, class: 'col-md-2 control-label' %>
+
+        <div class="col-md-10">
+
+          <%= f.datetime_select :created_at_from, include_blank: true, class: 'form-control' %>
+
+        </div>
+
+      </div>
+
+      <div class="form-group">
+
+        <%= f.label :created_at_to, class: 'col-md-2 control-label' %>
+
+        <div class="col-md-10">
+
+          <%= f.datetime_select :created_at_to, include_blank: true, class: 'form-control' %>
+
+        </div>
+
+      </div>
+
+      <div class="form-group">
+
+        <%= f.label :is_hidden, class: 'col-md-2 control-label' %>
+
+        <div class="col-md-10">
+
+            <%= f.select :is_hidden, Option::get_select_options('yes_or_no', true), {prompt: true}, class: 'select2 form-control' %>
+
+        </div>
+
+      </div>
+
+      <div class="form-group">
+
+        <%= f.label :active_coupons_count, class: 'col-md-2 control-label' %>
+
+        <div class="col-md-10">
+
+            <%= operator_dropdown 'shop', 'active_coupons_count_operator' %>
+
+            <%= f.text_field :active_coupons_count, class: 'col-md-8 form-control', value: '' %>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="modal-footer">
+
+        <%= f.submit 'Export Shops', :class => 'btn btn-primary' %>
+
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+    </div>
+
+    <% end # form %>
+
+  </div><!-- /.modal-content -->
+
+</div><!-- /.modal-dialog -->
+
+<script type="text/javascript">
+
+jQuery('.select2').select2();
+select2_select_all();
+
+jQuery("#export-form").on('submit', function(){
+  var downloadTimer = window.setInterval( function() {
+    var token = getCookie( "download_complete" );
+
+    if( token == 'true' ) {
+      window.clearInterval( downloadTimer );
+      expireCookie('download_complete');
+      jQuery('#myModal').modal('hide');
+    }
+  }, 1000 );
+});
+
+$('#shop_site_ids').on('change.select2', function(){
+  if ($(this).val()) {
+    $('#shop_shop_ids').empty();
+    $.ajax({
+      url: "shops/render_shops_select",
+      dataType: 'text',
+      type: "GET",
+      data: {site_ids: $(this).val()},
+      success: function(data) {
+        $(".shops-by-site").html(data);
+        $('#shop_shop_ids').select2();
+        select2_select_all($('#s2id_shop_shop_ids'));
+      }
+    });
+  } else {
+    $('#shop_shop_ids').empty();
+  }
+});
+
+</script>

@@ -1,0 +1,38 @@
+.pannacotta {
+  &.filter-by-category {
+    .card-content {
+      padding: 25px 25px 0;
+
+      p {
+        color: $color-title;
+        font-size: 14px;
+        font-weight: lighter;
+      }
+
+      ul li {
+        margin-bottom: 15px;
+
+        a {
+          border: 1px solid $color-sky;
+          color: $color-sky;
+          display: block;
+          font-size: 14px;
+          font-weight: lighter;
+          height: 39px;
+          padding: 9px 8px;
+          text-align: center;
+          text-transform: uppercase;
+          -webkit-transition: background-color .3s ease,color .3s ease;
+          transition: background-color .3s ease,color .3s ease;
+
+          &:focus,
+          &:hover {
+            background-color: $color-sky;
+            color: #FFF;
+            text-decoration: none;
+          }
+        }
+      }
+    }
+  }
+}

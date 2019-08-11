@@ -1,0 +1,112 @@
+<div class="form-group">
+  <%= ff.label :subtitle, class: 'col-md-2 control-label' %>
+  <div class="col-md-10">
+      <%= ff.text_field :subtitle, class: 'form-control' %>
+  </div>
+</div>
+
+<hr>
+
+<p>You can put your custom html+css</p>
+
+<div class="form-group">
+  <%= ff.label :custom_style, class: 'col-md-2 control-label' %>
+  <div class="col-md-10">
+    <%= ff.text_area :custom_style, class: 'form-control' %>
+  </div>
+</div>
+
+<div class="form-group">
+  <%= ff.label :content, class: 'col-md-2 control-label' %>
+  <div class="col-md-10">
+    <%= ff.text_area :content, class: 'form-control' %>
+  </div>
+</div>
+
+<hr>
+
+<p>or use the default style</p>
+
+<div class="form-group">
+  <%= ff.label :background_url, class: 'col-md-2 control-label' %>
+  <div class="col-md-10">
+      <%= ff.text_field :background_url, class: 'form-control' %>
+      <div class="help-block"><small>Put a landscape style image here</small></div>
+  </div>
+</div>
+
+<div class="form-group">
+  <%= ff.label :mobile_background_url, class: 'col-md-2 control-label' %>
+  <div class="col-md-10">
+      <%= ff.text_field :mobile_background_url, class: 'form-control' %>
+      <div class="help-block"><small>Put a portrait style image here</small></div>
+  </div>
+</div>
+
+<div class="form-group">
+  <%= ff.label :logo_url, class: 'col-md-2 control-label' %>
+  <div class="col-md-10">
+      <%= ff.text_field :logo_url, class: 'form-control' %>
+  </div>
+</div>
+
+<hr>
+
+<div class="form-group">
+  <%= ff.label :clickout_url, class: 'col-md-2 control-label' %>
+  <div class="col-md-10">
+    <%= ff.text_field :clickout_url, class: 'form-control' %>
+    <div class="help-box"><small>Optional: Keep free if no clickout is wanted</small></div>
+  </div>
+</div>
+
+<div class="form-group">
+  <%= ff.label :popup_start_date, class: 'col-md-2 control-label' %>
+  <div class="col-md-10">
+    <%= ff.text_field :popup_start_date, class: 'form-control', placeholder: 'e.g. 2016-10-31' %>
+    <div class="help-block"><small>Keep the format yyyy-mm-dd like 2016-10-31</small></div>
+  </div>
+</div>
+
+
+<div class="form-group">
+  <%= ff.label :popup_end_date, class: 'col-md-2 control-label' %>
+  <div class="col-md-10">
+    <%= ff.text_field :popup_end_date, class: 'form-control', placeholder: 'e.g. 2016-10-31' %>
+    <div class="help-block"><small>Keep the format yyyy-mm-dd like 2016-10-31</small></div>
+  </div>
+</div>
+
+<div class="form-group">
+  <%= ff.label :button_text, class: 'col-md-2 control-label' %>
+  <div class="col-md-10">
+    <%= ff.text_field :button_text, class: 'form-control' %>
+    <div class="help-block"><small>if not set no button will appear</small></div>
+  </div>
+</div>
+
+<div class="form-group">
+  <%= ff.label :delay, class: 'col-md-2 control-label' %>
+  <div class="col-md-10">
+    <%= ff.text_field :delay, class: 'form-control', placeholder: 5 %>
+    <div class="help-block"><small>default: 5, in seconds</small></div>
+  </div>
+</div>
+
+<div class="form-group">
+  <%= ff.label :popup_interval, class: 'col-md-2 control-label' %>
+  <div class="col-md-10">
+    <%= ff.select :popup_interval, Option::get_select_options(:popup_interval), {include_blank: false}, {:multiple => false, class: 'select2 form-control'} %>
+    <div class="help-block">Default: never, Defines how fast the popup comes back after it was closed by the user</div>
+  </div>
+</div>
+
+<div class="form-group">
+  <%= ff.label :tracking_name, class: 'col-md-2 control-label' %>
+  <div class="col-md-10">
+    <%= ff.text_field :tracking_name, class: 'form-control' %>
+    <div class="help-block">Defines the tracking_name of the widget in google Analytics.</div>
+  </div>
+</div>
+
+<p class="text-center">Put this widget into the Frontend Section, it will appear on all pages</p>

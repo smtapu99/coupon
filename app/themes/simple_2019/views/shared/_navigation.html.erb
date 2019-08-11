@@ -1,0 +1,270 @@
+<!-- .m-navigation -->
+
+<div class="m-navigation">
+
+  <div class="container">
+
+    <div class="row">
+
+      <nav>
+
+      <!-- .m-navigation__list -->
+      <ul class="m-navigation__list">
+
+        <%- if !is_home? && Setting::get('publisher_site.show_home_link', default: 0).to_i == 1 -%>
+
+          <li class="m-navigation__item">
+
+            <a class="m-navigation__link m-navigation__link--home" href="<%= root_url %>" tabindex="0"></a>
+
+          </li>
+
+        <%- end -%>
+
+        <li class="m-navigation__item <%= 'has-sub-menu' if @site.nav_shops.present? && @site.nav_shops.size >= 1 %> <%= 'active' if params[:controller] === 'shops' %>">
+
+          <%- shops_url = dynamic_url_for('shops', 'index', only_path: false) -%>
+
+          <a class="m-navigation__link" href="<%= shops_url %>" tabindex="0">
+
+            <%= t(:MAIN_SHOPS, default: 'Shops') %>
+
+            <%- site_navigation_element(name: t(:MAIN_SHOPS, default: 'Shops'), url: shops_url) -%>
+
+            <i class="m-navigation__chevron m-navigation__chevron--down">
+
+              <svg width="8" height="5" viewBox="0 0 8 5" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+                <path d="M1.70711 0.292893C1.31658 -0.0976311 0.683418 -0.0976311 0.292893 0.292893C-0.0976311 0.683417 -0.0976311 1.31658 0.292893 1.70711L1.70711 0.292893ZM4 4L3.29289 4.70711C3.48043 4.89464 3.73478 5 4 5C4.26522 5 4.51957 4.89464 4.70711 4.70711L4 4ZM7.70711 1.70711C8.09763 1.31658 8.09763 0.683417 7.70711 0.292893C7.31658 -0.0976311 6.68342 -0.0976311 6.29289 0.292893L7.70711 1.70711ZM0.292893 1.70711L3.29289 4.70711L4.70711 3.29289L1.70711 0.292893L0.292893 1.70711ZM4.70711 4.70711L7.70711 1.70711L6.29289 0.292893L3.29289 3.29289L4.70711 4.70711Z" fill="#1BAFCD"/>
+
+              </svg>
+
+            </i>
+
+          </a>
+
+          <% if @site.nav_shops.present? && @site.nav_shops.size >= 1 %>
+
+            <div class="sub-menu" data-event-category="header">
+
+              <ul class="sub-menu__list">
+
+                <% @site.nav_shops.each do |shop| %>
+
+                  <li class="sub-menu__item">
+
+                    <%- shop_url = dynamic_url_for('shops', 'show', slug: shop.slug, only_path: false) -%>
+
+                    <%= link_to(shop.title, shop_url, class: "sub-menu__link", tabindex: "0" )%>
+
+                    <%- site_navigation_element(name: shop.title, url: shop_url) -%>
+
+                  </li>
+
+                <% end %>
+
+                <li class="sub-menu__item sub-menu__item--see-all">
+
+                  <a class="sub-menu__link" href="<%= shops_url %>">
+
+                    <%= t(:SEE_ALL_SHOPS, default: 'See All Shops') %>
+
+                    <%- site_navigation_element(name: t(:SEE_ALL_SHOPS, default: 'See All Shops'), url: shops_url) -%>
+
+                  </a>
+
+                </li>
+
+              </ul>
+
+            </div>
+
+          <% end %>
+
+        </li>
+
+        <%- if Setting::get('menu.show_coupons', default: 1).to_i == 1 -%>
+
+          <li class="m-navigation__item <%= 'active' if params[:controller] === 'coupons' %>">
+
+            <%- coupons_url = dynamic_url_for('coupon', 'index', type: 'top', only_path: false) -%>
+
+            <%= link_to(t(:MAIN_COUPONS, default: 'Coupons'), coupons_url, class: "m-navigation__link") %>
+
+            <%- site_navigation_element(name: t(:MAIN_COUPONS, default: 'Coupons'), url: coupons_url) -%>
+
+          </li>
+
+        <%- end -%>
+
+        <%- if Setting::get('menu.show_categories', default: 1).to_i == 1 %>
+
+          <li class="m-navigation__item <%= 'has-sub-menu__categories' if @site.nav_categories.present? && @site.nav_categories.size >= 1 %> <%= 'active' if params[:controller] === 'categories' %>">
+
+            <%- categories_url = dynamic_url_for('categories', 'index', only_path: false) -%>
+
+            <%- site_navigation_element(name: t(:MAIN_CATEGORIES, default: 'Categories'), url: categories_url) -%>
+
+            <a class="m-navigation__link" href="<%= categories_url %>">
+
+              <span><%= t(:MAIN_CATEGORIES, default: 'Categories') %></span>
+
+              <%- if @site.nav_categories.present? -%>
+
+                <i class="m-navigation__chevron m-navigation__chevron--down">
+
+                  <svg width="8" height="5" viewBox="0 0 8 5" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+                    <path d="M1.70711 0.292893C1.31658 -0.0976311 0.683418 -0.0976311 0.292893 0.292893C-0.0976311 0.683417 -0.0976311 1.31658 0.292893 1.70711L1.70711 0.292893ZM4 4L3.29289 4.70711C3.48043 4.89464 3.73478 5 4 5C4.26522 5 4.51957 4.89464 4.70711 4.70711L4 4ZM7.70711 1.70711C8.09763 1.31658 8.09763 0.683417 7.70711 0.292893C7.31658 -0.0976311 6.68342 -0.0976311 6.29289 0.292893L7.70711 1.70711ZM0.292893 1.70711L3.29289 4.70711L4.70711 3.29289L1.70711 0.292893L0.292893 1.70711ZM4.70711 4.70711L7.70711 1.70711L6.29289 0.292893L3.29289 3.29289L4.70711 4.70711Z" fill="#1BAFCD"/>
+
+                  </svg>
+
+                </i>
+
+              <%- end -%>
+
+            </a>
+
+            <%- if @site.nav_categories.present? -%>
+
+              <div class="sub-menu">
+
+                <ul class="sub-menu__list">
+
+                  <% @site.nav_categories.each do |cat| %>
+
+                    <li class="sub-menu__item">
+
+                      <%- category_url = dynamic_url_for('categories', 'show', slug: cat.slug, only_path: false) -%>
+
+                      <%= link_to(cat.name, category_url, class: 'sub-menu__link') %>
+
+                      <%- site_navigation_element(name: cat.name, url: category_url) -%>
+
+                    </li>
+
+                  <%- end -%>
+
+                  <li class="sub-menu__item">
+
+                    <a class="sub-menu__link" href="<%= categories_url %>">
+
+                      <%= t(:SEE_ALL_CATEGORIES, default: 'SEE_ALL_CATEGORIES') %>
+
+                    </a>
+
+                  </li>
+
+                </ul>
+
+              </div>
+
+            <%- end -%>
+
+          </li>
+
+        <% end %>
+
+        <%- @site.nav_main_shops.each do |shop| -%>
+
+          <%- shop_url = dynamic_url_for('shops', 'show', slug: shop.slug, only_path: false) -%>
+
+          <li class="m-navigation__item <%= 'active' if current_page?(shop_url) %>">
+
+            <%= link_to(shop.title, shop_url, class: 'm-navigation__link') %>
+
+            <%- site_navigation_element(name: shop.title, url: shop_url) -%>
+
+          </li>
+
+        <% end %>
+
+        <%- if Setting::get('menu.show_campaigns', default: 1).to_i == 1 -%>
+
+          <%- if @site.nav_campaigns.size > 1 -%>
+
+            <li class="m-navigation__item has-sub-menu__specials">
+
+              <a class="m-navigation__link" href="#">
+
+                <%= t(:SPECIALS, default: 'SPECIALS') %> <i class="roberto-down-dir"></i>
+
+                <i class="m-navigation__chevron m-navigation__chevron--down">
+
+                  <svg width="8" height="5" viewBox="0 0 8 5" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+                    <path d="M1.70711 0.292893C1.31658 -0.0976311 0.683418 -0.0976311 0.292893 0.292893C-0.0976311 0.683417 -0.0976311 1.31658 0.292893 1.70711L1.70711 0.292893ZM4 4L3.29289 4.70711C3.48043 4.89464 3.73478 5 4 5C4.26522 5 4.51957 4.89464 4.70711 4.70711L4 4ZM7.70711 1.70711C8.09763 1.31658 8.09763 0.683417 7.70711 0.292893C7.31658 -0.0976311 6.68342 -0.0976311 6.29289 0.292893L7.70711 1.70711ZM0.292893 1.70711L3.29289 4.70711L4.70711 3.29289L1.70711 0.292893L0.292893 1.70711ZM4.70711 4.70711L7.70711 1.70711L6.29289 0.292893L3.29289 3.29289L4.70711 4.70711Z" fill="#1BAFCD"/>
+
+                  </svg>
+
+                </i>
+
+              </a>
+
+              <div class="sub-menu">
+
+                <ul class="sub-menu__list">
+
+                  <% for campaign in @site.nav_campaigns %>
+
+                    <li class="sub-menu__item">
+
+                      <%- campaign_url = dynamic_campaign_url_for(campaign) -%>
+
+                      <%= link_to(campaign.nav_title_or_name, campaign_url, class: "sub-menu__link") %>
+
+                      <%- site_navigation_element(name: campaign.nav_title_or_name, url: campaign_url) -%>
+
+                    </li>
+
+                  <% end %>
+
+                </ul>
+
+              </div>
+
+            </li>
+            <!-- /.has-sub-menu__specials -->
+
+          <%- elsif @site.nav_campaigns.size == 1 -%>
+
+            <li class="m-navigation__item">
+
+              <%- campaign = @site.nav_campaigns.first -%>
+
+              <%- campaign_url = dynamic_campaign_url_for(campaign) -%>
+
+              <%= link_to(campaign.nav_title_or_name, campaign_url, class: 'm-navigation__link') %>
+
+              <%- site_navigation_element(name: campaign.nav_title_or_name, url: campaign_url) -%>
+
+            </li>
+
+          <%- end -%>
+
+        <%- end -%>
+
+      </ul>
+      <!-- .m-navigation__list -->
+
+      </nav>
+
+    </div>
+
+  </div>
+
+  <span class="m-navigation__arrow m-navigation__arrow--left">
+
+    <i class="icon-chevron-right"></i>
+
+  </span>
+
+  <span class="m-navigation__arrow m-navigation__arrow--right">
+
+    <i class="icon-chevron-right"></i>
+
+  </span>
+
+</div>
+
+<!-- /.m-navigation -->

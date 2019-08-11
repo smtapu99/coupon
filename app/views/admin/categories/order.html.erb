@@ -1,0 +1,64 @@
+<%- model_class = Category -%>
+<%= javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};" if protect_against_forgery? %>
+<%= javascript_tag "var SHOP_CURRENT = #{@shop.present? ? @shop.id : '0'};" %>
+
+<div class="row">
+  <div class="col-xs-12">
+    <div class="page-header">
+
+      <!-- page title -->
+      <h1 class="pull-left">
+        <i class="icon-tags"></i>
+        <span>Order Categories</span>
+      </h1>
+
+      <!-- breadcrumbs -->
+      <div class="pull-right">
+        <ul class="breadcrumb">
+          <li>
+            <a href="/pcadmin">
+              <i class="icon-tags"></i>
+            </a>
+          </li>
+          <li class="separator">
+            <i class="icon-angle-right"></i>
+          </li>
+          <li class="active"><%= model_class.model_name.human.pluralize.titleize %></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<%= render :partial => 'admin/shared/flash' %>
+
+<div class="row">
+  <div class="col-xs-12">
+    <div class="box-content" id="prioritize_coupons">
+      <%= form_tag(order_admin_categories_path, method: :post) do %>
+
+        <%= submit_tag 'Apply Changes'.html_safe, :class => 'btn btn-success btn-block btn-lg apply-changes', style: "margin-bottom: 10px;" %>
+
+        <table class="table" width="100%" style="table-layout: fixed">
+          <thead>
+            <th style='width:8%'>Id</th>
+            <th style="width:5%"></th>
+            <th style="">Name</th>
+            <th style="width:10%">Active Coupon</th>
+            <th style="width:8%">Order Position</th>
+          </thead>
+          <%- @categories.each do |category| -%>
+            <tr>
+              <td><%= category.id %></td>
+              <td><%= link_to '<i class="icon-pencil"></i>'.html_safe, edit_admin_category_path(category), class: 'btn btn-primary' %></td>
+              <td class="text-overflow"><%= category.name.titleize %></td>
+              <td><%= category.active_coupons_count %></td>
+              <td><%= number_field_tag "order_position[#{category.id}]", category.order_position, class: 'form-control number', min: 0, step: 1 %></td>
+            </tr>
+          <%- end -%>
+        </table>
+
+      <%- end -%>
+    </div>
+  </div>
+</div>
+

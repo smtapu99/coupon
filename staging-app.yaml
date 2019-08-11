@@ -1,0 +1,58 @@
+# [START runtime]
+runtime: ruby
+env: flex
+entrypoint: bundle exec foreman start --formation "$FORMATION"
+# [END runtime]
+# [START resources]
+resources:
+  cpu: 2
+  memory_gb: 5.0
+  disk_size_gb: 10
+# [END resources]
+# [START automatic_scaling]
+automatic_scaling:
+  min_num_instances: 1
+  max_num_instances: 1
+  cool_down_period_sec: 120 # default value
+  cpu_utilization:
+    target_utilization: 0.9
+# [END automatic_scaling]
+# [START environment variables]
+env_variables:
+  #SECRET_KEY_BASE: [SECRET_KEY]
+  APP_NAME: 'Staging PannaCotta App'
+  WEB_CONCURRENCY: 5
+  RAILS_MAX_THREADS: 1  # Keep at 1 until we are 100% sure that the app is threadsafe
+  FORMATION: web=1
+  ALGOLIA_INDEX_SUFFIX: staging
+  FOG_PROVIDER: Google
+  FOG_DIRECTORY: static-staging.savings-united.com
+  REDIS_HOST: 10.0.0.3
+  REDIS_PORT: 6379
+  GOOGLE_PROJECT: savingsunited-staging
+  DB_USER: suapp_staging
+  DB_NAME: suapp_staging
+  DB_SOCKET: /cloudsql/savingsunited-staging:europe-west1:su-app-stag
+  ASSETS_DOMAIN: "app-staging.savings-united.com"
+  #TODO: MOVE SENSITIVE VALUES TO KMS (https://cloud.google.com/kms/docs/quickstart)
+  # OR REPLACE THIS VALUES ON BUILD @ CIRCLECI (easier)
+  GS_ACCESS_KEY_ID: GOOGN7WSI5AH2ZJCKSQ3
+  GS_SECRET_ACCESS_KEY: VdV2YnqDvZv1Hhiq0MzjT/rVgPObwnmVYFyTbJgF
+  DB_PASSWORD: wG69mJ2ceP2tdhAwDjzeFBySp
+  LOOKER_HOST: 'savingsunited.eu.looker.com'
+  LOOKER_SECRET: 'e95a0ce11f92660e3bab15de16d7b6f86cd87be5ad9f5c59568231beaf8b0a8a'
+  NODE_ENV: production
+
+# [END environment variables]
+# [START beta settings]
+beta_settings:
+  cloud_sql_instances: savingsunited-staging:europe-west1:su-app-stag
+
+liveness_check:
+  path: /liveness_check
+
+readiness_check:
+  path: /readiness_check
+  failure_threshold: 3
+  success_threshold: 1
+  app_start_timeout_sec: 1200

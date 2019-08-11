@@ -1,0 +1,41 @@
+<% css_classes ||= '' %>
+
+<% if @category_groups.present? %>
+
+  <div class="card filter-by-category pannacotta <%= css_classes %>">
+
+    <div class="card-header with-border-bottom">
+
+      <h3 class="card-title"><%= t(:SHOP_NAVIGATION_HEADLINE, default: 'Filter Your Results') %></h3>
+
+    </div>
+
+    <div class="card-content">
+
+      <p><%= t(:SHOP_NAVIGATION_CALLTOACTION, default: 'By Category') %></p>
+
+      <ul class="list-unstyled">
+
+        <% @category_groups.each do |group| %>
+
+          <% category = group[0] %>
+
+          <%- if category.present? -%>
+
+            <li><a href="#<%= category.slug %>"><%= category.name %></a></li>
+
+          <%- else -%>
+
+            <li><a href="#cat-others"><%= t(:OTHERS, default: 'Others') %></a></li>
+
+          <%- end -%>
+
+        <% end %>
+
+      </ul>
+
+    </div>
+
+  </div>
+
+<% end %>

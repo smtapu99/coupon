@@ -1,0 +1,64 @@
+.pannacotta {
+  &.card-shops-index {
+    .card-content {
+      padding: 0 25px 15px;
+
+      ul.list-unstyled {
+        &>li>a>img.img-responsive {
+          display:inline-block;
+        }
+      }
+
+      h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+        color: $color-text;
+        font-size: 20px;
+        font-weight: normal;
+      }
+
+      hr {
+        margin-left: -25px;
+        margin-right: -25px;
+      }
+
+      ul li {
+        display: inline-block;
+        width: 32%;
+      }
+
+      ol li a {
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        @include flat-anchor($color-sky);
+      }
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .pannacotta {
+    &.card-shops-index .card-content {
+      ul li {
+        width: 19%;
+      }
+
+      ol li a {
+        display: inline-block;
+        white-space: nowrap;
+        max-width: 190px;
+      }
+    }
+  }
+}
+
+@media (min-width: 992px) {
+  .pannacotta.card-shops-index .card-content ol li a {
+    max-width: 170px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .pannacotta.card-shops-index .card-content ol li a {
+    max-width: 210px;
+  }
+}

@@ -1,0 +1,59 @@
+<% content_for :shop_header do %>
+
+  <div class="pannacotta card-shop-header">
+
+    <div class="row">
+
+      <div class="col-xs-12">
+
+        <div class="shop-header-logo hidden-md hidden-lg">
+
+          <a class="fallback_link" data-shop="<%= shop.title if shop.title.present? rescue nil %>" href="<%= cloak_url_string(shop.fallback_url) if shop.fallback_url.present? rescue nil %>" rel="nofollow" target="_blank">
+
+            <span>
+
+              <%= render partial: 'shops/shared/logo', locals: {shop: shop, css_class: '', height: 110, width: 110} %>
+
+            </span>
+
+          </a>
+
+        </div>
+
+        <!-- /.shop-header-logo hidden-md hidden-lg -->
+
+        <div class="shop-header-title">
+
+          <% if @h1.present? %>
+
+            <h1 class="page-title"><%= @h1.html_safe %></h1>
+
+            <!-- /.page-title -->
+
+          <% end %>
+
+        </div>
+        <!-- /.shop-header-title -->
+
+        <% if show_premium_summary_widget_in_content?(shop) %>
+
+          <%= render_summary_widget @shop, without_h2: true %>
+
+        <% elsif @welcome_text.present? || @h2.present? %>
+
+          <%= render partial: 'shops/show/welcome_text', locals: { shop: shop } %>
+
+        <%- end -%>
+
+        <%= render 'shared/coupon_filters', coupons: @coupons %>
+
+      </div>
+      <!-- /.col-xs-12 -->
+
+    </div>
+    <!-- /.row -->
+
+  </div>
+  <!-- /.pannacotta card-shop-header -->
+
+<% end %>

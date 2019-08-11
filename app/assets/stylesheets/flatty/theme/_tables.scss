@@ -1,0 +1,27 @@
+.responsive-table {
+  position: relative;
+  overflow: hidden;
+
+  .scrollable-area {
+    width: 100%;
+    overflow: scroll;
+    overflow-y: hidden;
+  }
+
+  table {
+    td {
+      position: relative;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+  }
+}
+
+.box-content.box-no-padding {
+  .table-striped {
+    th, td {
+      &:first-child { border-left:  none; }
+      &:last-child { border-right:  none; }
+    }
+  }
+}

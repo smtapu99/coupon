@@ -1,0 +1,67 @@
+<% if coupons.present? %>
+
+  <div class="pannacotta top-x-coupons" id="top-x-coupons<%= "-" + order_number.to_s if defined?(order_number) %>">
+
+    <h3><%= values[:title] %></h3>
+
+    <aside>
+
+      <% coupons.in_groups_of(5) do |group_of_coupons| %>
+
+        <div class="list-coupons-as-items list-unstyled hover">
+
+          <div class="row">
+
+            <% group_of_coupons.each do |coupon| %>
+
+              <% if coupon.present? %>
+
+                <div class="col-xs-12 col-sm-6 col-md-12">
+
+                  <div data-shop-name="<%= coupon.shop_title %>" class="coupon-item">
+
+                    <a <%= clickout_params_for_element(coupon) %> title="<%= coupon.title if coupon.title.present? %>">
+
+                      <%= render partial: 'shops/shared/logo', locals: {shop: coupon.shop, css_class: 'img-responsive pull-left', height: 110, width: 110} %>
+
+                      <span class="content">
+
+                        <% if coupon.shop.present? && coupon.shop.title.present? %>
+
+                          <span class="color-sky text-uppercase"><%= coupon.shop.title %></span>
+
+                        <% end %>
+
+                        <% if coupon.title.present? %>
+
+                          <%= truncate(coupon.title, length: 50) %>
+
+                        <% end %>
+
+                      </span>
+
+                    </a>
+
+                  </div>
+
+                </div>
+
+              <% end %>
+
+            <% end %>
+
+          </div>
+
+        </div>
+        <!-- /.list-coupons-as-items list-unstyled hover -->
+
+      <% end %>
+
+    </aside>
+
+    <span id="show-all"><%= t(:SEE_MORE_TOP_COUPONS, default: 'SEE_MORE_TOP_COUPONS' ) %></span>
+
+  </div>
+  <!-- /.card top-x-coupons hidden pannacotta -->
+
+<% end %>

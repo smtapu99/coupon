@@ -1,0 +1,31 @@
+<!-- .w-featured-images -->
+
+<div class="w-featured-images" id="featured-images<%= "-" + order_number.to_s if defined?(order_number) %>">
+
+  <div class="row">
+
+    <div class="col">
+
+      <h2 class="h2"><%= values[:title] %></h2>
+
+      <div class="w-featured-images__list">
+
+        <%- for image in values[:images] -%>
+
+          <a href="<%= image[:url] %>" class="w-featured-images__item" style="background-image: linear-gradient(rgba(0,0,0,.4),rgba(0,0,0,.2)), url(<%= image[:src] %>);">
+
+            <h3 class="w-featured-images__headline"><%= image[:title] %></h3>
+
+          </a>
+
+        <%- end -%>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- /.w-featured-images -->

@@ -1,0 +1,99 @@
+<div class="card card-list-coupon-type hidden-xs pannacotta">
+
+  <div class="card-header">
+
+    <h2 class="card-title"><%= t(:FILTER_TOP_HEADLINE, default: 'FILTER_TOP_HEADLINE') %></h2>
+
+    <!-- /.card-title -->
+
+  </div>
+
+  <!-- /.card-header -->
+
+  <div class="card-content">
+
+    <ul class="list-unstyled">
+
+      <li class="<%= 'active' if params[:type] === 'top' %>">
+
+        <a href="<%= dynamic_url_for 'coupons', 'index', type: 'top' %>">
+
+          <i class="hidden-sm roberto roberto-heart color-berry"></i>
+
+          <%= t(:COUPON_LIST_NAV_TOP, default: 'COUPON_LIST_NAV_TOP') %>
+
+        </a>
+
+      </li>
+
+      <li class="<%= 'active' if params[:type] === 'popular' %>">
+
+        <a href="<%= dynamic_url_for 'coupons', 'index', type: 'popular' %>">
+
+          <i class="hidden-sm roberto roberto-trophy color-royal"></i>
+
+          <%= t(:COUPON_LIST_NAV_POPULAR, default: 'COUPON_LIST_NAV_POPULAR') %>
+
+        </a>
+
+      </li>
+
+      <li class="<%= 'active' if params[:type] == 'exclusive' %>">
+
+        <a href="<%= dynamic_url_for 'coupons', 'index', type: 'exclusive' %>">
+
+          <i class="hidden-sm roberto roberto-star-empty color-ready"></i>
+
+          <span><%= t(:COUPON_LIST_NAV_EXCLUSIVE, default: 'COUPON_LIST_NAV_EXCLUSIVE') %></span>
+
+        </a>
+
+      </li>
+
+      <li class="<%= 'active' if params[:type] === 'new' %>">
+
+        <a href="<%= dynamic_url_for 'coupons', 'index', type: 'new' %>">
+
+          <i class="hidden-sm roberto roberto-flash color-sky"></i>
+
+          <%= t(:COUPON_LIST_NAV_NEW, default: 'COUPON_LIST_NAV_NEW') %>
+
+        </a>
+
+      </li>
+
+      <li class="<%= 'active' if params[:type] === 'free_delivery' %>">
+
+        <a href="<%= dynamic_url_for 'coupons', 'index', type: 'free_delivery' %>">
+
+          <i class="hidden-sm roberto roberto-truck color-freedom"></i>
+
+          <%= t(:COUPON_LIST_NAV_FREE_DELIVERY, default: 'COUPON_LIST_NAV_FREE_DELIVERY') %>
+
+        </a>
+
+      </li>
+
+      <li class="<%= 'active' if params[:type] === 'expiring' %>">
+
+        <a href="<%= dynamic_url_for 'coupons', 'index', type: 'expiring' %>">
+
+          <i class="hidden-sm roberto roberto-runner color-ashes"></i>
+
+          <%= t(:COUPON_LIST_NAV_EXPIRING, default: 'COUPON_LIST_NAV_EXPIRING') %>
+
+        </a>
+
+      </li>
+
+    </ul>
+
+    <!-- /.list-unstyled -->
+
+  </div>
+
+  <!-- /.card-content -->
+
+</div>
+
+<!-- /.card card-list-coupon-type hidden-xs pannacotta -->

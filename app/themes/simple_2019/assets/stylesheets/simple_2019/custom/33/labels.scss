@@ -1,0 +1,212 @@
+@media #{$min-sm} {
+  .home {
+    .w-featured__exclusive {
+      margin: 4px 0 40px;
+    }
+  }
+
+  .coupon {
+    &__label--exclusive {
+      position: absolute;
+      padding: 4px 6px 2px 0;
+      color: $color-exclusive-desktop;
+      font-weight: bold;
+      background-color: $background-color-exclusive-desktop;
+      border: $border-exclusive-desktop;
+      border-radius: $border-radius-desktop;
+
+      i.icon-star {
+        padding: 0 5px;
+        content: $star-one;
+      }
+    }
+
+    &__tag {
+      top: 0;
+      right: 0;
+      width: 100%;
+      padding-right: 60px;
+      color: $color-editor-desktop;
+      text-align: right;
+      border-top: $border-top-normal;
+
+      .icon-tag::before {
+        position: absolute;
+        right: 53px;
+        margin: -1px -21px 0 0;
+        content: $editorstag-normal-desktop;
+      }
+    }
+  }
+
+  .shops,
+  .categories,
+  .searches,
+  .coupons {
+    .coupon {
+      &__label--exclusive {
+        position: absolute;
+        bottom: 3px;
+        left: 171px;
+        width: auto;
+        color: $color-exclusive-desktop;
+        font-weight: bold;
+        border: $border-exclusive-desktop;
+        border-radius: $border-radius-desktop;
+
+        i.icon-star {
+          padding: 0 5px;
+        }
+      }
+    }
+
+    .coupon--large {
+      .coupon {
+        &__label--exclusive {
+          position: initial;
+          width: 138px;
+          color: $color-exclusive-large-desktop;
+          font-size: 14px;
+          background-color: $background-color-exclusive-large-desktop;
+        }
+
+        &__tag {
+          top: unset;
+          bottom: 4px;
+          width: 50%;
+          margin: -9px -21px 0 0;
+          color: $color-editor-large-desktop;
+          font-size: 20px;
+          border: none;
+
+          .icon-tag::before {
+            bottom: 0;
+            content: $editorstag-large-desktop;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media #{$sm} {
+  .coupon {
+    &__label--exclusive {
+      position: absolute;
+      padding: 3px 7px 3px 1px;
+      color: $color-exclusive-mobile;
+      font-weight: bold;
+      font-size: 10px;
+      background-color: $background-color-exclusive-mobile;
+      border: $border-exclusive-mobile;
+      border-radius: $border-radius-mobile;
+
+      i.icon-star {
+        padding: 0 5px;
+        content: $star-one;
+      }
+    }
+
+    &__tag {
+      top: unset;
+      right: 0;
+      bottom: 7px;
+      left: unset;
+      width: 59%;
+      margin: -9px 41px 0 0;
+      color: $color-editor-mobile;
+      font-size: 15px;
+      text-align: right;
+      border: none;
+
+      .icon-tag::before {
+        position: absolute;
+        right: -29px;
+        margin: -6px 0 0;
+        content: $editorstag-normal-mobile;
+      }
+    }
+  }
+
+  .shops,
+  .categories,
+  .searches,
+  .coupons {
+    .coupon {
+      &__label--exclusive {
+        position: absolute;
+        width: 90px;
+        margin-top: 5px;
+        padding-right: 10px;
+        color: $color-exclusive-mobile;
+        font-weight: bold;
+        border: $border-exclusive-mobile;
+        border-radius: $border-radius-mobile;
+
+        i.icon-star {
+          padding: 0 5px;
+        }
+      }
+    }
+
+    .coupon--large {
+      .coupon {
+        &__label--exclusive {
+          color: $color-exclusive-large-mobile;
+          font-size: 10px;
+          background-color: $background-color-exclusive-large-mobile;
+        }
+
+        &__tag {
+          top: unset;
+          right: 0;
+          bottom: 7px;
+          left: unset;
+          width: 59%;
+          color: $color-editor-large-mobile;
+          font-size: 14px;
+          border: none;
+
+          .icon-tag::before {
+            bottom: -3px;
+            content: $editorstag-large-mobile;
+          }
+        }
+      }
+    }
+  }
+}
+
+.campaigns {
+  .coupon {
+    &__label--exclusive {
+      font-size: 13px;
+      text-transform: capitalize;
+    }
+  }
+}
+
+.categories,
+.searches,
+.coupons {
+  .coupon {
+    &__label--exclusive {
+      @media #{$min-sm} {
+        width: auto;
+      }
+
+      @media #{$sm} {
+        width: 100px;
+        font-size: 9px;
+      }
+    }
+
+    @media #{$sm} {
+      &__aside {
+        img {
+          border: 1px solid #E0E0E0;
+        }
+      }
+    }
+  }
+}

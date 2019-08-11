@@ -1,0 +1,41 @@
+<% if @category.present? %>
+
+  <% if shops_featured = @site.featured_shops_by_category(@category, 9) and shops_featured.size >= 5 %>
+
+    <%= content_for :before_content do %>
+
+      <div class="background--white">
+
+        <%= render partial: 'shared/featured_shops', locals: { shops_featured: shops_featured } %>
+
+      </div>
+
+    <%- end -%>
+
+  <%- end -%>
+
+  <%= render partial: 'categories/show/sidebar', locals: { categories: @categories, shops: @shops } %>
+
+  <%= render partial: 'categories/show/head', locals: { category: @category } %>
+
+  <% if @coupons.present? %>
+
+    <%= render partial: 'coupons/shared/card_coupons_list', locals: { coupons: @coupons } %>
+
+  <% else %>
+
+    <p class="alert alert-info alert--center">
+
+      <%= t(:THEIRS_NO_COUPON, default: 'There is no coupons') %>
+
+    </p>
+
+  <% end %>
+
+  <% content_for :after_content do %>
+
+    <%= render partial: "categories/show/see_more_categories", locals: { categories: @categories } %>
+
+  <% end %>
+
+<% end %>

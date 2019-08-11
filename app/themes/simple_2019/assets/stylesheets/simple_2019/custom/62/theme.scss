@@ -1,0 +1,157 @@
+$font-family-base: 'Flama-Book', sans-serif;
+$font-family-nav: $font-family-base;
+$font-family-breadcrumbs: $font-family-base;
+$font-family-buttons: $font-family-base;
+$font-color: #354043;
+$font-gray: #7A7A7A;
+
+$blue-estadao: #245F8F;
+$background-estadao: #F6F6F6;
+$topbar_bg: #014495;
+$navigation_bg: #1F62B3;
+$navigation-link--hover: #FFF;
+$background--white: #FFF;
+$background--grey: #ECECEC;
+$background--light-grey: #FFF;
+$input_placeholder: #3E769E;
+$border-color: #E3E3E3;
+$footer_bg: #FFF;
+$bullets-color: #49AFF9;
+$breadcrumbs-color: #8DA9B1;
+$big-coupon-color: #FF9448;
+$btn--info: #FDEE50;
+$btn--warning: #313131;
+$veinte-blue-general: #3459A1;
+$veinte-blue-low: #B1C9F5;
+$veinte-blue-normal: #1F62B3;
+$semi-b20: #42464C;
+
+$color-sky: #0173B9;
+$color-warning: #313131;
+$color-sale: #014495;
+$color-star: #FFC700;
+
+//Campaign colors
+
+$themed--white: #FFF;
+$themed--toplink-bg: #FFF;
+$themed--toplink-color: #000;
+$themed--header-bg-image: url('https://static.savings-united.com/medium/48592/file_name/xmas-bg.jpg');
+$themed--color-primary: #F12850;
+$themed--color-secondary: #323538; // Buttons
+$themed--color-bg: #F4F4F1;
+$themed--color-light-bg: #E5E5E5;
+$themed--color-font: #000;
+$themed--color-1: #27AE60; // Green label
+$themed--color-2: #4AADE9; // Blue label
+$themed--color-3: #8A8A8A; // Arrow background
+$themed--color-4: #151515; // Teasers text
+$themed--color-5: #627A89; // Load More button
+$themed--color-6: #605E5E; // about-campaign Header
+$themed--color-7: #F6F6F6; // Offer background
+$themed--color-8: #5C6469; // navigation + h1 color;
+$themed--color-9: #F2994A; // Premium offers orange bg
+$themed--color-10: #9B51E0;
+$themed--color-11: #EB5757; // Category red
+$themed--telegraph-green: #285E6A;
+$themed--independent-red: #D13030;
+$themed--social-blue: #4395DA;
+$themed--gold-premium: #C3851A;
+$themed--yellow-paste: #EECA02;
+$themed--pastel-purple: #8A44FF;
+$themed--bubblegum-pink: #FD7AFF;
+$themed--grey: #959595;
+$themed--border-radius: 3px;
+
+//Responsive breakpoints
+
+$xs: '(max-width: 575px)';
+$sm: '(max-width: 767px)';
+$md: '(max-width: 991px)';
+$lg: '(max-width: 1199px)';
+
+$min-xs: '(min-width: 576px)';
+$min-sm: '(min-width: 768px)';
+$min-md: '(min-width: 992px)';
+$min-lg: '(min-width: 1200px)';
+
+
+/// fonts
+
+
+@font-face {
+  font-family: "Flama-Book";
+  font-style: normal;
+  font-stretch: normal;
+  src: url('https://statics.estadao.com.br/s2016/portal/2018/font/flama/Flama-Book-webfont.eot');
+  src: url('https://statics.estadao.com.br/s2016/portal/2018/font/flama/Flama-Book-webfont.eot?#iefix') format('embedded-opentype'), url('https://statics.estadao.com.br/s2016/portal/2018/font/flama/Flama-Book-webfont.woff2') format('woff2'), url('https://statics.estadao.com.br/s2016/portal/2018/font/flama/Flama-Book-webfont.woff') format('woff'), url("https://statics.estadao.com.br/s2016/portal/2018/font/flama/Flama-Book-webfont.ttf") format("truetype"), url('https://statics.estadao.com.br/s2016/portal/2018/font/flama/Flama-Book-webfont.svg#webfont') format('svg');
+}
+
+@font-face {
+  font-family: "Flama-Medium";
+  font-style: normal;
+  font-stretch: normal;
+  src: url('https://statics.estadao.com.br/s2016/portal/2018/font/flama/Flama-Medium-webfont.eot');
+  src: url('https://statics.estadao.com.br/s2016/portal/2018/font/flama/Flama-Medium-webfont.eot?#iefix') format('embedded-opentype'), url('https://statics.estadao.com.br/s2016/portal/2018/font/flama/Flama-Medium-webfont.woff2') format('woff2'), url('https://statics.estadao.com.br/s2016/portal/2018/font/flama/Flama-Medium-webfont.woff') format('woff'), url("https://statics.estadao.com.br/s2016/portal/2018/font/flama/Flama-Medium-webfont.ttf") format("truetype"), url('https://statics.estadao.com.br/s2016/portal/2018/font/flama/Flama-Medium-webfont.svg#webfont') format('svg');
+}
+
+@font-face {
+  font-family: "Flama-Semibold";
+  font-style: normal;
+  font-stretch: normal;
+  src: url('https://statics.estadao.com.br/s2016/portal/2018/font/flama/Flama-Semibold-webfont.eot');
+  src: url('https://statics.estadao.com.br/s2016/portal/2018/font/flama/Flama-Semibold-webfont.eot?#iefix') format('embedded-opentype'), url('https://statics.estadao.com.br/s2016/portal/2018/font/flama/Flama-Semibold-webfont.woff2') format('woff2'), url('https://statics.estadao.com.br/s2016/portal/2018/font/flama/Flama-Semibold-webfont.woff') format('woff'), url("https://statics.estadao.com.br/s2016/portal/2018/font/flama/Flama-Semibold-webfont.ttf") format("truetype"), url('https://statics.estadao.com.br/s2016/portal/2018/font/flama/Flama-Semibold-webfont.svg#webfont') format('svg');
+}
+
+@font-face {
+  font-family: "Flama-Bold";
+  font-style: normal;
+  font-stretch: normal;
+  src: url('https://statics.estadao.com.br/s2016/portal/2018/font/flama/Flama-Bold-webfont.eot');
+  src: url('https://statics.estadao.com.br/s2016/portal/2018/font/flama/Flama-Bold-webfont.eot?#iefix') format('embedded-opentype'), url('https://statics.estadao.com.br/s2016/portal/2018/font/flama/Flama-Bold-webfont.woff2') format('woff2'), url('https://statics.estadao.com.br/s2016/portal/2018/font/flama/Flama-Bold-webfont.woff') format('woff'), url("https://statics.estadao.com.br/s2016/portal/2018/font/flama/Flama-Bold-webfont.ttf") format("truetype"), url('https://statics.estadao.com.br/s2016/portal/2018/font/flama/Flama-Bold-webfont.svg#webfont') format('svg');
+}
+
+@font-face {
+  font-family: "EstadoHeadline-Semibold";
+  font-style: normal;
+  font-stretch: normal;
+  src: url('https://statics.estadao.com.br/s2016/portal/2018/font/estado/EstadoHeadline/EstadoHeadline-Semibold-webfont.eot');
+  src: url('https://statics.estadao.com.br/s2016/portal/2018/font/estado/EstadoHeadline/EstadoHeadline-Semibold-webfont.eot?#iefix') format('embedded-opentype'), url('https://statics.estadao.com.br/s2016/portal/2018/font/estado/EstadoHeadline/EstadoHeadline-Semibold-webfont.woff2') format('woff2'), url('https://statics.estadao.com.br/s2016/portal/2018/font/estado/EstadoHeadline/EstadoHeadline-Semibold-webfont.woff') format('woff'), url("https://statics.estadao.com.br/s2016/portal/2018/font/estado/EstadoHeadline/EstadoHeadline-Semibold-webfont.ttf") format("truetype"), url('https://statics.estadao.com.br/s2016/portal/2018/font/estado/EstadoHeadline/EstadoHeadline-Semibold-webfont.svg#webfont') format('svg');
+}
+
+@font-face {
+  font-family: "Estado-Fine-Extrabold";
+  font-style: normal;
+  font-stretch: normal;
+  src: url('https://statics.estadao.com.br/s2016/portal/2018/font/estado/EstadoFine/EstadoFine-Extrabold-webfont.eot');
+  src: url('https://statics.estadao.com.br/s2016/portal/2018/font/estado/EstadoFine/EstadoFine-Extrabold-webfont.eot?#iefix') format('embedded-opentype'), url('https://statics.estadao.com.br/s2016/portal/2018/font/estado/EstadoFine/EstadoFine-Extrabold-webfont.woff2') format('woff2'), url('https://statics.estadao.com.br/s2016/portal/2018/font/estado/EstadoFine/EstadoFine-Extrabold-webfont.woff') format('woff'), url("https://statics.estadao.com.br/s2016/portal/2018/font/estado/EstadoFine/EstadoFine-Extrabold-webfont.ttf") format("truetype"), url('https://statics.estadao.com.br/s2016/portal/2018/font/estado/EstadoFine/EstadoFine-Extrabold-webfont.svg#webfont') format('svg');
+}
+
+// Labels
+
+// general
+$star-one: "\e916";
+
+// desktop
+$color-exclusive-desktop: #000;
+$background-color-exclusive-desktop: #E99A10;
+$color-exclusive-large-desktop: #000;
+$background-color-exclusive-large-desktop: #E99A10;
+$border-exclusive-desktop: none;
+$border-radius-desktop: 3px;
+$color-editor-desktop: #0E5C93;
+$color-editor-large-desktop: #FFF;
+$border-top-normal: 2px solid #0E5C93;
+$editorstag-normal-desktop: url("data:image/svg+xml,%0A%3Csvg width='21' height='27' viewBox='0 0 21 27' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg filter='url(%23filter0_d)'%3E%3Cpath d='M2 23V3.05176e-05H19V23L10.0952 16.9615L2 23Z' fill='white'/%3E%3Cpath d='M2 23V3.05176e-05H19V23L10.0952 16.9615L2 23Z' fill='white'/%3E%3Cpath d='M2 23V3.05176e-05H19V23L10.0952 16.9615L2 23Z' fill='white'/%3E%3Cpath d='M2 23V3.05176e-05H19V23L10.0952 16.9615L2 23Z' fill='%230E5C93'/%3E%3C/g%3E%3Cdefs%3E%3Cfilter id='filter0_d' x='0' y='3.05176e-05' width='21' height='27' filterUnits='userSpaceOnUse' color-interpolation-filters='sRGB'%3E%3CfeFlood flood-opacity='0' result='BackgroundImageFix'/%3E%3CfeColorMatrix in='SourceAlpha' type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0'/%3E%3CfeOffset dy='2'/%3E%3CfeGaussianBlur stdDeviation='1'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0'/%3E%3CfeBlend mode='normal' in2='BackgroundImageFix' result='effect1_dropShadow'/%3E%3CfeBlend mode='normal' in='SourceGraphic' in2='effect1_dropShadow' result='shape'/%3E%3C/filter%3E%3C/defs%3E%3C/svg%3E");
+$editorstag-large-desktop: url("data:image/svg+xml,%0A%3Csvg width='23' height='30' viewBox='0 0 23 30' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg filter='url(%23filter0_d)'%3E%3Cpath d='M2 25.2934V2.90187e-05H21V25.2934L11.0476 18.6528L2 25.2934Z' fill='white'/%3E%3Cpath d='M2 25.2934V2.90187e-05H21V25.2934L11.0476 18.6528L2 25.2934Z' fill='white'/%3E%3Cpath d='M2 25.2934V2.90187e-05H21V25.2934L11.0476 18.6528L2 25.2934Z' fill='white'/%3E%3Cpath d='M2 25.2934V2.90187e-05H21V25.2934L11.0476 18.6528L2 25.2934Z' fill='white'/%3E%3C/g%3E%3Cdefs%3E%3Cfilter id='filter0_d' x='0' y='3.05176e-05' width='23' height='29.2934' filterUnits='userSpaceOnUse' color-interpolation-filters='sRGB'%3E%3CfeFlood flood-opacity='0' result='BackgroundImageFix'/%3E%3CfeColorMatrix in='SourceAlpha' type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0'/%3E%3CfeOffset dy='2'/%3E%3CfeGaussianBlur stdDeviation='1'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0'/%3E%3CfeBlend mode='normal' in2='BackgroundImageFix' result='effect1_dropShadow'/%3E%3CfeBlend mode='normal' in='SourceGraphic' in2='effect1_dropShadow' result='shape'/%3E%3C/filter%3E%3C/defs%3E%3C/svg%3E%0A");
+// mobile
+$color-exclusive-mobile: #000;
+$background-color-exclusive-mobile: #E99A10;
+$color-exclusive-large-mobile: #000;
+$background-color-exclusive-large-mobile: #E99A10;
+$border-exclusive-mobile: none;
+$border-radius-mobile: 3px;
+$color-editor-mobile: #0E5C93;
+$color-editor-large-mobile: #FFF;
+$editorstag-normal-mobile: $editorstag-normal-desktop;
+$editorstag-large-mobile: $editorstag-large-desktop;

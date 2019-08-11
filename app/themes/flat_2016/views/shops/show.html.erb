@@ -1,0 +1,33 @@
+<% if @shop.present? %>
+  <script type="text/javascript">
+      var shopScope = "<%= I18n.shop_scope %>";
+  </script>
+  <% content_for :card_coupons_list do %>
+    <%= render partial: 'coupons/shared/card_coupons_list', locals: { coupons: @coupons, hide_pagination: true, shop: @shop } %>
+  <% end %>
+
+  <%= render partial: 'shops/show/head', locals: {shop: @shop} %>
+
+  <%= render partial: 'shops/show/header', locals: {shop: @shop} %>
+
+  <%= render partial: 'shared/flashes' %>
+
+  <%= yield :card_coupons_list %>
+
+  <%- if show_summary_widget_in_content?(@shop) && !show_premium_summary_widget_in_content?(@shop) -%>
+
+    <%= render_summary_widget @shop %>
+
+  <%- end -%>
+
+  <%= render partial: 'shops/show/card_about_this_shop', locals: { shop: @shop } %>
+
+  <% if Setting::get('publisher_site.hide_expired_coupons', default: 0).to_i.zero? %>
+
+    <%= render partial: 'shops/show/card_expired_coupons_list', locals: {coupons: @expired_coupons, shop: @shop} %>
+
+  <% end %>
+
+<% end %>
+
+<%= render partial: 'shops/show/sidebar', locals: {shop: @shop, sub_pages: @sub_pages} %>

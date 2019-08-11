@@ -1,0 +1,71 @@
+
+  <div class="col-sm-12">
+
+    <div class="box bordered-box blue-border">
+
+      <div class="box-header green-background">
+
+        <div class="title">
+
+          <i class="icon-edit"></i>
+
+          <b>Global</b> Campaign Import Form
+
+        </div>
+
+      </div>
+
+      <div class="box-content">
+
+        <%= form_for [:admin, @campaign_import], html: {class: 'form form-horizontal', multipart: true, style: 'margin-bottom: 0'} do |f| %>
+
+          <%= render partial: 'admin/shared/form_errors', locals: {ancestor: @campaign_import} %>
+
+          <div class="form-group">
+
+            <%= f.label 'Note:', class: 'col-md-2 control-label' %>
+
+            <div class="col-md-5">
+
+              <div class="help-block"><small>This is the NEW Campaign Import Form. It allows you to upload campaign to multiple sites at once. Be <b>careful</b> and add the "Site ID" column to your import file. Add one campaign per site.</small></div>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <%= f.label :file, class: 'col-md-2 control-label' %>
+
+            <div class="col-md-5">
+
+              <%= f.file_field :file, class: 'form-control' %>
+
+            </div>
+
+          </div>
+
+          <div class="form-actions form-actions-padding-sm">
+
+            <div class="row">
+
+              <div class="col-md-10 col-md-offset-2">
+
+                <%= f.submit 'Import', class: 'btn btn-primary' if can? :create, CampaignImport %>
+
+                <%= link_to '<i class="icon icon-file"></i> Download Template'.html_safe, admin_campaigns_import_template_path, class: 'btn btn-inverse' %>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        <% end %>
+
+      </div>
+
+    </div>
+
+  </div>
+

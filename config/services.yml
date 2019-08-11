@@ -1,0 +1,12 @@
+redis_port: <%= ENV['REDIS_PORT'] || 6379 %>
+redis_server: <%= ENV['REDIS_HOST'] || 'localhost' %>
+provider: <%= ENV['FOG_PROVIDER'] ||= 'Google' %>
+fog_directory: <%= ENV['FOG_DIRECTORY'] ||= 'static-staging.savings-united.com' %>
+google_project: <%= ENV['GOOGLE_PROJECT'] %>
+google_storage_access_key_id: <%= ENV['GS_ACCESS_KEY_ID'] %>
+google_storage_secret_access_key: <%= ENV['GS_SECRET_ACCESS_KEY'] %>
+cloudflare_user: <%= ENV['CF_USER'] %>
+cloudflare_secret: <%= ENV['CF_SECRET'] %>
+kraken_api_key: <%= ENV['KRAKEN_API_KEY'] %>
+kraken_api_secret: <%= ENV['KRAKE_API_SECRET'] %>
+assets_domain: <%= ENV['ASSETS_DOMAIN'] ||= 'asset.savings-united.com' %>

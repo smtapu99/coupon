@@ -1,0 +1,25 @@
+<div class="themed__navigation">
+
+  <div class="container">
+
+    <div class="col-xs-6 col-sm-2">
+
+      <%= render partial: 'shared/site_logo' %>
+
+    </div>
+
+    <div class="col-md-7 col-md-push-3 col-sm-10 col-sm-push-0 col-xs-3 col-xs-push-3">
+
+      <%= render partial: 'shared/navigation' %>
+
+    </div>
+
+    <%= (content_for?(:after_header)) ? yield(:after_header) : nil %>
+
+  </div>
+
+  <!-- ./container -->
+
+</div>
+
+<!-- /.themed-navigation  -->

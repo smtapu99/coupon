@@ -1,0 +1,23 @@
+@import "theme";
+@import "~bootstrap/scss/bootstrap-grid";
+@import "~bootstrap/scss/bootstrap-reboot";
+@import "common";
+@import "fonts";
+
+@critical common.css {
+  @import "../../../fonts/simple_2019/icon-simple";
+}
+
+@import "../../../fonts/simple_2019/roberto-mappings";
+@import "layout/index";
+@import "shared/index";
+@import "home/index";
+@import "campaigns/index";
+@import "widgets/index";
+@import "shops/index";
+@import "categories/index";
+@import "mail_forms/index";
+@import "pages/page";
+@import "cookies_eu/index";
+@import "coupons/index";
+@import "searches/index";

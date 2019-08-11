@@ -1,0 +1,180 @@
+@media #{$min-md} {
+  .home {
+    .w-featured__exclusive {
+      margin-top: 4px;
+    }
+  }
+
+  .coupon {
+    &__label--exclusive {
+      position: absolute;
+      padding-right: 10px;
+      color: $color-exclusive-desktop;
+      font-weight: bold;
+      background-color: $background-color-exclusive-desktop;
+      border: $border-exclusive-desktop;
+      border-radius: $border-radius-desktop;
+
+      i.icon-star {
+        padding: 0 5px;
+        content: $star-one;
+      }
+    }
+
+    &__tag {
+      top: 0;
+      right: 0;
+      width: 100%;
+      padding-right: 60px;
+      color: $color-editor-desktop;
+      text-align: right;
+      border-top: $border-top-normal;
+
+      .icon-tag::before {
+        position: absolute;
+        right: 53px;
+        margin: -1px -21px 0 0;
+        content: $editorstag-normal-desktop;
+      }
+    }
+  }
+
+  .shops,
+  .categories,
+  .searches,
+  .coupons {
+    .coupon {
+      &__label--exclusive {
+        position: absolute;
+        bottom: 6px;
+        width: auto;
+        margin-left: 170px;
+        padding-right: 10px;
+        color: $color-exclusive-desktop;
+        font-weight: bold;
+        border: $border-exclusive-desktop;
+        border-radius: $border-radius-desktop;
+
+        i.icon-star {
+          padding: 0 5px;
+        }
+      }
+    }
+
+    .coupon--large {
+      .coupon {
+        &__label--exclusive {
+          bottom: 12px;
+          margin-left: 260px;
+        }
+
+        &__tag {
+          top: unset;
+          bottom: 15px;
+          width: 50%;
+          margin: -9px -21px 0 0;
+          color: $color-editor-large-desktop;
+          font-size: 20px;
+          border: none;
+
+          .icon-tag::before {
+            bottom: 8px;
+            content: $editorstag-large-desktop;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media #{$md} {
+  .coupon {
+    &__label--exclusive {
+      position: absolute;
+      padding-right: 13px;
+      color: $color-exclusive-mobile;
+      font-weight: bold;
+      background-color: $background-color-exclusive-mobile;
+      border: $border-exclusive-mobile;
+      border-radius: $border-radius-mobile;
+
+      i.icon-star {
+        padding: 0 5px;
+        content: $star-one;
+      }
+    }
+
+    &__tag {
+      top: unset;
+      right: 0;
+      bottom: 18px;
+      width: 100%;
+      padding-right: 60px;
+      color: $color-editor-mobile;
+      text-align: right;
+
+      .icon-tag::before {
+        position: absolute;
+        right: 53px;
+        margin: -1px -21px 0 0;
+        content: $editorstag-normal-mobile;
+      }
+    }
+  }
+
+  .shops,
+  .categories,
+  .searches,
+  .coupons {
+    .coupon {
+      &__label--exclusive {
+        position: absolute;
+        width: 90px;
+        padding-right: 10px;
+        color: $color-exclusive-mobile;
+        font-weight: bold;
+        border: $border-exclusive-mobile;
+        border-radius: $border-radius-mobile;
+
+        i.icon-star {
+          padding: 0 5px;
+        }
+      }
+    }
+
+    .coupon--large {
+      .coupon {
+        &__label--exclusive {
+          font-size: 14px;
+        }
+
+        &__tag {
+          top: unset;
+          right: 0;
+          bottom: 7px;
+          left: unset;
+          width: 50%;
+          margin: -9px -21px 0 0;
+          color: $color-editor-large-mobile;
+          font-size: 10px;
+          border: none;
+
+          .icon-tag::before {
+            bottom: -3px;
+            content: $editorstag-large-mobile;
+          }
+        }
+      }
+    }
+  }
+}
+
+.campaigns {
+  .coupon {
+    &__label--exclusive {
+      margin: 8px;
+      font-size: 13px;
+      text-transform: capitalize;
+    }
+  }
+}

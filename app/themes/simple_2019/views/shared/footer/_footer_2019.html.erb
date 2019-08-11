@@ -1,0 +1,125 @@
+<% footer_campaigns = @site.footer_campaigns %>
+<% footer_shops = @site.footer_shops %>
+<% footer_style = Setting.get('publisher_site.wls_footer_style', default: "default") %>
+
+<div id="footer" class="footer footer--2019 footer--<%= footer_style %>">
+
+  <div class="container">
+
+    <div class="row">
+
+      <div class="footer__wrp">
+
+        <div class="footer__back-wrp">
+
+          <%= link_to t(:TOP_20, default: 'Top Coupons'), dynamic_url_for('coupons', 'index', type: 'top'), class: "footer__back-btn btn" %>
+
+        </div>
+
+        <div class="footer__area-one">
+
+          <%- if footer_shops.present? && footer_shops.size > 1 -%>
+
+            <div class="footer__shops">
+              |
+              <%- footer_shops.each do |shop| -%>
+
+                <%= link_to shop.anchor_text_or_title, dynamic_url_for('shops', 'show', slug: shop.slug) %> |
+
+              <%- end -%>
+
+            </div>
+
+          <%- end -%>
+
+          <%- if footer_campaigns.present? && footer_campaigns.size > 1 -%>
+
+            <div class="footer__campaigns">
+              |
+              <%- footer_campaigns.each do |campaign| -%>
+
+                <%= link_to(campaign.nav_title_or_name, dynamic_campaign_url_for(campaign)) %> |
+
+              <%- end -%>
+
+            </div>
+
+          <%- end -%>
+
+        </div>
+
+        <div class="footer__divider"></div>
+
+        <div class="footer__area-empty"></div>
+
+        <div class="footer__area-two">
+
+          <div class="footer__contacts">
+            <%= link_to t(:REPORT_OFFER, default: 'Report an Offer'), url_for(send("report_#{@site.site.id}_path")), rel: 'nofollow' %>
+            |
+            <%= link_to t(:BECOME_A_PARTNER, default: 'Be our Partner'), url_for(send("partner_#{@site.site.id}_path")), rel: 'nofollow' %>
+            |
+            <%= link_to t(:CONTACT, default: 'Talk to Us'), url_for(send("contact_#{@site.site.id}_path")), rel: 'nofollow' %>
+          </div>
+
+          <div class="footer__legal-pages">
+
+            <% if Setting::get('legal_pages.imprint_url').present? %>
+
+              <%= link_to t(:IMPRINT, default: 'Imprint'), Setting::get('legal_pages.imprint_url'), rel: 'nofollow' %> |
+
+            <% end %>
+
+            <% if Setting::get('legal_pages.privacy_policy_url').present? %>
+
+              <%= link_to t(:PRIVACY_POLICY, default: 'Privacy Policy'), Setting::get('legal_pages.privacy_policy_url'), rel: 'nofollow' %> |
+
+            <% end %>
+
+            <% if Setting::get('legal_pages.cookie_policy_url').present? %>
+
+              <%= link_to t(:COOKIE_POLICY, default: 'Cookie Policy'), Setting::get('legal_pages.cookie_policy_url'), rel: 'nofollow' %> |
+
+            <% end %>
+
+            <% if Setting::get('legal_pages.faq_url').present? %>
+
+              <%= link_to t(:FAQ, default: 'Faq'), Setting::get('legal_pages.faq_url'), rel: 'nofollow' %> |
+
+            <% end %>
+
+          </div>
+
+        </div>
+
+        <div class="footer__logo">
+
+          <a href="<%= Setting::get('publisher_site.external_logo_url', default: root_url) %>" class="f-widget__logo" rel="<%= Setting::get('publisher_site.external_logo_rel_attr', default: '') %>" title="<%= @site.site.name %>">
+
+            <% if @site.image_setting.logo_url.nil? %>
+
+              <%= image_tag 'flat_2016/site-logo.png', alt: @site.site.name, title: @site.site.name, height: 70 %>
+
+            <% else %>
+
+              <%= image_tag @site.image_setting.logo_url, alt: @site.site.name, title: @site.site.name, height: 70, class: "img-responsive" %>
+
+            <% end %>
+
+          </a>
+
+        </div>
+
+        <a href="#" class="footer__to-top">
+          <%= t(:BRING_ME_TO_THE_TOP, default: 'Bring me to the top') %>
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="footer__bottom"></div>
+
+</div>

@@ -1,0 +1,35 @@
+<span class="coupon-logo <%= 'for-shops' if params[:controller] === 'shops' %>">
+
+  <% if params[:controller] == 'shops' %>
+
+    <% if coupon.use_logo_on_shop_page && coupon.try(:logo_url, '_110x110') %>
+
+      <%= image_tag coupon.logo_url('_110x110'), class: 'img-responsive', alt: coupon.title %>
+
+    <% else %>
+
+      <% if coupon.logo_text_first_line.present? && coupon.logo_text_second_line.present? %>
+
+        <span class="amount"><%= strip_tags(coupon.logo_text_first_line).html_safe %></span>
+
+        <span class="type"><%= coupon.logo_text_second_line %></span>
+
+      <% else %>
+
+        <% default_texts = default_logo_texts(coupon) %>
+
+        <span class="amount"><%= default_texts[:first_line] %></span>
+
+        <span class="type"><%= default_texts[:second_line] %></span>
+
+      <% end %>
+
+    <% end %>
+
+  <% else %>
+
+    <%= render partial: 'shops/shared/coupon_list_shop_logo', locals: {shop: coupon.shop, height: 100, width: 100} %>
+
+  <% end %>
+
+</span>

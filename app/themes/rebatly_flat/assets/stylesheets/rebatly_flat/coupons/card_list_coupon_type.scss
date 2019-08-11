@@ -1,0 +1,45 @@
+.pannacotta {
+  &.card-list-coupon-type {
+    .card-content {
+      ul {
+        margin-bottom: 0;
+
+        li {
+          line-height: 20px;
+          margin-bottom: 0px;
+
+          &:last-child a {
+            border-bottom: none;
+          }
+
+          &.active a {
+            background-color: $color-header-bg;
+          }
+
+          a {
+            background-color: #fff;
+            border-bottom: 1px solid $color-cloud;
+            color: $color-title;
+            display: block;
+            font-size: 16px;
+            font-weight: lighter;
+            padding: 25px;
+
+            @include flat-transition(background-color .3s ease);
+
+            &:focus, &:hover {
+              background-color: $color-header-bg;
+              text-decoration: none;
+            }
+
+            i {
+              font-size: 25px;
+              margin-right: 25px;
+              vertical-align: -6px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,64 @@
+<%- if Campaign.current.present? or is_home? -%>
+
+  <%= render template: 'widgets/full-newsletter', locals: { values: values, site: site } -%>
+
+<%- else -%>
+
+  <div class="pannacotta sidebar-widget hidden-xs hidden-sm">
+
+    <h3><%= t(:NEWSLETTER_SIGNUP, default: 'NEWSLETTER_SIGNUP') %></h3>
+
+    <div class="widget-newsletter">
+
+      <p><%= t(:SUBSCRIBE_TO_OUR_NEWSLETTER_AND_GET_DEALS, default: "Subscribe and receive our best deals instantly!") %></p>
+
+      <%= form_tag send("subscribe_#{site.site.id}_path"), method: :post, role: 'form', remote: :true, data: { 'event-action' => 'form_submit' } do |f| %>
+
+        <div class="form-group">
+
+          <div class="input-wrapper">
+
+            <%= email_field_tag :email, nil, class: 'form-control', id: 'newsletter_email', placeholder: values[:placeholder], :required => true, "aria-label" => values[:placeholder] %>
+
+          </div>
+          <!-- /.input-wrapper bg-ashes -->
+
+        </div>
+        <!-- /.form-group -->
+
+        <%= button_tag values[:button_text], class: 'btn btn-cloud btn-small' %>
+
+        <p class="privacy-note">
+
+          <%= label_tag :privacy_policy_sb, class: 'privacy_policy' do %>
+
+            <%= check_box_tag :privacy_policy_sb, '', false, :required => true %>
+
+            <span class="text-truncated">
+              <%= truncate(t(:BY_SUBSCRIBING_YOU_ACCEPT_OUR_PRIVACY_POLICY, default: 'By subscribing you accept our <a href="%{policy_url}" rel="nofollow" target="_blank">privacy policy</a>', policy_url: policy_url).html_safe, length: 75, escape: false) %>
+            </span>
+            <span class="text-full hidden">
+              <%= t(:BY_SUBSCRIBING_YOU_ACCEPT_OUR_PRIVACY_POLICY, default: 'By subscribing you accept our <a href="%{policy_url}" rel="nofollow" target="_blank">privacy policy</a>', policy_url: policy_url).html_safe %>
+            </span>
+
+          <%- end -%>
+
+          <% if (t(:BY_SUBSCRIBING_YOU_ACCEPT_OUR_PRIVACY_POLICY, default: 'By subscribing you accept our <a href="%{policy_url}" rel="nofollow" target="_blank">privacy policy</a>', policy_url: policy_url).html_safe.length > 80) %>
+            <span class="show-newsletter-details" data-more-text="<%= t(:MORE_DETAILS, default: 'More details') %>" data-less-text="<%= t(:LESS_DETAILS, default: 'Less details') %>">
+              <%= t(:MORE_DETAILS, default: 'More details') %>
+            </span>
+          <% end %>
+
+        </p>
+
+      <% end %>
+
+      <div class="envelope"></div>
+
+    </div>
+
+  </div>
+
+  <!-- /.card card-newsletter pannacotta -->
+
+<%- end -%>

@@ -1,0 +1,11 @@
+require 'axlsx'
+
+p = Axlsx::Package.new
+wb = xlsx_package.workbook
+wb.add_worksheet(name: "translation_keys_#{Time.now.to_date}") do |sheet|
+ sheet.add_row ['key', 'value']
+
+ @keys.each do |t|
+   sheet.add_row [t[0], t[1]]
+ end
+end

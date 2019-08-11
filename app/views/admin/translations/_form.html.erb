@@ -1,0 +1,47 @@
+
+<div class="col-sm-12">
+
+  <div class="box">
+
+    <div class="box-header blue-background">
+
+      <div class="title">
+
+        <div class="icon-edit"></div>
+
+        Translation Form
+
+      </div>
+
+    </div>
+
+    <div class="box-content">
+
+      <%= form_for [:admin, @translation], html: {class: 'form form-horizontal', style: 'margin-bottom: 0'} do |f| %>
+
+        <%= render partial: 'admin/site_custom_translations/sub_form', locals: {f: f} %>
+
+        <div class="form-actions form-actions-padding-sm">
+
+          <div class="row">
+
+            <div class="col-md-10 col-md-offset-2">
+
+              <%= f.submit nil, class: 'btn btn-primary' if can? :create, Translation %>
+
+              <%= link_to t('.cancel', default: t('helpers.links.cancel')), admin_translations_path, class: 'btn' %>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      <% end %>
+
+    </div>
+
+  </div>
+
+</div>
+

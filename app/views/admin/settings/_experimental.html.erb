@@ -1,0 +1,97 @@
+<div class="col-sm-12 col-md-6" id="admin-rules">
+
+  <div class="box box-bordered red-border <%= 'box-collapsed' unless session[:last_setting] == 'alert' %>">
+
+    <div class="box-header white-background">
+
+      <div class="title">
+
+        <i class="icon-question"></i>
+
+        Experimental
+
+      </div>
+
+      <div class="actions">
+
+        <a class="btn box-collapse btn-xs btn-link" href="#">
+
+          <i></i>
+
+        </a>
+
+      </div>
+
+    </div>
+
+    <div class="box-content">
+
+      <%= form_for [:admin, @setting], method: :patch, html: {class: 'form form-horizontal', style: 'margin-bottom: 0'} do |f| %>
+
+        <%= hidden_field_tag :option_type, 'experimental' %>
+
+        <%= fields_for :experimental , @setting.experimental do |ff| %>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :shops_with_elevated_coupons %>
+
+              <%= ff.select :shops_with_elevated_coupons, @shops_with_elevated_coupons_collection, { prompt: true }, { class: 'select2 form-control', multiple: true } %>
+
+              <div class="help-box"><small>Changes Coupon Headings from h3 to h2 on selected shops</small></div>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :shops_with_flyout_coupon %>
+
+              <%= ff.select :shops_with_flyout_coupon, @shops_with_flyout_coupon_collection, { prompt: true }, { class: 'select2 form-control', multiple: true } %>
+
+              <div class="help-box"><small>Adds flyout coupon notification to shop page</small></div>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :flyout_style %>
+
+              <%= ff.select :flyout_style, @flyout_style_options, { :selected => ff.object.present? ? (ff.object.flyout_style || '') : '' }, class: 'form-control' %>
+
+            </div>
+
+          </div>
+
+          <div class="form-actions form-actions-padding-sm">
+
+            <div class="row">
+
+              <div class="col-md-2">
+
+                <%= f.submit 'Save', class: 'btn btn-primary btn-block' %>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        <% end %>
+
+      <% end %>
+
+    </div>
+
+  </div>
+
+</div>

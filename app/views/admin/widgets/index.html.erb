@@ -1,0 +1,265 @@
+<%- model_class = Widget -%>
+<%= javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};" if protect_against_forgery? %>
+<%= javascript_tag "var CAMPAIGN_CURRENT = #{Campaign.current ? Campaign.current.id : '0'};" %>
+<%= javascript_tag "var IS_SUPER_ADMIN = #{User.current.id == 1 ? true : false};" %>
+
+<div class="row">
+  <div class="col-xs-12">
+    <div class="page-header">
+
+      <!-- page title -->
+      <h1 class="pull-left">
+        <i class="icon-tags"></i>
+        <span><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></span>
+      </h1>
+
+      <!-- breadcrumbs -->
+      <div class="pull-right">
+        <ul class="breadcrumb">
+          <li>
+            <a href="/pcadmin">
+              <i class="icon-tags"></i>
+            </a>
+          </li>
+          <li class="separator">
+            <i class="icon-angle-right"></i>
+          </li>
+          <li class="active"><%= model_class.model_name.human.pluralize.titleize %></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<%= render :partial => 'admin/shared/flash' %>
+<div class="btn-toolbar">
+
+</div>
+<div class="box">
+  <div class="box-content">
+    <div class="btn-toolbar">
+      <% if User.current.is_super_admin? || (User.current.is_admin? && @campaign_id.nil?)  %>
+        <%= link_to '<i class="icon-plus"></i> Text'.html_safe,
+              new_admin_widget_path(type: 'text', campaign: @campaign_id),
+              class: 'btn',
+              remote: true,
+              data: { toggle: 'modal', target: '#myModal'}
+        %>
+      <% end %>
+      <%- if User.current.is_super_admin? -%>
+        <%= link_to '<i class="icon-plus"></i> RAW HTML'.html_safe,
+              new_admin_widget_path(type: 'raw_html', campaign: @campaign_id),
+              class: 'btn',
+              remote: true,
+              data: { toggle: 'modal', target: '#myModal'}
+        %>
+      <%- end -%>
+
+      <%= link_to '<i class="icon-plus"></i> Top X Coupons'.html_safe,
+            new_admin_widget_path(type: 'top_x_coupons', campaign: @campaign_id),
+            class: 'btn',
+            remote: true,
+            data: { toggle: 'modal', target: '#myModal' }
+      %>
+      <%= link_to '<i class="icon-plus"></i> Featured Coupons'.html_safe,
+            new_admin_widget_path(type: 'featured_coupons', campaign: @campaign_id),
+            class: 'btn',
+            remote: true,
+            data: { toggle: 'modal', target: '#myModal' }
+      %>
+      <%= link_to '<i class="icon-plus"></i> Rotated Coupons'.html_safe,
+            new_admin_widget_path(type: 'rotated_coupons', campaign: @campaign_id),
+            class: 'btn',
+            remote: true,
+            data: { toggle: 'modal', target: '#myModal' }
+      %>
+      <%= link_to '<i class="icon-plus"></i> Shop list columns'.html_safe,
+                  new_admin_widget_path(type: 'shop_list_columns', campaign: @campaign_id),
+                  class: 'btn',
+                  remote: true,
+                  data: { toggle: 'modal', target: '#myModal' }
+      %>
+      <%= link_to '<i class="icon-plus"></i> Featured Images'.html_safe,
+            new_admin_widget_path(type: 'featured_images', campaign: @campaign_id),
+            class: 'btn',
+            remote: true,
+            data: { toggle: 'modal', target: '#myModal' }
+      %>
+      <%= link_to '<i class="icon-plus"></i> Image'.html_safe,
+            new_admin_widget_path(type: 'image', campaign: @campaign_id),
+            class: 'btn',
+            remote: true,
+            data: { toggle: 'modal', target: '#myModal' }
+      %>
+
+      <%= link_to '<i class="icon-plus"></i> Blog-Posts'.html_safe,
+            new_admin_widget_path(type: 'blog_posts', campaign: @campaign_id),
+            class: 'btn',
+            remote: true,
+            data: { toggle: 'modal', target: '#myModal' }
+      %>
+      <%= link_to '<i class="icon-plus"></i> Sponsor Bar'.html_safe ,
+            new_admin_widget_path(type: 'sponsor_bar', campaign: @campaign_id),
+            class: 'btn',
+            remote: true,
+            data: { toggle: 'modal', target: '#myModal'}
+      %>
+
+      <%= link_to '<i class="icon-plus"></i> Hot Offers'.html_safe,
+            new_admin_widget_path(type: 'hot_offers', campaign: @campaign_id),
+            class: 'btn btn-info',
+            remote: true,
+            data: { toggle: 'modal', target: '#myModal' }
+      %>
+      <%= link_to '<i class="icon-plus"></i> Shop Bubbles'.html_safe,
+            new_admin_widget_path(type: 'shop_bubbles', campaign: @campaign_id),
+            class: 'btn btn-info',
+            remote: true,
+            data: { toggle: 'modal', target: '#myModal' }
+      %>
+      <%= link_to '<i class="icon-plus"></i> Discount Bubbles'.html_safe,
+            new_admin_widget_path(type: 'discount_bubbles', campaign: @campaign_id),
+            class: 'btn btn-info',
+            remote: true,
+            data: { toggle: 'modal', target: '#myModal' }
+      %>
+      <%= link_to '<i class="icon-plus"></i> Newsletter'.html_safe,
+            new_admin_widget_path(type: 'newsletter', campaign: @campaign_id),
+            class: 'btn btn-info',
+            remote: true,
+            data: { toggle: 'modal', target: '#myModal' }
+      %>
+      <%= link_to '<i class="icon-plus"></i> Subpage Teaser'.html_safe,
+            new_admin_widget_path(type: 'subpage_teaser', campaign: @campaign_id),
+            class: 'btn btn-info',
+            remote: true,
+            data: { toggle: 'modal', target: '#myModal' }
+      %>
+      <%= link_to '<i class="icon-plus"></i> Premium Hero'.html_safe,
+                  new_admin_widget_path(type: 'premium_hero', campaign: @campaign_id),
+                  class: 'btn btn-info',
+                  remote: true,
+                  data: { toggle: 'modal', target: '#myModal' }
+      %>
+      <%= link_to '<i class="icon-plus"></i> Premium Offers'.html_safe,
+                  new_admin_widget_path(type: 'premium_offers', campaign: @campaign_id),
+                  class: 'btn btn-info',
+                  remote: true,
+                  data: { toggle: 'modal', target: '#myModal' }
+      %>
+      <%= link_to '<i class="icon-plus"></i> Premium Widget'.html_safe,
+                  new_admin_widget_path(type: 'premium_widget', campaign: @campaign_id),
+                  class: 'btn btn-info',
+                  remote: true,
+                  data: { toggle: 'modal', target: '#myModal' }
+      %>
+      <%= link_to '<i class="icon-plus"></i> Top Sales'.html_safe,
+            new_admin_widget_path(type: 'top_sales', campaign: @campaign_id),
+            class: 'btn btn-info',
+            remote: true,
+            data: { toggle: 'modal', target: '#myModal' }
+      %>
+      <%= link_to '<i class="icon-plus"></i> Quicklinks'.html_safe ,
+            new_admin_widget_path(type: 'quicklinks', campaign: @campaign_id),
+            class: 'btn btn-info',
+            remote: true,
+            data: { toggle: 'modal', target: '#myModal'}
+      %>
+      <%= link_to '<i class="icon-plus"></i> About'.html_safe ,
+            new_admin_widget_path(type: 'about', campaign: @campaign_id),
+            class: 'btn btn-info',
+            remote: true,
+            data: { toggle: 'modal', target: '#myModal'}
+      %>
+
+      <div class="pull-right" style="">
+        <h4>Please Select Campaign or Main</h4>
+        <%=  select_tag "campaign", options_from_collection_for_select(Site.current.campaigns, "id", "name", Campaign.current ? Campaign.current.id : nil),
+        {:prompt => 'Main', :class => 'select2 form-control', :id => 'campaign_select'} %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="box box-bordered box-nomargin" style="">
+          <div class="box-header blue-background">
+            <div class="title">
+              <i class="icon-pencil"></i>
+              Available Widgets
+            </div>
+            <div class="actions">
+              <a href="#" class="btn box-collapse btn-mini btn-link"><i></i>
+              </a>
+            </div>
+          </div>
+          <div class="box-content" style="min-height: 100px">
+            <div class="unstyled" id="widgets">
+              <ul class="clearfix">
+                <%= render partial: 'widgets', locals: { widgets: Widget.by_current_site_and_campaign } %>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-6" id="widgetareas">
+        <div class="box box-bordered box-nomargin" style="">
+          <div class="box-header green-background">
+            <div class="title">
+              <i class="icon-pencil"></i>
+              Main Content <span></span>
+            </div>
+            <div class="actions">
+              <a href="#" class="btn box-collapse btn-mini btn-link"><i></i>
+              </a>
+            </div>
+          </div>
+          <div class="box-content" style="min-height: 100px" id="main">
+            <ul style="min-height: 100px;" class="unstyled">
+              <% @main.each do |widget| %>
+                <%= render partial: 'widget_box', locals: { widget: widget } %>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+        <div class="box box-bordered box-nomargin" style="">
+          <div class="box-header green-background">
+            <div class="title">
+              <i class="icon-pencil"></i>
+              Sidebar
+            </div>
+            <div class="actions">
+              <a href="#" class="btn box-collapse btn-mini btn-link"><i></i>
+              </a>
+            </div>
+          </div>
+          <div class="box-content" style="min-height: 100px" id="sidebar">
+            <ul style="min-height: 100px;" class="unstyled">
+              <% @sidebar.each do |widget| %>
+                <%= render partial: 'widget_box', locals: { widget: widget } %>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+        <div class="box box-bordered box-nomargin" style="">
+          <div class="box-header green-background">
+            <div class="title">
+              <i class="icon-pencil"></i>
+              Footer <%= '(when empty default footer widgtets are used)' if Campaign.current.present? %>
+            </div>
+            <div class="actions">
+              <a href="#" class="btn box-collapse btn-mini btn-link"><i></i>
+              </a>
+            </div>
+          </div>
+          <div class="box-content" style="min-height: 100px" id="footer">
+            <ul style="min-height: 100px;" class="unstyled">
+              <% @footer.each do |widget| %>
+                <%= render partial: 'widget_box', locals: { widget: widget } %>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

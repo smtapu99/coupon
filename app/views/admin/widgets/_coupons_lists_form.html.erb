@@ -1,0 +1,44 @@
+<div class="form-group">
+
+  <%= ff.label :categories, class: 'col-md-2 control-label' %>
+
+  <div class="col-md-10">
+
+    <%= ff.select :categories, Category.by_site.collect {|x| [x.name, x.id]}, {}, {multiple: true, class: 'select2 form-control'} %>
+
+  </div>
+
+  <!-- /.col-md-10 -->
+
+</div>
+
+<!-- /.form-group -->
+
+<div class="form-group">
+
+  <%= ff.label :coupon_limit, class: 'col-md-2 control-label' %>
+
+  <div class="col-md-10">
+
+    <%= ff.text_field :limit, {class: 'select2 form-control'} %>
+
+    <div class="help-block">
+
+        <small>Default: 8 in new_flat design. The old design might need 15 for 3 columns a 5 coupons</small>
+
+    </div>
+
+  </div>
+
+  <!-- /.col-md-10 -->
+
+</div>
+
+<!-- /.form-group -->
+
+<script>
+  jQuery('#widget_categories').select2({
+    placeholder: 'Type your categories here... ',
+    width: 'resolve'
+  });
+</script>

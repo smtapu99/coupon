@@ -1,0 +1,19 @@
+@critical home.css {
+  .headline {
+    padding: 25px 0 34px;
+    text-align: center;
+    background-color: #FFF;
+
+    &__title {
+      margin: 0;
+      font-weight: 600;
+      font-size: 36px;
+    }
+
+    &__subtitle {
+      margin: 0;
+      font-weight: 300;
+      font-size: 24px;
+    }
+  }
+}

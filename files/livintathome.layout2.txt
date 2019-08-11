@@ -1,0 +1,638 @@
+<script>
+  $('meta[content*="ISO-8859-1"]').remove();
+</script>
+<style>
+  body {
+    font-size: 12px;
+    background: white;
+  }
+  p {
+    color: #000;
+  }
+  .container {
+    margin-left: 0;
+    width: 776px;
+  }
+  .footer {
+    width: 788px;
+  }
+  .copyright {
+    width: 788px;
+  }
+  .col-xs-1, .col-sm-1, .col-md-1, .col-lg-1,
+  .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2,
+  .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3,
+  .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4,
+  .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5,
+  .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6,
+  .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7,
+  .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8,
+  .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9,
+  .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10,
+  .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11,
+  .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .box .box-header > h1, .box .box-header > .h1,
+  .box .box-header > h2, .box .box-header > .h2,
+  .box .box-header > h3, .box .box-header > .h3,
+  .box .box-header > h4, .box .box-header > .h4,
+  .box .box-header > h5, .box .box-header > .h5,
+  .box .box-header > h6, .box .box-header > .h6,
+  .box .box-header b, .box .box-header strong {
+    color: #000 !important;
+    font-size: 12px;
+  }
+  .btn {
+    font-size: 13px;
+  }
+  .btn .picon-percent, .btn .picon-scissors {
+    height: 42px;
+  }
+  .footer h1, .footer .h1,
+  .footer h2, .footer .h2,
+  .footer h3, .footer .h3,
+  .footer h4, .footer .h4,
+  .footer h5, .footer .h5,
+  .footer h6, .footer .h6 {
+    font-size: 14px;
+  }
+  .box.box-newsletter h1, .box.box-newsletter .h1,
+  .box.box-newsletter h2, .box.box-newsletter .h2,
+  .box.box-newsletter h3, .box.box-newsletter .h3,
+  .box.box-newsletter h4, .box.box-newsletter .h4,
+  .box.box-newsletter h5, .box.box-newsletter .h5,
+  .box.box-newsletter h6, .box.box-newsletter .h6,
+  .box.box-newsletter p {
+    font-size: 12px !important;
+  }
+  .box.box-newsletter p {
+    color: #000;
+  }
+  .box.box-newsletter p small {
+    color: #999;
+    font-size: 10px !important;
+  }
+  .box.box-newsletter button {
+    margin-bottom: 20px !important;
+  }
+  .box.box-newsletter .input-wrapper {
+    margin-top: 20px !important;
+  }
+  .lah_footer {
+    line-height: normal;
+  }
+  .lah_footer .spalte1 {
+    width: 237px;
+  }
+  .lah_footer .spalte2 {
+    width: 254px;
+  }
+  .lah_footer .spalte3 {
+    width: 252px;
+  }
+  .box-top-coupons .flex-caption {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+  .box-top-coupons .flex-caption a {
+    color: #000;
+    font-size: 16px;
+  }
+  .box-top-coupons .flex-caption a:hover, .box-top-coupons .flex-caption a:focus {
+    border-bottom-color: #900;
+    color: #900;
+  }
+  .box-content {
+    border-left: 1px solid #f9f9f9;
+    border-right: 1px solid #f9f9f9;
+  }
+  .box-categories .box-content .tab-content {
+    padding: 0 30px 0 20px;
+  }
+  .box-categories .tab-pane .chevron {
+    right: 10px;
+  }
+  .box a {
+    color: #900;
+  }
+  .box a:hover, .box a:focus {
+    border-bottom-color: #900;
+    color: #900;
+  }
+  .box-categories .tab-pane .thumbnail:hover,
+  .box-categories .tab-pane .thumbnail:focus {
+    border-color: #900;
+  }
+  .box-categories .tab-pane p {
+    color: #000;
+  }
+  .modal .flex-container .flex-how-to h1, .modal .flex-container .flex-how-to .h1,
+  .modal .flex-container .flex-how-to h2, .modal .flex-container .flex-how-to .h2,
+  .modal .flex-container .flex-how-to h3, .modal .flex-container .flex-how-to .h3,
+  .modal .flex-container .flex-how-to h4, .modal .flex-container .flex-how-to .h4,
+  .modal .flex-container .flex-how-to h5, .modal .flex-container .flex-how-to .h5,
+  .modal .flex-container .flex-how-to h6, .modal .flex-container .flex-how-to .h6,
+  .box.box-help .box-content h1, .box.box-help .box-content .h1,
+  .box.box-help .box-content h2, .box.box-help .box-content .h2,
+  .box.box-help .box-content h3, .box.box-help .box-content .h3,
+  .box.box-help .box-content h4, .box.box-help .box-content .h4,
+  .box.box-help .box-content h5, .box.box-help .box-content .h5,
+  .box.box-help .box-content h6, .box.box-help .box-content .h6 {
+    font-size: 21px;
+    line-height: 31px;
+    margin-bottom: 20px;
+  }
+  .widget-shopbar a img {
+    margin-right: 6px !important;
+  }
+  .navbar .navbar-nav li a {
+    color: #7d8991;
+    font-size: 12px;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  #header > div.breadcrumb {
+    display: none !important;
+  }
+  .home h1.main-h1 {
+    color: #72757f;
+    margin-bottom: 30px !important;
+    padding: 8px 10px 9px 10px;
+    font-size: 16px;
+  }
+  .copyright .pulled {
+    margin-bottom: 15px;
+  }
+  .picon-cook, .picon-lamp, .picon-trowel {
+    background-image: url("https://pannacotta-production.s3.amazonaws.com/medium/6580/file_name/sprite.png");
+    background-repeat: no-repeat;
+  }
+  .picon-cook {
+    background-position: -80px -240px;
+  }
+  .picon-lamp {
+    background-position: 0 -240px;
+  }
+  .picon-trowel {
+    background-position: -40px -240px;
+  }
+  .categories-list li a p span {
+    color: #900;
+  }
+  .coupons-list .coupon-header .coupon-title, .coupons-list .coupon-header .coupon-title > a {
+    font-size: 18px;
+    line-height: 22px;
+  }
+  .btn, .btn span {
+    font-size: 13px;
+  }
+  .coupons-list .coupon-code {
+    font-size: 12px;
+  }
+  .campaigns .coupon-content .call-to-action,
+  .categories .coupon-content .call-to-action,
+  .coupons .coupon-content .call-to-action,
+  .searches .coupon-content .call-to-action,
+  .shops .coupon-content .call-to-action {
+    padding-left: 6px;
+    padding-right: 47px;
+  }
+  .campaigns .coupons-list .coupon-content .call-to-action,
+  .categories .coupons-list .coupon-content .call-to-action,
+  .coupons .coupons-list .coupon-content .call-to-action,
+  .searches .coupons-list .coupon-content .call-to-action,
+  .shops .coupons-list .coupon-content .call-to-actionn {
+    min-width: 198px;
+  }
+  .shops.index #sidebar .filter-with-letters ul li a:hover,
+  .shops.index #sidebar .filter-with-letters ul li a:focus,
+  .shops.index #sidebar-mobile .filter-with-letters ul li a:hover,
+  .shops.index #sidebar-mobile .filter-with-letters ul li a:focus {
+    background-color: #2eacc8;
+  }
+  .box-coupon-filters-list ul li a {
+    padding: 10px 10px 0 7px;
+  }
+  div.filter-with-letters p {
+    margin: -10px -10px 20px;
+  }
+  .shops .shop-header-wrapper .star-rating span {
+    font-size: 12px;
+  }
+  .shops .bg-overlayed h2, .shops .bg-overlayed .h2 {
+    color: #fff;
+    margin-top: 10px;
+  }
+  .shops .shop-header-wrapper .logo-container {
+    height: 107px;
+    margin-top: 15px;
+  }
+  .shops .shop-header-wrapper .star-rating {
+    margin-left: -30px;
+  }
+  div#top_emsbanner {
+  margin: 0 10px 20px -5px !important;
+  }
+  div.search-form-wrapper {
+    margin: 0 20px 20px 10px;
+    padding-left: 10px;
+  }
+  div.search-form-wrapper button > span {
+    font-size: 15px;
+  }
+  #topSuche > form > input[type="text"]:nth-child(1) {
+    height: 18px;
+    vertical-align: top;
+  }
+  #topSuche > form > input[type="image"]:nth-child(2) {
+    margin-left: 5px;
+    vertical-align: top;
+  }
+  #content ul.one-third li {
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  @media (min-width: 768px) {
+    .navbar {
+      height: 50px;
+      margin: 0 -8px 10px -5px;
+    }
+    #navbar-collapse > ul.nav.navbar-nav.navbar-right > li {
+      height: 48px;
+    }
+    /*#main_content div.navbar.navbar-default {
+      margin: 20px 10px;
+    }*/
+    #main_content div.navbar.navbar-default > div.container {
+      padding: 0;
+    width: 767px;
+    }
+    #sidebar {
+      width: 33.3333333333%;
+    }
+    .navbar-nav.navbar-right:last-child {
+      margin-right: -6px;
+    }
+  }
+
+  @media (min-width: 992px) {
+    .shops .shop-header-wrapper .social-media-buttons li {
+      min-width: 120px;
+    }
+    .shops-list li:nth-child(4n+0) {
+      margin-right: 15px;
+    }
+  }
+
+  /* OLD code */
+  .xlMiddleLayer {
+border-bottom: 1px solid #D2D2D2;
+border-top: 1px solid #D2D2D2;
+padding: 4px 0 10px 0;
+margin: 0 0 20px 0;
+height: 38px;
+color: #666666;
+font-size: 90%;
+clear: both;
+}
+.moduleXL6 a, .xlMiddleLayer a {
+margin: 0;
+color: #666666;
+}
+.xlMiddleLayer .divBoxLeft {
+padding-top: 4px;
+font-size: 12px;
+float: left;
+}
+#divFacebookComments {
+color: #4b67a0;
+padding-top: 3px;
+float: right;
+margin-right: 15px;
+}
+.divTwitterButton {
+float: left;
+width: 100px;
+}
+.divFacebookButton, .divFacebookShareButton {
+float: left;
+height: 22px;
+  line-height: 1;
+}
+.divFacebookButton {
+min-width: 110px;
+}
+.fb_edge_widget_with_comment {
+  z-index: 15;
+}
+.divFacebookShareButton {
+margin-left: 10px;
+}
+.fbSharePluginConnectButton {
+font-family: 'lucida grande', tahoma, verdana, arial, sans-serif;
+font-size: 11px;
+line-height: 1.28;
+float: left;
+font-weight: normal;
+}
+.fbSharePluginButton {
+background: none repeat scroll 0 0 #ECEEF5;
+border: 1px solid #CAD4E7;
+border-radius: 3px 3px 3px 3px;
+color: #3B5998;
+cursor: pointer;
+white-space: nowrap;
+display: inline-block;
+padding: 0 5px 1px;
+height: 16px;
+}
+.fbSharePluginButton a {
+background: none repeat scroll 0 0 transparent;
+border: 0 none;
+color: inherit;
+cursor: pointer;
+font: inherit;
+margin: -1px;
+padding: 0;
+padding-top: 1px;
+}
+.fbSharePluginButton a {
+color: #3B5998;
+cursor: pointer;
+font: inherit;
+}
+.fbSharePluginButtonIcon {
+margin-right: 3px;
+position: relative;
+top: 2px;
+background-image: url("http://static.ak.fbcdn.net/rsrc.php/v2/yD/x/Q8FTZ0iJJF2.png");
+background-repeat: no-repeat;
+display: inline-block;
+height: 13px;
+width: 14px;
+background-position: 0 0;
+}
+.fbSharePluginButton .fbSharePluginButtonIcon {
+margin-right: 2px;
+}
+.divGooglePlus {
+float: left;
+height: 22px;
+}
+.divGooglePlus {
+margin-left: 10px;
+width: 65px;
+}
+.fb_edge_widget_with_comment {
+  z-index: 1002;
+}
+.social_widgets_box .box-content {
+  overflow: visible;
+}
+.breadcrumb {
+  display: none;
+}
+</style>
+
+<div id="adsWrapper" class="wrapper">
+  <!-- <gujAd> -->
+  <!-- GujAd Resources -->
+  <script type="text/javascript">
+    var gujadLink = 'http://www.livingathome.de/gujAd/';
+    var siteName  = 'livingathome.de';
+    if (window.location.search.indexOf('gujad=1') > -1) {
+      gujadLink = 'http://preview.adsatellite.guj.de/satellite.php/get-unminified-file-content/1/' + siteName + '/';
+    }
+    document.write('<scr'+'ipt type="text/javascript" src="'+ gujadLink +'gujAd.js"></scr'+'ipt>');
+    document.write('<link rel="stylesheet" type="text/css" media="screen" href="'+ gujadLink +'gujAd.css" />');
+  </script>
+  <!-- GujAd Client initiieren -->
+  <script type="text/javascript">
+
+    var GujAd = GujAd || []; // pk - 10.02.2011
+
+    // Ad Vars
+    var halfpage;
+    var contentad;
+    var wallpaper;
+
+    // Parametrisierung
+    GujAd.getClient().setIsIndexPage(false); // true/false
+    if( '40990' == '40990' ){ // aktuelle Belegungseinheiten - 40990 ist die Homepage
+      GujAd.getClient().setZone('homepage');
+      GujAd.getClient().setIsIndexPage(true);
+    } else if( 'home' != '' ) {
+      GujAd.getClient().setZone('home');
+    } else {
+      GujAd.getClient().setZone('_default');
+    }
+  </script>
+  <!-- </gujAd> -->
+  <!--proximic_content_off-->
+  <!-- gapixelset: 1-->
+  <div id="zaehlpixel">
+    <script type="text/javascript">
+      <!--
+        var IVW = "http://livingat.ivwbox.de/cgi-bin/ivw/CP/1010100;40990,48595,,?r=";
+      document.write("<img src=\"" + IVW + escape(document.referrer)+"&d=" + (Math.random()*100000) + "\" width=\"1\" height=\"0\" alt=\"\" name=\"ivwneu\" id=\"ivwneu\"/>");
+
+      function updateIVW(clickedLink) {
+        document.images['ivwneu'].src = IVW + escape(document.location)+"&d="+(Math.random()*100000);
+        if (typeof pageTracker =='object') {
+          pageTracker._trackPageview(clickedLink);
+        } else if (typeof urchinTracker != 'undefined') {
+          urchinTracker(clickedLink);
+        } else {
+          try { _gaq.push(['_trackPageview', clickedLink]); } catch(err) {}
+        }
+        // Update SiteCatalyst
+        // void(s.t());
+      }
+      function trevent(category, action, optional_label, optional_value) {try { _gaq.push(['_trackEvent', category, action, optional_label, optional_value]); } catch(err) {}}
+
+      // -->
+
+    </script>
+    <noscript>
+      &lt;img id="ivw" src="http://livingat.ivwbox.de/cgi-bin/ivw/CP/1010100;40990,48595,,?r=" width="1" height="0" alt="" /&gt;
+    </noscript>
+  </div>
+  <!-- keyword -->
+  <!-- /keyword -->
+  <script>(function(undefined) {
+  var config = {
+    siteId: "26"
+  };
+  function FaiblEvent(b){this.targetWindow=b;this.listeners={};var a=this;FaiblEvent.crossBrowserAddEventListener(window,"message",function(f){try{var d=JSON.parse(f.data)}catch(c){return}if(d.action&&a.listeners[d.action]){a.listeners[d.action](d)}})}FaiblEvent.prototype={listen:function(a,b){this.listeners[a]=b},trigger:function(c,b){b=b||{};b.action=c;var a=this;window.setTimeout(function(){a.targetWindow.postMessage(JSON.stringify(b),"*")},0)}};FaiblEvent.crossBrowserAddEventListener=function(a,b,c){if(a.addEventListener){a.addEventListener(b,c,false)}else{if(a.attachEvent){a.attachEvent("on"+b,c)}}};
+  window.faibl=(function(){var i="1.0.0",B="http://cdn.faibl.org";if(!document.querySelector||!document.querySelectorAll||!window.localStorage||!window.JSON||!window.postMessage){return}var n=window.faibl=window.faibl||{};n.pageEventListeners=n.pageEventListeners||[];n.isInitialized=function(){return !!z};n.init=function(C){if(!f){if(window.addEventListener){window.addEventListener("DOMContentLoaded",function(){f=true;n.init(C)},false)}else{if(window.attachEvent){window.attachEvent("onload",function(){f=true;n.init(C)})}}return}m=C;m.version=i;m.status=m.status||{};if(m.debug){m.cssMappings=e}d();if(!n.isInitialized()){var D=document.createElement("style");D.type="text/css";if(D.styleSheet){D.styleSheet.cssText=q}else{D.innerHTML=q}var F=document.getElementsByTagName("script")[0];F.parentNode.insertBefore(D,F);var E=document.createElement("iframe");E.src=B+(m.debug==="dev"?"/app_dev.php":"")+"/api/integration/iframe?v=6";E.style.visibility="hidden";E.style.position="absolute";E.style.left="-99999px";E.onload=function(H){j=new FaiblEvent(this.contentWindow);o(m);u.execute(function(I){m.status.adBlockerEnabled=I;j.trigger("track",m)});j.listen("trackResponse",function(I){l("received status from backend:");l(I);z=true;g=true;y=I;x()})};var G=document.getElementsByTagName("script")[0];G.parentNode.insertBefore(E,G);setTimeout(function(){if(g===undefined){l("Faibl iFrame could not be loaded - perhaps it got blocked by an installed ad blocker => run in backend unavailable mode and assume all users as non-faibl users");z=true;g=false;n.track()}},5000);k()}else{n.track()}};n.track=function(){if(g===true){u.execute(function(C){m.status.adBlockerEnabled=C;j.trigger("track",m)})}else{if(g===false){u.execute(function(C){m.status.adBlockerEnabled=C;y=m.status;x()})}}};n.showMessages=function(){v("."+e.faibl)};n.hideMessages=function(){w("."+e.faibl)};n.hideWarning=function(C){var D=C.parentNode;while(D){if(D.className&&D.className.match(e.faibl)){D.style.display="none";break}D=D.parentNode}};var f=false;var z=false;var g;var m;var j;var y;var e={faibl:s(8),faibl_visible_ad_blocker_enabled:s(8),faibl_hidden_fair_mode:s(8),faibl_hidden_ad_blocker_disabled:s(8),faibl_frequency_1:s(8),faibl_frequency_2:s(8),faibl_frequency_3:s(8),faibl_frequency_4:s(8),faibl_frequency_5:s(8),faibl_frequency_6:s(8),faibl_frequency_7:s(8),faibl_frequency_8:s(8),faibl_frequency_9:s(8)};var q=".faibl_visible_logged_in,  .faibl_visible_paid,  .faibl_visible_fair_mode,  ."+e.faibl_visible_ad_blocker_enabled+",  .faibl_visible_ad_blocker_disabled,  .faibl_logged_in .faibl_hidden_logged_in,  .faibl_paid .faibl_hidden_paid,  .faibl_fair_mode ."+e.faibl_hidden_fair_mode+",  .faibl_ad_blocker_enabled .faibl_hidden_ad_blocker_enabled,  .faibl_ad_blocker_disabled ."+e.faibl_hidden_ad_blocker_disabled+" {    display: none;  }  .faibl_logged_in .faibl_visible_logged_in,  .faibl_paid .faibl_visible_paid,  .faibl_fair_mode .faibl_visible_fair_mode,  .faibl_ad_blocker_enabled ."+e.faibl_visible_ad_blocker_enabled+",  .faibl_ad_blocker_disabled .faibl_visible_ad_blocker_disabled {    display: block;  }";function b(D,E){for(var C=0;C<n.pageEventListeners.length;C++){if(n.pageEventListeners.hasOwnProperty(C)&&n.pageEventListeners[C][0]===D){n.pageEventListeners[C][1](E)}}}function k(){FaiblEvent.crossBrowserAddEventListener(document,"click",function(C){if(C.target&&C.target.className.match(/\bfaibl_close\b/)){n.hideWarning(C.target)}})}function x(){l("handleAdBlocker");n.hideMessages();if(y&&y.adBlockerEnabled){A("ad_blocker_disabled");c("ad_blocker_enabled");p()}else{A("ad_blocker_enabled");c("ad_blocker_disabled")}if(y.isLoggedIn){c("logged_in");if(y.hasPaid){c("paid");c("fair_mode")}else{A("paid");A("fair_mode")}}else{A("logged_in");A("paid");A("fair_mode")}A("uninitialized");n.showMessages();b("status",y)}function l(C){if(m.debug&&window.console){console.log(C)}}function o(C){C.privateTracking=!document.querySelectorAll("."+e.faibl).length}function c(C){r(document.querySelector("html"),"faibl_"+C)}function r(C,D){if(-1===C.className.indexOf(D)){C.className+=" "+D}}function A(C){t(document.querySelector("html"),"faibl_"+C)}function t(C,D){C.className=C.className.replace(new RegExp(D),"")}function h(){return parseInt(localStorage.faibl_adblock_count||0,10)}function a(C){localStorage.faibl_adblock_count=parseInt(C,10)}function p(){a(h()+1)}function v(C){var E=h();var I=document.querySelectorAll(C);for(var G in I){if(I.hasOwnProperty(G)&&typeof I[G]==="object"){var D=I[G];var H=D.className;var F=false;for(var J=1;J<=9;J++){if(new RegExp(e["faibl_frequency_"+J]).test(H)){F=true;if(E%J===0){D.style.display="block"}break}}if(!F){D.style.display="block"}}}}function w(C){var D=h();var F=document.querySelectorAll(C);for(var E in F){if(F.hasOwnProperty(E)&&typeof F[E]==="object"){F[E].style.display="none"}}}function d(){var D,C,E,F;for(E in e){if(e.hasOwnProperty(E)){F=e[E];D=document.querySelectorAll("."+E);for(var G=0;G<D.length;G++){if(D.hasOwnProperty(G)){C=D[G];C.className=C.className.replace(new RegExp("(.*?)(^| )"+E+"( |$)(.*)"),"$1$2"+F+"$3$4")}}}}}function s(E){var F="";var C="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";for(var D=0;D<E;D++){F+=C.charAt(Math.floor(Math.random()*C.length))}return F}var u=(function(F,C){var E={execute:function(J){I(J)}};function I(L){var K=C.getElementsByTagName("body")[0],J=C.createElement("div");if(!K){D(L)}J.className="isAd werbung contentad";J.innerHTML="dom test negative";J.style.position="absolute";J.style.left="-99999px";K.appendChild(J);H(J,L)}function H(J,L,K){K=K||0;if(G(J,"display")==="none"||G(J,"visibility")==="hidden"){L(true);J.parentNode.removeChild(J)}else{if(K<5){setTimeout(function(){H(J,L,K+1)},60)}else{D(L);J.parentNode.removeChild(J)}}}function G(K,J,L){if(F.getComputedStyle){return C.defaultView.getComputedStyle(K,null).getPropertyValue(J)}else{if(K.currentStyle){return K.currentStyle[J]||K.currentStyle[L]}}}function D(N){var L=B+"/bundles/faiblapi/integration/advertisement.js?http%3A%2F%2Fad.de.doubleclick.net%2Fadj%2F";var J=C.getElementsByTagName("head")[0];var K=C.createElement("script");F._faiblNoAdBlocker=undefined;K.src=L;K.type="text/javascript";if("onreadystatechange" in K){K.onreadystatechange=function(){if(this.readyState=="complete"){if(F._faiblNoAdBlocker){N(false)}else{N(true)}}}}else{if("onload" in K&&"onerror" in K){K.onload=function(){N(false)};K.onerror=function(){N(true)}}}var M=C.getElementsByTagName("script")[0];M.parentNode.insertBefore(K,M)}return E})(window,document);return n})();
+  faibl.init(config);
+})();</script>
+  <script>
+    (function() {
+      var faibl = window.faibl = window.faibl || {};
+      if (window.localStorage) {
+        faibl.pageEventListeners = faibl.pageEventListeners || [];
+        faibl.pageEventListeners.push(['status', function(status) {
+
+          var _gaq = window._gaq = window._gaq || [],
+              adBlockerStatus = status.adBlockerEnabled ? 'AdBlockerEnabled' : 'AdBlockerDisabled',
+              faiblStatus = status.isLoggedIn ? (status.hasPaid ? 'FaiblPaid' : 'FaiblUnpaid') : 'NonFaibl',
+              eventAction;
+
+          if (localStorage.adBlockerStatus === undefined) {
+            eventAction = 'determined';
+          }
+          else if (localStorage.adBlockerStatus === adBlockerStatus) {
+            eventAction = 'unchanged';
+          }
+          else {
+            eventAction = 'changed';
+          }
+
+          _gaq.push(
+            [ '_setCustomVar',
+             5, // This custom var is set to slot #5. You might want to change this if you are already using slot 1.
+             faiblStatus, // 'FaiblPaid', 'FaiblUnpaid' or 'NonFaibl'
+             adBlockerStatus, // 'AdBlockerEnabled' or 'AdBlockerDisabled'
+             3 // Sets the scope to page-level.
+            ],
+            [ '_trackEvent',
+             'AdBlockerStatus', // category: The name you supply for the group of objects you want to track.
+             eventAction, // action: 'determined', 'changed' or 'unchanged'
+             adBlockerStatus, // label: 'AdBlockerEnabled' or 'AdBlockerDisabled'
+             null, // value, optional: An integer that you can use to provide numerical data about the user event.
+             true // non-interaction, optional: A boolean that when set to true, indicates that the event hit will not be used in bounce-rate calculation.
+            ]
+          );
+
+          localStorage.adBlockerStatus = adBlockerStatus;
+        }]);
+      }
+    })();
+  </script>
+  <div id="ad_fullsize"></div>
+  <div id="ad_wallpaper"></div>
+
+  <?php /* FACEBOOK SNIPPLET */ ?>
+  <!-- hook -->
+  <div id="fb-root"></div>
+  <!-- script loader -->
+  <script>
+    (function() {
+      var url = '//connect.facebook.net/<?php echo Helper::getFacebookCulture($sf_user->getCulture()); ?>/all.js';
+      var iframe = document.createElement('iframe');
+      (iframe.frameElement || iframe).style.cssText = "width: 0; height: 0; border: 0";
+      iframe.src = "javascript:false";
+      document.getElementById('fb-root').appendChild(iframe);
+      var doc = iframe.contentWindow.document;
+      doc.open().write('<body onload="'+
+                       'window.inDapIF = true;' +
+                       'var js = document.createElement(\'script\');'+
+                       'js.src = \''+ url +'\';'+
+                       'document.body.appendChild(js);">');
+      doc.close();
+    }());
+
+    // async init once loading is done
+    window.fbAsyncInit = function() {
+      FB.init({xfbml: true, status:false, appId: 12680354775, async: true});
+    };
+  </script>
+
+
+  <div id="main_content">
+
+    <div id="wrapper">
+      <div class="container">
+
+        {{snippet_navigation}}
+
+        <div id="ad_leaderboard"></div>
+        <div id="ad_banner"><div id="rubriken">
+          <div class="gujAd" id="superbanner_1">
+            <script type="text/javascript">GujAd.push('superbanner_1');</script>
+          </div>
+          </div></div></div>
+
+        {{snippet_search_form}}
+
+    {{main_content}}
+
+    </div><!-- container -->
+
+    {{snippet_footer}}
+
+  </div><!-- #wrapper -->
+
+</div><!-- #main_content -->
+</div> <!-- adsWrapper -->
+
+<div id="ad_skyscraper" style="">
+  <div class="gujAd" id="skyscraper_1"><script type="text/javascript">GujAd.push('skyscraper_1');</script></div>
+</div>
+
+<!-- <gujAd> -->
+<div style="display: none;">
+  <div id="temp_superbanner_1">
+    <script type="text/javascript">
+      GujAd.delayedInlineLoad('superbanner_1');
+    </script>
+  </div>
+  <div id="temp_supremead_1">
+    <script type="text/javascript">
+      GujAd.delayedInlineLoad('supremead_1');
+    </script>
+  </div>
+  <div id="temp_halfpagead_1">
+    <script type="text/javascript">
+      GujAd.delayedInlineLoad('halfpagead_1');
+    </script>
+  </div>
+  <div id="temp_skyscraper_1">
+    <script type="text/javascript">
+      GujAd.delayedInlineLoad('skyscraper_1');
+    </script>
+  </div>
+  <div id="temp_rectangle_1">
+    <script type="text/javascript">
+      GujAd.delayedInlineLoad('rectangle_1');
+    </script>
+  </div>
+  <div id="temp_rectext_1">
+    <script type="text/javascript">
+      GujAd.delayedInlineLoad('rectext_1');
+    </script>
+  </div>
+  <div id="temp_performance_2">
+    <script type="text/javascript">
+      GujAd.delayedInlineLoad('performance_2');
+    </script>
+  </div>
+  <div id="temp_performance_4">
+    <script type="text/javascript">
+      GujAd.delayedInlineLoad('performance_4');
+    </script>
+  </div>
+  <div id="temp_performance_6">
+    <script type="text/javascript">
+      GujAd.delayedInlineLoad('performance_6');
+    </script>
+  </div>
+  <div id="temp_teaser_1">
+    <script type="text/javascript">
+      GujAd.delayedInlineLoad('teaser_1');
+    </script>
+  </div>
+  <div id="temp_teaser_11">
+    <script type="text/javascript">
+      GujAd.delayedInlineLoad('teaser_11');
+    </script>
+  </div>
+  <script type="text/javascript">
+    GujAd.finalizeInlineLoading();
+  </script>
+</div>
+<!-- /gujAd -->

@@ -1,0 +1,56 @@
+.pannacotta {
+  &.card-empty-shop {
+    .card-header .card-title {
+      color: #fff;
+      font-size: 16px;
+      text-indent: 0;
+    }
+
+    .card-content {
+      padding: 0 25px 25px;
+
+      .privacy-note {
+        position: relative;
+        margin-bottom: 0;
+        display: inline-block;
+        margin-top: 5px;
+        width: 100%;
+
+        small {
+          font-size: 11px;
+          a {
+            color: $color-white;
+            text-decoration: underline;
+          }
+        }
+      }
+
+      .btn {
+        @include border-radius(0);
+        font-weight: 400;
+        text-transform: uppercase;
+        position: relative;
+        top: 1px;
+        padding: 6px 16px !important;
+      }
+
+      input[type="text"] {
+        border-color: $color-white;
+        color: $color-text;
+        font-size: 14px;
+        font-weight: 400;
+        height: 40px;
+        min-width: 238px;
+        padding: 8px 12px;
+
+        @include flat-box-shadow(none);
+
+        &:focus {
+          outline: none;
+
+          @include flat-box-shadow(none);
+        }
+      }
+    }
+  }
+}

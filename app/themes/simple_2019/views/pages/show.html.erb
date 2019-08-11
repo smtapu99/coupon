@@ -1,0 +1,33 @@
+<% if @page.present? %>
+
+  <%= render partial: 'pages/show/head', locals: { page: @page } %>
+
+  <div class="container">
+
+    <div class="row">
+
+      <div class="col-12 <%= 'col-lg-8' if @page.display_sidebar.present? %>" id="content" role="main">
+
+        <%= render partial: 'pages/show/page', locals: { page: @page } %>
+
+      </div>
+
+      <% if @page.display_sidebar.present? %>
+
+        <div class="col-xs-12 col-lg-4" role="complementary">
+
+          <div class="sidebar sidebar--static">
+
+            <%= render partial: "banners/sidebar_banner" %>
+
+          </div>
+
+        </div>
+
+      <% end %>
+
+    </div>
+
+  </div>
+
+<% end %>

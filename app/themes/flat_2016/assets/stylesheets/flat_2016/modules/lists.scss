@@ -1,0 +1,12 @@
+ul.hover,
+ol.hover {
+  li.coupon-item {
+    &:hover {
+      //box-shadow: 2px 2px 1px 0 $color-subheadline;
+
+      a {
+        text-decoration: none;
+      }
+    }
+  }
+}

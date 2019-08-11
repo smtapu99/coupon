@@ -1,0 +1,15 @@
+@import "filter-by-type";
+@import "coupon-type-filter";
+@import "coupons-grid";
+
+@media #{$md} {
+  .coupons.index {
+    #content {
+      order: 2;
+    }
+
+    .sidebar {
+      margin-bottom: 20px;
+    }
+  }
+}

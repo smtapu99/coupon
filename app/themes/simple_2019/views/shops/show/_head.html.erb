@@ -1,0 +1,38 @@
+<% content_for :head do %>
+
+  <%- if @top_categories.present? -%>
+
+    <meta name="maincat" content="<%= @top_categories.first.name.strip %>">
+
+  <%- end -%>
+
+  <% if shop.logo.present? && shop.logo_url.present? %>
+
+    <% content_for :social_image, shop.logo_url, flush: true %>
+
+  <% end %>
+
+  <% if shop.html_document.present? %>
+
+    <% if shop.html_document.head_scripts.present? %>
+
+      <%= shop.html_document.head_scripts.html_safe %>
+
+    <% end %>
+
+  <% end %>
+
+<% end %>
+
+<%- content_for :datalayer do -%>
+
+  <script>
+
+    dataLayer = [{
+      'shopname': "<%= shop.title.html_safe %>",
+      'shop_id': '<%= shop.id %>'
+    }];
+
+  </script>
+
+<%- end -%>

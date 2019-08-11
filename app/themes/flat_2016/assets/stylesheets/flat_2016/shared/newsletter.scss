@@ -1,0 +1,190 @@
+.pannacotta {
+  .card-coupons-list .card-content > ul > li.item-newsletter,
+  .widget-newsletter {
+    background-color: $color-ashes;
+    overflow: hidden;
+    padding: 72px 20px 24px;
+    position: relative;
+    text-align: center;
+
+    p {
+      color: $color-white;
+      font-size: 16px !important;
+      font-weight: 100;
+
+      strong {
+        font-weight: 600;
+        text-transform: uppercase;
+      }
+    }
+
+    img {
+      border: 1px solid $color-white;
+    }
+
+    .btn {
+      font-weight: 400;
+      text-transform: uppercase;
+    }
+
+    .privacy-note {
+      position: relative;
+      margin-bottom: 0;
+      display: inline-block;
+      margin-top: 5px;
+
+      label {
+        font-size: 12px;
+        font-weight: 100;
+      }
+
+      a {
+        color: $color-white;
+        text-decoration: underline;
+      }
+
+      input[type=checkbox] {
+        margin-top: 0;
+        vertical-align: middle;
+      }
+    }
+
+    .envelope {
+      background-image: url("https://static.savings-united.com/pc/assets/default/sprite-two.png");
+      background-position: -40px 4px;
+      background-repeat: no-repeat;
+      background-size: 124px;
+      height: 56px;
+      width: 80px;
+      position: absolute;
+      right: calc(100vw / 2 - 62px);
+      top: -4px;
+      transform: rotate(-25deg);
+
+      @media (min-width: 1200px) {
+        .csstransforms & {
+          display: block;
+        }
+      }
+    }
+
+    .form-group {
+      margin-bottom: 12px;
+
+      input {
+        border-color: $color-white;
+        border-radius: 4px;
+        color: $color-text;
+        font-size: 14px;
+        font-weight: 400;
+        min-width: 238px;
+        padding: 8px 12px;
+        border-radius: 0;
+        height: 40px;
+        box-shadow: none;
+
+        &:focus {
+          outline: none;
+          box-shadow: none;
+        }
+      }
+    }
+  }
+
+  .widget-newsletter {
+    margin-bottom: 10px;
+
+    p {
+      padding-right: 0;
+    }
+
+    .btn-cloud {
+      position: relative;
+      top: -1px;
+      padding: 10px;
+    }
+  }
+  .privacy-note {
+    .show-newsletter-details {
+      color: #ffffff;
+      font-size: 14px;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .pannacotta {
+    .card-coupons-list .card-content > ul > li.item-newsletter,
+    .widget-newsletter {
+      min-height: inherit;
+      padding: 20px 20px 24px;
+      position: relative;
+      text-align: left;
+
+      .envelope {
+        background-position: -64px 4px;
+        background-size: 200px;
+        height: 88px;
+        width: 132px;
+        right: 8%;
+        top: -8px;
+      }
+    }
+
+    .card-coupons-list .card-content > ul > li.item-newsletter {
+      min-height: 120px;
+
+      p {
+        padding-right: 189px;
+      }
+
+      .form-group {
+        margin-bottom: 0;
+      }
+    }
+
+    .widget-newsletter {
+      .btn-cloud {
+        width: 100%;
+      }
+
+      .form-group {
+        width: 100%;
+        display: inline-block;
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+@media (min-width: 992px) {
+  .pannacotta {
+    .widget-newsletter {
+      p {
+        padding-right: 0;
+      }
+
+      .envelope {
+        background-position: -40px 4px;
+        background-size: 132px;
+        height: 64px;
+        right: 20px;
+        top: -12px;
+        width: 94px;
+      }
+    }
+
+    .widget-newsletter {
+      p {
+        margin-right: 112px;
+      }
+
+      .form-group {
+        input {
+          min-width: 0;
+          margin-bottom: 5px;
+        }
+      }
+    }
+  }
+}

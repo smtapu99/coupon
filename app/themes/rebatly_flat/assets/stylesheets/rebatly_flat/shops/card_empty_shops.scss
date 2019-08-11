@@ -1,0 +1,37 @@
+.pannacotta {
+  &.card-empty-shops {
+    .card-header .card-title {
+      text-indent: 0;
+    }
+    .card-content {
+      padding: 0 25px 15px;
+
+      ol li a {
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        @include flat-anchor($color-inactive, darken($color-sky, 10%));
+      }
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .pannacotta.card-empty-shops .card-content ol li a {
+    display: inline-block;
+    white-space: nowrap;
+    max-width: 190px;
+  }
+}
+
+@media (min-width: 992px) {
+  .pannacotta.card-empty-shops .card-content ol li a {
+    max-width: 170px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .pannacotta.card-empty-shops .card-content ol li a {
+    max-width: 210px;
+  }
+}

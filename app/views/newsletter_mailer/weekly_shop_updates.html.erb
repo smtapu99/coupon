@@ -1,0 +1,460 @@
+<% if @coupons.present? %>
+  <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
+  <html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Your Message Subject or Title</title>
+    <style type="text/css">
+      /* Based on The MailChimp Reset INLINE: Yes. */  
+      /* Client-specific Styles */
+      #outlook a {padding:0;} /* Force Outlook to provide a "view in browser" menu link. */
+      body{width:100% !important; -webkit-text-size-adjust:100%; -ms-text-size-adjust:100%; margin:0; padding:0;} 
+      /* Prevent Webkit and Windows Mobile platforms from changing default font sizes.*/ 
+      .ExternalClass {width:100%;} /* Force Hotmail to display emails at full width */  
+      .ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div {line-height: 100%;}
+      /* Forces Hotmail to display normal line spacing.  More on that: http://www.emailonacid.com/forum/viewthread/43/ */ 
+      #backgroundTable {margin:0; padding:0; width:100% !important; line-height: 100% !important;}
+      /* End reset */
+
+      /* Some sensible defaults for images
+      Bring inline: Yes. */
+      img {outline:none; text-decoration:none; -ms-interpolation-mode: bicubic;} 
+      a img {border:none;} 
+      .image_fix {display:block;}
+
+      /* Yahoo paragraph fix
+      Bring inline: Yes. */
+      p {margin: 1em 0;}
+
+      /* Hotmail header color reset
+      Bring inline: Yes. */
+      h1, h2, h3, h4, h5, h6 {color: black !important;}
+
+      h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {color: blue !important;}
+
+      h1 a:active, h2 a:active,  h3 a:active, h4 a:active, h5 a:active, h6 a:active {
+      color: red !important; /* Preferably not the same color as the normal header link color.  There is limited support for psuedo classes in email clients, this was added just for good measure. */
+      }
+
+      h1 a:visited, h2 a:visited,  h3 a:visited, h4 a:visited, h5 a:visited, h6 a:visited {
+      color: purple !important; /* Preferably not the same color as the normal header link color. There is limited support for psuedo classes in email clients, this was added just for good measure. */
+      }
+
+      /* Outlook 07, 10 Padding issue fix
+      Bring inline: No.*/
+      table td {border-collapse: collapse;}
+
+      /* Remove spacing around Outlook 07, 10 tables
+      Bring inline: Yes */
+      table { border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; }
+
+      /* Styling your links has become much simpler with the new Yahoo.  In fact, it falls in line with the main credo of styling in email and make sure to bring your styles inline.  Your link colors will be uniform across clients when brought inline.
+      Bring inline: Yes. */
+      a {color: orange;}
+
+      span.exclusive_coupon {
+        color: #e03232;
+      }
+
+      span.expiring_coupon {
+        color: #ecf0f1;
+      }
+
+      span.free_delivery_coupon {
+        color: #2ecc71;
+      }
+
+      span.new_coupon {
+        color: #3498db;
+      }
+
+      span.top_coupon {
+        color: #9b50ba;
+      }
+
+      /***************************************************
+      ****************************************************
+      MOBILE TARGETING
+      ****************************************************
+      ***************************************************/
+      @media only screen and (max-device-width: 480px) {
+        /* Part one of controlling phone number linking for mobile. */
+        a[href^="tel"], a[href^="sms"] {
+              text-decoration: none;
+              color: blue; /* or whatever your want */
+              pointer-events: none;
+              cursor: default;
+            }
+
+        .mobile_link a[href^="tel"], .mobile_link a[href^="sms"] {
+              text-decoration: default;
+              color: orange !important;
+              pointer-events: auto;
+              cursor: default;
+            }
+
+      }
+
+      /* More Specific Targeting */
+
+      @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+      /* You guessed it, ipad (tablets, smaller screens, etc) */
+        /* repeating for the ipad */
+        a[href^="tel"], a[href^="sms"] {
+              text-decoration: none;
+              color: blue; /* or whatever your want */
+              pointer-events: none;
+              cursor: default;
+            }
+
+        .mobile_link a[href^="tel"], .mobile_link a[href^="sms"] {
+              text-decoration: default;
+              color: orange !important;
+              pointer-events: auto;
+              cursor: default;
+            }
+      }
+
+      @media only screen and (-webkit-min-device-pixel-ratio: 2) {
+      /* Put your iPhone 4g styles in here */ 
+      }
+
+      /* Android targeting */
+      @media only screen and (-webkit-device-pixel-ratio:.75){
+      /* Put CSS for low density (ldpi) Android layouts in here */
+      }
+      @media only screen and (-webkit-device-pixel-ratio:1){
+      /* Put CSS for medium density (mdpi) Android layouts in here */
+      }
+      @media only screen and (-webkit-device-pixel-ratio:1.5){
+      /* Put CSS for high density (hdpi) Android layouts in here */
+      }
+      /* end Android targeting */
+
+    </style>
+
+    <!-- Targeting Windows Mobile -->
+    <!--[if IEMobile 7]>
+    <style type="text/css">
+    
+    </style>
+    <![endif]-->   
+
+    <!-- ***********************************************
+    ****************************************************
+    END MOBILE TARGETING
+    ****************************************************
+    ************************************************ -->
+
+    <!--[if gte mso 9]>
+      <style>
+      /* Target Outlook 2007 and 2010 */
+      </style>
+    <![endif]-->
+  </head>
+  <body>
+    <table border="0" cellpadding="0" cellspacing="0" style="background-color: #ecedf0; border-bottom: 1px solid #e6e8eb; line-height: 100% !important; margin:0; padding:0; width:100% !important;">
+      <tr>
+        <td valign="top">
+          <table cellpadding="0" cellspacing="0" border="0" align="center">
+            <tr>
+              <td valign="top" width="600">
+                <%
+                  @all_shops = []
+                  @subscriber.shops.each do |shop|
+                    @all_shops << shop.title if shop.title.present?
+                  end if @subscriber.shops.present?
+                %>
+                <p style="color: #999; font-family: sans-serif; font-size: 85%; text-align: center;"><%= @all_shops.map(&:inspect).join(', ') %> <!-- &bull; <a href="" target="_blank" style="color: #3498db; text-decoration: none;">View this email in your browser</a> --></p>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+    <!-- TOP -->
+
+    <table border="0" cellpadding="0" cellspacing="0" style="background-color: #f4f5f7; line-height: 100% !important; margin:0; padding:0; width:100% !important;">
+      <tr>
+        <td valign="top">
+          <table cellpadding="0" cellspacing="0" border="0" align="center">
+            <tr>
+              <td valign="top" width="600">
+                <% if @site.present? && @site.name.present? && @settings.present? && @settings.image_upload.present? && @settings.image_upload.logo_url.present? %>
+                  <p style="text-align: center;">
+                    <img alt="<%= @site.name %>" class="image_fix" src="<%= @settings.image_upload.logo_url %>" />
+                  </p>
+                <% end %>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+    <!-- HEADER -->
+
+    <table border="0" cellpadding="0" cellspacing="0" style="background-color: #f4f5f7; line-height: 100% !important; margin:0; padding:0; width:100% !important;">
+      <tr>
+        <td valign="top">
+          <table cellpadding="0" cellspacing="0" border="0" align="center">
+            <tr style="border: 1px solid #efefef;">
+              <td valign="top" width="65">
+                <img alt="Alert" class="image_fix" height="105" src="<%= url_for(send("root_#{@site.id}_url")) %>assets/newsletters/alert.png" title="Alert" width="65" />
+              </td>
+              <td valign="top" width="30">
+                <img alt="Space" class="image_fix" height="105" src="<%= url_for(send("root_#{@site.id}_url")) %>assets/newsletters/white-space.png" title="Space" width="30" />
+              </td>
+              <td valign="top" width="475">
+                <table cellpadding="0" cellspacing="0" border="0" align="center" style="background-color: #fff;">
+                  <tr>
+                    <td valign="top" width="475">
+                      <img alt="Space" class="image_fix" height="20" src="<%= url_for(send("root_#{@site.id}_url")) %>assets/newsletters/white-space.png" title="Space" width="475" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td valign="top" width="475">
+                      <% if @subscriber.mailchimp_info.present? && @subscriber.mailchimp_info['data'].present? && @subscriber.mailchimp_info['data'].first.present? && @subscriber.mailchimp_info['data'].first['merges'].present? && @subscriber.mailchimp_info['data'].first['merges']['FNAME'].present? %>
+                        <h1 style="color: #000; font-family: sans-serif; font-size: 28px; line-height: 1.4; margin: 0;">Hey <%= @subscriber.mailchimp_info['data'].first['merges']['FNAME'] %>!</h1>
+                      <% else %>
+                        <h1 style="color: #000; font-family: sans-serif; font-size: 28px; line-height: 1.4; margin: 0;">Hey friend!</h1>
+                      <% end %>
+                      <p style="color: #939393; font-family: sans-serif; font-size: 14px; margin: 10px 0 0;"><%= t(:NEWSLETTER_YOU_ASKED_US_TO_WARN_YOU_OF_THE_TOP_COUPONS_FROM_YOUR_FAVORITE_STORES, default: 'You asked us to warn you of the top coupons from your favorite stores:') %></p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td valign="top" width="475">
+                      <img alt="Space" class="image_fix" height="20" src="<%= url_for(send("root_#{@site.id}_url")) %>assets/newsletters/white-space.png" title="Space" width="475" />
+                    </td>
+                  </tr>
+                </table>
+              </td>
+              <td valign="top" width="30">
+                <img alt="Space" class="image_fix" height="105" src="<%= url_for(send("root_#{@site.id}_url")) %>assets/newsletters/white-space.png" title="Space" width="30" />
+              </td>
+            </tr>
+            <tr>
+              <td colspan="4" valign="top" width="600">
+                <img alt="Space" class="image_fix" height="20" src="<%= url_for(send("root_#{@site.id}_url")) %>assets/newsletters/cloud-space.png" title="Space" width="600" />
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+    <!-- WELCOME -->
+
+    <table border="0" cellpadding="0" cellspacing="0" style="background-color: #f4f5f7; line-height: 100% !important; margin:0; padding:0; width:100% !important;">
+      <tr>
+        <td valign="top">
+          <table cellpadding="0" cellspacing="0" border="0" align="center">
+
+            <% @coupons.each do |coupon| %>
+              <tr style="background-color: #fff; border: 1px solid #efefef;">
+                <td valign="top" width="120">
+                  <a href="#" target="_blank" title="Desigual">
+                    <img alt="Desigual" class="image_fix" height="120" src="http://lorempixel.com/120/120/" title="Desigual" width="120" />
+                  </a>
+                </td>
+                <td valign="top" width="30">
+                  <img alt="Space" class="image_fix" height="120" src="<%= url_for(send("root_#{@site.id}_url")) %>assets/newsletters/white-space.png" title="Space" width="30" />
+                </td>
+                <td valign="top" width="260">
+                  <table cellpadding="0" cellspacing="0" border="0" align="center">
+                    <tr>
+                      <td valign="top" width="260">
+                        <img alt="Space" class="image_fix" height="25" src="<%= url_for(send("root_#{@site.id}_url")) %>assets/newsletters/white-space.png" title="Space" width="260" />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td valign="top" width="260">
+                        <p style="font-family: sans-serif; font-size: 85%; font-weight: bold; margin: 0; text-transform: uppercase;">
+                          <% if coupon.is_exclusive %>
+                            <span class="exclusive_coupon"><%= t(:COUPON_IS_EXCLUSIVE, default: 'Exclusive') %></span>
+                          <% elsif coupon.is_free_delivery %>
+                            <span class="free_delivery_coupon"><%= t(:COUPON_FREE_SHIPPING, default: 'Free delivery') %></span>
+                          <% elsif coupon.is_top %>
+                            <span class="top_coupon"><%= t(:COUPON_IS_TOP, default: 'Top') %></span>
+                          <% else %>
+                            <span class="new_coupon"><%= t(:COUPON_IS_NEW, default: 'New') %></span>
+                          <% end %>
+                        </p>
+                        <% if coupon.title.present? %>
+                          <h2 style="font-family: sans-serif; font-size: 16px; font-weight: lighter; line-height: 1.4; margin: 10px 0 0;">
+                            <a href="<%= url_for(send("root_#{@site.id}_url")) %><%= url_for(send("shop_show_#{@site.id}_path", coupon.shop.slug)).sub!('/', '') %>#<%= coupon.id %>" target="_blank" style="color: #3498db !important; text-decoration: none;" title="<%= coupon.title %>"><%= coupon.title %></a>
+                          </h2>
+                        <% end %>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td valign="top" width="260">
+                        <img alt="Space" class="image_fix" height="25" src="<%= url_for(send("root_#{@site.id}_url")) %>assets/newsletters/white-space.png" title="Space" width="260" />
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+                <td valign="top" width="30">
+                  <img alt="Space" class="image_fix" height="120" src="<%= url_for(send("root_#{@site.id}_url")) %>assets/newsletters/white-space.png" title="Space" width="30" />
+                </td>
+                <td valign="top" width="130">
+                  <table cellpadding="0" cellspacing="0" border="0" align="center">
+                    <tr>
+                      <td valign="top" width="130">
+                        <img alt="Space" class="image_fix" height="39" src="<%= url_for(send("root_#{@site.id}_url")) %>assets/newsletters/white-space.png" title="Space" width="130" />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td valign="top" width="130">
+                        <p style="background-color: #e03232; border-radius: 4px; font-family: sans-serif; font-size: 85%; font-weight: bold; margin: 0; overflow: hidden; text-align: center; text-transform: uppercase;">
+                          <a style="color: #fff; text-decoration: none;" href="#" target="_blank" title="Pegar cupom">
+                            <img alt="Space" class="image_fix" height="13" src="<%= url_for(send("root_#{@site.id}_url")) %>assets/newsletters/ready-space.png" title="Space" width="130" />
+                            Pegar cupom
+                            <img alt="Space" class="image_fix" height="13" src="<%= url_for(send("root_#{@site.id}_url")) %>assets/newsletters/ready-space.png" title="Space" width="130" />
+                          </a>
+                        </p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td valign="top" width="130">
+                        <img alt="Space" class="image_fix" height="39" src="<%= url_for(send("root_#{@site.id}_url")) %>assets/newsletters/white-space.png" title="Space" width="130" />
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+                <td valign="top" width="30">
+                  <img alt="Space" class="image_fix" height="120" src="<%= url_for(send("root_#{@site.id}_url")) %>assets/newsletters/white-space.png" title="Space" width="30" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="6" valign="top" width="600">
+                  <img alt="Space" class="image_fix" height="20" src="<%= url_for(send("root_#{@site.id}_url")) %>assets/newsletters/cloud-space.png" title="Space" width="600" />
+                </td>
+              </tr>
+            <% end %>
+          </table>
+        </td>
+      </tr>
+    </table>
+    <!-- COUPONS -->
+
+    <!-- <table border="0" cellpadding="0" cellspacing="0" style="background-color: #f4f5f7; line-height: 100% !important; margin:0; padding:0; width:100% !important;">
+      <tr>
+        <td valign="top">
+          <table cellpadding="0" cellspacing="0" border="0" align="center">
+            <tr style="background-color: #2cc56d;">
+              <td valign="top" width="65">
+                <img alt="Mail" class="image_fix" height="75" src="<%#= url_for(send("root_#{@site.id}_url")) %>assets/newsletters/mail.png" title="Mail" width="65" />
+              </td>
+              <td valign="top" width="30">
+                <img alt="Space" class="image_fix" height="75" src="<%#= url_for(send("root_#{@site.id}_url")) %>assets/newsletters/freedom-space.png" title="Space" width="30" />
+              </td>
+              <td valign="top" width="305">
+                <table cellpadding="0" cellspacing="0" border="0" align="center">
+                  <tr>
+                    <td valign="top" width="305">
+                      <img alt="Space" class="image_fix" height="20" src="<%#= url_for(send("root_#{@site.id}_url")) %>assets/newsletters/freedom-space.png" title="Space" width="305" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td valign="top" width="305">
+                      <p style="color: #fff; font-family: sans-serif; font-size: 23px; font-weight: lighter; margin: 10px 0; text-align: center;">Update your preferences</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td valign="top" width="305">
+                      <img alt="Space" class="image_fix" height="20" src="<%#= url_for(send("root_#{@site.id}_url")) %>assets/newsletters/freedom-space.png" title="Space" width="305" />
+                    </td>
+                  </tr>
+                </table>
+              </td>
+              <td valign="top" width="30">
+                <img alt="Space" class="image_fix" height="75" src="<%#= url_for(send("root_#{@site.id}_url")) %>assets/newsletters/freedom-space.png" title="Space" width="30" />
+              </td>
+              <td valign="top" width="130">
+                <table cellpadding="0" cellspacing="0" border="0" align="center">
+                  <tr>
+                    <td valign="top" width="130">
+                      <img alt="Space" class="image_fix" height="15" src="<%#= url_for(send("root_#{@site.id}_url")) %>assets/newsletters/freedom-space.png" title="Space" width="130" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td valign="top" width="130">
+                      <p style="background-color: #2cc56d; border: 2px solid #fff; border-radius: 4px; font-family: sans-serif; font-size: 85%; font-weight: bold; margin: 0; overflow: hidden; text-align: center; text-transform: uppercase;">
+                        <a style="color: #fff; text-decoration: none;" href="#" target="_blank" title="Update">
+                          <img alt="Space" class="image_fix" height="13" src="<%#= url_for(send("root_#{@site.id}_url")) %>assets/newsletters/freedom-space.png" title="Space" width="130" />
+                          Update
+                          <img alt="Space" class="image_fix" height="13" src="<%#= url_for(send("root_#{@site.id}_url")) %>assets/newsletters/freedom-space.png" title="Space" width="130" />
+                        </a>
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td valign="top" width="130">
+                      <img alt="Space" class="image_fix" height="14" src="<%#= url_for(send("root_#{@site.id}_url")) %>assets/newsletters/freedom-space.png" title="Space" width="130" />
+                    </td>
+                  </tr>
+                </table>
+              </td>
+              <td valign="top" width="30">
+                <img alt="Space" class="image_fix" height="75" src="<%#= url_for(send("root_#{@site.id}_url")) %>assets/newsletters/freedom-space.png" title="Space" width="30" />
+              </td>
+            </tr>
+            <tr>
+              <td colspan="6" valign="top" width="600">
+                <img alt="Space" class="image_fix" height="20" src="<%#= url_for(send("root_#{@site.id}_url")) %>assets/newsletters/cloud-space.png" title="Space" width="600" />
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table> -->
+    <!-- PREFERENCES -->
+
+    <table border="0" cellpadding="0" cellspacing="0" style="background-color: #f4f5f7; line-height: 100% !important; margin:0; padding:0; width:100% !important;">
+      <tr>
+        <td valign="top">
+          <table cellpadding="0" cellspacing="0" border="0" align="center">
+            <tr style="background-color: #fff; border: 1px solid #efefef;">
+              <td valign="top" width="600">  
+                <p style="color: #95a5a6; font-family: sans-serif; font-size: 14px; font-weight: bold; text-align: center; text-transform: uppercase;"><%= t(:NEWSLETTER_SEE_MORE, default: 'See more') %> <a href="<%= url_for(send("root_#{@site.id}_url")) %><%= url_for(send("coupons_top_#{@site.id}_path")).sub('/', '') %>" style="color: #3498db; text-decoration: none;" target="_blank" title="<%= t(:SEE_MORE_DISCOUNT_COUPONS, default: 'See more discount coupons') %>"><%= t(:NEWSLETTER_DISCOUNT_COUPONS, default: 'discount coupons') %> &#10140;</a></p>
+              </td>
+            </tr>
+            <tr>
+              <td valign="top" width="600">
+                <img alt="Space" class="image_fix" height="40" src="<%= url_for(send("root_#{@site.id}_url")) %>assets/newsletters/cloud-space.png" title="Space" width="600" />
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+    <!-- MORE -->
+
+    <table border="0" cellpadding="0" cellspacing="0" style="background-color: #f4f5f7; line-height: 100% !important; margin:0; padding:0; width:100% !important;">
+      <tr>
+        <td valign="top">
+          <table cellpadding="0" cellspacing="0" border="0" align="center">
+            <tr>
+              <td valign="top" width="600">  
+                <p style="color: #95a5a6; font-family: sans-serif; font-size: 85%;"><%= t(:YOU_ARE_RECEIVING_THIS_EMAIL_BECAUSE_YOU_ARE_SUBSCRIBED_TO_THE_NEWSLETTER_OF, default: 'You are receiving this email because you are subscribed to the newsletter of') %> <%= @site.name if @site.name %></p>
+                <p style="color: #95a5a6; font-family: sans-serif; font-size: 85%;"><br />PannaCotta Voucher Group<br />Am Sandtorkai 71-72<br />20457 Hamburg, Germany</p>
+                <p style="color: #95a5a6; font-family: sans-serif; font-size: 85%; text-transform: lowercase">
+                  <a href="#" style="color: #3498db; text-decoration: underline;" target="_blank" title="Cancel this alert"><%= t(:CANCEL_THIS_ALERT, default: 'Cancel this alert') %></a> <!-- &bull;
+                  <a href="#" style="color: #3498db; text-decoration: underline;" target="_blank" title="Update preferences">Update preferences</a> &bull; -->
+                  <!-- <a href="#" style="color: #3498db; text-decoration: underline;" target="_blank" title="View in the browser">View in the browser</a> -->
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td valign="top" width="600">
+                <img alt="Space" class="image_fix" height="10" src="<%= url_for(send("root_#{@site.id}_url")) %>assets/newsletters/cloud-space.png" title="Space" width="600" />
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+    <!-- FOOTER -->
+  </body>
+  </html>
+<% end %>

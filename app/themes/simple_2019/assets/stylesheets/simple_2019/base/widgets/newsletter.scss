@@ -1,0 +1,90 @@
+.w-newsletter {
+  $this: &;
+
+  &__subheader {
+    display: inline-block;
+    margin-top: 10px;
+    font-weight: 600;
+  }
+
+  &__form {
+    margin-top: 15px;
+    text-align: center;
+  }
+
+  &__input {
+    width: 100%;
+    padding-left: 5px;
+    font-size: 16px;
+  }
+
+  &__submit {
+    margin-top: 10px;
+  }
+
+  &__privacy {
+    margin-top: 10px;
+    font-size: 13px;
+    text-align: left;
+  }
+
+  &--for-coupons {
+    ::placeholder {
+      color: $input_placeholder;
+      font-style: italic;
+      opacity: 1;
+    }
+
+    :-ms-input-placeholder {
+      color: $input_placeholder;
+      font-style: italic;
+    }
+
+    ::-ms-input-placeholder {
+      color: $input_placeholder;
+      font-style: italic;
+    }
+
+    #{$this}__form {
+      margin-top: 0;
+      text-align: left;
+    }
+
+    #{$this}__subheader {
+      font-weight: 700;
+      font-size: 19px;
+    }
+
+    #{$this}__input {
+      max-width: 95%;
+      margin-top: 10px;
+      font-size: 14px;
+      border: 1px solid $border-color;
+      border-radius: 2px;
+    }
+
+    #{$this}__privacy {
+      display: block;
+      margin: 0;
+    }
+
+    #{$this}__envelope {
+      width: 90px;
+      height: 90px;
+      background-image: url(https://static.savings-united.com/pc/assets/default/sprite-two.png);
+      background-position: -25px -52px;
+      background-size: 131%;
+    }
+
+    .coupon__footer a,
+    .coupon__footer a:hover {
+      color: inherit;
+      text-decoration: underline;
+    }
+
+    .coupon__body {
+      padding-top: 10px;
+      padding-bottom: 15px;
+    }
+  }
+}

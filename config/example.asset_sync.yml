@@ -1,0 +1,29 @@
+defaults: &defaults
+  fog_provider: Google
+  google_storage_access_key_id: GOOGI56VN2NFELBTLSFS
+  google_storage_secret_access_key: 3OYJfIvR3yc4yI0lS0/k8u0AYbrojbY3QbH9ptAJ
+  fog_directory: assets.js-1000.jetscale.net
+  fail_silently: false
+
+development:
+
+  <<: *defaults
+
+  enabled: false
+
+
+test:
+
+  <<: *defaults
+
+  enabled: false
+
+
+staging:
+
+  <<: *defaults
+
+
+production:
+
+  <<: *defaults

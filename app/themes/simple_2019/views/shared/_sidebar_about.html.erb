@@ -1,0 +1,21 @@
+<%- if shop.info_address.present? || shop.info_phone.present? -%>
+
+  <div class="widget widget--about">
+
+    <h3><%= t(:ABOUT, default: 'ABOUT') %> <%= shop.title %></h3>
+
+    <%- if shop.info_address.present? -%>
+
+      <%= simple_format shop.info_address.html_safe %>
+
+    <%- end -%>
+
+    <%- if shop.info_phone.present? -%>
+
+      <%= simple_format shop.info_phone.html_safe %>
+
+    <%- end -%>
+
+  </div>
+
+<%- end -%>

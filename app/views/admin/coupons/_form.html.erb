@@ -1,0 +1,576 @@
+<div class="col-sm-12">
+
+  <div class="box bordered-box blue-border">
+
+    <div class="box-header blue-background">
+
+      <div class="title">
+
+        <i class="icon-edit"></i>
+
+        Coupon Form
+
+        <div class="help-block">
+
+          <%- unless @coupon.new_record? -%>
+
+            <small>last updated at: <%= @coupon.updated_at.to_s(:db) %></small>
+
+          <%- end -%>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="box-content">
+
+      <%= form_for [:admin, @coupon], html: {class: 'form form-horizontal', style: 'margin-bottom: 0'} do |f| %>
+
+        <%= f.hidden_field :origin_coupon_form, value: "1" %>
+
+        <%= render partial: 'admin/shared/form_errors', locals: {ancestor: @coupon} %>
+
+        <% if @coupon.id.present? %>
+
+          <div class="form-group">
+
+            <%= f.label :id, 'ID', class: 'col-md-2 control-label' %>
+
+            <div class="col-md-5">
+
+              <p style="margin-top: 7px;"><%= @coupon.id %></p>
+
+            </div>
+
+          </div>
+
+        <% end %>
+
+        <div class="form-group">
+
+            <%= f.label :negative_votes, class: 'col-md-2 control-label' %>
+
+            <div class="col-md-5">
+
+              <%= f.number_field :negative_votes, { class: 'form-control', disabled: false} %>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <%= f.label :positive_votes, class: 'col-md-2 control-label' %>
+
+            <div class="col-md-5">
+
+              <%= f.number_field :positive_votes, { class: 'form-control', disabled: false} %>
+
+            </div>
+
+          </div>
+
+        <% unless Site.current.present? %>
+
+          <div class="form-group <%= 'has-error' unless @coupon.errors.messages[:site_id].blank? %>">
+
+            <%= f.label :site_id, class: 'col-md-2 control-label' %>
+
+            <div class="col-md-5">
+
+              <%= f.select :site_id, User.current.sites.collect {|u| [u.name, u.id] }, {prompt: false}, {disabled: !f.object.new_record?, class: 'form-control'} %>
+
+            </div>
+
+          </div>
+
+        <% end %>
+
+        <div class="form-group">
+
+          <%= f.label :status, class: 'col-md-2 control-label' %>
+
+          <div class="col-md-5">
+
+            <%= f.select :status, Coupon.statuses, {prompt: true}, class: 'form-control' %>
+
+          </div>
+
+        </div>
+
+        <div class="form-group">
+
+          <%= f.label :affiliate_network_id, class: 'col-md-2 control-label' %>
+
+          <div class="col-md-5">
+
+            <%= f.collection_select :affiliate_network_id, AffiliateNetwork.active, :id, :name, {include_blank: true}, class: 'form-control select2' %>
+
+          </div>
+
+        </div>
+
+        <div class="form-group">
+
+          <%= f.label :shop_id, class: 'col-md-2 control-label' %>
+
+          <div class="col-md-5">
+
+            <%#- cache(cache_key_for_site_current_shops + '_single') do  -%>
+
+              <%= f.select :shop_id, ([f.object.shop] + Site.current.shops.active.order(:title)).uniq.reject(&:nil?).collect {|i| [i.title_and_site_name, i.id]}, { selected: f.object.shop_id, include_blank: true }, {class: 'form-control select2'} %>
+
+            <%#- end -%>
+
+          </div>
+
+        </div>
+
+        <div class="form-group">
+
+          <%= f.label :category_ids, class: 'col-md-2 control-label' %>
+
+          <div class="col-md-5">
+
+            <%= f.select :category_ids, Site.current.categories.collect {|i| [i.site_id_and_name, i.id]}, {}, { multiple: true, class: 'select2 form-control' } %>
+
+          </div>
+
+        </div>
+
+        <div class="form-group">
+
+          <%= f.label :campaign_ids, class: 'col-md-2 control-label' %>
+
+          <div class="col-md-5">
+
+            <%= f.select :campaign_ids, Site.current.campaigns.order(id: :desc).collect {|i| [i.id_and_name, i.id]}, {}, { multiple: true, class: 'select2 form-control' } %>
+
+          </div>
+
+        </div>
+
+        <div class="form-group">
+
+          <%= f.label :title, class: 'col-md-2 control-label' %>
+
+          <div class="col-md-5">
+
+            <%= f.text_field :title, class: 'form-control', maxlength: "255" %>
+
+          </div>
+
+        </div>
+
+        <hr>
+
+        <div class="form-group">
+
+          <%= f.label :logo_text_first_line, class: 'col-md-2 control-label' %>
+
+          <div class="col-md-5">
+
+            <%= f.text_field :logo_text_first_line, class: 'form-control', maxlength: "255" %>
+
+            <div class="help-block">Default: Savings</div>
+
+          </div>
+
+        </div>
+
+        <div class="form-group">
+
+          <%= f.label :logo_text_second_line, class: 'col-md-2 control-label' %>
+
+          <div class="col-md-5">
+
+            <%= f.text_field :logo_text_second_line, class: 'form-control', maxlength: "255" %>
+
+            <div class="help-block">Default: Coupon or Offer</div>
+
+          </div>
+
+        </div>
+
+        <p>OR, upload a picture:</p>
+
+        <div class="form-group">
+
+          <%= f.label :logo, class: 'col-xs-2 control-label' %>
+
+          <div class="col-xs-5">
+
+            <p><%= f.file_field :logo, class: 'form-control' %></p>
+
+            <% unless @coupon.new_record? %>
+
+              <%= image_tag @coupon.logo_url(:thumb), class: 'img-responsive' if @coupon.logo? %>
+
+              <p><label><%= f.check_box :use_logo_on_home_page %> Use on home</label></p>
+
+              <p><label><%= f.check_box :use_logo_on_shop_page %> Use on the shop page</label></p>
+
+              <p><label><%= f.check_box :remove_logo %> Remove logo</label></p>
+
+            <% end %>
+
+            <div class="help-block">
+
+              <small>Please fill out all the fields first before you upload a logo, as the coupon gets validated</small>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <hr>
+
+        <div class="form-group">
+
+          <%= f.label :widget_header_image, class: 'col-xs-2 control-label' %>
+
+          <div class="col-xs-5">
+
+            <p><%= f.file_field :widget_header_image, class: 'form-control' %></p>
+
+            <p><label><%= f.check_box :remove_widget_header_image %> Remove Widget Header Image</label></p>
+
+            <%= image_tag @coupon.widget_header_image_url('_0x120'), class: 'img-responsive' if @coupon.widget_header_image? %>
+
+            <div class="help-block">
+
+              <small>Use this to show different image than shop header in "Featured Coupons Widget"</small>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <hr>
+
+        <div class="form-group">
+
+          <%= f.label :description, class: 'col-md-2 control-label' %>
+
+          <div class="col-md-5">
+
+            <%= f.text_area :description, class: 'tinymce form-control' %>
+
+          </div>
+
+        </div>
+
+        <div class="form-group">
+
+          <%= f.label :info_discount, class: 'col-md-2 control-label' %>
+
+          <div class="col-md-5">
+
+            <%= f.text_field :info_discount, class: 'form-control', maxlength: "255" %>
+
+          </div>
+
+        </div>
+
+        <div class="form-group">
+
+          <%= f.label :info_min_purchase, class: 'col-md-2 control-label' %>
+
+          <div class="col-md-5">
+
+            <%= f.text_field :info_min_purchase, class: 'form-control', maxlength: "255" %>
+
+          </div>
+
+        </div>
+
+        <div class="form-group">
+
+          <%= f.label :info_limited_clients, class: 'col-md-2 control-label' %>
+
+          <div class="col-md-5">
+
+            <%= f.text_field :info_limited_clients, class: 'form-control', maxlength: "255" %>
+
+          </div>
+
+        </div>
+
+        <div class="form-group">
+
+          <%= f.label :info_limited_brands, class: 'col-md-2 control-label' %>
+
+          <div class="col-md-5">
+
+            <%= f.text_field :info_limited_brands, class: 'form-control', maxlength: "255" %>
+
+          </div>
+
+        </div>
+
+        <div class="form-group">
+
+          <%= f.label :info_conditions, class: 'col-md-2 control-label' %>
+
+          <div class="col-md-5">
+
+            <%= f.text_field :info_conditions, class: 'form-control', maxlength: "255" %>
+
+          </div>
+
+        </div>
+
+        <div class="form-group">
+
+          <%= f.label :url, class: 'col-md-2 control-label' %>
+
+          <div class="col-md-5">
+
+            <%= f.text_field :url, class: 'form-control' %>
+
+          </div>
+
+        </div>
+
+        <div class="form-group">
+
+          <%= f.label :start_date, class: 'col-md-2 control-label' %>
+
+          <div class="col-md-5">
+
+            <%= f.datetime_select :start_date, include_seconds: true, include_blank: true, class: 'form-control' %>
+
+          </div>
+
+        </div>
+
+        <div class="form-group">
+
+          <%= f.label :end_date, class: 'col-md-2 control-label' %>
+
+          <div class="col-md-5">
+
+            <%= f.datetime_select :end_date, include_seconds: true, include_blank: true, class: 'form-control' %>
+
+          </div>
+
+        </div>
+
+        <div class="form-group">
+
+          <%= f.label :savings, class: 'col-md-2 control-label' %>
+
+          <div class="col-md-5">
+
+            <%= f.text_field :savings, class: 'form-control' %>
+
+          </div>
+
+        </div>
+
+        <div class="form-group">
+
+          <%= f.label :savings_in, class: 'col-md-2 control-label' %>
+
+          <div class="col-md-5">
+
+            <%= f.select :savings_in, Option::get_select_options('coupon_savings_in', true), {include_blank: true}, class: 'form-control' %>
+
+          </div>
+
+        </div>
+
+        <div class="form-group">
+
+          <%= f.label :currency, class: 'col-md-2 control-label' %>
+
+          <div class="col-md-5">
+
+            <%= f.text_field :currency, class: 'form-control' %>
+
+            <div class="help-block">Default: <%= Site.site_currency(f.object.try(:site).try(:country).try(:locale)) %>; Leave empty if default is correct.</div>
+
+          </div>
+
+        </div>
+
+        <div class="form-group">
+
+          <%= f.label :coupon_type, class: 'col-md-2 control-label' %>
+
+          <div class="col-md-5">
+
+            <%= f.select :coupon_type, Option::get_select_options('coupon_types', true), {include_blank: true}, class: 'form-control' %>
+
+          </div>
+
+        </div>
+
+        <div class="form-group">
+
+          <%= f.label :code, class: 'col-md-2 control-label' %>
+
+          <div class="col-md-5">
+
+            <%= f.text_field :code, class: 'form-control', maxlength: "255" %>
+
+          </div>
+
+        </div>
+
+        <div class="form-group">
+
+          <%= f.label :use_uniq_codes, class: 'col-md-2 control-label' %>
+
+          <div class="col-md-5">
+
+            <%= f.check_box :use_uniq_codes, class: 'form-control' %>
+
+            <div class="help-block">
+
+              <small>If you enable this they system will try to deliver a uniq code to the tracking user. If no uniq code is available it will use the default code above.</small>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="form-group">
+
+          <%= f.label :is_hidden, class: 'col-md-2 control-label' %>
+
+          <div class="col-md-5">
+
+            <%= f.check_box :is_hidden, class: 'form-control' %>
+
+            <p class="help-block"><small>Hidden coupons dont show on the website, but its possible to clickout on them knowing the right URL</small> </p>
+
+          </div>
+
+        </div>
+
+        <div class="form-group">
+
+          <%= f.label :is_top, class: 'col-md-2 control-label' %>
+
+          <div class="col-md-5">
+
+            <%= f.check_box :is_top, class: 'form-control' %>
+
+          </div>
+
+        </div>
+
+        <div class="form-group">
+
+          <%= f.label :is_exclusive, class: 'col-md-2 control-label' %>
+
+          <div class="col-md-5">
+
+            <%= f.check_box :is_exclusive, class: 'form-control' %>
+
+          </div>
+
+        </div>
+
+        <div class="form-group">
+
+          <%= f.label :is_editors_pick, class: 'col-md-2 control-label' %>
+
+          <div class="col-md-5">
+
+            <%= f.check_box :is_editors_pick, class: 'form-control' %>
+
+          </div>
+
+        </div>
+
+        <div class="form-group">
+
+          <%= f.label :is_free, class: 'col-md-2 control-label' %>
+
+          <div class="col-md-5">
+
+            <%= f.check_box :is_free, class: 'form-control' %>
+
+          </div>
+
+        </div>
+
+        <div class="form-group">
+
+          <%= f.label :is_mobile, class: 'col-md-2 control-label' %>
+
+          <div class="col-md-5">
+
+            <%= f.check_box :is_mobile, class: 'form-control' %>
+
+          </div>
+
+        </div>
+
+        <div class="form-group">
+
+          <%= f.label :is_free_delivery, class: 'col-md-2 control-label' %>
+
+          <div class="col-md-5">
+
+            <%= f.check_box :is_free_delivery, class: 'form-control' %>
+
+          </div>
+
+        </div>
+
+        <div class="form-group">
+
+          <%= f.label :shop_list_priority, class: 'col-md-2 control-label' %>
+
+          <div class="col-md-5">
+
+            <%= f.number_field :shop_list_priority, class: 'form-control number', min: 1, max: 5, step: 1 %>
+
+            <div class="help-block">1 = High Priority - 5 = Default</div>
+
+          </div>
+
+        </div>
+
+        <div class="form-actions form-actions-padding-sm">
+
+          <div class="row">
+
+            <div class="col-md-10 col-md-offset-2">
+
+              <%= f.submit nil, class: 'btn btn-primary' if can? :create, Coupon %>
+
+              <%= link_to t('.cancel', default: t('helpers.links.cancel')), admin_coupons_path, class: 'btn' %>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      <% end %>
+
+    </div>
+
+  </div>
+
+</div>
+
+<script type="text/javascript">
+
+document.ready = function(){
+
+  <%- unless can? :manage, Coupon -%>
+    $("form.form-horizontal :input").attr("disabled", true);
+  <%- end -%>
+}
+
+</script>

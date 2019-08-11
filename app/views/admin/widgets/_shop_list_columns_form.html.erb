@@ -1,0 +1,20 @@
+<div class="form-group">
+  <%= ff.label :shop_list_columns, :class => 'col-md-2 control-label' %>
+  <div class="col-md-10">
+    <%= ff.select :shop_list_columns, [2,3,4,5,6], {include_hidden: false,prompt: true}, {class: 'form-control'} %>
+  </div>
+</div>
+
+<hr>
+
+<div class="form-group">
+  <%= ff.label 'Shops', :class => 'col-md-2 control-label' %>
+  <div class="col-md-10">
+    <%= ff.select :shop_list_shops, Shop.by_site.active.order_by_set(ff.object.value[:shop_list_shops]).collect {|x| [x.title, x.id]}, {include_blank: false}, {:multiple => true, class: 'select2 form-control', id:"shop_list_shops"} %>
+  </div>
+</div>
+
+
+<script>
+  jQuery('#shop_list_shops').select2();
+</script>

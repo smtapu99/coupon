@@ -1,0 +1,81 @@
+<%- content_for(:head_scripts) do -%>
+
+  <script type="text/javascript">var authorized_to_change_status = <%= can?(:change_status, Category).to_s %></script>
+
+<%- end -%>
+
+<% model_class = Category %>
+
+<div class="row">
+
+  <div class="col-xs-12">
+
+    <div class="page-header">
+
+      <h1 class="pull-left">
+
+        <i class="icon-archive"></i>
+
+        <span><%= t '.title', default: model_class.model_name.human.pluralize.titleize %></span>
+
+      </h1>
+
+      <div class="pull-right">
+
+        <ul class="breadcrumb">
+
+          <li>
+
+            <a href="/pcadmin">
+
+              <i class="icon-home"></i>
+
+            </a>
+
+          </li>
+
+          <li class="separator">
+
+            <i class="icon-angle-right"></i>
+
+          </li>
+
+          <li class="active"><%= model_class.model_name.human.pluralize.titleize %></li>
+
+        </ul>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<%= render partial: 'admin/shared/flash' %>
+
+<div class="box">
+
+  <div class="box-content">
+
+    <div class="btn-toolbar">
+
+      <% if can? :create, model_class %>
+
+        <%= link_to '<i class="icon-plus"></i> New Category'.html_safe, new_admin_category_path, class: 'btn btn-success' %>
+        <%= link_to '<i class="icon-tag"></i> Tags'.html_safe, admin_tags_path, class: 'btn btn-success' %>
+        <%= link_to 'Sort Categories'.html_safe, order_admin_categories_path, class: 'btn btn-info' %>
+
+      <% end %>
+
+    </div>
+
+    <div class="table-responsive">
+
+     <div id="app"></div>
+
+    </div>
+
+  </div>
+
+</div>

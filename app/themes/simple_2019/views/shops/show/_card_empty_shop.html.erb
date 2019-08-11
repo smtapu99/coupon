@@ -1,0 +1,47 @@
+<div class="notice" data-event-category="content_emptyshop_nl">
+
+  <div class="notice__header">
+
+    <p class="notice__header--title">
+
+      <%= t(:SORRY_ALL_OUR_COUPONS_FOR_SHOP_ARE_GONE, default: 'Sorry, all our coupons for <b>{shop}</b> are gone').gsub('{shop}', shop.title).html_safe %>
+
+      <%- if newsletter_enabled? -%>
+
+        <br>
+
+        <%= t(:WE_WILL_NOTIFY_YOU_AS_SOON_AS_WE_HAVE_SOMETHING_NEW, default: 'We will notify you as soon as we have something new') %>.
+
+      <%- end -%>
+
+    </p>
+
+  </div>
+
+  <%- if newsletter_enabled? -%>
+
+    <div class="notice__content">
+
+      <%= form_tag send("subscribe_#{@site.site.id}_path"), method: :post, class: "w-newsletter__form", role: 'form', remote: :true, data:{'event-action' => 'form_submit'} do |f| %>
+
+        <div class="notice__content--wrapper">
+
+          <%= email_field_tag :email, nil, class: 'notice__content--input', id: 'empty_shop_newsletter_email', placeholder: t(:TYPE_HERE_YOUR_EMAIL, default: 'Type here your email'), :required => true, "aria-label" => t(:TYPE_HERE_YOUR_EMAIL, default: 'Type here your email') %>
+
+        </div>
+
+        <%= button_tag(t(:SUBSCRIBE, default: 'Subscribe'), class: 'notice__content--button w-newsletter__submit') %>
+
+        <p class="notice__content--privacy-note">
+
+          <%= render 'shared/privacy_note_checkbox' %>
+
+        </p>
+
+    <% end %>
+
+    </div>
+
+  <%- end -%>
+
+</div>

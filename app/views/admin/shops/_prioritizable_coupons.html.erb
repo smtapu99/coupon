@@ -1,0 +1,32 @@
+<%= form_tag(admin_shops_update_shop_list_priority_path(id: params[:id]), method: :post) do %>
+
+  <%= submit_tag 'Apply Changes'.html_safe, :class => 'btn btn-success btn-block btn-lg apply-changes', style: "margin-bottom: 10px;" %>
+
+  <table class="table" width="100%" style="table-layout: fixed">
+    <thead>
+      <th style='width:8%'>Id</th>
+      <th style="width:5%"></th>
+      <th style="">Title</th>
+      <th style="width:10%">Affiliate Network</th>
+      <th style="width:10%">Start Date</th>
+      <th style="width:10%">End Date</th>
+      <th style="width:8%">Exclusive</th>
+      <th style="width:5%">Saving</th>
+      <th style="width:8%">Shop List Priority</th>
+    </thead>
+    <%- coupons.each do |coupon| -%>
+      <tr>
+        <td><%= coupon.id %></td>
+        <td><%= link_to '<i class="icon-pencil"></i>'.html_safe, edit_admin_coupon_path(coupon), class: 'btn btn-primary' %></td>
+        <td class="text-overflow"><%= coupon.title.titleize %></td>
+        <td><%= coupon.affiliate_network.name if coupon.affiliate_network.present? %></td>
+        <td><%= coupon.start_date.to_s(:db) if coupon.start_date.present? %></td>
+        <td><%= coupon.end_date.to_s(:db) if coupon.end_date.present? %></td>
+        <td><%= coupon.is_exclusive? %></td>
+        <td><%= coupon.savings_in_string(false) if coupon.savings.present? %></td>
+        <td><%= number_field_tag "shop_list_priority[#{coupon.id}]", coupon.shop_list_priority, class: 'form-control number', min: 1, max: 5, step: 1 %></td>
+      </tr>
+    <%- end -%>
+  </table>
+
+<%- end -%>

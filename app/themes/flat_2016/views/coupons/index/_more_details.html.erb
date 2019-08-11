@@ -1,0 +1,15 @@
+<% if coupon.shop.present? && coupon.shop.title.present? && params[:controller] != 'shops' %>
+
+  <div class="list-more-details">
+
+    <a href="<%= dynamic_url_for('shop', 'show', slug: coupon.shop.slug) %>">
+
+      <%= t(:SEE_MORE_COUPONS_FROM, default: 'See more coupons') %> &rarr;
+
+    </a>
+
+  </div>
+  <!-- /.list-more-details -->
+
+<% end %>
+

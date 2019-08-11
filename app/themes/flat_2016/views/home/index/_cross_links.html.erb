@@ -1,0 +1,69 @@
+<%- site_id = Site.current.id -%>
+
+<section id="regions">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 text-center">
+        <span class="title"><%= t(:FIND_COUPONS_AND_OFFERS_IN_OTHER_COUNTRIES, default: 'Find coupons and offers in other countries') %></span>
+        <ul class="flags-group">
+          <%- unless site_id == 1 -%>
+            <li class="flag">
+              <a href="https://cupon.es" title="Cupon.es" target="_blank">
+                <img alt="Cupon.es" width="75" class="img-responsive" src="https://static.savings-united.com/pc/assets/spain.jpg">
+                <span><%= t(:Spain, default: 'Spain') %></span>
+              </a>
+            </li>
+          <%- end -%>
+          <%- unless site_id == 6 -%>
+            <li class="flag">
+              <a href="https://sconti.com" title="Sconti.com" target="_blank">
+                <img alt="Sconti.com" width="75" class="img-responsive" src="https://static.savings-united.com/pc/assets/italy.jpg">
+                <span><%= t(:Italia, default: 'Italia') %></span>
+              </a>
+            </li>
+          <%- end -%>
+          <%- unless site_id == 9 -%>
+            <li class="flag">
+              <a href="https://kupon.pl" title="Kupon.pl" target="_blank">
+                <img alt="Kupon.pl" width="75" class="img-responsive" src="https://static.savings-united.com/pc/assets/poland.jpg">
+                <span><%= t(:Poland, default: 'Poland') %></span>
+              </a>
+            </li>
+          <%- end -%>
+          <%- unless site_id == 2 -%>
+            <li class="flag">
+              <a href="https://cupom.com" title="Cupom.com" target="_blank">
+                <img alt="Cupom.com" width="75" class="img-responsive" src="https://static.savings-united.com/pc/assets/brasil.jpg">
+                <span><%= t(:Brasil, default: 'Brasil') %></span>
+              </a>
+            </li>
+          <%- end -%>
+          <%- unless site_id == 8 -%>
+            <li class="flag">
+              <a href="https://tuscupones.com.mx" title="Tuscupones.com.mx" target="_blank">
+                <img alt="Tuscupones.com.mx" width="75" class="img-responsive" src="https://static.savings-united.com/pc/assets/mexico.jpg">
+                <span><%= t(:Mexico, default: 'México') %></span>
+              </a>
+            </li>
+          <%- end -%>
+          <%- unless site_id == 3 -%>
+            <li class="flag">
+              <a href="https://cupon.cl" title="Cupon.cl" target="_blank">
+                <img alt="Cupon.cl" width="75" class="img-responsive" src="https://static.savings-united.com/pc/assets/chile.jpg">
+                <span><%= t(:Chile, default: 'Chile') %></span>
+              </a>
+            </li>
+          <%- end -%>
+          <%- unless site_id == 4 -%>
+            <li class="flag">
+              <a href="https://cupon.com.co" title="Cupon.com.co" target="_blank">
+                <img alt="Cupon.com.co" width="75" class="img-responsive" src="https://static.savings-united.com/pc/assets/colombia.jpg">
+                <span><%= t(:Colombia, default: 'Colombia') %></span>
+              </a>
+            </li>
+          <%- end -%>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

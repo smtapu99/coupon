@@ -1,0 +1,23 @@
+<div class="card card-empty-shops hidden-xs pannacotta">
+
+  <div class="card-header">
+
+    <h3 class="card-title"><%= t(:SHOPLIST_SHOPS_WITHOUT_COUPONS, default: 'Empty Shops') %></h3>
+
+    <!-- /.card-title -->
+
+  </div>
+
+  <!-- /.card-header -->
+
+  <div class="card-content">
+
+    <%= render partial: 'shops/index/empty_shops_list', locals: {shops_empty: shops_empty} %>
+
+  </div>
+
+  <!-- /.card-content -->
+
+</div>
+
+<!-- /.card card-empty-shops hidden-xs pannacotta -->

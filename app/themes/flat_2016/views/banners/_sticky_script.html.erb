@@ -1,0 +1,78 @@
+<script type="text/javascript">
+  (function() {
+    function stickyBar() {
+      var currentDate = new Date();
+      var startDate = new Date("<%= banner.start_time %>");
+      var endDate = new Date("<%= banner.end_time %>");
+
+      <%- if banner.countdown_date.present? -%>
+      var countdownDate = new Date("<%= banner.countdown_date %>T23:59:59");
+      <%- end -%>
+
+      var $stickyBar = $(".sticky-bar");
+      var $stickyClose = $stickyBar.find('.sticky-bar__close');
+      var cookieName = "sticky-bar-<%= banner.id %>";
+      var cookieLifetimeDays = 1;
+      var $footer = $("#footer");
+      var $notice = $(".pannacotta.cookies-eu");
+
+      function hide() {
+        var date = new Date();
+
+        $stickyBar.slideToggle(200, removeFooterPadding());
+        document.cookie = cookieName + "=true; expires=" + date.setDate(date.getDate() + cookieLifetimeDays) + "; path=/";
+      }
+
+      function addFooterPadding(noticeHeight) {
+        var padding = $stickyBar.outerHeight() + noticeHeight;
+        $footer.css("padding-bottom", padding + 'px');
+      }
+
+      function removeFooterPadding() {
+        if ($notice.length && $notice.is(':visible')) {
+          $footer.css("padding-bottom", $notice.outerHeight() + 'px');
+        } else {
+          $footer.css("padding-bottom", "");
+        }
+      }
+
+      function moveAboveCookieNotice() {
+        if ($notice.length && $notice.is(':visible')) {
+          var height = $notice.outerHeight();
+          $stickyBar.css('bottom', height + 'px');
+          addFooterPadding(height);
+        } else {
+          addFooterPadding(0);
+        }
+      }
+
+      function showIfNoCookie($banner) {
+        $banner.slideToggle(200, moveAboveCookieNotice());
+      }
+
+      if (document.cookie.indexOf(cookieName) < 0 && currentDate < endDate && currentDate > startDate) {
+        if (typeof countdownDate !== 'undefined' && currentDate < countdownDate) {
+          jQuery('#countdown.sticky').countdown({date: countdownDate});
+        }
+
+        setTimeout(function() {
+            showIfNoCookie($stickyBar);
+          }, 1000
+        );
+      }
+
+      $stickyClose.click(function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        hide();
+      });
+
+      document.removeEventListener("DOMContentLoaded", stickyBar);
+
+    }
+
+    document.addEventListener("DOMContentLoaded", stickyBar);
+
+  })();
+
+</script>

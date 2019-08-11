@@ -1,0 +1,258 @@
+
+<div class="col-sm-12">
+
+  <div class="box bordered-box blue-border">
+
+    <div class="box-header blue-background">
+
+      <div class="title">
+
+        <i class="icon-edit"></i>
+
+        Site Form
+
+      </div>
+
+    </div>
+
+    <div class="box-content">
+
+      <%= form_for [:admin, @site], html: { class: 'form form-horizontal', style: 'margin-bottom: 0'} do |f| %>
+
+      <%= render partial: 'admin/shared/form_errors', locals: {ancestor: @site} %>
+
+      <%- if @site.api_key.present? -%>
+
+        <div class="form-group">
+
+          <%= f.label :access_token, class: 'col-md-2 control-label' %>
+
+          <div class="col-md-5">
+
+            <%= text_field_tag :access_token, @site.api_key.access_token, class: 'form-control', disabled: true %>
+
+            <div class="help-block"><small>This Access Token is used for API requests. e.g. to fetch categorized coupons for snippets</small></div>
+
+          </div>
+
+        </div>
+
+      <%- end -%>
+
+      <div class="form-group">
+
+        <%= f.label :status, class: 'col-md-2 control-label' %>
+
+        <div class="col-md-5">
+
+          <%= f.select :status, Site.statuses, { selected: f.object.try(:status), prompt: true }, class: 'form-control'  %>
+
+          <div class="help-block"><small>Status will only affect if the site appears in the dropdown for now.</small></div>
+
+        </div>
+
+      </div>
+
+      <div class="form-group <%= 'has-error' unless @site.errors.messages[:name].blank? %>">
+
+        <%= f.label :name, class: 'col-md-2 control-label' %>
+
+        <div class="col-md-5">
+
+          <%= f.text_field :name, class: 'form-control' %>
+
+        </div>
+
+      </div>
+
+      <div class="form-group <%= 'has-error' unless @site.errors.messages[:hostname].blank? %>">
+
+        <%= f.label :hostname, class: 'col-md-2 control-label' %>
+
+        <div class="col-md-5">
+
+          <%= f.text_field :hostname, class: 'form-control', disabled: !@site.new_record? && !User.current.is_admin? %>
+
+        </div>
+
+      </div>
+
+      <div class="form-group <%= 'has-error' unless @site.errors.messages[:asset_hostname].blank? %>">
+
+        <%= f.label :asset_hostname, class: 'col-md-2 control-label' %>
+
+        <div class="col-md-5">
+
+          <%= f.text_field :asset_hostname, class: 'form-control', disabled: !@site.new_record? && !User.current.is_admin? %>
+
+          <p class="help-block">
+            <small class="text-muted"><%=t '.help-country', default: 'You can specify a different hostname from where to fetch the site\' asset, ex: images.example.com' %></small></br>
+
+            <small class="text-warning"><%=t '.help-country', default: 'If you leave this field empty then the S3 bucket endpoint URL will be used.' %></small>
+          </p>
+
+        </div>
+
+      </div>
+
+      <div class="form-group <%= 'has-error' unless @site.errors.messages[:hostname].blank? %>">
+
+        <%= f.label :is_multisite, class: 'col-md-2 control-label' %>
+
+        <div class="col-md-5">
+
+          <%= f.check_box :is_multisite, class: 'form-control' %>
+
+          <div class="help-block"><small>Multisite means that a site is running multiple sites on different subdirectories. The sites will need to have the same hostname and need to be marked as Multisites.</small></div>
+
+        </div>
+
+      </div>
+
+      <div class="form-group <%= 'has-error' unless @site.errors.messages[:hostname].blank? %>">
+
+        <%= f.label :is_wls, class: 'col-md-2 control-label' %>
+
+        <div class="col-md-5">
+
+          <%= f.check_box :is_wls, class: 'form-control' %>
+
+          <div class="help-block"><small>Default: false, Indicates whether the site is a WLS or not</small></div>
+
+        </div>
+
+      </div>
+
+      <div class="form-group <%= 'has-error' unless @site.errors.messages[:hostname].blank? %>">
+
+        <%= f.label :subdir_name, class: 'col-md-2 control-label' %>
+
+        <div class="col-md-5">
+
+          <%= f.text_field :subdir_name, class: 'form-control' %>
+
+          <div class="help-block"><small>If the site is part of a multisite pls specify here the subdirectory name. NOTE: You also have to specify this name as subdir in the routes settings!</small></div>
+
+        </div>
+
+      </div>
+
+      <div class="form-group <%= 'has-error' unless @site.errors.messages[:country].blank? %>">
+
+        <%= f.label :country, class: 'col-md-2 control-label' %>
+
+        <div class="col-md-5">
+
+
+          <% Country.all.each do |c| %>
+
+            <div class="checkbox">
+              <label>
+                <%= f.radio_button :country_id, c.id, {disabled: f.object.country_id.present?} %>
+                <%= c.name %>
+              </label>
+            </div>
+
+          <% end %>
+        </div>
+
+      </div>
+
+      <div class="form-group <%= 'has-error' unless @site.errors.messages[:time_zone].blank? %>">
+
+        <%= f.label :time_zone, class: 'col-md-2 control-label' %>
+
+        <div class="col-md-5">
+
+          <%= f.time_zone_select :time_zone, nil, { include_blank: false }, { class: 'select2 form-control', disabled: f.object.country_id.present? } %>
+
+        </div>
+
+      </div>
+
+      <div class="form-group <%= 'has-error' unless @site.errors.messages[:time_zone].blank? %>">
+
+        <%= f.label :commission_share_percentage, class: 'col-md-2 control-label' %>
+
+        <div class="col-md-5">
+
+          <%= f.number_field :commission_share_percentage, class: 'form-control', step: '0.01' %>
+
+        </div>
+
+      </div>
+
+      <%- if @site.new_record? -%>
+
+        <hr>
+
+        <h3>Create Site Like</h3>
+
+        <div class="form-group <%= 'has-error' unless @site.errors.messages[:create_like_site_id].blank? %>">
+
+          <%= f.label :create_like_site_id, class: 'col-md-2 control-label' %>
+
+          <div class="col-md-5">
+
+            <%= f.collection_select :create_like_site_id, Site.all, :id, :name, {prompt: true, include_blank: true}, class: 'select2 form-control' %>
+
+            <div class="help-block">
+
+              <small>
+
+                This option will copy:<br>
+                - Routes<br>
+                - Translations<br>
+                - Categories<br>
+                from the selected site. Cannot be reverted.
+
+              </small>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      <%- end -%>
+
+      <div class="form-actions form-actions-padding-sm">
+
+        <div class="row">
+
+          <div class="col-md-10 col-md-offset-2">
+
+          <p class="help-block">
+
+            <small class="text-warning"><%=t '.help-country', default: 'Beware that you cannot change the hostname, asset hostname, country and time zone of the site,once it is saved.' %></small>
+
+          </p>
+
+            <%= f.submit nil, class: 'btn btn-primary' if can? :create, Site %>
+
+            <%= link_to t('.cancel', default: t('helpers.links.cancel')), admin_sites_path, class: 'btn' %>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <% end %>
+
+    </div>
+
+  </div>
+
+</div>
+
+<script type="text/javascript">
+
+document.ready = function(){
+
+  <%- unless can? :manage, Site -%>
+    $("form.form-horizontal :input").attr("disabled", true);
+  <%- end -%>
+}
+
+</script>

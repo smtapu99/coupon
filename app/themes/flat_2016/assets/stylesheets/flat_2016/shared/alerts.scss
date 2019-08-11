@@ -1,0 +1,27 @@
+.pannacotta {
+  &.alert {
+    @include border-radius(0);
+  }
+
+  &.card-alert {
+    .card-header {
+      .card-title {
+        color: #FFF;
+        font-size: 16px;
+        font-weight: lighter;
+        line-height: 20px;
+
+        b,
+        strong {
+          font-weight: bold;
+        }
+
+        .btn {
+          border-radius: 24px;
+          cursor: auto;
+          padding: 1px 4px 2px !important;
+        }
+      }
+    }
+  }
+}

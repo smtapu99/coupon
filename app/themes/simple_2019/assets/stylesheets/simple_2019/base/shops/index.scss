@@ -1,0 +1,56 @@
+@import "sidebar";
+@import "star-rating";
+@import "related";
+@import "expired";
+@import "filter-by-category";
+@import "shops-index";
+@import "popular-shops";
+@import "card-empty-shop";
+@import "shop-info-mobile";
+@import "shop-banner";
+
+@media #{$xs} {
+  .shops.show {
+    .page-title {
+      display: none;
+    }
+  }
+}
+
+#content {
+  .widget {
+    margin-bottom: 15px;
+    padding: 18px 0;
+    font-size: 14px;
+    background-color: $background--light-grey;
+
+    &--summary {
+      a {
+        display: block;
+        color: inherit;
+      }
+
+      th:first-of-type {
+        width: 50%;
+      }
+    }
+  }
+
+  .table {
+    width: 100%;
+    font-size: 13px;
+    table-layout: fixed;
+
+    &-row--hover:hover {
+      background-color: darken($background--light-grey, 5%);
+    }
+
+    td {
+      border-top: 1px solid #DDD;
+
+      &.nowrap {
+        white-space: nowrap;
+      }
+    }
+  }
+}

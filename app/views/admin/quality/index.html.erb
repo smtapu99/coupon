@@ -1,0 +1,97 @@
+<%- content_for(:head_scripts) do -%>
+
+  <script type="text/javascript">var authorized_to_edit = <%= can_manage_quality_section?.to_s %></script>
+
+<%- end -%>
+
+<div class="row">
+
+  <div class="col-xs-12">
+
+    <div class="page-header">
+
+      <h1 class="pull-left">
+
+        <i class="icon-tags"></i>
+
+        <span><%= @title %></span>
+
+      </h1>
+
+      <div class="pull-right">
+
+        <ul class="breadcrumb">
+
+          <li>
+
+            <a href="/pcadmin">
+
+              <i class="icon-home"></i>
+
+            </a>
+
+          </li>
+
+          <li class="separator">
+
+            <i class="icon-angle-right"></i>
+
+          </li>
+
+          <li class="active"><%= @title %></li>
+
+        </ul>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<%= render partial: 'admin/shared/flash' %>
+
+<%- if @quicklinks.present? -%>
+
+<div class="box">
+
+  <div class="box-header">Quicklinks</div>
+
+  <div class="box-content">
+
+    <div class="btn-toolbar">
+
+      <%- @quicklinks.each do |quicklink| -%>
+
+        <%= link_to quicklink[0].html_safe, quicklink[1], class: 'btn btn-danger' %>
+
+      <%- end -%>
+
+    </div>
+
+  </div>
+
+</div>
+
+<%- end -%>
+
+<%- if @info.present? -%>
+
+  <div class="alert alert-info"><%= @info %></div>
+
+<%- end -%>
+
+<div class="box">
+
+  <div class="box-content">
+
+    <div class="table-responsive">
+
+      <div id="app"></div>
+
+    </div>
+
+  </div>
+
+</div>

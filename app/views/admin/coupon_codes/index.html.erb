@@ -1,0 +1,93 @@
+<% model_class = CouponCode %>
+
+<div class="row">
+
+  <div class="col-xs-12">
+
+    <div class="page-header">
+
+      <h1 class="pull-left">
+
+        <i class="icon-globe"></i>
+
+        <span><%= t '.title', default: model_class.model_name.human.pluralize.titleize %></span>
+
+      </h1>
+
+      <div class="pull-right">
+
+        <ul class="breadcrumb">
+
+          <li>
+
+            <a href="/pcadmin">
+
+              <i class="icon-home"></i>
+
+            </a>
+
+          </li>
+
+          <li class="separator">
+
+            <i class="icon-angle-right"></i>
+
+          </li>
+
+          <li><%= model_class.model_name.human.pluralize.titleize %></li>
+
+          <li class="separator">
+
+            <i class="icon-angle-right"></i>
+
+          </li>
+
+          <li class="active"><%= model_class.model_name.human.pluralize.titleize %></li>
+
+        </ul>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<%= render :partial => 'admin/shared/flash' %>
+
+<div class="box">
+
+  <div class="box-content">
+
+    <% if can? :create, model_class %>
+
+      <div class="btn-toolbar">
+
+        <%= link_to '<i class="icon-plus"></i> New Coupon Code'.html_safe, new_admin_coupon_code_path(coupon_id: (@coupon.present? ? @coupon.id : nil)), class: 'btn btn-success' %>
+
+        <%- if can? :read, CouponCodeImport -%>
+
+          <%= link_to '<i class="icon-upload"></i> Import Coupon Codes'.html_safe, new_admin_coupon_code_import_path, class: 'btn btn-primary' %>
+
+        <%- end -%>
+
+        <%= link_to '<i class="icon-download"></i> Export XLS'.html_safe, export_modal_admin_coupon_codes_path, data: {remote: true}, class: 'btn btn-info' %>
+
+        <%- if count = Site.current.coupon_codes.imported.count and count > 0 -%>
+
+          <%= link_to "<i class=\"icon-ok\"></i> Approve All Imported (#{count})".html_safe, approve_imported_admin_coupon_codes_path, class: 'btn btn-info' %>
+
+          <%= link_to "<i class=\"icon-ok\"></i> Remove All Imported (#{count})".html_safe, remove_imported_admin_coupon_codes_path, class: 'btn btn-danger' %>
+
+        <%- end -%>
+
+      </div>
+
+    <% end %>
+
+    <div id="app"></div>
+
+  </div>
+
+</div>

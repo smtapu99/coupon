@@ -1,0 +1,120 @@
+  <style type="text/css">
+
+    .clearfix:after {
+      content: ".";
+      clear: both;
+      display: block;
+      visibility: hidden;
+      height: 0px;
+    }
+
+    .top-x-coupons {
+      font-family: Lato;
+      padding-left: 20px;
+      padding-right: 20px;
+      padding-top: 20px;
+    }
+
+    .top-x-coupons h3 {
+      font-size: 15px;
+      font-weight: 400;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .top-x-coupons li {
+      border-bottom: 1px solid lightgray;
+      margin-bottom: 8px;
+      padding-bottom: 8px;
+    }
+
+    .top-x-coupons a {
+      display: block;
+      height: 110px;
+      position: relative;
+      text-decoration: none;
+    }
+
+    .top-x-coupons img {
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      height: 110px;
+      width: 110px;
+      box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.1);
+    }
+
+    .top-x-coupons .content {
+      padding-left: 120px;
+      height: 110px;
+      color: #4e5860;
+      font-size: 15px;
+      display: block;
+      line-height: 20px;
+      float: none;
+      width: initial;
+    }
+
+    .top-x-coupons .content span {
+      display: block;
+      font-size: 18px;
+      font-weight: bold;
+      color: #e43c33;
+      margin-bottom: 10px;
+    }
+
+  </style>
+
+  <% if @coupons.present? %>
+
+    <div class="pannacotta top-x-coupons">
+
+      <h3><%= t(:TOP_X_COUPONS_WIDGET_TITLE, default: 'TOP_X_COUPONS_WIDGET_TITLE') %></h3>
+
+      <aside>
+
+        <% @coupons.in_groups_of(5) do |group_of_coupons| %>
+
+          <div class="list-coupons-as-items list-unstyled hover">
+
+            <% group_of_coupons.each do |coupon| %>
+
+              <div data-shop-name="<%= coupon.shop_title %>">
+
+                <a class="clearfix" <%= clickout_params_for_element(coupon) %> title="<%= coupon.title if coupon.title.present? %>">
+
+                  <%= render partial: 'shops/shared/logo', locals: {shop: coupon.shop, css_class: 'img-responsive pull-left', height: 110, width: 110} %>
+
+                  <span class="content">
+
+                    <% if coupon.shop.present? && coupon.shop.title.present? %>
+
+                      <span class="color-sky text-uppercase"><%= coupon.shop.title %></span>
+
+                    <% end %>
+
+                    <% if coupon.title.present? %>
+
+                      <%= truncate(coupon.title, length: 50) %>
+
+                    <% end %>
+
+                  </span>
+
+                </a>
+
+              </div>
+
+            <% end %>
+
+          </div>
+          <!-- /.list-coupons-as-items list-unstyled hover -->
+
+        <% end %>
+
+      </aside>
+
+    </div>
+    <!-- /.card top-x-coupons hidden pannacotta -->
+
+  <% end %>

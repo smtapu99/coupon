@@ -1,0 +1,82 @@
+<style type="text/css">
+
+  .pannacotta#header {
+    background-color: transparent;
+    margin-top: 50px;
+  }
+
+  .pannacotta#header .site-logo a {
+    display: inline-block;
+  }
+
+  .loading:after {
+    content: ' .';
+    animation: dots 1s steps(5, end) infinite;}
+
+  @keyframes dots {
+    0%, 20% {
+      color: rgba(0,0,0,0);
+      text-shadow:
+        .25em 0 0 rgba(0,0,0,0),
+        .5em 0 0 rgba(0,0,0,0);}
+    40% {
+      color: black;
+      text-shadow:
+        .25em 0 0 rgba(0,0,0,0),
+        .5em 0 0 rgba(0,0,0,0);}
+    60% {
+      text-shadow:
+        .25em 0 0 black,
+        .5em 0 0 rgba(0,0,0,0);}
+    80%, 100% {
+      text-shadow:
+        .25em 0 0 black,
+        .5em 0 0 black;}}
+
+</style>
+
+<div class="pannacotta api-redirect" id="header" data-event-category="header">
+
+  <div class="container">
+
+    <div class="row">
+
+      <div class="col-xs-6 col-xs-push-3 col-sm-2 col-sm-push-5 text-center">
+
+        <%= render partial: 'shared/site_logo' %>
+
+      </div>
+
+      <!-- /.col-xs-6 col-xs-push-3 col-sm-2 col-sm-push-5 -->
+
+    </div>
+
+    <!-- /.row -->
+
+  </div>
+
+  <!-- /.container -->
+
+</div>
+
+<div class="container">
+
+  <div class="row">
+
+    <div class="col-xs-12 pannacotta" id="content" role="main">
+
+      <% if @coupon.shop.present? %>
+
+        <p class="redirect-message text-center loading"><%= t(:COUPON_REDIRECT_MESSAGE, default: 'Hang on! We are taking you to:') %> <b><%= @coupon.shop.title if @coupon.shop.title.present? %></b></p>
+
+        <!-- /.redirect-message text-center -->
+
+      <% end %>
+
+    </div>
+
+  </div>
+
+</div>
+
+<%= render 'coupons/shared/clickout_script' %>

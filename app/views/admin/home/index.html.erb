@@ -1,0 +1,184 @@
+<div class="row">
+  <div class="col-xs-12">
+    <div class="page-header">
+      <h1 class="pull-left">
+        <i class="icon-home"></i>
+        <span>Home</span>
+      </h1>
+      <div class="pull-right">
+        <ul class="breadcrumb">
+          <li>
+            <a href="/admin">
+              <i class="icon-home"></i>
+            </a>
+          </li>
+          <li class="separator">
+            <i class="icon-angle-right"></i>
+          </li>
+          <li class="active">Home</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= render 'admin/shared/flash' %>
+
+<div class="box">
+  <h2 class="text-center">Hi <%= current_admin_user.full_name %>. Welcome to Coupon Management System!</h2>
+</div>
+
+<div class="container">
+
+  <hr>
+
+  <div class="box">
+    <h3 class="text-center">Quick links</h3>
+  </div>
+
+  <div class="row">
+    <%- if can? :read, Coupon -%>
+    <div class="col-xs-6 col-sm-3">
+      <div class="box-quick-link red-background">
+        <%= link_to admin_coupons_path do %>
+          <div class="header">
+            <div class="icon-ticket"></div>
+          </div>
+          <div class="content">Coupons</div>
+        <% end %>
+      </div>
+    </div>
+    <%- end -%>
+
+    <%- if can? :read, Shop -%>
+    <div class="col-xs-6 col-sm-3">
+      <div class="box-quick-link blue-background">
+        <%= link_to admin_shops_path do %>
+          <div class="header">
+            <div class="icon-shopping-cart"></div>
+          </div>
+          <div class="content">Shop pages</div>
+        <% end %>
+      </div>
+    </div>
+    <%- end -%>
+
+    <%- if can? :read, Campaign -%>
+    <div class="col-xs-6 col-sm-3">
+      <div class="box-quick-link orange-background">
+        <%= link_to admin_campaigns_path do %>
+          <div class="header">
+            <div class="icon-bullhorn"></div>
+          </div>
+          <div class="content">Campaigns</div>
+        <% end %>
+      </div>
+    </div>
+    <%- end -%>
+
+    <%- if can? :read, Widget -%>
+    <div class="col-xs-6 col-sm-3">
+      <div class="box-quick-link green-background">
+        <%= link_to admin_widgets_path do %>
+          <div class="header">
+            <div class="icon-puzzle-piece"></div>
+          </div>
+          <div class="content">Widgets</div>
+        <% end %>
+      </div>
+    </div>
+    <%- end -%>
+
+
+    <%- if can? :read, CouponImport -%>
+    <div class="col-xs-6 col-sm-3">
+      <div class="box-quick-link red-background">
+        <%= link_to admin_coupon_imports_path do %>
+          <div class="header">
+            <div class="icon-upload-alt"></div>
+          </div>
+          <div class="content">Import coupons</div>
+        <% end %>
+      </div>
+    </div>
+    <%- end -%>
+
+    <%- if can? :read, ShopImport -%>
+    <div class="col-xs-6 col-sm-3">
+      <div class="box-quick-link blue-background">
+        <%= link_to admin_shop_imports_path do %>
+          <div class="header">
+            <div class="icon-upload-alt"></div>
+          </div>
+          <div class="content">Import shops</div>
+        <% end %>
+      </div>
+    </div>
+    <%- end -%>
+
+    <%- if can? :read, CampaignImport -%>
+    <div class="col-xs-6 col-sm-3">
+      <div class="box-quick-link orange-background">
+        <%= link_to admin_campaign_imports_path do %>
+          <div class="header">
+            <div class="icon-upload-alt"></div>
+          </div>
+          <div class="content">Import campaigns</div>
+        <% end %>
+      </div>
+    </div>
+    <%- end -%>
+
+    <%- if can? :read, Setting -%>
+    <div class="col-xs-6 col-sm-3">
+      <div class="box-quick-link purple-background">
+        <%= link_to admin_settings_path do %>
+          <div class="header">
+            <div class="icon-cogs"></div>
+          </div>
+          <div class="content">Settings</div>
+        <% end %>
+      </div>
+    </div>
+    <%- end -%>
+
+    <%- if can? :synch_keywords, Shop -%>
+    <div class="col-xs-6 col-sm-3">
+      <div class="box-quick-link dark-background has-popover" data-content="Synchronize keywords from Google Doc https://tinyurl.com/ycp4jp37" data-placement="top" data-title="Top" data-original-title="" title="">
+        <%= link_to synch_keywords_admin_shops_path, remote: true do %>
+          <div class="header">
+            <div class="icon-refresh"></div>
+          </div>
+          <div class="content">Synchronize Shop Keywords </div>
+        <% end %>
+      </div>
+    </div>
+    <%- end -%>
+
+    <%- if can? :manage, AwinMigration -%>
+    <div class="col-xs-6 col-sm-3">
+      <div class="box-quick-link dark-background">
+        <%= link_to admin_awin_path do %>
+          <div class="header">
+            <div class="icon-circle-arrow-right"></div>
+          </div>
+          <div class="content">Awin Migration</div>
+        <% end %>
+      </div>
+    </div>
+    <%- end -%>
+
+    <%- if User.current.is_super_admin? && Site.current.present? -%>
+    <div class="col-xs-6 col-sm-3">
+      <div class="box-quick-link dark-background">
+        <%= link_to admin_reload_routes_path do %>
+          <div class="header">
+            <div class="icon-refresh"></div>
+          </div>
+          <div class="content">Reload Routes</div>
+        <% end %>
+      </div>
+    </div>
+    <%- end -%>
+  </div>
+</div>

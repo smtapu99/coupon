@@ -1,0 +1,17 @@
+<ul class="popular-shops">
+
+  <% shops_featured.each_with_index do |shop, index| %>
+
+    <li class="popular-shops__item <%= 'd-none d-sm-block' if index >= 6 %>">
+
+      <a href="<%= dynamic_url_for('shop', 'show', slug: shop.slug) if shop.slug.present? %>" title="<%= shop.title if shop.title.present? %>">
+
+        <%= render partial: 'shops/shared/logo', locals: { shop: shop, height: 200, width: 200 } %>
+
+      </a>
+
+    </li>
+
+  <% end %>
+
+</ul>

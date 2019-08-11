@@ -1,0 +1,27 @@
+.pagination-wrapper {
+  padding-top: 10px;
+
+  .pagination {
+    li {
+      display: inline-block;
+      float: left;
+      padding: 6px 12px;
+      color: $font-color;
+      line-height: 1.428571429;
+      text-decoration: none;
+      background-color: #FFF;
+      border: 1px solid $border-color;
+
+      &:hover {
+        background-color: $border-color;
+      }
+    }
+
+    &.active {
+      padding: 6px 12px;
+      line-height: 1.428571429;
+      background: $border-color;
+      border: 1px solid $border-color;
+    }
+  }
+}

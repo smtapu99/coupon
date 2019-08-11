@@ -1,0 +1,100 @@
+.card-coupon-filter {
+  text-align: center;
+
+  .category-filter,
+  .shop-filter {
+    margin: 12px 0 0;
+    float: none;
+
+    .dropdown-toggle {
+      border-radius: 0;
+      padding: 4px 10px 3px;
+      border-color: hsla(205, 85%, 40%, 0.7);
+      background: #FFF;
+
+      &.active {
+        background: #0E5C95;
+        color: #FFF;
+      }
+
+      &::after {
+        display: inline-block;
+        width: 0;
+        height: 0;
+        margin-left: 0.3em;
+        vertical-align: middle;
+        content: "";
+        border-top: 0.3em solid;
+        border-right: 0.3em solid transparent;
+        border-left: 0.3em solid transparent;
+      }
+    }
+
+    .dropdown-menu {
+      padding: 8px 10px 5px !important;
+      border-radius: 0;
+
+      label {
+        white-space: nowrap;
+        display: block;
+        font-weight: normal;
+
+        input {
+          position: relative;
+          top: 1px;
+        }
+      }
+    }
+  }
+
+  .shop-filter {
+    margin-left: 4px;
+  }
+
+  ul {
+    display: inline-block;
+    list-style-type: none;
+    margin: 12px 0 0;
+    padding: 0;
+
+    li {
+      background-color: lighten($color-sky, 15%);
+      border: 1px solid lighten($color-sky, 15%);
+      float: left;
+      padding: 4px 14px;
+      margin-right: 4px;
+      margin-left: 0;
+      color: $color-white;
+      font-size: 12px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: $color-sky;
+        border: 1px solid $color-sky;
+        text-decoration: underline;
+      }
+
+      &.active {
+        background-color: $color-sky;
+        border: 1px solid $color-sky;
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: none;
+          cursor: default;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .card-coupon-filter {
+    text-align: left;
+
+    .shop-filter,
+    .category-filter {
+      float: right;
+    }
+  }
+}

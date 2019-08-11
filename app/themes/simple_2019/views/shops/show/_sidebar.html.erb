@@ -1,0 +1,33 @@
+<% content_for :sidebar do %>
+
+  <%= render partial: 'shops/show/additional_info', locals: { shop: shop } %>
+
+  <%- if !show_summary_widget_in_content?(@shop) && !show_premium_summary_widget_in_content?(@shop) -%>
+
+    <%= render_summary_widget shop %>
+
+  <% end %>
+
+  <%= render partial: 'shared/sidebar_about', locals: { shop: shop } %>
+
+  <div class="d-none d-lg-block">
+
+    <%= render partial: "banners/sidebar_banner" %>
+
+  </div>
+
+  <%= render partial: 'shared/sidebar_seo_text', locals: { title: @h1, content: @welcome_text } %>
+
+  <%= render partial: 'shared/sidebar_seo_text', locals: { content: @content } %>
+
+  <%= render partial: 'shops/show/sub_pages', locals: { sub_pages: sub_pages } %>
+
+  <div class="d-flex justify-content-center d-md-none">
+
+    <%= render partial: "banners/sidebar_banner" %>
+
+  </div>
+
+  <%= render_summary_widget @shop, secondary: true -%>
+
+<% end %>

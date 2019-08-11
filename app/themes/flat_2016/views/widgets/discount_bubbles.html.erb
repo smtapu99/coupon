@@ -1,0 +1,28 @@
+<%- return if error == true -%>
+<div class="container-fluid">
+
+  <div class="discount-bubbles__wrapper">
+
+    <div class="discount-bubbles" id="discount-bubbles<%= "-" + order_number.to_s if defined?(order_number) %>">
+
+      <%- for offer in discount_bubbles -%>
+
+        <%- coupon = offer[:coupon] -%>
+
+        <%- next if !coupon.present? || !coupon.has_savings? -%>
+
+        <a class="discount-bubble" <%= clickout_params_for_element(coupon) %>>
+
+            <span class="discount-bubble__value">-<%= coupon.savings.round %><span class="discount-bubble__percent"><%= coupon.savings_in_symbol %></span></span>
+
+            <img src="<%= offer[:image_url] %>" alt="<%= coupon.title %>" class="discount-bubble__logo">
+
+        </a>
+
+      <%- end # for offers in discount_bubbles    -%>
+
+    </div>
+
+  </div>
+
+</div>

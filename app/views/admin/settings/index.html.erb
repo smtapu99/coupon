@@ -1,0 +1,100 @@
+<% model_class = Setting %>
+
+<%- if Rails.env.test? -%>
+<style type="text/css">
+  .box.box-collapsed .box-content {
+    display: block;
+  }
+</style>
+
+
+<%- end -%>
+
+<div class="row">
+
+  <div class="col-xs-12">
+
+    <div class="page-header">
+
+      <h1 class="pull-left">
+
+        <i class="icon-cogs"></i>
+
+        <span><%=t '.title', default: model_class.model_name.human.pluralize.titleize %></span>
+
+      </h1>
+
+      <div class="pull-right">
+
+        <ul class="breadcrumb">
+
+          <li>
+
+            <a href="/pcadmin">
+
+              <i class="icon-home"></i>
+
+            </a>
+
+          </li>
+
+          <li class="separator">
+
+            <i class="icon-angle-right"></i>
+
+          </li>
+
+          <li class="active"><%= model_class.model_name.human.pluralize.titleize %></li>
+
+        </ul>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<div class="row">
+
+  <%= render 'admin/shared/flash' %>
+
+  <%= render partial: 'admin/shared/form_errors', locals: {ancestor: @setting} %>
+
+</div>
+
+<div class="row">
+
+  <%= render 'style', locals: { settings: @setting } if can? :setting_style, Setting %>
+
+  <%= render 'site', locals: { settings: @setting } if can? :setting_site, Setting %>
+
+  <%= render 'routes', locals: { settings: @setting } if can? :setting_routes, Setting %>
+
+  <%= render 'menu', locals: { settings: @setting } if can? :setting_menu, Setting %>
+
+  <%= render 'legal_pages', locals: { settings: @setting } if can? :setting_legal_pages, Setting %>
+
+  <%= render 'newsletter', locals: { settings: @setting } if can? :setting_newsletter, Setting %>
+
+  <%= render 'image_upload', locals: { settings: @setting } if can? :setting_image_upload, Setting %>
+
+  <%= render 'homepage', locals: { settings: @setting } if can? :setting_homepage, Setting %>
+
+  <%= render 'admin_rules', locals: { settings: @setting } if can? :setting_admin_rules, Setting %>
+
+  <%= render 'mail_forms', locals: { settings: @setting } if can? :setting_mail_forms, Setting %>
+
+  <%= render 'caching', locals: { settings: @setting } if can? :setting_caching, Setting %>
+
+  <%= render 'visibility', locals: { settings: @setting } if can? :setting_visibility, Setting %>
+
+  <%= render 'tracking', locals: { settings: @setting } if can? :setting_tracking, Setting %>
+
+  <%= render 'alerts', locals: { settings: @setting } if can? :setting_alerts, Setting %>
+
+  <%= render 'experimental', locals: { settings: @setting } if can? :setting_experimental, Setting %>
+
+</div>
+

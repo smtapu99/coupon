@@ -1,0 +1,57 @@
+<!-- .breadcrumbs -->
+
+<div class="breadcrumbs">
+
+  <% if breadcrumbs.present? && breadcrumbs.size > 1 %>
+
+    <ol class="breadcrumbs__list" data-event-category="breadcrumb">
+
+      <% breadcrumbs.each_with_index do |breadcrumb, index| %>
+
+        <% if breadcrumbs.size - 1 === index %>
+
+          <li class="breadcrumbs__item breadcrumbs__item--active">
+
+            <span><%= breadcrumb.name %></span>
+
+            <% breadcrumbs_element(name: breadcrumb.name, item: breadcrumb.path, position: index + 1) %>
+
+          </li>
+
+        <% else %>
+
+          <li class="breadcrumbs__item">
+
+            <a href="<%= breadcrumb.path %>">
+
+                <span>
+
+                  <% if index == 0 %>
+
+                    <i class="icon-house" aria-label="<%= breadcrumb.name %>" title="<%= breadcrumb.name %>"></i>
+
+                  <% else %>
+
+                    <%= breadcrumb.name %>
+
+                  <% end %>
+
+                </span>
+
+            </a>
+
+            <% breadcrumbs_element(name: breadcrumb.name, item: breadcrumb.path, position: index + 1) %>
+
+          </li>
+
+        <% end %>
+
+      <% end %>
+
+    </ol>
+
+  <% end %>
+
+</div>
+
+<!-- ./breadcrumbs -->

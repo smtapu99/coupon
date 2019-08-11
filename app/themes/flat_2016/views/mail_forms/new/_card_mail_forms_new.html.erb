@@ -1,0 +1,27 @@
+<div class="card card-contact-forms pannacotta">
+
+  <div class="card-header">
+
+    <h1 class="card-title"><%= title %></h1>
+
+    <!-- /.card-title -->
+
+  </div>
+
+  <!-- /.card-header -->
+
+  <div class="card-content">
+
+    <%= render partial: 'shared/flashes' %>
+
+    <%= render partial: "mail_forms/new/#{@type}" %>
+
+    <p class="privacy-note"><%= t(:DATA_COLLECTION_AND_PROCESSING_NOTE, default: 'Data collection and processing is carried out in accordance with our <a href="%{policy_url}" rel="nofollow" target="_blank">privacy policy</a>', policy_url: policy_url).html_safe %></p>
+
+  </div>
+
+  <!-- /.card-content -->
+
+</div>
+
+<!-- /.card card-contact-forms pannacotta -->

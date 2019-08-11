@@ -1,0 +1,147 @@
+<div class="col-sm-12 col-md-6" id="tracking">
+
+  <div class="box bordered-box blue-border <%= 'box-collapsed' unless session[:last_setting] == 'tracking' %>">
+
+    <div class="box-header dark-background">
+
+      <div class="title">
+
+        <i class="icon-bar-chart"></i>
+
+        Tracking Settings
+
+      </div>
+
+      <div class="actions">
+
+        <a class="btn box-collapse btn-xs btn-link" href="#">
+
+          <i></i>
+
+        </a>
+
+      </div>
+
+    </div>
+
+    <div class="box-content">
+
+      <%= form_for [:admin, @setting], method: :patch, html: {class: 'form form-horizontal', style: 'margin-bottom: 0'} do |f| %>
+
+        <%= hidden_field_tag :option_type, 'tracking' %>
+
+        <%= fields_for :tracking, @setting.tracking do |ff| %>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :google_analytics_id %>
+
+              <%= ff.text_field :google_analytics_id, class: 'form-control', placeholder: 'UA-12345678-9' %>
+
+              <div class="help-block">
+
+                <small class="">This Id is needed to use the advanced ecommerce and event tracking features</small>
+
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :google_tag_manager_id %>
+
+              <%= ff.text_field :google_tag_manager_id, class: 'form-control', placeholder: 'GMT-AKQS' %>
+
+              <div class="help-block">
+
+                <small class="">If this ID is entered we will add the standard google tag manager script to all pages.</small>
+
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :client_google_tag_manager_id %>
+
+              <%= ff.text_field :client_google_tag_manager_id, class: 'form-control', placeholder: 'GMT-AKQS' %>
+
+              <div class="help-block">
+
+                <small class="">Inserts a second tag manager container for the client.</small>
+
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :head_scripts, 'Clickout page head scripts' %>
+
+              <%= ff.text_area :head_scripts, class: 'form-control' %>
+
+               <div class="help-block">
+
+                <small class="">Here you can insert valid HTML/JS/CSS which will be automatically inserted into the HTML head section of the clickout page.</small>
+
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :body_scripts, 'Clickout page body scripts' %>
+
+              <%= ff.text_area :body_scripts, class: 'form-control' %>
+
+               <div class="help-block">
+
+                <small class="">Here you can insert valid HTML/JS/CSS which will be automatically inserted into the HTML body section of the clickout page.</small>
+
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="form-actions form-actions-padding-sm">
+
+            <div class="row">
+
+              <div class="col-md-2">
+
+                <%= f.submit 'Save', class: 'btn btn-primary btn-block' %>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        <% end %>
+
+      <% end %>
+
+    </div>
+
+  </div>
+
+</div>

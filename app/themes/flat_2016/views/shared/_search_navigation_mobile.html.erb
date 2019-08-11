@@ -1,0 +1,19 @@
+<div class="search-navigation-mobile">
+
+  <form action="<%= dynamic_url_for('search', 'index') %>" role="search">
+
+    <div class="form-group">
+
+      <label for="input_search_navigation_mobile"><i class="roberto roberto-search"></i></label>
+
+      <input autofocus="autofocus" class="form-control" data-autocomplete-url="<%= url_for send("searches_autocomplete_#{@site.site.id}_path") %>" id="input_search_navigation_mobile" name="query" placeholder="<%= t(:SEARCH_PLACEHOLDER, default: 'Type a store e.g. Amazon, Ebay, Nike', shops: search_box_placeholder_shops) %>" required type="search" aria-label="<%= t(:SEARCH_PLACEHOLDER, default: 'Type a store e.g. Amazon, Ebay, Nike') %>">
+
+    </div>
+
+    <!-- /.form-group -->
+
+  </form>
+
+</div>
+
+<!-- /.search-navigation-mobile -->

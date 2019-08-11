@@ -1,0 +1,165 @@
+<% unless Setting::get('publisher_site.show_footer', default: 1).to_i.zero? %>
+
+  <%- if Site.current.is_wls? -%>
+
+    <%- if Setting.get('publisher_site.wls_footer_style', default: 'default') == 'default' -%>
+
+      <%= render partial: 'shared/footer_wls' %>
+
+    <% else %>
+
+      <%= render partial: 'shared/footer_2019' %>
+
+    <% end %>
+
+  <%- else %>
+
+    <% show_social_media = Setting::get('publisher_site.show_social_media_column', default: 0).to_i.zero? %>
+
+    <% column_classes = show_social_media.present? ? 'col-xs-12 col-sm-4' : 'col-xs-12 col-sm-3' %>
+
+    <% footer_campaigns =  @site.footer_campaigns %>
+
+    <% footer_shops =  @site.footer_shops %>
+
+    <div class="pannacotta" id="footer" role="contentinfo" data-event-category="footer">
+
+      <div class="container">
+
+        <div class="row" role="complementary">
+
+          <div class="<%= column_classes %>">
+
+            <%= render partial: 'shared/footer_widget_area_one', locals: { footer_campaigns: footer_campaigns, footer_shops: footer_shops } %>
+
+          </div>
+
+          <!-- /.<%= column_classes %> -->
+
+          <div class="<%= column_classes %>">
+
+            <%= render partial: 'shared/footer_widget_area_two' %>
+
+          </div>
+
+          <!-- /.<%= column_classes %> -->
+
+          <div class="<%= column_classes %>">
+
+            <%= render partial: 'shared/footer_widget_area_three' %>
+
+          </div>
+
+          <!-- /.<%= column_classes %> -->
+
+          <% unless show_social_media.present? %>
+
+            <div class="<%= column_classes %>">
+
+              <%= render partial: 'shared/footer_widget_area_four' %>
+
+            </div>
+
+            <!-- /.<%= column_classes %> -->
+
+          <% end %>
+
+        </div>
+
+        <!-- /.row -->
+
+        <%- if footer_shops.present? && footer_shops.size > 1 -%>
+
+          <div class="row">
+
+            <div class="col-xs-12">
+
+              <%= render partial: 'shared/footer_shops', locals: { footer_shops: footer_shops } %>
+
+            </div>
+
+            <!-- /.col-xs-12 -->
+
+          </div>
+
+        <%- end -%>
+
+        <!-- /.row -->
+
+        <%- if footer_campaigns.present? && footer_campaigns.size > 1 -%>
+
+          <div class="row">
+
+            <div class="col-xs-12">
+
+              <%= render partial: 'shared/footer_campaigns', locals: {footer_campaigns: footer_campaigns} %>
+
+            </div>
+
+            <!-- /.col-xs-12 -->
+
+          </div>
+
+          <!-- /.row -->
+
+        <% end %>
+
+
+        <%- if Setting::get('publisher_site.show_crosslinks', default: 0).to_i == 1 && is_home? -%>
+
+          <%= render partial: 'home/index/cross_links' %>
+
+        <%- end -%>
+
+        <div class="row">
+
+          <div class="col-xs-12">
+
+            <div class="copyright">
+
+              <a href="https://www.savings-united.com/" target="_blank" rel="nofollow">
+
+                <%= image_tag 'flat_2016/saving_united_logo_xs.png', class: 'img-responsive', height: 38, width: 140, alt: "Savings United Logo" %>
+
+              </a>
+
+              <% disclaimer_text = Setting::get('publisher_site.disclaimer_text', default: nil) %>
+
+              <% if Setting::get('publisher_site.show_disclaimer', default: nil).to_i != 0 && disclaimer_text.present? %>
+
+              <!-- /.pulled text-center -->
+
+              <p class="text-center disclaimer">
+
+                  <%= disclaimer_text.html_safe %><!-- © copyright 2014 Cupon.es ¡Tus cupones descuento a un click! -->
+
+              </p>
+
+              <!-- /.text-center -->
+
+              <%- end -%>
+
+            </div>
+
+            <!-- /.copyright -->
+
+          </div>
+
+          <!-- /.col-xs-12 -->
+
+        </div>
+
+        <!-- /.row -->
+
+
+      </div>
+
+      <!-- /.container -->
+
+    </div>
+
+    <!-- /#footer.pannacotta -->
+
+  <%- end -%>
+
+<% end %>

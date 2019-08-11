@@ -1,0 +1,52 @@
+.pannacotta.top-x-coupons {
+
+  .list-coupons-as-items {
+
+    margin-bottom: 0px;
+
+    li {
+      font-weight: normal;
+
+      img {
+        max-height: 100%;
+        width: auto;
+      }
+    }
+
+    &:nth-child(2) {
+      display: none;
+      visibility: hidden;
+    }
+  }
+
+  #show-all {
+    cursor: pointer;
+    display: block;
+    text-align: center;
+    text-decoration: underline;
+  }
+}
+
+// .pannacotta.top-x-coupons {
+
+//   .list-coupons-as-items {
+
+//     margin-bottom: 0px;
+
+//     li {
+//       font-weight: lighter;
+//     }
+
+//     &:nth-child(2) {
+//       display: none;
+//       visibility: hidden;
+//     }
+//   }
+
+//   #show-all {
+//     cursor: pointer;
+//     display: block;
+//     text-align: center;
+//     text-decoration: underline;
+//   }
+// }

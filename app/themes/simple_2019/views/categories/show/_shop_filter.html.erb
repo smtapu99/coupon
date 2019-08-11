@@ -1,0 +1,40 @@
+<% if shops.present? && shops.size > 1 %>
+
+  <div class="shop-filter">
+
+    <h2 class="shop-filter__title">
+      <%= t :CATEGORY_NAVIGATION_HEADLINE, default: 'Filter Results' %>
+    </h2>
+
+    <div class="shop-filter__content">
+
+      <% if shops.present? %>
+
+        <ul class="shop-filter__list">
+
+          <% shops.each do |shop| %>
+
+            <li>
+
+              <label class="shop-filter__label">
+
+                <input class="shop-filter__checkbox" type="checkbox" data-shop="<%= shop.slug if shop.slug.present? %>" data-shop-id="<%= shop.id %>" <%= 'checked="checked"'.html_safe if shop_id_in_params(shop.id) %>>
+
+                <%= shop.title if shop.title.present? %>
+
+              </label>
+
+
+            </li>
+
+          <% end %>
+
+        </ul>
+
+      <% end %>
+
+    </div>
+
+  </div>
+
+<% end %>

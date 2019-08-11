@@ -1,0 +1,91 @@
+<div class="widget">
+
+  <div class="widget-header">
+
+    <h4 class="widget-title"><%= t(:NAVIGATION_SOCIAL_MEDIA, default: 'Our Community') %></h4>
+
+    <!-- /.widget-title -->
+
+  </div>
+
+  <!-- /.widget-header -->
+
+  <div class="widget-content">
+
+    <ul class="list-unstyled">
+
+      <% if Setting::get('publisher_site.blog_link_url').present? && Setting::get('publisher_site.blog_link_title').present? %>
+
+        <li>
+
+          <i class="roberto roberto-blog"></i>
+
+          <a href="<%= Setting::get('publisher_site.blog_link_url') %>" rel="follow" target="_blank">
+
+            <%= Setting::get('publisher_site.blog_link_title') || t(:MAIN_BLOG, default: 'Blog') %>
+
+          </a>
+
+        </li>
+
+      <% end %>
+
+      <% if t(:LINK_TO_FACEBOOK, default: '#') != '#' %>
+
+        <li>
+
+          <i class="roberto roberto-facebook"></i>
+
+          <a href="<%= t(:LINK_TO_FACEBOOK, default: '#') %>" rel="me nofollow" target="_blank">
+
+            <%= t(:PANNACOTTA_ON_FACEBOOK, default: 'Facebook') %>
+
+          </a>
+
+        </li>
+
+      <% end %>
+
+      <% if t(:LINK_TO_TWITTER, default: '#') != '#' %>
+
+        <li>
+
+          <i class="roberto roberto-twitter"></i>
+
+          <a href="<%= t(:LINK_TO_TWITTER, default: '#') %>" rel="me nofollow" target="_blank">
+
+            <%= t(:PANNACOTTA_ON_TWITTER, default: 'Twitter') %>
+
+          </a>
+
+        </li>
+
+      <% end %>
+
+      <% if t(:LINK_TO_GOOGLE_PLUS, default: '#') != '#' %>
+
+        <li>
+
+          <i class="roberto roberto-google-plus"></i>
+
+          <a href="<%= t(:LINK_TO_GOOGLE_PLUS, default: '#') %>" rel="publisher nofollow" target="_blank">
+
+            <%= t(:PANNACOTTA_ON_GOOGLE_PLUS, default: 'Google+') %>
+
+          </a>
+
+        </li>
+
+      <% end %>
+
+    </ul>
+
+    <!-- /.list-unstyled -->
+
+  </div>
+
+  <!-- /.widget-content -->
+
+</div>
+
+<!-- /.widget -->

@@ -1,0 +1,103 @@
+<% content_for :content do %>
+
+  <div class="container">
+
+    <% if content_for?(:before_breadcrumbs) %>
+
+      <div class="row visible-xs">
+
+        <div class="col-xs-12">
+
+          <%= yield(:before_breadcrumbs) %>
+
+        </div>
+        <!-- /.col-xs-12 -->
+
+      </div>
+      <!-- /.row visible-xs -->
+
+    <% end %>
+
+    <div class="row">
+
+      <div class="col-xs-12">
+
+        <%= render partial: 'shared/breadcrumbs', locals: {breadcrumbs: breadcrumbs} %>
+
+      </div>
+
+      <!-- /.col-xs-12 -->
+
+    </div>
+
+    <%= (content_for?(:before_content)) ? yield(:before_content) : nil %>
+
+    <div class="row">
+
+      <div class="col-xs-12 col-sm-12 col-md-8 pannacotta" id="content" role="main">
+
+        <%- if content_for? :shop_header -%>
+
+          <%= yield :shop_header %>
+
+        <%- else -%>
+
+          <%- if content_for(:page_headlines) -%>
+
+            <div class="pannacotta card-shop-header header-no-image">
+
+              <div class="row">
+
+                <div class="col-xs-12 col-sm-12 shop-header-title">
+
+                  <%= (content_for?(:page_headlines)) ? yield(:page_headlines) : '&nbsp;'.html_safe %>
+
+                </div>
+                <!-- /.col-xs-12 col-sm-6 col-lg-7 -->
+
+              </div>
+
+            </div>
+
+          <%- end -%>
+
+        <%- end -%>
+
+        <%= yield %>
+
+      </div>
+      <!-- /#content.col-xs-12 col-sm-12 col-md-8 pannacotta -->
+
+      <% if content_for?(:sidebar) %>
+
+        <div class="col-xs-12 col-sm-12 col-md-4 pannacotta sidebar" id="sidebar" role="complementary">
+          <% if !is_shops_show? && !is_home? && (sidebar_banner.try(:categories).present? || sidebar_banner.try(:shops).present?) %>
+            <%= render partial: "banners/sidebar_banner" %>
+
+          <% elsif is_coupons_index? %>
+            <%= render partial: "banners/sidebar_banner" %>
+
+          <%- end -%>
+
+          <%= yield(:sidebar) %>
+
+          <% if is_shops_show? %>
+
+            <%= render partial: "banners/sidebar_banner" %>
+
+          <%- end -%>
+
+        </div>
+        <!-- /#sidebar.col-xs-12 col-sm-12 col-md-4 pannacotta -->
+
+      <% end %>
+
+    </div>
+    <!-- /.row -->
+
+  </div>
+  <!-- /.container -->
+
+<% end %>
+
+<%= render template: "layouts/#{@layout}" %>

@@ -1,0 +1,41 @@
+<div class="form-group">
+
+  <div class="col-md-12">
+
+    <div class="help-block">Logo should be transparent and rectangular and probably around 80x36px. It will be transfered to white automatically.</div>
+
+  </div>
+
+</div>
+
+<%- (0..4).each do |num| -%>
+
+  <div class="form-group">
+
+    <div class="col-md-6">
+
+      <%- if num == 0 -%>
+
+        <label for="">Coupon ID</label>
+
+      <%- end -%>
+
+      <%= text_field_tag 'widget[discount_bubbles][][coupon_id]', (@widget.discount_bubbles[num][:coupon_id] rescue nil), class: 'select2 form-control', placeholder: 'Coupon id' %>
+
+    </div>
+
+    <div class="col-md-6">
+
+      <%- if num == 0 -%>
+
+        <label for="">Transparent Logo PNG</label>
+
+      <%- end -%>
+
+      <%= text_field_tag 'widget[discount_bubbles][][image_url]', (@widget.discount_bubbles[num][:image_url] rescue nil), class: 'select2 form-control', placeholder: 'Image URL' %>
+
+    </div>
+
+  </div>
+
+<%- end -%>

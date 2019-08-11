@@ -1,0 +1,90 @@
+<%
+hide_pagination   ||= false
+is_redirect       ||= false
+show_logo           = Campaign.current.try(:template) != 'sem'
+coupons_size        = coupons.size
+newsletter_position = Setting::get('publisher_site.inline_newsletter_position', default: 3).to_i
+%>
+
+<% if coupons.present? %>
+
+  <div class="card-coupons-grid card-coupons pannacotta" data-initial-size="<%= campaign_grid_initial_size(@campaign) %>">
+
+    <div class="card-content">
+
+      <!-- WRONG RENDERED -->
+      <ul class="list-unstyled clearfix">
+
+        <% coupons.each_with_index do |coupon, index| %>
+
+          <% summarize_coupons(coupon, index) %>
+
+          <li <%= clickout_params_for_element(coupon, 'li') %> class="clearfix item" id="<%= coupon.item_id %>" data-visible=true class="item <%= 'hidden' if coupon.is_mobile %>" data-index="<%= index %>" data-coupon-type="<%=coupon.coupon_type %>" data-filter-ids="shop-<%= coupon.shop_id %>x <%= (coupon.category_ids.map{|c| 'cat-' + c.to_s + 'x' }).join(' ') if coupon.category_ids.present? %>" <%= coupon.is_mobile ? 'data-is-mobile=true' : '' %>>
+
+            <%- if coupon.is_exclusive -%>
+
+              <span class="coupon-exclusive">
+
+                <i class="fa fa-star color-ready"></i> <%= t(:exclusive, default: 'exclusive') %>
+
+              </span>
+
+            <%- end -%>
+
+            <div class="padding">
+
+              <%- if show_logo.present? -%>
+
+                <div class="coupon-img">
+
+                  <%= image_tag coupon.shop.logo_url(:_110x110), alt: coupon.shop.title, class: 'img-responsive', height: '120', width: '120' %>
+
+                </div>
+
+              <% else %>
+
+                <% default_texts = default_logo_texts(coupon) %>
+
+                <span class="amount"><%= default_texts[:first_line] %></span>
+
+                <span class="type"><%= default_texts[:second_line] %></span>
+
+              <%- end -%>
+
+              <h3 class="coupon-title">
+
+                 <span><%= truncate(coupon.title, length: 100, omission: '...') %></span>
+
+              </h3>
+
+              <%= render 'coupons/shared/call_to_action', coupon: coupon %>
+
+            </div>
+
+          </li>
+
+          <%#- if coupons.size == index + 1 && (index + 1) % 3 != 0 -%>
+
+            <%#- (3-(index+1) % 3).times do |n| -%>
+
+              <!-- <li></li> -->
+
+            <%#- end -%>
+
+          <%#- end -%>
+
+        <%- end -%>
+
+      </ul>
+
+      <span class="show-more btn btn-link" style="display: none;"><i class="fa fa-refresh"></i> <span><%= t(:show_more, default: 'SHOW MORE') %></span></span>
+
+      <!-- /.list-unstyled -->
+
+    </div>
+    <!-- /.card-content -->
+
+  </div>
+  <!-- /.card card-coupons-list pannacotta -->
+
+<% end %>

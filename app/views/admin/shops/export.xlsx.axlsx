@@ -1,0 +1,10 @@
+require 'axlsx'
+
+p = Axlsx::Package.new
+wb = xlsx_package.workbook
+wb.add_worksheet(name: "shops_#{Time.now.to_date}") do |sheet|
+ sheet.add_row Shop::CSV_EXPORT_COLUMN_HEADERS[:shop].values
+ @shops.find_each do |shop, index|
+   sheet.add_row shop.csv_mapped_attributes
+ end
+end

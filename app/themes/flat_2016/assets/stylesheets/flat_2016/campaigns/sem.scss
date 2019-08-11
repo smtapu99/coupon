@@ -1,0 +1,63 @@
+.sem-header__logo {
+  margin: 40px 0 0 -2px;
+  max-width: 142px;
+}
+
+.sem-header {
+  height: 100px;
+}
+
+.sem-campaign {
+  text-align: center;
+  margin-top: -10px;
+
+  &__logo {
+    margin-top: -58px;
+    max-width: 240px;
+  }
+
+  &__header {
+    color: #5C6469;
+    font-size: 48px;
+    font-weight: 700;
+    margin: 23px 0 0;
+  }
+
+  &__subheader {
+    color: #FFF;
+    font-size: 32px;
+    font-weight: 300;
+    margin: 8px 0 0;
+  }
+}
+
+.sem-coupons {
+  margin: 60px 0;
+
+  .amount {
+    display: block;
+    font-size: 30px;
+    margin: 0;
+  }
+
+  .type {
+    display: block;
+    font-size: 30px;
+    margin: 0;
+    margin-bottom: 15px;
+  }
+}
+
+@media (max-width: 767px) {
+  .sem-campaign {
+    margin-top: 0;
+
+    &__logo {
+      margin-top: 20px;
+    }
+  }
+
+  .sem-coupons {
+    margin: 30px 0;
+  }
+}

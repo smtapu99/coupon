@@ -1,0 +1,9 @@
+<% content_for :sidebar do %>
+
+  <% if @category_groups.present? %>
+
+    <%= render partial: 'shops/index/filter_by_category', locals: { css_classes: 'd-none d-sm-block' } %>
+
+  <% end %>
+
+<% end %>

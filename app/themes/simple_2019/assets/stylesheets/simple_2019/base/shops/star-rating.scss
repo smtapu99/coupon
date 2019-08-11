@@ -1,0 +1,37 @@
+.star-rating {
+  text-align: center;
+
+  &__list {
+    margin-bottom: 0;
+    padding: 9px 0 0;
+    font-size: 23px;
+    text-align: center;
+    list-style-type: none;
+  }
+
+  &__item {
+    display: inline-block;
+    margin: 0 3px;
+  }
+
+  &__star {
+    color: $color-star;
+  }
+
+  &__value,
+  &__count {
+    font-weight: 600;
+  }
+
+  p {
+    font-size: 14px;
+  }
+}
+
+.star-rating__count::after {
+  content: attr(data-reviewCount);
+}
+
+.star-rating__value::after {
+  content: attr(data-ratingValue);
+}

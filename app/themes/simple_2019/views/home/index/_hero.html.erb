@@ -1,0 +1,31 @@
+<div class="hero__wrapper">
+
+  <div class="container">
+
+    <div class="hero" style="<%= "background-image: url(#{@site.image_setting.hero_url})"%>">
+
+    </div>
+
+    <% if hero_links.present? %>
+
+        <ul class="hero__links">
+
+          <% hero_links.each_with_index do |link, i| %>
+
+            <% return if i > 4 %>
+
+            <li class="hero__link">
+
+              <a href="<%= link[:link_url] %>"><%= link[:link_text] %></a>
+
+            </li>
+
+          <% end %>
+
+        </ul>
+
+    <% end %>
+
+  </div>
+
+</div>

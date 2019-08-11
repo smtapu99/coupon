@@ -1,0 +1,132 @@
+.pannacotta {
+  &.home .seo-text-container {
+    margin-top: 50px;
+  }
+  .seo-text-container {
+
+    margin-bottom: 30px;
+    border-bottom: 1px solid #d8d8d8;
+
+    .card {
+      margin-bottom: 0px;
+      border-bottom: 0px;
+
+      .card-header {
+        padding: 0px;
+      }
+
+      .card-title {
+        color: #262626;
+        font-size: 20px;
+        font-weight: lighter;
+        margin: 0;
+
+        padding: 20px 40px 20px 20px;
+        position: relative;
+
+        h2 {
+          font-size: 20px;
+          font-weight: lighter;
+          margin: 0;
+          position: relative;
+          text-align: left;
+        }
+      }
+
+      .card-content {
+        border-top: 1px solid #d8d8d8;
+        & > h3:first-child {
+          margin-top: 0px;
+        }
+
+        .brands.images {
+          display: -webkit-box;
+          display: -webkit-flex;
+          display: -moz-flex;
+          display: -ms-flexbox;
+          display: flex;
+          -webkit-flex-wrap: wrap;
+          -moz-flex-wrap: wrap;
+          -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+          -webkit-box-align: center;
+          -ms-flex-align: center;
+          -webkit-align-items: center;
+          -moz-align-items: center;
+          align-items: center;
+          .img-wrapper {
+            margin-right: 15px;
+            margin-bottom: 15px;
+          }
+        }
+
+      }
+    }
+  }
+}
+
+ #floating-anchors {
+  display: none;
+  position: absolute;
+  left: -100px;
+  width: 100px;
+  top: -1px;
+  // @include flat-transition(top .5s linear);
+
+  &.fixed {
+    position: fixed;
+    top: 30px;
+  }
+
+  div.anchor-link {
+    position: relative;
+
+    a {
+      font-size: 12px;
+      color: #333;
+      display: block;
+      border-bottom: 1px solid lightgrey;
+      padding: 10px;
+
+      text-overflow: ellipsis;
+      overflow: hidden;
+
+      //@include flat-transition(all .33s ease);
+
+      &.active, &:hover {
+        background: $color-sky;
+        color: #fff;
+        text-decoration: none;
+      }
+
+      &.active::after {
+        content: '';
+        display: block;
+        width: 14px;
+        height: 14px;
+        background: $color-sky;
+        position: absolute;
+        right: -7px;
+        top: 50%;
+        margin-top: -7px;
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
+      }
+
+      &:last-child {
+        border-bottom: 0px;
+      }
+    }
+  }
+}
+
+@media(min-width: 1366px){
+  .pannacotta {
+    .seo-text-container {
+      #floating-anchors {
+        display: block;
+      }
+    }
+  }
+}

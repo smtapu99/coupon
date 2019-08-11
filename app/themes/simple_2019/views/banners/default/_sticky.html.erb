@@ -1,0 +1,222 @@
+<style>
+  /*Default Banner*/
+  a.sticky-bar {
+    z-index: 998;
+    background: url(<%= banner.image_url %> ) no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 80px;
+    bottom: 0;
+    left: 0;
+    position: fixed;
+    color: #fff;
+    transform: translateY(120px);
+    transition: transform ease-in-out .3s;
+    will-change: transform;
+  }
+
+  @media (max-width: 767px) {
+    a.sticky-bar--hidden {
+      display: none;
+    }
+  }
+  
+  a.sticky-bar:hover,
+  a.sticky-bar:visited,
+  a.sticky-bar:active {
+    color: <%= banner.font_color %>;
+    text-decoration: none;
+  }
+
+  .sticky-bar .container,
+  .sticky-bar .row {
+    height: 100%;
+    background: transparent;
+  }
+
+  .sticky-bar__close {
+    position: absolute;
+    right: 8px;
+    top: -40px;
+    display: block;
+    text-align: center;
+    font-size: 13px;
+    cursor: pointer;
+    height: 30px;
+    width: 30px;
+    background: #fff;
+    border-radius: 50%;
+    padding: 6px;
+  }
+
+  .sticky-bar__close svg {
+    vertical-align: top;
+  }
+
+  .sticky-bar__close path {
+    fill: #758897
+  }
+
+  .sticky-bar__wrapper {
+    width: 100%;
+    height: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: distribute;
+    justify-content: space-around;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+  }
+
+  .sticky-bar__logo {
+    max-height: 80px;
+    max-width: 300px;
+  }
+
+  .sticky-bar__header {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .sticky-bar__name {
+    color: <%= banner.font_color %>;
+    font-family: 'Arial', sans-serif;
+    text-transform: uppercase;
+    font-weight: 900;
+    font-size: 28px;
+    line-height: 1;
+  }
+
+  .sticky-bar__name small {
+    font-size: 12px;
+  }
+
+  .sticky-bar__cta {
+    -ms-flex-item-align: center;
+    align-self: center;
+    background-color: <%= banner.cta_background %>;
+    color: <%= banner.cta_color %>;
+    display: inline-block;
+    padding: 10px 25px;
+    margin-right: 57px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+
+  .sticky-bar__cta:hover {
+    opacity: 0.6;
+    text-decoration: none;
+  }
+
+  @media (max-width: 992px) {
+    .sticky-bar__cta {
+      margin-right: 0;
+    }
+
+    .sticky-bar__logo {
+      max-width: 120px;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .hide-mobile {
+      display: none !important;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .sticky-bar__wrapper {
+      padding: 0 10px;
+    }
+
+    .sticky-bar__logo {
+      max-width: 80px;
+    }
+
+    .sticky-bar__name {
+      font-size: 15px;
+    }
+
+    .sticky-bar__name small {
+      font-size: 10px;
+    }
+
+    .sticky-bar__cta {
+      padding: 8px 11px;
+      font-size: 12px;
+    }
+
+    .sticky-bar .container,
+    .sticky-bar .row {
+      height: 100%;
+    }
+  }
+</style>
+
+
+<script>
+  window.sticky_banner = {
+    startDate: "<%= banner.start_time %>",
+    endDate: "<%= banner.end_time %>",
+    id: "<%= banner.id %>",
+    <%- if banner.countdown_date.present? -%>
+    countdownDate: "<%= banner.countdown_date %>T23:59:59"
+    <%- end -%>
+  };
+</script>
+
+<a href="<%= banner.target_url %>" class="sticky-bar <%= banner.excluded_for_mobile_resolution ? 'sticky-bar--hidden' : '' %>" data-banner-event-action="<%= banner_event_action(banner) %>" data-banner-event-label="<%= banner.theme %>">
+
+  <span class="sticky-bar__close">
+
+    <?xml version="1.0" encoding="utf-8"?>
+    <svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1490 1322q0 40-28 68l-136 136q-28 28-68 28t-68-28l-294-294-294 294q-28 28-68 28t-68-28l-136-136q-28-28-28-68t28-68l294-294-294-294q-28-28-28-68t28-68l136-136q28-28 68-28t68 28l294 294 294-294q28-28 68-28t68 28l136 136q28 28 28 68t-28 68l-294 294 294 294q28 28 28 68z"/></svg>
+
+  </span>
+
+  <div class="container">
+
+    <div class="row">
+
+      <div class="sticky-bar__wrapper">
+
+        <%= image_tag banner.logo_url, class: 'sticky-bar__logo', alt: banner.name if banner.logo_url.present? %>
+
+        <div class="sticky-bar__header">
+
+          <div class="sticky-bar__name">
+            <small> <%= banner.caption_heading %> </small>
+            <br>
+            <%= banner.caption_body %>
+          </div>
+
+        </div>
+
+        <span class="sticky-bar__cta" href="#"> <%= banner.button_text %> </span>
+
+      </div>
+
+      <!-- ./sticky-bar__wrapper -->
+
+    </div>
+
+    <!-- ./row -->
+
+  </div>
+
+  <!-- ./container -->
+
+</a>
+
+<!-- ./sticky-bar -->

@@ -1,0 +1,55 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <%= form_for [:admin, @widget], :remote => !@widget.has_image?, :html => { :class => 'form form-horizontal', style: 'margin-bottom: 0'} do |f| %>
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      <h4 class="modal-title" id="myModalLabel"><%= @widget.name.titleize %> Widget Form</h4>
+    </div>
+    <div class="modal-body">
+
+        <%= render partial: 'admin/shared/form_errors', locals: {ancestor: @widget} %>
+
+        <%= f.hidden_field :name, value: @widget.name %>
+
+        <%= f.hidden_field :campaign_id, value: @widget.campaign_id || @campaign_id %>
+
+        <div class="form-group">
+          <%= f.label :title, :class => 'col-md-2 control-label' %>
+          <div class="col-md-10">
+              <%= f.text_field :title, :class => 'form-control text_field', required: true %>
+          </div>
+        </div>
+
+        <%= render :partial => "admin/widgets/#{@widget.name}_form", :locals => { :ff => f } %>
+
+    </div>
+    <div class="modal-footer">
+        <%= f.submit nil, :class => 'btn btn-primary' %>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    </div>
+    <% end # form %>
+  </div><!-- /.modal-content -->
+</div><!-- /.modal-dialog -->
+
+
+<script type="text/javascript">
+
+  var select2color = function(e) {
+      color = e.element[0].dataset['hex'];
+      return '<span class="label" style="background:'+color+';">&nbsp;</span> ' + e.text;
+  };
+
+  $(".select2-color").select2({
+      formatResult: select2color,
+      formatSelection: select2color,
+      escapeMarkup: function(e) {
+          return e;
+      }
+  });
+
+  var colorpickers = $('.colorpicker');
+  if (colorpickers.length) {
+    colorpickers.colorpicker();
+  }
+
+</script>

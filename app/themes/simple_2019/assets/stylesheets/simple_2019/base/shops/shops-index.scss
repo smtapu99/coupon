@@ -1,0 +1,82 @@
+@critical shop-index.css {
+  .shops-index {
+    margin-bottom: 30px;
+    background-color: #FFF;
+    border: 1px solid $border-color;
+    border-bottom-width: 2px;
+    border-radius: 2px;
+
+    &__header {
+      padding: 25px;
+    }
+
+    &__title {
+      margin: 0;
+      color: #262626;
+      font-weight: lighter;
+      font-size: 20px;
+    }
+
+    &__content {
+      padding: 0 25px 15px;
+
+      h3 {
+        color: #404040;
+        font-weight: lighter;
+        font-size: 20px;
+      }
+
+      ul {
+        padding-left: 0;
+        list-style: none;
+      }
+    }
+
+    &__category-text {
+      margin-top: 12px;
+      padding-right: 10px;
+      font-size: 14px;
+      line-height: 1.3;
+
+      &--full {
+        display: inline-block;
+        max-height: 500px;
+        overflow: hidden;
+        transition: max-height ease-in-out 0.3s;
+      }
+
+      &--hidden {
+        display: none;
+        max-height: 0;
+      }
+    }
+  }
+
+  @media #{$min-sm} {
+    .shops-index__list {
+      &--three-cols {
+        > li {
+          display: inline-block;
+          width: 49%;
+        }
+      }
+
+      &--two-cols {
+        > li {
+          display: inline-block;
+          width: 49%;
+        }
+      }
+    }
+  }
+
+  @media #{$min-md} {
+    .shops-index__list {
+      &--three-cols {
+        > li {
+          width: 32%;
+        }
+      }
+    }
+  }
+}

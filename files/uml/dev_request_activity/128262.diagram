@@ -1,0 +1,360 @@
+format 214
+
+activitynodecanvas 128006 activitynode_ref 128006 // initial_node
+  xyz 18.66 70.61 2017
+end
+activitycanvas 128262 activity_ref 128006 // Development Request
+  
+  xyzwh 6.64 2.63 2000 828 1176
+end
+activityactioncanvas 128902 activityaction_ref 128262 // activity action Receive request
+  
+  show_opaque_action_definition default
+  xyzwh 58.59 58.51 2011 61 43
+end
+activityobjectcanvas 129036 activityobject_ref 134540 // activity object Ticket
+  
+  xyzwh 368.67 66.33 2005 43 31
+end
+activityactioncanvas 129158 activityaction_ref 128390 // activity action Validate
+  
+  show_opaque_action_definition default
+  xyzwh 146.65 59.88 2017 55 41
+end
+activityobjectcanvas 129804 activityobject_ref 134668 // activity object Pull Request
+  
+  xyzwh 602.84 323.24 2010 73 31
+end
+activityactioncanvas 130828 activityaction_ref 134540 // activity action Apply changes
+  
+  show_opaque_action_definition default
+  xyzwh 485.82 428.54 2010 79 41
+end
+activityactioncanvas 131084 activityaction_ref 134668 // activity action Request changes
+  
+  show_opaque_action_definition default
+  xyzwh 490.98 495.55 2037 73 41
+end
+activityactioncanvas 133126 activityaction_ref 128646 // activity action Create ticket
+  
+  show_opaque_action_definition default
+  xyzwh 277.84 60.98 2028 63 41
+end
+activityactioncanvas 133254 activityaction_ref 128774 // activity action Estimate
+  
+  show_opaque_action_definition default
+  xyzwh 435.06 60.98 2022 57 41
+end
+activitynodecanvas 133382 activitynode_ref 129414 // decision
+  xyz 228.96 61.78 2011
+end
+activitynodecanvas 134022 activitynode_ref 129542 // activity_final
+  xyz 229.79 125.14 2017
+end
+activityactioncanvas 135942 activityaction_ref 128902 // activity action Evaluate
+  
+  show_opaque_action_definition default
+  xyzwh 525.99 59.95 2016 67 41
+end
+activitynodecanvas 136326 activitynode_ref 130182 // decision
+  xyz 623 59.29 2022
+end
+activitynodecanvas 137222 activitynode_ref 130310 // activity_final
+  xyz 708.51 65.56 2016
+end
+activitynodecanvas 137484 activitynode_ref 134924 // fork
+  horizontal xyz 629.13 756.59 2020
+end
+activityactioncanvas 137734 activityaction_ref 129158 // activity action Write code
+  
+  show_opaque_action_definition default
+  xyzwh 597.92 201.12 2020 77 41
+end
+activityactioncanvas 137990 activityaction_ref 129286 // activity action Review code
+  
+  show_opaque_action_definition default
+  xyzwh 600.65 440.77 2020 81 41
+end
+activityactioncanvas 138118 activityaction_ref 129414 // activity action Assign
+  
+  show_opaque_action_definition default
+  xyzwh 608.89 136.82 2031 55 41
+end
+activitynodecanvas 138630 activitynode_ref 130438 // decision
+  xyz 629.9 688.51 2020
+end
+activitynodecanvas 138758 activitynode_ref 130566 // flow_final
+  xyz 682.15 696.85 2031
+end
+activityactioncanvas 138886 activityaction_ref 129670 // activity action Merge Pull Request
+  
+  show_opaque_action_definition default
+  xyzwh 583.66 556.98 2031 117 41
+end
+activitynodecanvas 138892 activitynode_ref 135180 // join
+  horizontal xyz 629.13 866.89 2026
+end
+activityactioncanvas 139014 activityaction_ref 129798 // activity action Test
+  
+  show_opaque_action_definition default
+  xyzwh 617.19 626.77 2031 49 41
+end
+activitynodecanvas 139142 activitynode_ref 130694 // decision
+  xyz 627.37 498.14 2031
+end
+activityactioncanvas 139270 activityaction_ref 129926 // activity action Deploy release
+  
+  show_opaque_action_definition default
+  xyzwh 596.59 898.25 2016 95 41
+end
+activityactioncanvas 139398 activityaction_ref 130054 // activity action Confirm
+  
+  show_opaque_action_definition default
+  xyzwh 613.68 958.97 2015 61 41
+end
+activityactioncanvas 139526 activityaction_ref 130182 // activity action Alert release
+  
+  show_opaque_action_definition default
+  xyzwh 654.8 797.87 2015 93 41
+end
+activityactioncanvas 139654 activityaction_ref 130310 // activity action Create release
+  
+  show_opaque_action_definition default
+  xyzwh 504.29 763.42 2016 89 41
+end
+activityactioncanvas 139910 activityaction_ref 130566 // activity action Announce
+  
+  show_opaque_action_definition default
+  xyzwh 593.35 1074.08 2015 101 41
+end
+activitynodecanvas 140038 activitynode_ref 130822 // decision
+  xyz 630.19 1017.47 2015
+end
+activitynodecanvas 140294 activitynode_ref 131078 // activity_final
+  xyz 630.69 1140.28 2015
+end
+interruptibleactivityregioncanvas 140806 interruptibleactivityregion_ref 128646 // Development
+  xyzwh 409.42 121.13 2005 339 622
+end
+note 141190 "Human-readable release notes "
+  xyzwh 209.77 787.25 2010 165 37
+note 141958 "Iterative process until satisfactory result
+"
+  xyzwh 80.68 437.68 2010 201 38
+activityobjectcanvas 141964 activityobject_ref 134924 // activity object Release
+  
+  xyzwh 523.57 823.34 2005 53 31
+end
+note 142214 "Single-responsibility assignment to developer"
+  xyzwh 439.22 136.65 2025 124 54
+activityactioncanvas 144006 activityaction_ref 131718 // activity action Create Pull Request
+  
+  show_opaque_action_definition default
+  xyzwh 581.65 263.55 2015 117 41
+end
+note 144134 "Autodeploy to staging"
+  xyzwh 435.02 581.57 2015 119 36
+activityactioncanvas 144390 activityaction_ref 131846 // activity action Reassign
+  
+  show_opaque_action_definition default
+  xyzwh 610.92 378.08 2015 61 41
+end
+flowcanvas 129030 flow_ref 128006 // <flow>
+  
+  from ref 128006 z 2018 to ref 128902
+   write_horizontally default
+end
+flowcanvas 129292 flow_ref 134540 // <flow>
+  
+  from ref 133126 z 2029 to ref 129036
+   write_horizontally default
+end
+flowcanvas 129420 flow_ref 134668 // <flow>
+  decenter_end 510
+  
+  from ref 129036 z 2023 to ref 133254
+   write_horizontally default
+end
+flowcanvas 129932 flow_ref 134796 // <flow>
+  
+  from ref 138118 z 2032 to ref 137734
+   write_horizontally default
+end
+flowcanvas 130188 flow_ref 135052 // <flow>
+  
+  from ref 137734 z 2021 to ref 144006
+   write_horizontally default
+end
+flowcanvas 130316 flow_ref 135180 // <flow>
+  
+  from ref 144006 z 2016 to ref 129804
+   write_horizontally default
+end
+flowcanvas 130444 flow_ref 135308 // <flow>
+  
+  from ref 129804 z 2016 to ref 144390
+   write_horizontally default
+end
+flowcanvas 131212 flow_ref 135436 // <flow>
+  
+  from ref 139142 z 2038 to ref 131084
+   write_horizontally default
+end
+flowcanvas 131340 flow_ref 135564 // <flow>
+  decenter_end 510
+  
+  from ref 131084 z 2038 to ref 130828
+   write_horizontally default
+end
+flowcanvas 131468 flow_ref 135692 // <flow>
+  decenter_end 510
+  
+  from ref 130828 z 2011 to point 521.99 396.44
+  line 132108 z 2011 to ref 144390
+   write_horizontally default
+end
+flowcanvas 132236 flow_ref 135820 // <flow>
+  
+  from ref 144390 z 2021 to ref 137990
+   write_horizontally default
+end
+flowcanvas 132486 flow_ref 129286 // <flow>
+  
+  from ref 128902 z 2018 to ref 129158
+   write_horizontally default
+end
+flowcanvas 132492 flow_ref 136076 // <flow>
+  
+  from ref 137990 z 2032 to ref 139142
+   write_horizontally default
+end
+flowcanvas 132876 flow_ref 136204 // <flow>
+  decenter_begin 520
+  
+  from ref 139142 z 2032 to ref 138886
+   write_horizontally default
+end
+flowcanvas 133510 flow_ref 129414 // <flow>
+  
+  from ref 129158 z 2018 to ref 133382
+   write_horizontally default
+end
+flowcanvas 134028 flow_ref 136332 // <flow>
+  
+  from ref 136326 z 2032 to ref 138118
+   write_horizontally default
+end
+flowcanvas 134150 flow_ref 129670 // <flow>
+  
+  from ref 133382 z 2018 to ref 134022
+   write_horizontally default
+end
+flowcanvas 134156 flow_ref 136460 // <flow>
+  
+  from ref 138886 z 2032 to ref 139014
+   write_horizontally default
+end
+flowcanvas 134284 flow_ref 136588 // <flow>
+  
+  from ref 139014 z 2032 to ref 138630
+   write_horizontally default
+end
+flowcanvas 134412 flow_ref 136716 // <flow>
+  
+  from ref 138630 z 2032 to ref 138758
+   write_horizontally default
+end
+flowcanvas 135174 flow_ref 129926 // <flow>
+  decenter_begin 567
+  
+  from ref 133382 z 2029 to ref 133126
+   write_horizontally default
+end
+flowcanvas 136966 flow_ref 130694 // <flow>
+  
+  from ref 133254 z 2023 to ref 135942
+   write_horizontally default
+end
+flowcanvas 137094 flow_ref 130822 // <flow>
+  
+  from ref 135942 z 2023 to ref 136326
+   write_horizontally default
+end
+flowcanvas 137350 flow_ref 130950 // <flow>
+  decenter_begin 513
+  
+  from ref 136326 z 2023 to ref 137222
+   write_horizontally default
+end
+flowcanvas 137612 flow_ref 138380 // <flow>
+  
+  from ref 138630 z 2021 to ref 137484
+   write_horizontally default
+end
+flowcanvas 137740 flow_ref 138508 // <flow>
+  
+  from ref 137484 z 2021 to ref 139654
+   write_horizontally default
+end
+flowcanvas 137868 flow_ref 138636 // <flow>
+  
+  from ref 137484 z 2021 to point 697.07 778.4
+  line 140044 z 2021 to ref 139526
+   write_horizontally default
+end
+flowcanvas 139148 flow_ref 139148 // <flow>
+  
+  from ref 139526 z 2027 to ref 138892
+   write_horizontally default
+end
+flowcanvas 139276 flow_ref 139276 // <flow>
+  
+  from ref 138892 z 2027 to ref 139270
+   write_horizontally default
+end
+flowcanvas 140172 flow_ref 139532 // <flow>
+  
+  from ref 139270 z 2017 to ref 139398
+   write_horizontally default
+end
+flowcanvas 140300 flow_ref 139660 // <flow>
+  
+  from ref 139398 z 2016 to ref 140038
+   write_horizontally default
+end
+flowcanvas 140940 flow_ref 140172 // <flow>
+  
+  from ref 140038 z 2016 to ref 139910
+   write_horizontally default
+end
+flowcanvas 141068 flow_ref 140300 // <flow>
+  
+  from ref 139910 z 2016 to ref 140294
+   write_horizontally default
+end
+flowcanvas 142092 flow_ref 140428 // <flow>
+  
+  from ref 141964 z 2027 to ref 138892
+   write_horizontally default
+end
+flowcanvas 142220 flow_ref 140556 // <flow>
+  
+  from ref 139654 z 2017 to ref 141964
+   write_horizontally default
+end
+flowcanvas 142988 flow_ref 140812 // <flow>
+  
+  from ref 140038 z 2016 label "[hotfix/rollback]" xyz 687 1023 3000 to point 789.63 1034.48
+  line 143116 z 2016 to point 797.07 155.01
+  line 143244 z 2016 to ref 138118
+   write_horizontally default
+end
+line 141318 -_-_
+  from ref 141190 z 2017 to ref 139654
+line 142342 -_-_ decenter_begin 476
+  from ref 142214 z 2026 to ref 138118
+line 143622 -_-_
+  from ref 141958 z 2038 to ref 140806
+line 144262 -_-_
+  from ref 144134 z 2032 to ref 138886
+end

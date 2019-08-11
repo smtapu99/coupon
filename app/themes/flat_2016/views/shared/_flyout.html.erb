@@ -1,0 +1,64 @@
+<% coupon_style = Setting.get('experimental.flyout_style', default: 'default') %>
+
+
+<div class="flyout flyout--<%= coupon_style %>" data-flyout-id="<%= coupon.id %>" style="visibility: hidden">
+
+  <% if coupon.use_logo_on_shop_page && coupon.try(:logo_url, '_110x110') %>
+
+    <div class="flyout__logo">
+
+      <%= image_tag "", data: { normal: coupon.logo_url('_110x110') }, class: 'img-responsive', alt: coupon.title %>
+
+    </div>
+
+  <% else %>
+
+    <div class="flyout__logo flyout__logo--<%= coupon_style %>">
+
+      <% if coupon.logo_text_first_line.present? && coupon.logo_text_second_line.present? %>
+
+        <span class="flyout__amount" style="width: 80px; display: block"><%= strip_tags(coupon.logo_text_first_line).html_safe %></span>
+
+        <span class="flyout__type" style="width: 80px; display: block"><%= coupon.logo_text_second_line %></span>
+
+      <% else %>
+
+        <% default_texts = default_logo_texts(coupon) %>
+
+        <span class="flyout__amount" style="width: 80px; display: block"><%= default_texts[:first_line] %></span>
+
+        <span class="flyout__type" style="width: 80px; display: block"><%= default_texts[:second_line] %></span>
+
+      <% end %>
+
+  <% end %>
+
+  </div>
+
+  <div class="flyout__text">
+
+    <%= truncate(coupon.title, length: 100, omission: '...') %>
+
+  </div>
+
+  <span class="flyout__clickout flyout__clickout--<%= coupon_style %> clickout " <%= clickout_params_for_element(coupon) %> data-event-action="<%= flyout_event_action %>">
+    <% if coupon_style == "default" %>
+
+      <%= coupon_btn_text(coupon) %>
+
+    <% else %>
+
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 6.574 6.574">
+        <g transform="translate(-258.68 -115.905)" fill="none" stroke="#fff" stroke-width=".265">
+          <circle r="3.155" cy="119.192" cx="261.967"/>
+          <g stroke-linecap="round">
+            <path d="M259.911 119.157h3.466M262.183 117.98l1.194 1.177M262.183 120.343l1.178-1.177"/>
+          </g>
+        </g>
+      </svg>
+
+    <% end %>
+
+  </span>
+
+</div>

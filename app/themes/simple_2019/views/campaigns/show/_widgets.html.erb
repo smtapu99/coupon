@@ -1,0 +1,64 @@
+<%
+only   ||= nil
+except ||= nil
+
+content_widgets = [
+  'raw_html',
+  'image',
+  'quicklinks',
+  'newsletter',
+  'hot_offers',
+  'top_sales',
+  'about',
+  'shop_bubbles',
+  'sponsor_bar',
+  'subpage_teaser',
+  'premium_hero',
+  'premium_offers',
+  'discount_bubbles',
+  'rotated_coupons',
+  'premium_widget'
+]
+
+if only.present?
+  content_widgets = content_widgets.select{|w| only.map(&:to_s).include?(w.to_s)}
+end
+
+if except.present?
+  content_widgets = content_widgets.select{|w| !except.map(&:to_s).include?(w.to_s)}
+end
+%>
+
+<%- if Campaign.current.present? -%>
+
+  <% @site.widgets_for_area('main').each_with_index do |widget, index| %>
+
+    <%- next if widget.name == 'newsletter' && !newsletter_enabled? -%>
+
+    <%- next unless content_widgets.include?(widget.name.to_s) -%>
+
+    <%= render_widget(widget, site: @site, order_number: index) %>
+
+  <% end %>
+
+<%- else -%>
+
+  <div class="row">
+
+    <% @site.widgets_for_area('main').each_with_index do |widget, index| %>
+
+      <%- next if widget.name == 'newsletter' && !newsletter_enabled? -%>
+
+      <%- next unless content_widgets.include?(widget.name.to_s) -%>
+
+      <div class="col-xs-12 <%= to_bootstrap_classes widget.columns || widget.defaults[:columns] %>">
+
+        <%= render_widget(widget, site: @site, order_number: index) %>
+
+      </div>
+
+    <% end %>
+
+  </div>
+
+<%- end -%>

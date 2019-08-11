@@ -1,0 +1,52 @@
+.pannacotta.related-items {
+
+  margin-bottom: 0px;
+
+  #sidebar & {
+    margin-bottom: 30px;
+  }
+
+  .label.bg-ashes {
+    display: inline-block;
+    margin-right: 3px;
+    margin-bottom: 5px;
+    line-height: 18px;
+
+    -webkit-transition: background-color 0.3s ease;
+    -moz-transition: background-color 0.3s ease;
+    -ms-transition: background-color 0.3s ease;
+    -o-transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease;
+
+    &.active {
+      background: white !important;
+      color: $color-ashes;
+
+      &:hover, &:active {
+        background: white !important;
+        color: $color-ashes;
+      }
+    }
+
+    a {
+      color: #fff;
+      &:hover {
+        cursor: pointer;
+        text-decoration: none;
+      }
+    }
+    &:hover, &:active {
+      cursor: pointer;
+      text-decoration: none;
+      background-color: lighten($color-ashes, 5%) !important;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+
+}
+
+@media (min-width: 992px) {
+
+}

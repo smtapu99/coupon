@@ -1,0 +1,283 @@
+@critical common.css {
+  body {
+    color: $font-color !important;
+    font-family: $font-family-base !important;
+    background-color: $background--light-grey !important;
+  }
+
+  @media #{$min-lg} {
+    .container {
+      max-width: 1200px !important;
+    }
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: $font-family-headers;
+  }
+
+  .img-responsive {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .h2 {
+    font-weight: 400;
+    font-size: 24px;
+  }
+
+  .align-items-center {
+    align-items: center !important;
+  }
+}
+
+.ribbon {
+  position: relative;
+  display: inline-block;
+  margin: 4px 0 0 8px;
+  padding: 1px 8px 1px 0;
+  color: #FFF;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 17px;
+  white-space: nowrap;
+  background-color: #404040;
+
+  &::before {
+    position: absolute;
+    top: 0;
+    left: -8px;
+    border-width: 10px 4px 9px;
+    border-style: solid;
+    content: '';
+    border-color: #404040 #404040 #404040 transparent;
+  }
+
+  &::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-width: 10px 4px 9px;
+    border-style: solid;
+    content: '';
+    border-color: transparent #FFF transparent transparent;
+  }
+}
+
+.color-sky {
+  color: $color-sky;
+}
+
+@critical common.css {
+  .btn {
+    display: inline-block;
+    min-width: 150px;
+    padding: 11px 20px;
+    color: #FFF;
+    font-weight: 700;
+    font-size: 14px;
+    font-family: $font-family-buttons;
+    text-align: center;
+    text-decoration: none;
+    background-color: $btn--info;
+    border: none;
+    border-radius: 35px;
+    cursor: pointer;
+
+    &:hover {
+      color: #FFF;
+      text-decoration: none;
+      background-color: darken($btn--info, 10%);
+    }
+
+    &[disabled] {
+      opacity: 0.3;
+      pointer-events: none;
+    }
+
+    &--warning {
+      background-color: $btn--warning;
+
+      &:hover {
+        background-color: darken($btn--warning, 10%);
+      }
+    }
+
+    &--large {
+      min-width: 230px;
+      padding: 17px 0;
+      font-size: 20px;
+      text-align: center;
+    }
+
+    &--full {
+      width: 100%;
+    }
+
+    &--close {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 32px;
+      min-width: auto;
+      height: 32px;
+      padding: 0;
+      border-radius: 50%;
+    }
+  }
+}
+
+.vote {
+  &:hover {
+    text-decoration: none;
+    text-shadow: 0 0 1px #FFF;
+  }
+
+  &--no {
+    vertical-align: sub;
+  }
+}
+
+@critical common.css {
+  .page-title {
+    margin: 30px 0 28px;
+    font-weight: 700;
+    font-size: 36px;
+
+    @media #{$sm} {
+      font-size: 26px;
+      line-height: 1.1;
+    }
+  }
+}
+
+.page-subtitle {
+  font-weight: 300;
+  font-size: 24px;
+}
+
+.loader {
+  width: 30px;
+  height: 30px;
+  border: 4px solid $background--light-grey;
+  border-top: 4px solid #000;
+  border-bottom: 4px solid #000;
+  border-radius: 50%;
+  animation: spin 2s linear infinite;
+}
+
+@critical common.css {
+  .background--white {
+    background-color: $background--white;
+  }
+}
+
+.pull-left {
+  float: left;
+}
+
+.pull-right {
+  float: right;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.form-input {
+  display: block;
+  width: 100%;
+  height: 34px;
+  padding: 6px 12px;
+  line-height: 1.42857143;
+  background-color: #FFF;
+  background-image: none;
+  border: 1px solid #CCC;
+  border-radius: 4px;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+}
+
+.redirect-page {
+  margin-top: 100px;
+
+  &__message {
+    margin-bottom: 20px;
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@mixin default-box {
+  background: #FFF;
+  border: 1px solid darken($background--grey, 10%);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.11);
+
+  &:hover {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  }
+}
+
+@mixin default-list($left-padding) {
+  position: relative;
+  margin-bottom: 15px;
+  line-height: 1;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 4px;
+    left: -$left-padding;
+    display: block;
+    width: 8px;
+    height: 8px;
+    color: $btn--info;
+    border: 1px solid $bullets-color;
+    border-radius: 50%;
+  }
+}
+
+@mixin checkbox {
+  position: relative;
+  width: 18px;
+  height: 18px;
+  margin-right: 15px;
+  vertical-align: middle;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-radius: 2px;
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+
+  &:focus,
+  &:active {
+    outline: none;
+    box-shadow: none;
+  }
+
+  &:checked {
+    background: #FFF;
+
+    &::before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      color: $btn--info;
+      font-size: 11px;
+      font-family: 'simple' !important;
+      content: "\e904";
+    }
+  }
+}

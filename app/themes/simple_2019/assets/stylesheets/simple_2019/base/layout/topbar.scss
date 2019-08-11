@@ -1,0 +1,27 @@
+@critical common.css {
+  $topbar_height: 70px;
+
+  .topbar {
+    display: flex;
+    align-items: center;
+    height: $topbar_height;
+    background-color: $topbar_bg;
+
+    &__logo {
+      display: block;
+      max-height: $topbar_height;
+
+      @media #{$xs} {
+        max-height: $topbar_height / 2;
+        margin: 0 auto;
+      }
+
+      img {
+        width: 100%;
+        max-width: 420px;
+        height: auto;
+        max-height: 100%;
+      }
+    }
+  }
+}

@@ -1,0 +1,217 @@
+<div class="row">
+
+  <div class="col-xs-12">
+
+    <div class="page-header">
+
+      <h1 class="pull-left">
+
+        <i class="icon-shopping-cart"></i>
+
+        <span>AWIN Migration Tool</span>
+
+      </h1>
+
+      <div class="pull-right">
+
+        <ul class="breadcrumb">
+
+          <li>
+
+            <a href="/pcadmin">
+
+              <i class="icon-home"></i>
+
+            </a>
+
+          </li>
+
+          <li class="separator">
+
+            <i class="icon-angle-right"></i>
+
+          </li>
+
+          <li class="active">Awin Migration</li>
+
+        </ul>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<div class="row">
+
+  <%= render partial: 'admin/shared/flash' %>
+
+</div>
+
+<div class="row">
+
+  <div class="col-sm-12">
+
+    <div class="box bordered-box blue-border">
+
+      <div class="box-header blue-background">
+
+        <div class="title">
+
+          <i class="icon-edit"></i>
+
+          AWIN Migration Form
+
+        </div>
+
+      </div>
+
+      <div class="box-content">
+
+        <%= form_for [:admin, @migration], url: admin_migrate_awin_path, class: 'form form-horizontal', method: :post, style: 'margin-bottom: 0' do |f| %>
+
+        <%= render partial: 'admin/shared/form_errors', locals: {ancestor: @migration} %>
+
+        <div class="form-group">
+
+          <div class="row">
+
+            <div class="col-md-6 col-md-offset-3">
+
+              <small>This Tool helps to migrate the shop and all its "active" and "not expired" coupons to AWIN. It will change the "fallback_url" of the shop and the "clickout_url" of all those coupons, and if requested also changes the "affiliate network" of the coupons and shops to AWIN</small>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="form-group">
+
+          <div class="row">
+
+            <div class="col-md-6 col-md-offset-3">
+
+              <%= f.label :shop_id -%>
+
+              <%- unless @count.present? #necessary as select2 doesnt allow readyonly property -%>
+
+                <%= f.select :shop_id, Site.current.shops.order(:title).collect {|i| [i.title_and_site_name, i.id]}, {prompt: true}, {multiple: false, class: 'select2 form-control'} %>
+
+              <%- else -%>
+
+                <%= text_field_tag :shop_id, @migration.shop.title, class: 'form-control', disabled: true %>
+
+                <%= f.hidden_field :shop_id %>
+
+              <%- end -%>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="form-group">
+
+          <div class="row">
+
+            <div class="col-md-6 col-md-offset-3">
+
+              <%= f.label :clickout_url -%>
+
+              <%= f.text_field :clickout_url, class: 'form-control', readonly: @count.present? %>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="form-group">
+
+          <div class="row">
+
+            <div class="col-md-6 col-md-offset-3">
+
+              <%= f.label 'Change Affiliate Network of Shop and Coupons to AWIN' -%>
+
+              <%= f.check_box :change_to_awin, class: 'form-control', onclick: ("return false" if @count.present?) %>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <%- if @count.present? -%>
+
+        <div class="form-group">
+
+          <div class="row">
+
+            <div class="col-md-6 col-md-offset-3">
+
+              <div class="alert alert-success">
+
+                  <p>You are about to change the <b>clickout_url</b> of <%= @count %> active
+                  coupon(s) and the <b>fallback_url</b> of "<%= @migration.shop.title %>"
+                  to <%= @migration.clickout_url %>.</p>. Expired coupons will not get updated!
+
+                  <%- unless @migration.change_to_awin.to_i.zero? -%>
+                    <p>You are also about to change the affiliate network of the coupon(s)
+                    from Zanox to AWIN.<p>
+                  <%- end -%>
+
+                  <p>Are you sure? Otherwise please click cancel.</p>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <%- end -%>
+
+        <div class="form-actions">
+
+          <div class="row">
+
+            <div class="col-md-6 col-md-offset-3">
+
+              <%= f.hidden_field :run if @count.present? %>
+
+              <%- if @count.present? -%>
+
+                <%= f.submit 'Migrate Now', class: 'btn btn-primary' %>
+
+              <%- else -%>
+
+                <%= f.submit 'Check', class: 'btn btn-primary' %>
+
+              <%- end -%>
+
+              <%- if @count.present? -%>
+
+                <%= link_to t('.cancel', default: t('helpers.links.cancel')), admin_awin_path, class: 'btn' %>
+
+              <%- end -%>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <% end # form %>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

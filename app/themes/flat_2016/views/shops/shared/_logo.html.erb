@@ -1,0 +1,28 @@
+<% css_class ||= 'img-responsive' %>
+
+<% if shop.present? && shop.logo.present? %>
+
+  <% height ||= 150 %>
+
+  <% width ||= 150 %>
+
+  <% image_size = case true
+  when width <= 40
+    '_40x40'
+  when width <= 110
+    '_110x110'
+  when width <= 180
+    '_180x180'
+  when width <= 200
+    '_200x200'
+  else
+    :standard
+  end %>
+
+  <%= image_tag shop.logo_url(image_size), alt: (shop.logo_alt_text.present? ? shop.logo_alt_text : shop.title), title: (shop.logo_title_text.present? ? shop.logo_title_text : shop.title), class: css_class,  height: height, width: width %>
+
+<% else %>
+
+  <%= image_tag 'flat_2016/shop-fallback.png', alt: (shop.logo_alt_text.present? ? shop.logo_alt_text : shop.title), title: (shop.logo_title_text.present? ? shop.logo_title_text : shop.title), class: css_class, height: height, width: width %>
+
+<% end %>

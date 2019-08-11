@@ -1,0 +1,99 @@
+<% #TODO: DRY-UP this secion  %>
+
+<% if popular_shops.present? %>
+
+  <%- unless is_popular_shop_test? -%>
+
+    <div class="pannacotta popular-shops" data-event-category="content_related_shops">
+
+      <h3><%= t(:SHOPLIST_POPULAR_SHOPS, default: 'Popular Shops') %></h3>
+
+      <ul class="list-unstyled">
+
+        <% popular_shops.each do |shop| %>
+
+          <li data-shop-name="<%= shop.anchor_text %>">
+
+            <a href="<%= dynamic_url_for('shop', 'show', slug: shop.slug) %>" title="<%= h shop.anchor_text_or_title %>">
+
+              <span>
+
+                <%= image_tag(shop.logo_url('_40x40'), alt: shop.anchor_text_or_title, width: 40, height: 40 )  unless shop.logo.blank? %>
+
+              </span>
+
+              <%= shop.anchor_text_or_title %>
+
+            </a>
+
+          </li>
+
+        <% end %>
+
+      </ul>
+      <!-- /.list-unstyled -->
+
+    </div>
+    <!-- /.pannacotta similar-shops -->
+
+  <%- else -%>
+
+    <div class="pannacotta similar-shops" data-event-category="content_related_shops">
+
+      <h3><%= t(:SHOPLIST_POPULAR_SHOPS, default: 'Popular Shops') %></h3>
+
+      <ul class="list-unstyled related-items pannacotta">
+
+        <% popular_shops.each do |shop| %>
+
+          <li data-shop-name="<%= shop.title %>" class="label bg-ashes">
+
+            <a href="<%= dynamic_url_for('shop', 'show', slug: shop.slug) %>" title="<%= h shop.anchor_text_or_title %>">
+
+              <%= shop.title %>
+
+            </a>
+
+          </li>
+
+        <% end %>
+
+      </ul>
+      <!-- /.list-unstyled -->
+
+    </div>
+    <!-- /.pannacotta popular-shops -->
+
+  <%- end -%>
+
+<% end %>
+
+<% if related_shops.present? %>
+
+  <div class="pannacotta similar-shops" data-event-category="content_related_shops">
+
+    <h3><%= t(:SHOPLIST_SIMILAR_SHOPS, default: 'Similar Shops') %></h3>
+
+    <ul class="list-unstyled related-items pannacotta">
+
+      <% related_shops.each do |shop| %>
+
+        <li data-shop-name="<%= shop.title %>" class="label bg-ashes">
+
+          <a href="<%= dynamic_url_for('shop', 'show', slug: shop.slug) %>" title="<%= h shop.anchor_text_or_title %>">
+
+            <%= shop.title %>
+
+          </a>
+
+        </li>
+
+      <% end %>
+
+    </ul>
+    <!-- /.list-unstyled -->
+
+  </div>
+  <!-- /.pannacotta popular-shops -->
+
+<% end %>

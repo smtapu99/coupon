@@ -1,0 +1,99 @@
+<div class="col-sm-12 col-md-6" id="newsletter">
+
+  <div class="box bordered-box blue-border <%= 'box-collapsed' unless session[:last_setting] == 'newsletter' %>">
+
+    <div class="box-header orange-background">
+
+      <div class="title">
+
+        <i class="icon-envelope"></i>
+
+        Newsletter Settings
+
+      </div>
+
+      <div class="actions">
+
+        <a class="btn box-collapse btn-xs btn-link" href="#">
+
+          <i></i>
+
+        </a>
+
+      </div>
+
+    </div>
+
+    <div class="box-content">
+
+      <%= form_for [:admin, @setting], method: :patch, html: {class: 'form form-horizontal', style: 'margin-bottom: 0'} do |f| %>
+
+        <%= hidden_field_tag :option_type, 'newsletter' %>
+
+        <%= fields_for :newsletter, @setting.newsletter do |ff| %>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :newsletter_enabled %>
+
+              <%= ff.select :newsletter_enabled, Option::get_select_options('yes_or_no', false), {:selected => ff.object.present? ? (ff.object.newsletter_enabled || 1) : 1}, class: 'form-control' %>
+
+              <div class="help-block">
+
+                <small>Default: Yes, when disabled no newsletter widgets and popups will appear.</small>
+
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :mailchimp_api_key %>
+
+              <%= ff.text_field :mailchimp_api_key, :class => 'form-control' %>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :mailchimp_list_id %>
+
+              <%= ff.text_field :mailchimp_list_id, :class => 'form-control' %>
+
+            </div>
+
+          </div>
+
+          <div class="form-actions form-actions-padding-sm">
+
+            <div class="row">
+
+              <div class="col-md-2">
+
+                <%= f.submit 'Save', class: 'btn btn-primary btn-block' %>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        <% end %>
+
+      <% end %>
+
+    </div>
+
+  </div>
+
+</div>

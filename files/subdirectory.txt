@@ -1,0 +1,82 @@
+Done to make it work:
+
+- add application_root_dir to route settings
+- write a middleware to set a global variable $root_dir
+- config/initializers/relative_url_root.rb --- modify rails AssetHelper class to make use of the $root_dir global variable if it is set
+- config/initializers/relative_url_root.rb --- modify a railties class to make use uf $root_dir
+- add the root_dir to all JS calls
+- change routes to add a scope if a subdir is set
+- modify the views to make use of the new site base routes like searches_autocomplete_1_path instead of searches_autocomplete_path
+
+- put http://st.couponcrew.de/ as image base url in settings
+- enable styles
+- disable turbolinks
+
+
+subdirectory
+
+- change dynamic_urĺ helper to add /subdir
+- change css generator and add subdir to the css paths
+- make subdir accessible in javascript and append to any path
+- change the
+- precompile assets with the new configuration !!!
+
+
+https://www.phusionpassenger.com/documentation/Users%20guide%20Apache.html#deploying_rails_to_sub_uri
+https://www.phusionpassenger.com/documentation/Users%20guide%20Apache.html#sub_uri_deployment_uri_fix
+
+
+  host: "pc-production.ceqgnbgdsiql.eu-west-1.rds.amazonaws.com"
+  username: "staging"
+  password: "5QuigEddIfu"
+
+
+  redis_server: "staging-redis.gkwxgr.0001.euw1.cache.amazonaws.com"
+
+
+
+
+
+
+
+
+
+
+
+- nginx configuration
+
+also redirect from /subdir to /subdir/ as it interferes with the dynamic routes
+
+server {
+  #listen   80; ## listen for ipv4; this line is default and implied
+  #listen   [::]:80 default_server ipv6only=on; ## listen for ipv6
+  server_name subdir-staging.local;
+  index index.php index.html;
+
+  error_log       /var/log/nginx/st.couponcrew.local_error.log;
+
+  location = /favicon.ico {
+          log_not_found off;
+          access_log off;
+  }
+
+  location = /robots.txt {
+          allow all;
+          log_not_found off;
+          access_log off;
+  }
+
+
+  location / {
+          try_files $uri $uri/ /index.php?$args;
+  }
+
+  location /subdir {
+          rewrite /subdir/(.*) /$1 break;
+          proxy_pass http://st.couponcrew.de/subdir/;
+          proxy_redirect off;
+          #proxy_set_header Host $host;
+          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+  }
+}
+

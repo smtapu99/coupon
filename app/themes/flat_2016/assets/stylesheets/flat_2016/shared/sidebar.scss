@@ -1,0 +1,51 @@
+.sidebar.pannacotta {
+  h2,
+  h3 {
+    font-size: 16px;
+    margin-bottom: 8px;
+    margin-top: 24px;
+  }
+
+  p,
+  li {
+    margin-bottom: 8px;
+  }
+
+  p {
+    font-size: 12px;
+  }
+
+  .row > .col-xs-4 {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+}
+
+.sidebar--image-container {
+  margin-bottom: 30px;
+
+  img {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+.sidebar--image-tag {
+  width: 100%;
+  max-width: 100%;
+}
+
+@media (min-width: 768px) {
+  .sidebar.pannacotta {
+    h2,
+    h3 {
+      font-size: 20px;
+      margin-bottom: 12px;
+      margin-top: 32px;
+    }
+
+    p {
+      font-size: 14px;
+    }
+  }
+}

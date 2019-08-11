@@ -1,0 +1,51 @@
+<%
+only   ||= nil
+except ||= nil
+
+content_widgets = [
+  'sponsor_bar',
+  'coupons_lists',
+  'featured_images',
+  'featured_coupons',
+  'shop_list_columns',
+  'premium_offers',
+  'rotated_coupons',
+  'premium_widget'
+]
+
+if only.present?
+  content_widgets = content_widgets.select{|w| only.map(&:to_s).include?(w.to_s)}
+end
+
+if except.present?
+  content_widgets = content_widgets.select{|w| !except.map(&:to_s).include?(w.to_s)}
+end
+
+groups = []
+@site.widgets_for_area('main').each do |widget|
+  next unless content_widgets.include?(widget.name.to_s)
+  if widget.width.blank? || widget.width == '100'
+    groups << widget
+  else
+    if groups.last.is_a?(Array)
+      groups.last << widget
+    else
+      groups << [widget]
+    end
+  end
+end
+%>
+
+<%- groups.each_with_index do |row, index| -%>
+  <%- if row.is_a?(Array) -%>
+    <div class="row">
+      <%- row.each_with_index do |widget| -%>
+        <%= render_widget(widget, site: @site, order_number: index) %>
+      <%- end -%>
+    </div>
+  <%- else -%>
+    <%= render_widget(row, site: @site, order_number: index) %>
+  <%- end -%>
+<%- end -%>
+
+

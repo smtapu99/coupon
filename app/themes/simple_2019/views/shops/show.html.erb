@@ -1,0 +1,89 @@
+<% if @shop.present? %>
+
+  <% content_for :before_content do %>
+
+    <div class="container">
+
+      <div class="row">
+
+        <div class="col">
+
+          <div class="shop-info-mobile d-lg-none d-sm-flex">
+
+            <% if @h1.present? %>
+
+              <p class="shop-info-mobile__title"><%= @h1.html_safe %></p>
+
+            <% end %>
+
+            <%= render partial: 'shops/shared/logo', locals: { shop: @shop, css_class: 'shop-info-mobile__logo', height: 80, width: 80 } %>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  <% end %>
+
+  <%= render partial: 'shops/show/head', locals: { shop: @shop } %>
+
+  <% if show_premium_summary_widget_in_content?(@shop) %>
+
+    <%= render_summary_widget @shop %>
+
+  <% end %>
+
+  <% if ep_coupon = shop_editors_pick_coupon(@coupons) %>
+
+    <%- @coupons = @coupons.where.not(id: ep_coupon.id) -%>
+
+    <%- content_for :after_headings do -%>
+
+      <%= render partial: "coupons/shared/editors_pick_coupon", locals: { coupon: ep_coupon } %>
+
+    <%- end -%>
+
+  <% end %>
+
+  <%- if @coupons.present? -%>
+
+    <%= render 'shared/coupon_filters', coupons: @coupons %>
+
+  <%- end -%>
+
+  <div class="active-coupons">
+
+    <%= render partial: 'coupons/shared/card_coupons_list', locals: { coupons: @coupons, hide_pagination: true, shop: @shop } %>
+
+  </div>
+
+  <%- if show_summary_widget_in_content?(@shop) && !show_premium_summary_widget_in_content?(@shop) -%>
+
+    <%= render_summary_widget @shop %>
+
+  <%- end -%>
+
+  <%- unless related_shops_blocked?(@shop) -%>
+
+    <%= render partial: 'shops/show/related', locals: { related_shops: @related_shops, popular_shops: @popular_shops } %>
+
+  <%- end -%>
+
+  <% if Setting::get('publisher_site.hide_expired_coupons', default: 0).to_i.zero? %>
+
+    <div class="expired-coupons">
+
+      <h3 class="expired-coupons__title"><%= t(:EXPIRED_COUPONS_FOR, default: 'Expired Coupons For') %> <%= @shop.title %></h3>
+
+      <%= render partial: 'coupons/shared/card_coupons_list', locals: { coupons: @expired_coupons, hide_pagination: true, shop: @shop, expired: true } %>
+
+    </div>
+
+  <% end %>
+
+<% end %>
+
+<%= render partial: 'shops/show/sidebar', locals: { shop: @shop, sub_pages: @sub_pages } %>

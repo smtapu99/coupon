@@ -1,0 +1,11 @@
+.pannacotta {
+  &.card-see-more-categories {
+    .card-content {
+      padding: 0 25px 15px;
+
+      ul > li > a {
+        @include flat-anchor($color-sky);
+      }
+    }
+  }
+}

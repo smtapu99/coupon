@@ -1,0 +1,132 @@
+.modal-clickout {
+  &__info {
+    display: flex;
+    padding: 24px;
+  }
+
+  &__logo {
+    display: flex;
+    flex: 1 0 110px;
+    max-width: 110px;
+    height: 110px;
+    border: 1px solid $border-color;
+
+    a {
+      display: inline-block;
+      width: 100%;
+      height: 100%;
+    }
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  &__title {
+    padding-left: 25px;
+
+    .coupon__title {
+      margin-top: 22px;
+    }
+  }
+
+  &__time-box {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__end-time {
+    font-size: 11px;
+
+    .icon-clock {
+      margin-right: 3px;
+      color: $color-warning;
+    }
+  }
+
+  &__updated {
+    font-size: 11px;
+  }
+
+  &__code-wrp {
+    padding: 29px 14% 3px;
+    text-align: center;
+    background-color: $background--grey;
+
+    @media #{$xs} {
+      padding: 29px 12% 3px;
+    }
+  }
+
+  &__code {
+    display: block;
+    padding: 16px 0;
+    color: $input_placeholder;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 1;
+    background-color: #FFF;
+    border: 2px dashed $background--grey;
+    border-radius: 40px;
+
+    @media #{$xs} {
+      font-size: 20px;
+    }
+  }
+
+  &__copy {
+    display: block;
+    width: 100%;
+    margin-top: 15px;
+    font-size: 24px;
+    text-transform: uppercase;
+
+    @media #{$xs} {
+      font-size: 20px;
+    }
+  }
+
+  &__copy-text {
+    margin-top: 11px;
+    font-weight: 600;
+    font-size: 14px;
+    text-align: center;
+  }
+
+  &__link-wrp {
+    padding: 50px 14% 3px;
+
+    @media #{$xs} {
+      padding: 40px 12% 3px;
+    }
+  }
+
+  &__link {
+    width: 100%;
+    font-size: 24px;
+    text-transform: uppercase;
+
+    @media #{$xs} {
+      font-size: 20px;
+    }
+  }
+
+  &__description {
+    padding: 32px 14%;
+  }
+
+  &__footer {
+    height: 10px;
+    background-color: $background--grey;
+  }
+}
+
+#my-modal .modal__dialog {
+  max-height: 88%;
+  overflow-y: auto;
+
+  @media (max-height: 800px) {
+    margin: 50px auto;
+  }
+}

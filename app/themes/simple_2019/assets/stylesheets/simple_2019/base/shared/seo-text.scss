@@ -1,0 +1,38 @@
+.seo-text {
+  @include default-box;
+
+  margin-top: 35px;
+
+  &:hover {
+    box-shadow: none;
+  }
+
+  &__card {
+    padding: 45px 20px;
+    text-align: center;
+
+    @media #{$md} {
+      padding: 20px 5px;
+    }
+  }
+
+  &__header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 52px;
+  }
+
+  &__title h2 {
+    margin: 0;
+    color: $color-warning;
+    font-weight: 300;
+    font-size: 24px;
+    line-height: 1.1;
+  }
+
+  &__content {
+    margin-top: 33px;
+    font-size: 14px;
+  }
+}

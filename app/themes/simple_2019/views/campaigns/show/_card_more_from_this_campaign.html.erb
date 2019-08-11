@@ -1,0 +1,41 @@
+<% if sub_pages.present? %>
+
+  <div class="more-from-this-shop pannacotta">
+
+    <h3><%= t(:RELATED_CAMPAIGNS, default: 'Related Campaigns') %></h3>
+
+    <!-- /.card-header -->
+
+    <div class="card-content">
+
+      <ul class="list-unstyled">
+
+        <% sub_pages.each do |campaign| %>
+
+          <% if campaign.name.present? %>
+
+            <li class="text-ellipsis">
+
+              <span class="list-circle"></span>
+
+              <%= link_to campaign.name, dynamic_campaign_url_for(campaign) %>
+
+            </li>
+
+          <% end %>
+
+        <% end %>
+
+      </ul>
+
+      <!-- /.list-unstyled -->
+
+    </div>
+
+    <!-- /.card-content -->
+
+  </div>
+
+  <!-- /.card card-more-from-this-shop pannacotta -->
+
+<% end %>

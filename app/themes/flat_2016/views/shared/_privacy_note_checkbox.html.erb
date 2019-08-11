@@ -1,0 +1,11 @@
+<%= label_tag :privacy_policy, class: 'privacy_policy' do %>
+  <%= check_box_tag :privacy_policy, '', false, :required => true %>
+
+  <span class="text-truncated">
+    <%= truncate(t(:BY_SUBSCRIBING_YOU_ACCEPT_OUR_PRIVACY_POLICY, default: 'By subscribing you accept our <a href="%{policy_url}" rel="nofollow" target="_blank">privacy policy</a>', policy_url: policy_url).html_safe, length: 75, escape: false) %>
+  </span>
+  <span class="text-full hidden">
+    <%= t(:BY_SUBSCRIBING_YOU_ACCEPT_OUR_PRIVACY_POLICY, default: 'By subscribing you accept our <a href="%{policy_url}" rel="nofollow" target="_blank">privacy policy</a>', policy_url: policy_url).html_safe %>
+  </span>
+
+  <%- end -%>

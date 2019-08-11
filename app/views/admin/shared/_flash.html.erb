@@ -1,0 +1,24 @@
+<% flash.each do |name, message| %>
+
+  <div class="col-xs-12">
+
+    <% css_class = case name.to_sym
+    when :notice
+      'alert-success'
+    when :error
+      'alert-danger'
+    when :alert
+      'alert-info'
+      end %>
+
+      <div class="alert alert-dismissable <%= css_class %>">
+
+        <a class="close" data-dismiss="alert" href="#">×</a>
+
+        <%= "#{message}" %>
+
+      </div>
+
+    </div>
+
+<% end %>

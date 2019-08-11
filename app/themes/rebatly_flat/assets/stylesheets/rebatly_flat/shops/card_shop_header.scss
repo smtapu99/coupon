@@ -1,0 +1,135 @@
+.pannacotta.card-shop-header {
+  margin-bottom: 20px;
+  text-align: center;
+
+  .shop-header-logo img {
+    background-color: $color-white;
+    border: 1px solid $color-border;
+    height: auto;
+    margin: 0 auto 12px;
+    width: 100px;
+    padding: 10px;
+  }
+
+  &.header-no-image {
+    h1.page-title {
+      margin-top: 30px;
+      font-size: 30px;
+    }
+  }
+
+  .shop-header-title {
+    .page-title {
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1.2;
+      margin: 0 0 10px 0;
+    }
+  }
+
+  .page-subtitle {
+    font-size: 14px;
+    font-weight: bold;
+    margin: 20px 0 10px;
+  }
+  .shop-description, .category-description {
+    overflow: hidden;
+    margin-top: 20px;
+
+    h2 {
+      font-size: 14px;
+      font-weight: bold;
+      margin: 0 0 10px;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .pannacotta.card-shop-header {
+    margin-bottom: 28px;
+    text-align: left;
+
+    .shop-header-logo {
+      float: left;
+      margin-right: 12px;
+
+      img {
+        margin: 0;
+      }
+    }
+
+    .shop-header-title {
+      display: flex;
+      flex-direction: column;
+
+      .page-title {
+        font-size: 30px;
+        margin: 0 0 15px;
+      }
+
+      .card-coupon-filter ul {
+        margin-top: 4px;
+
+        li {
+          background-color: transparent;
+          padding: 0;
+          margin-right: 0;
+          margin-left: 0;
+
+          &.active {
+            background-color: transparent;
+            font-weight: 700;
+          }
+
+          &::after {
+            content: "–";
+            font-weight: 100;
+          }
+
+          &:first-child a {
+            margin-left: 4px;
+          }
+
+          &:last-child {
+            &::after {
+              content: "";
+            }
+
+            a {
+              margin-right: 4px;
+            }
+          }
+
+          a {
+            color: $color-sky;
+            font-size: 13px;
+            margin-left: 6px;
+            margin-right: 6px;
+
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 992px) {
+  .pannacotta.card-shop-header {
+    margin-bottom: 20px;
+
+    .shop-header-title {
+      .page-title {
+        font-size: 32px;
+      }
+
+      .card-coupon-filter ul li a {
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+@media (min-width: 1200px) {}

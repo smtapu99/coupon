@@ -1,0 +1,83 @@
+<hr>
+
+<div class="form-group">
+  <%= ff.label 'Special Featured Coupons', :class => 'col-md-2 control-label' %>
+  <div class="col-md-10">
+    <%= ff.select :featured_coupons_type, Option::get_select_options(:featured_coupons_types), {include_blank: true}, {:multiple => false, class: 'select2 form-control'} %>
+  </div>
+</div>
+
+<div class="form-group">
+  <%= ff.label 'Shop', :class => 'col-md-2 control-label' %>
+  <div class="col-md-10">
+    <%= ff.select :shop, Shop.by_site.active.collect {|x| [x.title, x.id]}, {include_blank: true}, {:multiple => false, class: 'select2 form-control'} %>
+  </div>
+</div>
+
+<div class="form-group">
+  <%= ff.label 'Category', :class => 'col-md-2 control-label' %>
+  <div class="col-md-10">
+    <%= ff.select :category, Category.by_site.active.collect {|x| [x.name, x.id]}, {include_blank: true}, {:multiple => false, class: 'select2 form-control'} %>
+  </div>
+</div>
+
+<% if Setting::get('style.theme', default: 'flat_2016') == 'simple_2019' %>
+
+  <div class="form-group">
+    <%= ff.label :width, class: 'col-md-2 control-label' %>
+    <div class="col-md-10">
+      <%= ff.select :width, [33,100], { include_blank: true }, class: 'select2 form-control' %>
+      <div class="help-block"><small>Select a widget width: 33% or 100%</small></div>
+    </div>
+  </div>
+
+<% end %>
+
+<div class="form-group">
+  <%= ff.label :coupon_ids, :class => 'col-md-2 control-label' %>
+  <div class="col-md-10">
+    <%= ff.text_field :coupon_ids, class: 'form-control', id: 'select2-coupons' %>
+    <div class="help-block">like: 12345,12346; If active they will appear in the order in which you put them.</div>
+  </div>
+</div>
+
+<hr>
+
+<div class="form-group">
+  <%= ff.label :teaser_positions, class: 'col-md-2 control-label' %>
+  <div class="col-md-10">
+    <%= ff.select :teaser_positions, [1,3,5], {include_blank: true}, multiple: true, class: 'select2 form-control' %>
+    <div class="help-block"><small>If an Ad Code is used, then the teaser position cannot be 5. Teaser image is the shop header image</small></div>
+  </div>
+</div>
+
+<div class="form-group">
+  <%= ff.label :ad_code, :class => 'col-md-2 control-label' %>
+  <div class="col-md-10">
+      <%= ff.text_area :ad_code, class: 'select2 form-control' %>
+      <div class="help-block"><small>Shows an ad block at the last position in the widget. pls make sure it fits in size</small></div>
+  </div>
+</div>
+
+<script>
+  jQuery('#widget_shop').select2({
+    allowClear: true,
+    placeholder: 'Type your shop here... ',
+    width: 'resolve'
+  });
+  jQuery('#widget_category').select2({
+    allowClear: true,
+    placeholder: 'Type your category here... ',
+    width: 'resolve'
+  });
+  jQuery('#widget_teaser_positions').select2({
+    allowClear: true,
+    placeholder: 'Select teaser positions... ',
+    width: 'resolve'
+  });
+  jQuery('#widget_width').select2({
+    allowClear: true,
+    placeholder: 'Select widget width... ',
+    width: 'resolve'
+  });
+</script>

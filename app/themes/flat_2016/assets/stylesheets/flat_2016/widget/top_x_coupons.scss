@@ -1,0 +1,21 @@
+.pannacotta.top-x-coupons {
+  .list-coupons-as-items {
+    margin-bottom: 0;
+
+    .coupon-item {
+      font-weight: lighter;
+    }
+
+    &:nth-child(2) {
+      display: none;
+      visibility: hidden;
+    }
+  }
+
+  #show-all {
+    cursor: pointer;
+    display: block;
+    text-align: center;
+    text-decoration: underline;
+  }
+}

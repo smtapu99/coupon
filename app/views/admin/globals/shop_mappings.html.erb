@@ -1,0 +1,85 @@
+
+<%- content_for(:head_scripts) do -%>
+
+  <script type="text/javascript">var authorized_to_edit = <%= can?(:manage, Global).to_s %></script>
+
+<%- end -%>
+
+<% model_class = Global::ShopMapping %>
+
+<div class="row">
+
+  <div class="col-xs-12">
+
+    <div class="page-header">
+
+      <h1 class="pull-left">
+
+        <i class="icon-map-marker"></i>
+
+        <span>Shop Mappings</span>
+
+      </h1>
+
+      <div class="pull-right">
+
+        <ul class="breadcrumb">
+
+          <li>
+
+            <a href="/pcadmin">
+
+              <i class="icon-home"></i>
+
+            </a>
+
+          </li>
+
+          <li class="separator">
+
+            <i class="icon-angle-right"></i>
+
+          </li>
+
+          <li>Shop Mappings</li>
+
+          <li class="separator">
+
+            <i class="icon-angle-right"></i>
+
+          </li>
+
+          <li class="active">Shop Mappings</li>
+
+        </ul>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<%= render partial: 'admin/shared/flash' %>
+
+<div class="box bordered-box green-border">
+
+    <div class="box-header green-background">
+
+      <div class="box-title">Select Country</div>
+
+      <%=  select_tag "country", options_from_collection_for_select(Country.all, "id", "name", @country_id), { class: 'select2 form-control', id: 'country_select'} %>
+
+    </div>
+
+    <div class="table-responsive">
+
+      <div id="app"></div>
+
+    </div>
+
+  </div>
+
+</div>
+

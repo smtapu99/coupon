@@ -1,0 +1,9 @@
+cron:
+- description: count active coupons
+  url: /api/v1/cron/active_coupons_count
+  schedule: every 30 minutes
+  timezone: Europe/Berlin
+- description: generate alerts
+  url: /api/v1/cron/generate_alerts
+  schedule: every 2 hours
+  timezone: Europe/Berlin

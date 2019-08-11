@@ -1,0 +1,72 @@
+<style type="text/css">
+  .loading:after {
+    content: ' .';
+    animation: dots 1s steps(5, end) infinite;}
+
+  @keyframes dots {
+    0%, 20% {
+      color: rgba(0,0,0,0);
+      text-shadow:
+        .25em 0 0 rgba(0,0,0,0),
+        .5em 0 0 rgba(0,0,0,0);}
+    40% {
+      color: black;
+      text-shadow:
+        .25em 0 0 rgba(0,0,0,0),
+        .5em 0 0 rgba(0,0,0,0);}
+    60% {
+      text-shadow:
+        .25em 0 0 black,
+        .5em 0 0 rgba(0,0,0,0);}
+    80%, 100% {
+      text-shadow:
+        .25em 0 0 black,
+        .5em 0 0 black;}}
+
+  .text-center { text-align: center }
+  .redirect-page .topbar__logo {
+    max-height: auto;
+    margin-bottom: 30px;
+  }
+  .redirect-page .topbar__logo img {
+    max-height: 70px;
+    height: auto;
+    width: auto;
+  }
+</style>
+
+<div class="redirect-page">
+
+  <div class="container">
+
+    <div class="row">
+
+      <div class="col text-center">
+
+        <%= render 'shared/topbar_logo' %>
+
+      </div>
+
+    </div>
+
+    <div class="row">
+
+      <div class="col" id="content" role="main">
+
+        <% if @coupon.shop.present? %>
+
+          <p class="redirect-message text-center loading"><%= t(:COUPON_REDIRECT_MESSAGE, default: 'Hang on! We are taking you to:') %> <b><%= @coupon.shop.title if @coupon.shop.title.present? %></b></p>
+
+          <!-- /.redirect-message text-center -->
+
+        <% end %>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<%= render 'coupons/shared/clickout_script' %>

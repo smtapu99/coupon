@@ -1,0 +1,88 @@
+<div class="modal-header border-top-ready text-right">
+
+  <button aria-label="<%= t(:CLOSE, default: 'Close') %>" class="btn btn-white close" data-dismiss="modal" type="button">
+
+      <span aria-hidden="true">
+
+        <i class="roberto roberto-remove"></i>
+
+      </span>
+
+  </button>
+
+</div>
+
+<!-- modal-header -->
+
+<div class="modal-body text-center newsletterpopup">
+
+  <ul class="list-inline list-steps list-unstyled">
+
+    <li class="bg-ashes with-icon"><i class="roberto roberto-envelope"></i></li>
+
+    <!-- /.bg-ashes with-icon -->
+
+  </ul>
+
+  <!-- /.list-inline list-steps list-unstyled -->
+
+  <p><%= t(:ENTER_YOUR_EMAIL_AND_GET_THE_BEST_OFFERS_STRAIGHT_TO_YOUR_INBOX, default: 'Enter your email and get the best offers straight to your inbox') %></p>
+
+  <%= form_tag send("subscribe_#{@site.site.id}_path"), class: 'form-inline', method: :post, role: 'form', remote: :true, data: {'event-action' => 'form_submit'} do |f| %>
+
+    <%- if params[:type].present? -%>
+
+      <%= hidden_field_tag 'type', params[:type] %>
+
+    <%- end -%>
+
+    <div class="input-button-wrapper border-ashes">
+
+      <div class="form-group">
+
+        <div class="input-wrapper">
+
+          <%= email_field_tag :email, nil, class: 'form-control text-center', id: 'modal_newsletter_email', placeholder: t(:TYPE_HERE_YOUR_EMAIL, default: 'Type here your email'), "aria-label" => t(:TYPE_HERE_YOUR_EMAIL, default: 'Type here your email')%>
+
+        </div>
+
+        <!-- /.input-wrapper bg-ashes -->
+
+      </div>
+
+      <!-- /.form-group -->
+
+      <%= button_tag(t(:SUBSCRIBE, default: 'Subscribe'), class: 'btn btn-ashes') %>
+
+      <p class="privacy-note">
+
+        <%= label_tag :modal_privacy_policy, class: 'privacy_policy' do %>
+
+          <%= check_box_tag :privacy_policy, '', false, :required => true, id: 'modal_privacy_policy' %>
+
+          <span class="text-truncated">
+            <%= truncate(t(:BY_SUBSCRIBING_YOU_ACCEPT_OUR_PRIVACY_POLICY, default: 'By subscribing you accept our <a href="%{policy_url}" rel="nofollow" target="_blank">privacy policy</a>', policy_url: policy_url).html_safe, length: 75, escape: false) %>
+          </span>
+          <span class="text-full hidden">
+            <%= t(:BY_SUBSCRIBING_YOU_ACCEPT_OUR_PRIVACY_POLICY, default: 'By subscribing you accept our <a href="%{policy_url}" rel="nofollow" target="_blank">privacy policy</a>', policy_url: policy_url).html_safe %>
+          </span>
+
+        <%- end -%>
+
+        <% if (t(:BY_SUBSCRIBING_YOU_ACCEPT_OUR_PRIVACY_POLICY, default: 'By subscribing you accept our <a href="%{policy_url}" rel="nofollow" target="_blank">privacy policy</a>', policy_url: policy_url).html_safe.length > 80) %>
+          <span class="show-newsletter-details" data-more-text="<%= t(:MORE_DETAILS, default: 'More details') %>" data-less-text="<%= t(:LESS_DETAILS, default: 'Less details') %>">
+            <%= t(:MORE_DETAILS, default: 'More details') %>
+          </span>
+        <% end %>
+
+      </p>
+
+    </div>
+
+    <!-- /.input-button-wrapper border-ashes -->
+
+  <% end %>
+
+</div>
+
+<!-- /.modal-body text-center -->

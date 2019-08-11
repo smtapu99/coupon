@@ -1,0 +1,7 @@
+<% if @content.present? %>
+
+  <% related_campaign_string = @sub_pages.present? ? render('campaigns/show/related_campaigns_list', campaign: campaign) : '' %>
+
+  <%= render 'shared/seo_text_container', text: @content + related_campaign_string %>
+
+<% end %>

@@ -1,0 +1,12 @@
+window_sizes 1920 1155 351 1563 1039 64
+cleanlooks_style
+diagrams
+  active  activitydiagram_ref 128262 // Activity
+    1287 999 112 A4 0 0
+end
+show_stereotypes
+selected activitydiagram_ref 128262 // Activity
+open
+  interruptibleactivityregion_ref 128646 // Development
+end
+end

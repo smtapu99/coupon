@@ -1,0 +1,40 @@
+.pannacotta {
+  &.card-shop-filter {
+    .card-content {
+      padding: 0 0 0 20px;
+
+      p {
+        color: $color-title;
+        font-size: 14px;
+        font-weight: lighter;
+      }
+
+      ul {
+        margin-bottom: 0;
+
+        li {
+          margin-bottom: 4px;
+        }
+      }
+
+      .checkbox {
+        input[type=checkbox] {
+          margin-left: -16px;
+        }
+
+        margin-top: 5px;
+        margin-bottom: 5px;
+      }
+
+      .filters-list {
+        max-height: 285px;
+        overflow-x: hidden;
+
+        .more,
+        .less {
+          display: none;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,178 @@
+<div class="premium-offers">
+  <%- if Campaign.current.try(:is_themed?) -%>
+    <div class="container">
+  <%- end -%>
+  <div class="row">
+
+    <div class="premium-offers__header">
+
+      <h3 class="section-header "><%= values[:title] %></h3>
+
+      <%- if (values[:subtitle].present?) -%>
+
+        <h4 class="section-subheader"><%= values[:subtitle] %></h4>
+
+      <%- end -%>
+
+    </div>
+
+  </div>
+
+  <div class="premium-offers__offers">
+
+    <% rows.each do |index, row| %>
+
+      <div class="row">
+
+        <% row.each do |index, widgets| %>
+
+          <% widgets.each do |widget| %>
+
+            <% coupon = widget[:coupon] if widget[:coupon] %>
+
+            <div class="<%= premium_offers_size widget[:type] %>" <%= clickout_params_for_element(coupon) if coupon.present? && !widget[:url].present? %>>
+
+              <% if widget[:url].present? %>
+
+                <a href="<%= cloak_url_string(widget[:url]) %>" class="premium-offer__link-wrp">
+
+              <% end %>
+
+              <div class="premium-offer premium-offer--<%= widget[:type] %> <%= premium_offers_modifiers widget %>"
+                   <% if widget[:type] != '25-2019' %>
+                   style="background-image: url('<%= widget[:background_url] %>')"
+                   <% end %>
+                   >
+
+                <% if widget[:type] == '75-head-picture' %>
+
+                  <div class="premium-offer__head" style="background-image: url('<%= widget[:background_url] %>')"></div>
+
+                <% end %>
+
+                <% if (widget[:type] == '100' || widget[:type] == '25' || widget[:type] == "25-2019") && coupon.present? && coupon.has_savings? %>
+
+                  <div class="offer__discount">
+
+                    <svg class="offer__discount-tag" version="1.1" width="104" height="28"
+
+                         xmlns="http://www.w3.org/2000/svg">
+
+                      <path d="M104 0H0l14 14L0 28h104L90 14l14-14z" fill="#3E75D1"></path>
+
+                    </svg>
+
+                    <span class="offer__discount-value">
+                        <% if widget[:type] != '25-2019' %>
+                        -
+                          <% end %>
+                      <%= coupon.savings_in_string(false) %>
+
+                      </span>
+
+                  </div>
+
+                <% end %>
+
+                <div class="premium-offer__body">
+
+                  <% if widget[:type] == '50' or widget[:type] == '100' or widget[:type] == '75' and widget[:category_name].present? %>
+
+                    <div class="premium-offer__category premium-offer__category--<%= widget[:category_color] %>"><%= widget[:category_name] %></div>
+
+                  <% end %>
+
+                  <% if widget[:type] == '25' %>
+
+                    <div class="premium-offer__image-wrp">
+
+                      <img class="premium-offer__image" src="<%= widget[:background_url] %>" alt="<%= coupon.shop.title if coupon.present? %>">
+
+                    </div>
+
+                  <% end %>
+
+                  <% if widget[:type] == '25-2019' %>
+
+                    <img class="premium-offer__shop-logo" src="<%= coupon.shop.logo_url('_110x110') if coupon.present? %>" alt="<%= coupon.shop.title if coupon.present? %>" >
+
+                    <div class="premium-offer__image-wrp">
+
+                      <img class="premium-offer__image" src="<%= widget[:background_url] %>" alt="<%= coupon.shop.title if coupon.present? %>">
+
+                    </div>
+
+                  <% end %>
+
+                  <% if widget[:type] != '25-2019' %>
+
+                    <div class="premium-offer__headline">
+
+                      <%= widget[:headline] %>
+
+                    </div>
+
+                    <div class="premium-offer__description">
+
+                      <%= widget[:content] %>
+
+                    </div>
+
+                  <% end %>
+
+                  <% if widget[:type] != '50-small' and widget[:type] != '25-full-bg' and widget[:type] != '25-2019' %>
+
+                    <div class="premium-offer__footer">
+
+                      <% if widget['type'] == '50' or widget['type'] == '100' or widget['type'] == '75' %>
+
+                        <hr class="premium-offer__hr">
+
+                      <% end %>
+
+                      <% if widget[:cta_style] == 'see_details' %>
+
+                      <span class="premium-offer__see-details"><%= widget[:cta_text] %>
+                        <svg width="12" height="12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M6 12c3.305 0 6-2.685 6-6S9.305 0 6 0 0 2.695 0 6s2.695 6 6 6zM6 .847A5.161 5.161 0 0 1 11.153 6 5.161 5.161 0 0 1 6 11.153 5.161 5.161 0 0 1 .847 6 5.161 5.161 0 0 1 6 .847z" fill="#3E75D1"/>
+                          <path d="M4.617 8.994a.414.414 0 0 0 .3.124.431.431 0 0 0 .3-.124l2.725-2.726a.414.414 0 0 0 .124-.3.414.414 0 0 0-.124-.299L5.216 2.943a.424.424 0 0 0-.599.599l2.427 2.427-2.427 2.426a.424.424 0 0 0 0 .6z" fill="#3E75D1"/>
+                        </svg>
+                      </span>
+
+                      <% elsif widget[:cta_style] == 'button' %>
+
+                        <span class="premium-offer__cta"><%= widget[:cta_text] %></span>
+
+                      <% end %>
+
+                    </div>
+
+                  <% end %>
+
+                </div>
+
+              </div>
+
+              <% if widget[:url].present? %>
+
+                </a>
+
+              <% end %>
+
+            </div>
+
+          <% end %>
+
+        <% end %>
+
+      </div>
+
+    <% end %>
+
+  </div>
+  <%- if Campaign.current.try(:is_themed?) -%>
+    </div> <!-- is tjemed -->
+  <%- end -%>
+</div>
+
+

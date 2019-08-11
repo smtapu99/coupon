@@ -1,0 +1,46 @@
+.sponsor-bar {
+  $height: 70px;
+  $padding: 10px;
+
+  height: $height;
+  padding: $padding 30px;
+  background: #CECECE;
+
+  @media (max-width: 767px) {
+    height: auto;
+  }
+
+  &__link {
+    color: #3D3D3D;
+  }
+
+  &__logo {
+    float: right;
+    max-height: $height - 2*$padding;
+
+    @media (max-width: 767px) {
+      float: none;
+      margin: 0 auto;
+    }
+  }
+
+  &__text {
+    display: inline-block;
+    width: 100%;
+    font-weight: 300;
+    font-size: 29px;
+    line-height: $height - 2*$padding;
+
+    @media (max-width: 1199px) {
+      font-size: 24px;
+    }
+
+    @media (max-width: 992px) {
+      font-size: 21px;
+    }
+
+    @media (max-width: 767px) {
+      text-align: center;
+    }
+  }
+}

@@ -1,0 +1,366 @@
+$color_black_haze_approx: #F6F6F6;
+$color_star_dust_approx: #9E9E9E;
+
+.pannacotta {
+  &.home {
+    .sub-menu + .container {
+      background: transparent !important;
+    }
+
+    #main-menu > ul > li > a {
+      border-left-color: transparent;
+    }
+
+    .headings,
+    .headings--no_hero {
+      h1 {
+        font-size: 25px;
+        font-weight: bold;
+        line-height: 1.25;
+        margin: 0 0 8px;
+      }
+
+      p {
+        font-size: 14px;
+        font-weight: normal;
+        text-transform: none;
+        margin-bottom: 0;
+      }
+    }
+
+    .headings--no_hero {
+      h1 {
+        margin-top: 50px;
+      }
+    }
+
+    .hero {
+      align-items: center;
+      background-image: none;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .search-home-header {
+      .search-header {
+        background-color: #FFF;
+        border: 2px solid $color-ready;
+        border-radius: 2px;
+        padding: 10px;
+        transition: border-color 0.3s ease;
+
+        &.active {
+          border-color: $color-sky;
+        }
+
+        #input_search_header {
+          border: 0;
+          border-radius: 0;
+          color: $color-text;
+          font-size: 14px;
+          font-weight: lighter;
+          height: 42px;
+          line-height: 20px;
+          padding: 11px 12px 11px 0;
+          width: 273px;
+          box-shadow: none;
+          transition: border-bottom-color 0.3s ease, color 0.3s ease;
+        }
+
+        .btn {
+          font-size: 14px;
+          padding: 11px 14px 10px;
+        }
+      }
+    }
+
+    h2 {
+      font-size: 20px;
+      margin-bottom: 12px;
+      margin-top: 32px;
+      text-align: center;
+    }
+
+    .more-link {
+      display: none;
+    }
+  }
+
+  #regions {
+    padding: 30px 0 0;
+
+    span.title {
+      color: #FFF;
+      font-size: 21px;
+      font-weight: lighter;
+      margin-bottom: 20px;
+      display: none;
+    }
+
+    ul.flags-group {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+    }
+
+    li.flag {
+      flex: 0 1 33.32%;
+      padding: 7px;
+      display: inline-block;
+
+      a {
+        text-decoration: none;
+        text-align: center;
+
+        &:hover {
+          text-decoration: none;
+        }
+      }
+
+      img {
+        transition: opacity 0.3s;
+        border-radius: 50%;
+        display: block;
+        margin: 0 auto 5px;
+        box-shadow: 1px 1px 1px $color_star_dust_approx;
+      }
+
+      span {
+        display: none;
+        font-size: 20px;
+        font-weight: lighter;
+        color: #FFF;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+
+      &:hover img {
+        opacity: 0.5;
+      }
+    }
+  }
+
+  .form-control::-moz-placeholder {
+    color: #595959;
+    opacity: 1;
+  }
+
+  .form-control:-ms-input-placeholder {
+    color: #595959;
+  }
+
+  .form-control::-webkit-input-placeholder {
+    color: #595959;
+  }
+}
+
+@media (max-width: 767px) {
+  .pannacotta {
+    &.home {
+      .hero {
+        background-image: none !important;
+      }
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .pannacotta {
+    &.home {
+      #regions {
+        margin-bottom: 30px;
+
+        ul.flags-group {
+          width: 700px;
+          margin: 0 auto;
+        }
+
+        span.title {
+          display: block;
+        }
+
+        li.flag {
+          flex: 0 1 16.67%;
+          padding: 10px;
+
+          span {
+            display: inline;
+          }
+
+          img {
+            max-width: 50px;
+          }
+        }
+      }
+
+      #header {
+        border-bottom: none;
+        margin-bottom: 0;
+      }
+
+      .hero {
+        background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("#{$image-base-url}hero.jpg");
+        height: 210px;
+        background-size: cover;
+        background-position: center center;
+      }
+
+      .headings {
+        h1 {
+          margin: 20px 0 10px;
+        }
+
+        p {
+          margin-bottom: 28px;
+        }
+      }
+
+      .headings {
+        color: $color-white;
+
+        h1 {
+          font-size: 20px;
+          font-weight: bold;
+          margin: 0 0 8px;
+        }
+
+        p {
+          font-size: 16px;
+          font-weight: 500;
+        }
+      }
+
+      .search-home-header .search-header {
+        background: none;
+        border: 0;
+        display: inline-block;
+
+        form {
+          background-color: rgba(0, 0, 0, 0.4);
+          border: 0;
+          border-radius: 5px;
+          padding: 8px;
+        }
+
+        #input_search_header {
+          border: none;
+          border-radius: 4px 0;
+          height: 44px;
+          padding: 12px;
+        }
+      }
+
+      h2 {
+        font-size: 20px;
+        margin-top: 40px;
+        text-align: left;
+      }
+
+      .more-link {
+        color: $color-ashes;
+        display: block;
+        margin: 44px 15px 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+
+        &:hover {
+          color: $color-sky;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+
+  .search-header-popular {
+    padding-left: 0;
+    list-style-type: none;
+    text-align: left;
+    font-size: 14px;
+    margin-top: 10px;
+
+    li {
+      display: inline-block;
+      padding: 0 5px;
+      background: rgba(0, 0, 0, 0.4);
+      border-radius: 4px;
+
+      &.search-header-popular__text {
+        color: #FFF;
+        background: none;
+      }
+    }
+
+    a {
+      color: #FFF;
+
+      &:hover {
+        color: #FFF;
+      }
+    }
+  }
+}
+
+@media (min-width: 992px) {
+  .pannacotta {
+    &.home {
+      .headings {
+        h1 {
+          font-size: 36px;
+        }
+
+        p {
+          font-size: 24px;
+        }
+      }
+
+      .headings--no_hero {
+        h1 {
+          font-size: 36px;
+        }
+
+        p {
+          font-size: 24px;
+          margin-bottom: 20px;
+        }
+      }
+
+      .hero {
+        height: 350px;
+      }
+
+      .search-home-header .search-header {
+        #input_search_header {
+          height: 52px;
+          width: 383px;
+        }
+      }
+
+      .search-result-shop img {
+        width: 85px;
+        height: 85px;
+      }
+
+      h2 {
+        font-size: 24px;
+      }
+    }
+  }
+}
+
+@media (min-width: 1200px) {
+  .pannacotta.home {
+    .search-home-header .search-header #input_search_header {
+      width: 483px;
+    }
+
+    .search-result-shop img {
+      width: 115px;
+      height: 115px;
+    }
+  }
+}

@@ -1,0 +1,59 @@
+version: '3'
+services:
+  web:
+    image: savingsutd/gcp-ruby:2.6.3
+    environment:
+      RAILS_ENV: 'development'
+      RAKE_ENV: 'development'
+      PORT: 80
+      DB_HOST: 'db'
+      REDIS_HOST: 'redis'
+    ports:
+      - "80:80"
+    links:
+      - db
+      - redis
+    expose:
+      - 80
+    volumes:
+      - .:/usr/src/app
+      - gems:/usr/local/bundle
+      - node_modules:/usr/src/app/node_modules
+    entrypoint: "/usr/src/app/docker-entrypoint.sh"
+    command: ["bundle", "exec", "puma", "-C", "/usr/src/app/config/puma.rb"]
+    working_dir: /usr/src/app
+  db:
+    image: mysql:5.6
+    environment:
+      MYSQL_DATABASE: 'pannacotta'
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+      MYSQL_ROOT_PASSWORD: ''
+    volumes:
+      - ./db/dump_production_db.sh:/var/lib/mysql/dump_production_db.sh
+    working_dir: /var/lib/mysql
+  redis:
+    image: redis:latest
+    ports:
+      - "6379"
+  worker:
+    image: savingsutd/gcp-ruby:2.6.3
+    environment:
+      QUEUE: "*"
+      DB_HOST: 'db'
+      REDIS_HOST: 'redis'
+    links:
+      - db
+      - redis
+      - web
+    volumes:
+      - .:/usr/src/app
+      - gems:/usr/local/bundle
+      - node_modules:/usr/src/app/node_modules
+    entrypoint: "/usr/src/app/docker-entrypoint.sh"
+    command: ["bundle", "exec", "rake", "environment", "resque:work"]
+    working_dir: /usr/src/app
+    depends_on:
+      - web
+volumes:
+  gems:
+  node_modules:

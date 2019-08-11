@@ -1,0 +1,93 @@
+<div class="col-sm-12 col-md-6" id="default-status">
+
+  <div class="box bordered-box blue-border <%= 'box-collapsed' unless session[:last_setting] == 'default_status' %>">
+
+    <div class="box-header green-background">
+
+      <div class="title">
+
+        <i class="icon-ok-sign"></i>
+
+        Default Status
+
+      </div>
+
+      <div class="actions">
+
+        <a class="btn box-collapse btn-xs btn-link" href="#">
+
+          <i></i>
+
+        </a>
+
+      </div>
+
+    </div>
+
+    <div class="box-content">
+
+      <%= form_for [:admin, @setting], method: :patch, html: {class: 'form form-horizontal', style: 'margin-bottom: 0'} do |f| %>
+
+        <%= hidden_field_tag :option_type, 'default_status' %>
+
+        <%= fields_for :default_status, @setting.default_status do |ff| %>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :coupon %>
+
+              <%= ff.select :coupon, Status.to_select, {prompt: true}, {class: 'form-control'} %>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :shop %>
+
+              <%= ff.select :shop, Status.to_select, {prompt: true}, {class: 'form-control text_field'} %>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :category %>
+
+              <%= ff.select :category, Status.to_select, {prompt: true}, {class: 'form-control text_field'} %>
+
+            </div>
+
+          </div>
+
+          <div class="form-actions form-actions-padding-sm">
+
+            <div class="row">
+
+              <div class="col-md-2">
+
+                <%= f.submit 'Save', class: 'btn btn-primary btn-block' %>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        <% end %>
+
+      <% end %>
+
+    </div>
+
+  </div>
+
+</div>

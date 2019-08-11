@@ -1,0 +1,55 @@
+<% if shops.present? && shops.size > 1 %>
+
+  <div class="card card-shop-filter pannacotta hidden-xs hidden-no-js">
+
+    <div class="card-header with-border-bottom">
+
+      <h2 class="card-title"><i class="picon picon-filter"></i> <%= t :CATEGORY_NAVIGATION_HEADLINE, default: 'Filter Results' %></h2>
+
+    </div>
+
+    <div class="card-content">
+
+      <% if shops.present? %>
+
+        <!-- /.hidden-no-js -->
+
+        <ul class="list-unstyled filters-list hidden-no-js">
+
+          <% shops.each do |shop| %>
+
+            <li data-shop="<%= shop.slug if shop.slug.present? %>" data-shop-id="<%= shop.id %>">
+
+              <div class="checkbox">
+
+                <label>
+
+                  <input type="checkbox" <%= 'checked="checked"'.html_safe if shop_id_in_params(shop.id) %>>&nbsp;
+
+                  <span></span> <%= shop.title if shop.title.present? %>
+
+                </label>
+
+              </div>
+
+              <!-- /.checkbox hidden-no-js -->
+
+            </li>
+
+          <% end %>
+
+        </ul>
+
+        <!-- /.list-unstyled filters-list hidden-no-js -->
+
+      <% end %>
+
+    </div>
+
+    <!-- /.card-content -->
+
+  </div>
+
+  <!-- /.card card-shop-filter pannacotta hidden-xs hidden-no-js -->
+
+<% end %>

@@ -1,0 +1,61 @@
+<%- return if error == true || top_sales.blank? -%>
+
+<div class="top-sales" id="top-sales<%= "-" + order_number.to_s if defined?(order_number) %>">
+
+  <div class="top-sales__header">
+
+    <h3 class="section-header"><%= values[:title] %></h3>
+
+    <%- if values[:subtitle].present? -%>
+
+    <h4 class="section-subheader"><%= values[:subtitle].html_safe %></h4>
+
+    <%- end -%>
+
+  </div>
+
+  <div class="container">
+
+    <div class="top-sales__wrapper">
+
+      <%- top_sales.each do |sale| -%>
+
+        <%- coupon = sale[:coupon] -%>
+
+        <a class="top-sales__item" <%= clickout_params_for_element(coupon) %>>
+
+          <div class="top-sales__pictures">
+
+            <img class="top-sales__logo" src="" data-normal="<%= coupon.shop.logo_url('_110x110') %>" alt="Logo: <%= coupon.shop.title %>">
+
+            <%- if sale[:image_url].present? -%>
+
+              <div class="top-sales__image" style="background-image: url(<%= sale[:image_url] -%>)"></div>
+
+            <%- elsif coupon.widget_or_shop_header.present? -%>
+
+              <div class="top-sales__image" style="background-image: url(<%= coupon.widget_or_shop_header -%>)"></div>
+
+            <%- end -%>
+
+          </div>
+
+          <div class="top-sales__description">
+
+              <h6 class="top-sales__name"><%= coupon.title[0..50].rstrip %><%= '...' if coupon.title.length > 50 %></h6>
+
+              <span class="top-sales__text"><%= coupon.description[0..105].rstrip %><%= '...' if coupon.description.length > 105 %></span>
+
+          </div>
+
+        </a>
+
+      <%- end -%>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- /.top-sales -->

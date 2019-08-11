@@ -1,0 +1,300 @@
+@charset "UTF-8";
+
+@font-face {
+  font-family: 'mighty-roberto';
+  src: url("https://static.savings-united.com/pc/assets/flat_2016/mighty-roberto.eot");
+  src:
+    url("https://static.savings-united.com/pc/assets/flat_2016/mighty-roberto.eot#iefix") format('embedded-opentype'),
+    url("https://static.savings-united.com/pc/assets/flat_2016/mighty-roberto.woff2") format('woff2'),
+    url("https://static.savings-united.com/pc/assets/flat_2016/mighty-roberto.woff") format('woff'),
+    url("https://static.savings-united.com/pc/assets/flat_2016/mighty-roberto.ttf") format('truetype'),
+    url("https://static.savings-united.com/pc/assets/flat_2016/mighty-roberto.svg#mighty-roberto") format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[data-icon]:before {
+  content: attr(data-icon);
+  font-family: "mighty-roberto" !important;
+  line-height: 1;
+  font-style: normal !important;
+  font-variant: normal !important;
+  font-weight: normal !important;
+  speak: none;
+  text-transform: none !important;
+  vertical-align: -1px;
+
+  -moz-osx-font-smoothing: grayscale;
+   -webkit-font-smoothing: antialiased;
+}
+
+[data-icon-after]:after {
+  content: attr(data-icon-after);
+  font-family: "mighty-roberto" !important;
+  line-height: 1;
+  font-style: normal !important;
+  font-variant: normal !important;
+  font-weight: normal !important;
+  speak: none;
+  text-transform: none !important;
+  vertical-align: -1px;
+
+  -moz-osx-font-smoothing: grayscale;
+   -webkit-font-smoothing: antialiased;
+}
+
+[class^="roberto-"]:before, [class*=" roberto-"]:before {
+  font-family: "mighty-roberto";
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  text-align: center;
+  /* opacity: .8; */
+
+  /* For safety - reset parent styles, that can break glyph codes*/
+  font-variant: normal;
+  text-transform: none;
+
+  /* fix buttons height, for twitter bootstrap */
+  line-height: 1em;
+
+  /* Animation center compensation - margins should be symmetric */
+  /* remove if not needed */
+  // margin-left: .2em;
+
+  /* you can be more comfortable with increased icons size */
+  /* font-size: 120%; */
+
+  /* Font smoothing. That was taken from TWBS */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Uncomment for 3D effect */
+  /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
+}
+
+.roberto-arrow-right:before { content: '\e800'; } /* '' */
+.roberto-blog:before { content: '\e801'; } /* '' */
+.roberto-bookmark:before { content: '\e802'; } /* '' */
+.roberto-chevron-right:before { content: '\e803'; } /* '' */
+.roberto-facebook:before { content: '\e804'; } /* '' */
+.roberto-flash:before { content: '\e805'; } /* '' */
+.roberto-google-plus:before { content: '\e806'; } /* '' */
+.roberto-heart:before { content: '\e807'; } /* '' */
+.roberto-help:before { content: '\e808'; } /* '' */
+.roberto-home:before { content: '\e809'; } /* '' */
+.roberto-menu-hamburger:before { content: '\e80a'; } /* '' */
+.roberto-sad:before { content: '\e80b'; } /* '' */
+.roberto-search:before { content: '\e80c'; } /* '' */
+.roberto-shopping-bag:before { content: '\e80d'; } /* '' */
+.roberto-shopping-cart:before { content: '\e80e'; } /* '' */
+.roberto-star-empty:before { content: '\e80f'; } /* '' */
+.roberto-th-large:before { content: '\e810'; } /* '' */
+.roberto-thumb-down:before { content: '\e811'; } /* '' */
+.roberto-thumb-up:before { content: '\e812'; } /* '' */
+.roberto-triangle-bottom:before { content: '\e813'; } /* '' */
+.roberto-triangle-top:before { content: '\e814'; } /* '' */
+.roberto-trophy:before { content: '\e815'; } /* '' */
+.roberto-truck:before { content: '\e816'; } /* '' */
+.roberto-twitter:before { content: '\e817'; } /* '' */
+.roberto-remove:before { content: '\e818'; } /* '' */
+.roberto-runner:before { content: '\e819'; } /* '' */
+.roberto-chevron-left:before { content: '\e81a'; } /* '' */
+.roberto-users:before { content: '\e81b'; } /* '' */
+.roberto-envelope:before { content: '\e81c'; } /* '' */
+.roberto-check:before { content: '\e81d'; } /* '' */
+.roberto-ok:before { content: '\e81e'; } /* '' */
+.roberto-arrow-left:before { content: '\e81f'; } /* '' */
+.roberto-star:before { content: '\e820'; } /* '' */
+.roberto-heart-empty:before { content: '\e821'; } /* '' */
+.roberto-paper-plane:before { content: '\e822'; } /* '' */
+.roberto-down-dir:before { content: '\e823'; } /* '' */
+.roberto-link-ext:before { content: '\e824'; } /* '' */
+
+
+.roberto-category-music:before { content: "\e900"; }
+.roberto-category-adults:before { content: "\e901"; }
+.roberto-category-fashion:before { content: "\e902"; }
+.roberto-category-hobby:before { content: "\e903"; }
+.roberto-category-home:before { content: "\e904"; }
+.roberto-category-office:before { content: "\e905"; }
+.roberto-category-event-ticket:before { content: "\e906"; }
+.roberto-category-internet:before { content: "\e907"; }
+.roberto-category-toys:before { content: "\e908"; }
+.roberto-category-technology:before { content: "\e909"; }
+.roberto-category-china-bazaar:before { content: "\e90a"; }
+.roberto-category-photo:before { content: "\e90b"; }
+.roberto-category-banking:before { content: "\e90c"; }
+.roberto-category-cars:before { content: "\e90d"; }
+.roberto-category-travel:before { content: "\e90e"; }
+.roberto-category-books:before { content: "\e90f"; }
+.roberto-category-health:before { content: "\e910"; }
+.roberto-category-live-shopping:before { content: "\e911"; }
+.roberto-category-dating:before { content: "\e912"; }
+.roberto-category-pets:before { content: "\e913"; }
+.roberto-category-eating:before { content: "\e914"; }
+.roberto-category-gifts:before { content: "\e915"; }
+.roberto-category-beauty:before { content: "\e916"; }
+.roberto-category-bio:before { content: "\e917"; }
+.roberto-category-sport:before { content: "\e918"; }
+.roberto-category-babies:before { content: "\e919"; }
+.roberto-category-family:before { content: "\e91a"; }
+.roberto-category-games:before { content: "\e91b"; }
+.roberto-category-four-chips:before { content: "\e91c"; }
+.roberto-category-eyeglasses:before { content: "\e91d"; }
+.roberto-category-full-bed:before { content: "\e91e"; }
+.roberto-category-smartphone:before { content: "\e91f"; }
+.roberto-category-shoe:before { content: "\e920"; }
+.roberto-category-car:before { content: "\e921"; }
+.roberto-category-laptop:before { content: "\e922"; }
+.roberto-category-monitor:before { content: "\e923"; }
+
+
+
+@font-face {
+  font-family: 'magic';
+  src: font-url("#{$image-base-url}rebatly_flat/magic.eot?45298903");
+  src: font-url("#{$image-base-url}rebatly_flat/magic.eot?45298903#iefix") format('embedded-opentype'),
+       font-url("#{$image-base-url}rebatly_flat/magic.woff2?45298903") format('woff2'),
+       font-url("#{$image-base-url}rebatly_flat/magic.woff?45298903") format('woff'),
+       font-url("#{$image-base-url}rebatly_flat/magic.ttf?45298903") format('truetype'),
+       font-url("#{$image-base-url}rebatly_flat/magic.svg?45298903#magic") format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+/* Chrome hack: SVG is rendered more smooth in Windozze. 100% magic, uncomment if you need it. */
+/* Note, that will break hinting! In other OS-es font will be not as sharp as it could be */
+/*
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: 'magic';
+    src: url('../font/magic.svg?45298903#magic') format('svg');
+  }
+}
+*/
+
+ [class^="icon-"]:before, [class*=" icon-"]:before {
+  font-family: "magic";
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  margin-right: .2em;
+  text-align: center;
+  /* opacity: .8; */
+
+  /* For safety - reset parent styles, that can break glyph codes*/
+  font-variant: normal;
+  text-transform: none;
+
+  /* fix buttons height, for twitter bootstrap */
+  line-height: 1em;
+
+  /* Animation center compensation - margins should be symmetric */
+  /* remove if not needed */
+  margin-left: .2em;
+
+  /* you can be more comfortable with increased icons size */
+  /* font-size: 120%; */
+
+  /* Font smoothing. That was taken from TWBS */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Uncomment for 3D effect */
+  /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
+}
+
+.icon-heart:before { content: '\e800'; } /* '' */
+.icon-star:before { content: '\e801'; } /* '' */
+.icon-share:before { content: '\e802'; } /* '' */
+.icon-down-open:before { content: '\e803'; } /* '' */
+.icon-facebook:before { content: '\e804'; } /* '' */
+.icon-twitter:before { content: '\e805'; } /* '' */
+.icon-vkontakte:before { content: '\e806'; } /* '' */
+.icon-gplus:before { content: '\e807'; } /* '' */
+.icon-clock:before { content: '\e808'; } /* '' */
+.icon-cancel:before { content: '\e809'; } /* '' */
+.icon-heart-empty:before { content: '\e80b'; } /* '' */
+.icon-angle-circled-up:before { content: '\e80c'; } /* '' */
+.icon-ok:before { content: '\e80d'; } /* '' */
+.icon-emo-happy:before { content: '\e80e'; } /* '' */
+.icon-emo-unhappy:before { content: '\e80f'; } /* '' */
+.icon-add-circle:before { content: '\e810'; } /* '' */
+.icon-search:before { content: '\e811'; } /* '' */
+.icon-daily-newsletter:before { content: '\e812'; } /* '' */
+.icon-alert-newsletter:before { content: '\e813'; } /* '' */
+.icon-weekly-newsletter:before { content: '\e814'; } /* '' */
+.icon-profile:before { content: '\e815'; } /* '' */
+.icon-female:before { content: '\e816'; } /* '' */
+.icon-male:before { content: '\e817'; } /* '' */
+.icon-freedelivery:before { content: '\e818'; } /* '' */
+.icon-1004:before { content: '\e819'; } /* '' */
+.icon-1005:before { content: '\e81a'; } /* '' */
+.icon-1006:before { content: '\e81b'; } /* '' */
+.icon-1008:before { content: '\e81c'; } /* '' */
+.icon-1009:before { content: '\e81d'; } /* '' */
+.icon-1010:before { content: '\e81e'; } /* '' */
+.icon-1011:before { content: '\e81f'; } /* '' */
+.icon-1012:before { content: '\e820'; } /* '' */
+.icon-1034:before { content: '\e821'; } /* '' */
+.icon-1033:before { content: '\e822'; } /* '' */
+.icon-1032:before { content: '\e823'; } /* '' */
+.icon-1031:before { content: '\e824'; } /* '' */
+.icon-1030:before { content: '\e825'; } /* '' */
+.icon-1029:before { content: '\e826'; } /* '' */
+.icon-1028:before { content: '\e827'; } /* '' */
+.icon-1027:before { content: '\e828'; } /* '' */
+.icon-1026:before { content: '\e829'; } /* '' */
+.icon-1024:before { content: '\e82a'; } /* '' */
+.icon-1023:before { content: '\e82b'; } /* '' */
+.icon-1021:before { content: '\e82c'; } /* '' */
+.icon-1020:before { content: '\e82d'; } /* '' */
+.icon-1019:before { content: '\e82e'; } /* '' */
+.icon-1018:before { content: '\e82f'; } /* '' */
+.icon-1017:before { content: '\e830'; } /* '' */
+.icon-1016:before { content: '\e831'; } /* '' */
+.icon-1015:before { content: '\e832'; } /* '' */
+.icon-1014:before { content: '\e833'; } /* '' */
+.icon-1013:before { content: '\e834'; } /* '' */
+.icon-1025:before { content: '\e835'; } /* '' */
+.icon-1007:before { content: '\e836'; } /* '' */
+.icon-x-mark:before { content: '\e837'; } /* '' */
+.icon-warning:before { content: '\e838'; } /* '' */
+.icon-info:before { content: '\e839'; } /* '' */
+.icon-check:before { content: '\e83a'; } /* '' */
+.icon-help:before { content: '\e83b'; } /* '' */
+.icon-angle-right:before { content: '\e83c'; } /* '' */
+.icon-log-out:before { content: '\e83d'; } /* '' */
+.icon-percentage:before { content: '\e83e'; } /* '' */
+.icon-absolutevalue:before { content: '\e83f'; } /* '' */
+.icon-info-circled-alt:before { content: '\e840'; } /* '' */
+.icon-mail:before { content: '\e841'; } /* '' */
+.icon-profile-filled:before { content: '\e842'; } /* '' */
+.icon-spinner:before { content: '\e843'; } /* '' */
+.icon-expired:before { content: '\e844'; } /* '' */
+.icon-x-mark-thick:before { content: '\e845'; } /* '' */
+.icon-help-fill:before { content: '\e846'; } /* '' */
+.icon-mail-1:before { content: '\e847'; } /* '' */
+.icon-flag-empty:before { content: '\e848'; } /* '' */
+.icon-doc:before { content: '\e849'; } /* '' */
+.icon-help-fill-2:before { content: '\e84a'; } /* '' */
+.icon-money:before { content: '\e84b'; } /* '' */
+.icon-pinterest:before { content: '\e84c'; } /* '' */
+.icon-instagram:before { content: '\e84d'; } /* '' */
+.icon-youtube:before { content: '\e84e'; } /* '' */
+.icon-tumblr:before { content: '\e84f'; } /* '' */
+.icon-map:before { content: '\e850'; } /* '' */
+.icon-medal:before { content: '\e851'; } /* '' */
+.icon-inbox:before { content: '\e852'; } /* '' */
+.icon-draft:before { content: '\e853'; } /* '' */
+.icon-ok-2:before { content: '\e854'; } /* '' */
+.icon-bulb:before { content: '\e855'; } /* '' */
+.icon-send:before { content: '\e856'; } /* '' */

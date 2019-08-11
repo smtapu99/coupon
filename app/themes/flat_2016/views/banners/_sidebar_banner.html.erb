@@ -1,0 +1,29 @@
+<%- if banner = sidebar_banner and banner.present? -%>
+
+  <%- if banner.content.present? -%>
+
+    <div class="sidebar--image-container">
+
+      <%= banner.content.html_safe %>
+
+    </div>
+
+    <!-- /.card card-text -->
+
+  <%- elsif banner.image_url.present? && banner.target_url.present? -%>
+
+    <div class="sidebar--image-container">
+
+      <%= link_to banner.target_url, rel: 'nofollow', data: { 'banner-event-action' => banner_event_action(banner), 'banner-event-label' => banner.theme } do %>
+
+        <%= image_tag banner.image_url, class: 'sidebar--image-tag img-responsive', alt: banner.name %>
+
+      <% end %>
+
+    </div>
+
+    <!-- /.card card-text -->
+
+  <%- end -%>
+
+<% end %>

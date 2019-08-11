@@ -1,0 +1,15 @@
+<%- image_widget = @site.widgets_for_area('main').select{|w| w.name == 'featured_images'}.first -%>
+
+<%- if image_widget.present? -%>
+
+  <div class="row" id="campaign-featured-images" id="campaign-featured_images">
+
+    <div class="col-xs-12 <%= to_bootstrap_classes image_widget.columns || image_widget.defaults[:columns] %>">
+
+      <%= render_widget(image_widget, site: @site) %>
+
+    </div>
+
+  </div>
+
+<%- end -%>

@@ -1,0 +1,29 @@
+.footer-shops {
+  &__content {
+    margin-top: 15px;
+    text-align: center;
+
+    a {
+      display: inline-block;
+      padding: 0 5px;
+      color: #FFF;
+      font-weight: 700;
+      font-size: 14px;
+    }
+  }
+}
+
+.footer-campaigns {
+  .widget__content {
+    margin-top: 15px;
+    text-align: center;
+
+    a {
+      display: inline-block;
+      padding: 0 5px;
+      color: #FFF;
+      font-weight: 700;
+      font-size: 14px;
+    }
+  }
+}

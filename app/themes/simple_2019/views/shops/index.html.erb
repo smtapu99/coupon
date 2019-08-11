@@ -1,0 +1,47 @@
+<% @h1 = t(:SHOPPAGE_HEADLINE, default: 'Save With This Shops') %>
+
+<% if @shops.present? %>
+
+  <%= render partial: 'shops/index/filter_by_category', locals: { css_classes: 'd-block d-sm-none', shops: @shops } %>
+
+  <div class="shops-index">
+
+    <div class="shops-index__header">
+
+      <h2 class="shops-index__title"><%= t(:SHOPPAGE_SUBTITLE, default: 'SHOPPAGE_SUBTITLE') %></h2>
+
+    </div>
+
+    <div class="shops-index__content">
+
+      <%= render partial: 'shops/index/popular_shops', locals: { shops_featured: @shops_featured } %>
+
+      <%= render partial: 'shops/index/shops_list', locals: { categories: @categories } %>
+
+    </div>
+
+  </div>
+
+<% end %>
+
+<% if @shops_empty.present? %>
+
+  <div class="shops-index shops-index--empty">
+
+    <div class="shops-index__header">
+
+      <h3 class="shops-index__title"><%= t(:SHOPLIST_SHOPS_WITHOUT_COUPONS, default: 'Empty Shops') %></h3>
+
+    </div>
+
+    <div class="shops-index__content">
+
+      <%= render partial: 'shops/index/empty_shops_list', locals: {shops_empty: @shops_empty} %>
+
+    </div>
+
+  </div>
+
+<% end %>
+
+<%= render partial: 'shops/index/sidebar' %>

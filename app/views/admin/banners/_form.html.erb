@@ -1,0 +1,177 @@
+  <div class="col-sm-12">
+
+    <div class="box bordered-box blue-border">
+
+      <div class="box-header blue-background">
+
+        <div class="title">
+
+          <i class="icon-edit"></i>
+
+          <%= @banner.banner_type.titleize %> Form
+
+        </div>
+
+      </div>
+
+      <div class="box-content">
+
+        <%= form_for [:admin, @banner], html: { class: 'form form-horizontal', style: 'margin-bottom: 0', autocomplete: 'off' } do |f| %>
+
+        <%= render partial: 'admin/shared/form_errors', locals: { ancestor: @banner } %>
+
+        <%= f.hidden_field :banner_type  %>
+
+        <div class="form-group <%= 'has-error' unless @banner.errors.messages[:name].blank? %>">
+
+          <%= f.label :status, class: 'col-md-2 control-label' %>
+
+          <div class="col-md-5">
+
+            <%= f.select :status, Option::get_select_options('active_inactive', true), { prompt: true }, class: 'form-control' %>
+
+          </div>
+
+        </div>
+
+        <div class="form-group <%= 'has-error' unless @banner.errors.messages[:name].blank? %>">
+
+          <%= f.label :banner_type, class: 'col-md-2 control-label' %>
+
+          <div class="col-md-5">
+
+            <%= f.select :banner_type, Option::get_select_options('banner_types', true), { prompt: true }, class: 'form-control', disabled: true %>
+
+          </div>
+
+        </div>
+
+        <div class="form-group <%= 'has-error' unless @banner.errors.messages[:name].blank? %>">
+
+          <%= f.label :name, class: 'col-md-2 control-label' %>
+
+          <div class="col-md-5">
+
+            <%= f.text_field :name, class: 'form-control' %>
+
+            <small>Only for internal purposes, e.g. better filtering</small>
+
+          </div>
+
+        </div>
+
+        <hr>
+
+        <%- if @banner.banner_type == 'sidebar_banner' -%>
+
+        <div class="form-group">
+
+          <div class="col-sm-12">
+
+            <div class="alert orange-background">NOTE!! <b>Sidebar Banners</b> without Shop or Category IDs do <b>ONLY</b> appear on Static Pages or Top Coupons Pages</div>
+
+          </div>
+
+        </div>
+
+        <%- end -%>
+
+        <div class="form-group">
+
+          <%= f.label :shop_ids, class: 'col-md-2 control-label' %>
+
+          <div class="col-md-5">
+
+            <%= f.select :shop_ids, @shops.collect { |x| [x.title, x.id] }, {}, { multiple: true, class: 'select2 form-control' } %>
+
+          </div>
+
+        </div>
+
+        <div class="form-group">
+
+          <%= f.label :category_ids, class: 'col-md-2 control-label' %>
+
+          <div class="col-md-5">
+
+            <%= f.select :category_ids, @categories.collect { |x| [x.name, x.id] }, {}, { multiple: true, class: 'select2 form-control', autocomplete: 'off' } %>
+
+          </div>
+
+        </div>
+
+        <div class="form-group">
+
+          <%= f.label :show_in_shops_of_category, class: 'col-md-2 control-label' %>
+
+          <div class="col-md-5">
+
+            <%= f.check_box :show_in_shops, class: 'form-control' %>
+
+          </div>
+
+        </div>
+
+        <div class="form-group">
+
+          <%= f.label :excluded_shop_ids, class: 'col-md-2 control-label' %>
+
+          <div class="col-md-5">
+
+            <%= f.select :excluded_shop_ids, @shops.collect { |x| [x.title, x.id] }, {}, { multiple: true, class: 'select2 form-control' } %>
+
+          </div>
+
+        </div>
+
+        <hr>
+
+        <%= render partial: "admin/banners/#{@banner.banner_type}_form", locals: { f: f } %>
+
+        <div class="form-group">
+
+          <%= f.label :start_date, class: 'col-md-2 control-label' %>
+
+          <div class="col-md-5">
+
+            <%= f.date_field :start_date, include_blank: true, class: 'form-control' %>
+
+          </div>
+
+        </div>
+
+        <div class="form-group">
+
+          <%= f.label :end_date, class: 'col-md-2 control-label' %>
+
+          <div class="col-md-5">
+
+            <%= f.date_field :end_date, include_blank: true, class: 'form-control' %>
+
+          </div>
+
+        </div>
+
+        <div class="form-actions form-actions-padding-sm">
+
+          <div class="row">
+
+            <div class="col-md-10 col-md-offset-2">
+
+              <%= f.submit nil, class: 'btn btn-primary' if can? :create, Banner %>
+
+              <%= link_to t('.cancel', default: t('helpers.links.cancel')), admin_banners_path, class: 'btn' %>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <% end %>
+
+      </div>
+
+    </div>
+
+  </div>

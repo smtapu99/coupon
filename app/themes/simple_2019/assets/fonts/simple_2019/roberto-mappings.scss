@@ -1,0 +1,108 @@
+.roberto {
+  font-weight: normal;
+  font-family: 'simple' !important;
+  speak: none;
+  font-style: normal;
+  font-variant: normal;
+  line-height: 1;
+  text-transform: none;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  &-category {
+    &-adults::before {
+      content: "\e91b";
+    }
+
+    &-babies::before {
+      content: "\e909";
+    }
+
+    &-beauty::before {
+      content: "\e907";
+    }
+
+    &-four-chips::before {
+      content: "\e91c";
+    }
+
+    &-cars::before {
+      content: "\e91d";
+    }
+
+    &-home::before {
+      content: "\e90f";
+    }
+
+    &-sport::before {
+      content: "\e90b";
+    }
+
+    &-technology::before {
+      content: "\e90e";
+    }
+
+    &-books::before {
+      content: "\e91e";
+    }
+
+    &-banking::before {
+      content: "\e91f";
+    }
+
+    &-photo::before {
+      content: "\e924";
+    }
+
+    &-music::before {
+      content: "\e923";
+    }
+
+    &-pets::before {
+      content: "\e922";
+    }
+
+    &-shoe::before {
+      content: "\e918";
+    }
+
+    &-live-shopping::before {
+      content: "\e901";
+    }
+
+    &-eating::before {
+      content: "\e903";
+    }
+
+    &-internet::before {
+      content: "\e921";
+    }
+
+    &-gifts::before {
+      content: "\e914";
+    }
+
+    &-china-bazaar::before {
+      content: "\e917";
+    }
+
+    &-travel::before {
+      content: "\e902";
+    }
+
+    &-department-store::before {
+      content: "\e901";
+    }
+
+    &-hobby::before {
+      content: "\e926";
+    }
+
+    &-office::before{
+      content: "\e927";
+    }
+
+  }
+}

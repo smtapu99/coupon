@@ -1,0 +1,128 @@
+
+  <div class="col-sm-12">
+
+    <div class="box bordered-box blue-border">
+
+      <div class="box-header blue-background">
+
+        <div class="title">
+
+          <i class="icon-edit"></i>
+
+          Redirection Form
+
+        </div>
+
+      </div>
+
+      <div class="box-content">
+
+        <%= form_for [:admin, @redirect_rule], html: {class: 'form form-horizontal', multipart: false, style: 'margin-bottom: 0'} do |f| %>
+
+          <%= render partial: 'admin/shared/form_errors', locals: {ancestor: @redirect_rule} %>
+
+          <% unless Site.current.present? %>
+
+            <div class="form-group <%= 'has-error' unless @redirect_rule.errors.messages[:site_id].blank? %>">
+
+              <%= f.label :site_id, class: 'col-md-2 control-label' %>
+
+              <div class="col-md-5">
+
+                <%= f.collection_select :site_id, User.current.sites, :id, :name, {prompt: false}, {disabled: !f.object.new_record?, class: 'form-control'} %>
+
+              </div>
+
+            </div>
+
+          <% end %>
+
+          <div class="form-group <%= 'has-error' unless @redirect_rule.errors.messages[:source].blank? %>">
+
+            <%= f.label :source, class: 'col-md-2 control-label' %>
+
+            <div class="col-md-5">
+
+              <%= f.text_field :source, class: 'form-control' %>
+              <p class="help-block">
+                <small class="text-muted"><%=t '.help-redirect-rules-source', default: 'You can use a path like /top-coupons or any valid REGEX like /bad/path/to/coupon/([0-9]+)' %></small>
+              </p>
+            </div>
+
+          </div>
+
+
+          <div class="form-group <%= 'has-error' unless @redirect_rule.errors.messages[:destination].blank? %>">
+
+            <%= f.label :destination, class: 'col-md-2 control-label' %>
+
+            <div class="col-md-5">
+
+              <%= f.text_field :destination, class: 'form-control' %>
+              <p class="help-block">
+                <small class="text-muted"><%=t '.help-redirect-rules-destination', default: 'if source is a REGEX with a variable you can call it like /coupon/$1' %></small>
+              </p>
+            </div>
+
+          </div>
+
+          <div class="form-group <%= 'has-error' unless @redirect_rule.errors.messages[:source_is_regex].blank? %>">
+
+            <%= f.label :source_is_regex, class: 'col-md-2 control-label' %>
+
+            <div class="col-md-5">
+
+              <%= f.check_box :source_is_regex, class: 'form-control' %>
+
+            </div>
+
+          </div>
+
+          <div class="form-group <%= 'has-error' unless @redirect_rule.errors.messages[:active].blank? %>">
+
+            <%= f.label :active, class: 'col-md-2 control-label' %>
+
+            <div class="col-md-5">
+
+              <%= f.check_box :active, class: 'form-control' %>
+
+            </div>
+
+          </div>
+
+
+          <div class="form-actions form-actions-padding-sm">
+
+            <div class="row">
+
+              <div class="col-md-10 col-md-offset-2">
+
+                <%= f.submit nil, class: 'btn btn-primary' if can? :create, RedirectRule %>
+
+                <%= link_to t('.cancel', default: t('helpers.links.cancel')), admin_redirect_rules_path, class: 'btn' %>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        <% end %>
+
+      </div>
+
+    </div>
+
+  </div>
+
+<script type="text/javascript">
+
+document.ready = function(){
+
+  <%- unless can? :manage, @redirect_rule -%>
+    $("form.form-horizontal :input").attr("disabled", true);
+  <%- end -%>
+}
+
+</script>
+

@@ -1,0 +1,363 @@
+<div class="col-sm-12">
+
+  <div class="box bordered-box blue-border">
+
+    <div class="box-header blue-background">
+
+      <div class="title">
+
+        <i class="icon-edit"></i> <%= @user.class.to_s.titleize %> Form
+
+      </div>
+
+    </div>
+
+    <div class="box-content">
+
+      <%= form_for @user, url: { action: @user.new_record? ? 'create' : 'update' }, html: {autocomplete: "off", class: 'form form-horizontal', style: 'margin-bottom: 0'} do |f| %>
+
+        <%#= f.hidden_field :reset_password_token %>
+
+        <%= render partial: 'admin/shared/form_errors', locals: {ancestor: @user} %>
+
+        <%- if can?(:change_status, @user) && (@user.id != User.current.id) -%>
+
+          <div class="form-group">
+
+            <%= f.label :status, class: 'col-md-2 control-label' %>
+
+            <div class="col-md-5">
+
+              <%= f.select :status, Option::get_select_options('user_status', true), {prompt: true}, class: 'form-control' %>
+
+            </div>
+
+          </div>
+
+        <%- end -%>
+
+        <div class="form-group">
+
+          <%= f.label :first_name, class: 'col-md-2 control-label' %>
+
+          <div class="col-md-5">
+
+            <%= f.text_field :first_name, class: 'form-control' %>
+
+          </div>
+
+        </div>
+
+        <div class="form-group">
+
+          <%= f.label :last_name, class: 'col-md-2 control-label' %>
+
+          <div class="col-md-5">
+
+            <%= f.text_field :last_name, class: 'form-control' %>
+
+          </div>
+
+        </div>
+
+        <div class="form-group <%= 'has-error' unless @user.errors.messages[:email].blank? %>">
+
+          <%= f.label :email, class: 'col-md-2 control-label' %>
+
+          <div class="col-md-5">
+
+            <%= f.email_field :email, class: 'form-control', autocomplete: 'off' %>
+
+          </div>
+
+        </div>
+
+        <div class="form-group <%= 'has-error' unless @user.errors.messages[:password].blank? %>">
+
+          <%= f.label :password, class: 'col-md-2 control-label' %>
+
+          <div class="col-md-5">
+
+            <%= f.password_field :password, class: 'form-control', autocomplete: 'off' %>
+
+          </div>
+
+        </div>
+
+        <div class="form-group <%= 'has-error' unless @user.errors.messages[:password_confirmation].blank? %>">
+
+          <%= f.label :password_confirmation, class: 'col-md-2 control-label' %>
+
+          <div class="col-md-5">
+
+            <%= f.password_field :password_confirmation, class: 'form-control' %>
+
+          </div>
+
+        </div>
+
+        <% if !@user.new_record? && !User.current.is_admin? %>
+
+          <div class="form-group <%= 'has-error' unless @user.errors.messages[:current_password].blank? %>">
+
+            <%= f.label :current_password, class: 'col-md-2 control-label' %>
+
+            <div class="col-md-5">
+
+              <%= f.password_field :current_password, class: 'form-control', autocomplete: 'off' %>
+
+            </div>
+
+          </div>
+
+        <% end %>
+
+        <% if User.current.allowed_to_change_role_of(@user) %>
+
+          <div class="form-group <%= 'has-error' unless @user.errors.messages[:role].blank? %>">
+
+            <%= f.label :role, class: 'col-md-2 control-label' %>
+
+            <div class="col-md-5">
+
+              <%= f.select :role, options_for_select(User.current.available_roles_for_dropdown, @user.role), {prompt: true}, {class: 'role-select form-control'} %>
+
+            </div>
+
+          </div>
+
+        <% end %>
+
+        <% # Dont allow a user to change his own site or country settings %>
+        <% if @user.new_record? || (@user.id != User.current.id && User.current.allowed_to_manage(@user.role)) %>
+
+          <div class="site-select form-group <%= 'has-error' unless @user.errors.messages[:sites].blank? %>" style="<%= 'display:none' if @user.country_required? %>">
+
+            <%= f.label :sites, class: 'col-md-2 control-label' %>
+
+            <div class="col-md-5">
+
+              <%= f.collection_select :site_ids, User.current.sites, :id, :name, {prompt: false}, {multiple: true, class: 'select2 form-control', placeholder: "Please select at least one Site"} %>
+
+            </div>
+
+          </div>
+
+          <div class="country-select form-group <%= 'has-error' unless @user.errors.messages[:countries].blank? %>" style="<%= 'display:none' if @user.site_required? %>">
+
+            <%= f.label :countries, class: 'col-md-2 control-label' %>
+
+            <div class="col-md-5">
+
+              <%= f.collection_select :country_ids, User.current.countries, :id, :name, {prompt: false}, {multiple: true, class: 'select2 form-control', placeholder: "Please select at least one Country"} %>
+
+            </div>
+
+          </div>
+
+          <div class="freelancer-fields" style="<%= 'display:none' unless @user.is_freelancer? %>">
+
+            <div class="form-group <%= 'has-error' unless @user.errors.messages[:can_shops].blank? %>">
+
+              <%= f.label :can_shops, class: 'col-md-2 control-label' %>
+
+              <div class="col-md-5">
+
+                <%= f.check_box :can_shops, class: 'form-control' %>
+
+              </div>
+
+            </div>
+
+            <div class="form-group <%= 'has-error' unless @user.errors.messages[:can_coupons].blank? %>">
+
+              <%= f.label :can_coupons, class: 'col-md-2 control-label' %>
+
+              <div class="col-md-5">
+
+                <%= f.check_box :can_coupons, class: 'form-control' %>
+
+              </div>
+
+            </div>
+
+            <div class="form-group <%= 'has-error' unless @user.errors.messages[:can_metas].blank? %>">
+
+              <%= f.label :can_metas, class: 'col-md-2 control-label' %>
+
+              <div class="col-md-5">
+
+                <%= f.check_box :can_metas, class: 'form-control' %>
+
+                <div class="help-block">
+
+                  <small>Default: true; Set this to false if you dont want the freelancer to be able to update H1, H2, Meta-Title, -Robots, -Keywords and -Description.</small>
+
+                </div>
+
+              </div>
+
+            </div>
+
+            <div class="form-group <%= 'has-error' unless @user.errors.messages[:can_widgets].blank? %>">
+
+              <%= f.label :can_widgets, class: 'col-md-2 control-label' %>
+
+              <div class="col-md-5">
+
+                <%= f.check_box :can_widgets, class: 'form-control' %>
+
+              </div>
+
+            </div>
+
+            <div class="form-group <%= 'has-error' unless @user.errors.messages[:can_qa].blank? %>">
+
+              <%= f.label :can_qa, class: 'col-md-2 control-label' %>
+
+              <div class="col-md-5">
+
+                <%= f.check_box :can_qa, class: 'form-control' %>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        <% end %>
+
+        <% if @user.id == User.current.id %>
+          <div class="form-group <%= 'has-error' unless @user.errors.messages[:can_qa].blank? %>">
+            <label class="col-md-2 control-label"> <%= t('devise.sessions.two_factor_auth.lable') %> </label>
+            <div class="col-md-5">
+              <%= link_to "#{@user.otp_module_enabled? ? 'Disable' : 'Enable'} #{t('devise.sessions.two_factor_auth.lable')}",
+                          '#two_factor',
+                          data: { toggle: :modal },
+                          class: 'btn'%>
+            </div>
+
+          </div>
+        <% end %>
+
+        <div class="form-actions form-actions-padding-sm">
+
+          <div class="row">
+
+            <div class="col-md-10 col-md-offset-2">
+
+              <%= f.submit 'Save', class: 'btn btn-primary' if can? :create, @user %>
+
+              <%= link_to t('.cancel', :default => t("helpers.links.cancel")), admin_users_path, class: 'btn' %>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      <% end %>
+
+    </div>
+
+  </div>
+
+</div>
+
+<div class="modal fade" id="two_factor">
+  <% method = @user.otp_module_enabled? ? :delete : :post %>
+  <% otp_secret = User.otp_random_secret %>
+  <% @user.assign_attributes(otp_secret_key: otp_secret) %>
+  <%= form_for @user, as: :user, url: admin_users_two_factors_path, html: {method: method, autocomplete: "off", class: 'form-inline'} do |f| %>
+    <%= f.hidden_field :otp_secret_key, value: otp_secret%>
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title"><%= @user.otp_module_enabled? ? 'Disable' : 'Enable' %> <%= t('devise.sessions.two_factor_auth.lable') %></h4>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <% unless @user.otp_module_enabled? %>
+            <% qr = RQRCode::QRCode.new(@user.provisioning_uri, size: 10, level: :h ) %>
+            <div class="col-8">
+              <ol class="mt-5">
+                <li>
+                  Install Two-factor Authentication app, such as Google Authenticator, Authy or LastPass Authenticator.
+                  <%= link_to "Android", "https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&hl=en", target: :blank %>
+                  or
+                  <%= link_to "iOS", "https://itunes.apple.com/us/app/google-authenticator/id388497605?mt=8", target: :blank %>
+                </li>
+                <li>In the app, select "Set up account" or the Plus (+) sign.</li>
+                <li>Choose "Scan barcode"</li>
+                <li>Verify token</li>
+              </ol>
+            </div>
+            <table class="qr" align="center">
+              <% qr.modules.each_index do |x| %>
+                <tr>
+                  <% qr.modules.each_index do |y| %>
+                    <% if qr.dark?(x,y) %>
+                      <td class="black"/>
+                    <% else %>
+                      <td class="white"/>
+                    <% end %>
+                  <% end %>
+                </tr>
+              <% end %>
+            </table>
+            <b><%= otp_secret %></b>
+          <% end %>
+            <br>
+            <div class='text-center'>
+              <%= f.text_field :token_otp, placeholder: t('devise.sessions.two_factor_auth.verify_token'), class: 'form-control input-lg' %>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <%= f.submit "Update", class: 'btn btn-lg btn-block btn-primary' %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+
+<script type="text/javascript">
+
+document.ready = function(){
+
+  <%- unless can? :manage, @user -%>
+    $("form.form-horizontal :input").attr("disabled", true);
+  <%- end -%>
+
+  var selected = jQuery('.role-select').val();
+  jQuery('.role-select').change(function(){
+    var val = jQuery(this).val();
+
+    // show can_metas
+    if(val == 'freelancer'){
+      jQuery('.freelancer-fields').show();
+    } else {
+      jQuery('.freelancer-fields').hide();
+    }
+
+    if(val == 'partner' || val == 'freelancer'){
+      jQuery('.site-select').show();
+      if(selected != 'partner'){
+        jQuery('.site-select select').select2('val', '');
+      }
+      jQuery('.country-select').hide();
+    } else if(val == 'admin'){
+      jQuery('.site-select').hide();
+      jQuery('.country-select').hide();
+    } else {
+      jQuery('.site-select').hide();
+      jQuery('.country-select').show();
+      if(selected == 'partner'){
+        jQuery('.country-select select').select2('val', '');
+      }
+    }
+  })
+}
+</script>

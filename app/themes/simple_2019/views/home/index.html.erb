@@ -1,0 +1,7 @@
+<%= render partial: 'shared/featured_shops', locals: { shops_featured: @shops_featured } %>
+
+<%= render partial: 'home/index/headline' %>
+
+<%= render partial: 'home/index/hero' if @site.image_setting.hero_url.present? %>
+
+<%= render partial: 'home/index/widgets' %>

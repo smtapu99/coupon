@@ -1,0 +1,12 @@
+<div class="pannacotta shop-rating">
+
+  <h3><%= t(:RATE, default: 'Rate') %> <%= shop.title %></h3>
+
+  <p>
+
+    <%= render partial: 'shops/show/star_rating', locals: {shop: shop} %>
+
+  </p>
+
+</div>
+<!-- /.pannacotta shop-rating -->

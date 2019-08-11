@@ -1,0 +1,51 @@
+.newsletter-modal {
+  padding: 55px 25px 0;
+  text-align: center;
+
+  &__icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 25px;
+    padding-left: 0;
+    list-style-type: none;
+  }
+
+  &__icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 100px;
+    margin: 0 5px;
+    color: $themed--white;
+    font-size: 35px;
+    background-color: $background--grey;
+    border-radius: 50%;
+
+    @media #{$xs} {
+      width: 40px;
+      height: 40px;
+      font-size: 18px;
+    }
+
+    &--freedom {
+      background-color: $themed--color-1;
+    }
+  }
+
+  &__dot {
+    margin: 0 5px;
+    padding: 5px;
+    background-color: $background--grey;
+    border-radius: 5px;
+
+    &--freedom {
+      background-color: $themed--color-1;
+    }
+  }
+
+  .icon-cross {
+    color: $color-warning;
+  }
+}

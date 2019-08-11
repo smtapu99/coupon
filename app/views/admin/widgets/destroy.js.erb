@@ -1,0 +1,7 @@
+$("#widgets ul").html("<%= escape_javascript render :partial => 'widgets', :locals => {widgets: Widget.by_current_site_and_campaign } %>");
+<% # foreach of the areas %>
+<% %w(main footer sidebar).each do |area| %>
+  <% #fetch the widgets %>
+  <% widgets = WidgetArea.send("#{area}", @widget.campaign_id).present? ? WidgetArea.send("#{area}", @widget.campaign_id).widgets : [] %>
+    $("#<%= area %> ul").html("<%= escape_javascript render :partial => 'widgets', :locals => {widgets: widgets } %>");
+<% end%>

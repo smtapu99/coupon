@@ -1,0 +1,23 @@
+<%- return unless footer_campaigns.present? -%>
+
+<div class="footer_campaigns widget">
+
+  <div class="widget-header visible-xs">
+
+    <h4 class="widget-title"><%= t(:SPECIALS, default: 'SPECIALS') %></h4>
+
+  </div>
+
+  <div class="widget-content">
+
+    |<%- footer_campaigns.each do |campaign| -%>
+
+      <%= link_to(campaign.nav_title_or_name, dynamic_campaign_url_for(campaign)) %> |
+
+    <%- end -%>
+
+  </div>
+
+</div>
+
+<!-- /.footer_campaigns -->

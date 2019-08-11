@@ -1,0 +1,122 @@
+$font-family-base: 'ExchangeSSm-Roman','Roboto', sans-serif !important ;
+$font-family-headers: $font-family-base;
+$font-family-nav: $font-family-base;
+$font-family-breadcrumbs: $font-family-base;
+$font-family-buttons: $font-family-base;
+$font-color: #354043 !default;
+$font-gray: #7A7A7A !default;
+
+$topbar_bg: #001C4C !default;
+$navigation_bg: #031128 !default;
+$navigation-link--hover: #666 !default;
+$background--white: #FFF !default;
+$background--grey: #ECECEC !default;
+$background--light-grey: #F2F2F2 !default;
+$input_placeholder: #3E769E !default;
+$border-color: #E3E3E3 !default;
+$footer_bg: #031128 !default;
+$bullets-color: #49AFF9 !default;
+$breadcrumbs-color: #8DA9B1 !default;
+$big-coupon-color: #FF9448 !default;
+$btn--info: #2184C2 !default;
+$btn--warning: #BE2A34 !default;
+
+$color-sky: #0173B9 !default;
+$color-warning: #D73A00 !default;
+$color-sale: #681E6F !default;
+$color-star: #FFC700 !default;
+
+//Campaign colors
+
+$themed--white: #FFF !default;
+$themed--toplink-bg: #FFF !default;
+$themed--toplink-color: #000 !default;
+$themed--header-bg-image: url('https://static.savings-united.com/medium/48592/file_name/xmas-bg.jpg') !default;
+$themed--color-primary: #F12850 !default;
+$themed--color-secondary: #323538 !default; // Buttons
+$themed--color-bg: #F4F4F1 !default;
+$themed--color-light-bg: #E5E5E5 !default;
+$themed--color-font: #000 !default;
+$themed--color-1: #27AE60 !default; // Green label
+$themed--color-2: #4AADE9 !default; // Blue label
+$themed--color-3: #8A8A8A !default; // Arrow background
+$themed--color-4: #151515 !default; // Teasers text
+$themed--color-5: #627A89 !default; // Load More button
+$themed--color-6: #605E5E !default; // about-campaign Header
+$themed--color-7: #F6F6F6 !default; // Offer background
+$themed--color-8: #5C6469 !default; // navigation + h1 color !default;
+$themed--color-9: #F2994A !default; // Premium offers orange bg
+$themed--color-10: #9B51E0 !default;
+$themed--color-11: #EB5757 !default; // Category red
+$themed--telegraph-green: #285E6A !default;
+$themed--independent-red: #D13030 !default;
+$themed--social-blue: #4395DA !default;
+$themed--gold-premium: #C3851A !default;
+$themed--yellow-paste: #EECA02 !default;
+$themed--pastel-purple: #8A44FF !default;
+$themed--bubblegum-pink: #FD7AFF !default;
+$themed--grey: #959595 !default;
+$themed--border-radius: 3px !default;
+
+//Responsive breakpoints
+
+$xs: '(max-width: 575px)' !default;
+$sm: '(max-width: 767px)' !default;
+$md: '(max-width: 991px)' !default;
+$lg: '(max-width: 1199px)' !default;
+
+$min-xs: '(min-width: 576px)' !default;
+$min-sm: '(min-width: 768px)' !default;
+$min-md: '(min-width: 992px)' !default;
+$min-lg: '(min-width: 1200px)' !default;
+
+// Fonts
+
+@font-face {
+  font-family: 'OxideSolidOT';
+  src: url('https://storage.googleapis.com/static.savings-united.com/assets/wiredcom/fonts/OxideSolidOT.otf');
+}
+
+@font-face {
+  font-family: 'BrandonText-Bold';
+  src: url('https://storage.googleapis.com/static.savings-united.com/assets/wiredcom/fonts/BrandonText-Bold.otf');
+}
+
+@font-face {
+  font-family: 'ExchangeSSm-Roman';
+  src: url('https://storage.googleapis.com/static.savings-united.com/assets/wiredcom/fonts/ExchangeSSm-Roman.otf');
+}
+
+@font-face {
+  font-family: 'AmbroiseStdFrancois-Regular';
+  src: url('https://storage.googleapis.com/static.savings-united.com/assets/wiredcom/fonts/AmbroiseStdFrancois-Regular.otf');
+}
+
+// Labels
+
+// general
+$star-one: "\e916";
+
+// desktop
+$color-exclusive-desktop: #FFF;
+$background-color-exclusive-desktop: #23ABEF;
+$color-exclusive-large-desktop: #FFF;
+$background-color-exclusive-large-desktop: #23ABEF;
+$border-exclusive-desktop: none;
+$border-radius-desktop: 0;
+$color-editor-desktop: #F45234;
+$color-editor-large-desktop: #FFF;
+$border-top-normal: 2px solid #F45234;
+$editorstag-normal-desktop: url("data:image/svg+xml,%0A%3Csvg width='23' height='30' viewBox='0 0 23 30' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg filter='url(%23filter0_d)'%3E%3Cpath d='M2 25.9999V0.706572H21V25.9999L11.0476 19.3593L2 25.9999Z' fill='white'/%3E%3Cpath d='M2 25.9999V0.706572H21V25.9999L11.0476 19.3593L2 25.9999Z' fill='white'/%3E%3Cpath d='M2 25.9999V0.706572H21V25.9999L11.0476 19.3593L2 25.9999Z' fill='white'/%3E%3Cpath d='M2 25.9999V0.706572H21V25.9999L11.0476 19.3593L2 25.9999Z' fill='%23FF3E00'/%3E%3C/g%3E%3Cdefs%3E%3Cfilter id='filter0_d' x='0' y='0.706573' width='23' height='29.2934' filterUnits='userSpaceOnUse' color-interpolation-filters='sRGB'%3E%3CfeFlood flood-opacity='0' result='BackgroundImageFix'/%3E%3CfeColorMatrix in='SourceAlpha' type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0'/%3E%3CfeOffset dy='2'/%3E%3CfeGaussianBlur stdDeviation='1'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0'/%3E%3CfeBlend mode='normal' in2='BackgroundImageFix' result='effect1_dropShadow'/%3E%3CfeBlend mode='normal' in='SourceGraphic' in2='effect1_dropShadow' result='shape'/%3E%3C/filter%3E%3C/defs%3E%3C/svg%3E");
+$editorstag-large-desktop: url("data:image/svg+xml,%0A%3Csvg width='23' height='30' viewBox='0 0 23 30' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg filter='url(%23filter0_d)'%3E%3Cpath d='M2 25.2934V2.90187e-05H21V25.2934L11.0476 18.6528L2 25.2934Z' fill='white'/%3E%3Cpath d='M2 25.2934V2.90187e-05H21V25.2934L11.0476 18.6528L2 25.2934Z' fill='white'/%3E%3Cpath d='M2 25.2934V2.90187e-05H21V25.2934L11.0476 18.6528L2 25.2934Z' fill='white'/%3E%3Cpath d='M2 25.2934V2.90187e-05H21V25.2934L11.0476 18.6528L2 25.2934Z' fill='white'/%3E%3C/g%3E%3Cdefs%3E%3Cfilter id='filter0_d' x='0' y='3.05176e-05' width='23' height='29.2934' filterUnits='userSpaceOnUse' color-interpolation-filters='sRGB'%3E%3CfeFlood flood-opacity='0' result='BackgroundImageFix'/%3E%3CfeColorMatrix in='SourceAlpha' type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0'/%3E%3CfeOffset dy='2'/%3E%3CfeGaussianBlur stdDeviation='1'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0'/%3E%3CfeBlend mode='normal' in2='BackgroundImageFix' result='effect1_dropShadow'/%3E%3CfeBlend mode='normal' in='SourceGraphic' in2='effect1_dropShadow' result='shape'/%3E%3C/filter%3E%3C/defs%3E%3C/svg%3E%0A");
+// mobile
+$color-exclusive-mobile: #FFF;
+$background-color-exclusive-mobile: #23ABEF;
+$color-exclusive-large-mobile: #FFF;
+$background-color-exclusive-large-mobile: #23ABEF;
+$border-exclusive-mobile: none;
+$border-radius-mobile: 0;
+$color-editor-mobile: #F45234;
+$color-editor-large-mobile: #FFF;
+$editorstag-normal-mobile: $editorstag-normal-desktop;
+$editorstag-large-mobile: $editorstag-large-desktop;

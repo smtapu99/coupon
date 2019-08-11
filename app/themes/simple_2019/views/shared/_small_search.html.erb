@@ -1,0 +1,20 @@
+<div class="search-header">
+
+  <form action="<%= dynamic_url_for('search', 'index') %>" class="m-search-box__form m-search-box__form--small">
+
+    <div class="m-search-box__input-wrp">
+
+      <input autocomplete="off" class="m-search-box__input" data-autocomplete-url="<%= url_for send("searches_shop_autocomplete_#{@site.site.id}_path") %>" id="input_search_header" name="query" placeholder="<%= t(:SEARCH_PLACEHOLDER, default: 'Type a store e.g. Amazon, Ebay, Nike', shops: search_box_placeholder_shops) %>" required type="search" aria-label="<%= t(:SEARCH_PLACEHOLDER, default: 'Type a store e.g. Amazon, Ebay, Nike') %>">
+
+    </div>
+
+    <button class="m-search-box__submit" type="submit" role="button" aria-label="Search">
+
+      <i class="icon-lens"></i>
+
+    </button>
+
+  </form>
+
+</div>
+

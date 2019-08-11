@@ -1,0 +1,150 @@
+  <div class="col-sm-12">
+
+    <div class="box bordered-box blue-border">
+
+      <div class="box-header blue-background">
+
+        <div class="title">
+
+          <i class="icon-edit"></i>
+
+          CouponCode Form
+
+        </div>
+
+      </div>
+
+      <div class="box-content">
+
+        <%= form_for [:admin, @coupon_code], html: {class: 'form form-horizontal', style: 'margin-bottom: 0'} do |f| %>
+
+        <%= render partial: 'admin/shared/form_errors', locals: {ancestor: @coupon_code} %>
+
+        <div class="form-group <%= 'has-error' unless @coupon_code.errors.messages[:name].blank? %>">
+
+          <%= f.label :coupon_id, class: 'col-md-2 control-label' %>
+
+          <div class="col-md-5">
+
+            <%= f.text_field :coupon_id, class: 'form-control' %>
+
+          </div>
+
+        </div>
+
+        <% unless Site.current.present? %>
+
+          <div class="form-group <%= 'has-error' unless @coupon.errors.messages[:site_id].blank? %>">
+
+            <%= f.label :site_id, class: 'col-md-2 control-label' %>
+
+            <div class="col-md-5">
+
+              <%= f.select :site_id, User.current.sites.collect {|u| [u.name, u.id] }, {prompt: false}, {disabled: !f.object.new_record?, class: 'form-control'} %>
+
+            </div>
+
+          </div>
+
+        <% end %>
+
+        <div class="form-group <%= 'has-error' unless @coupon_code.errors.messages[:name].blank? %>">
+
+          <%= f.label :code, class: 'col-md-2 control-label' %>
+
+          <div class="col-md-5">
+
+            <%= f.text_field :code, class: 'form-control' %>
+
+          </div>
+
+        </div>
+
+        <div class="form-group">
+
+          <%= f.label :end_date, class: 'col-md-2 control-label' %>
+
+          <div class="col-md-5">
+
+            <%= f.datetime_select :end_date, include_blank: true, class: 'form-control' %>
+
+          </div>
+
+        </div>
+
+        <div class="form-group">
+
+          <%= f.label :used_at, class: 'col-md-2 control-label' %>
+
+          <div class="col-md-5">
+
+            <%= f.text_field :used_at, include_blank: true, class: 'form-control', disabled: true %>
+
+          </div>
+
+        </div>
+
+        <div class="form-group">
+
+          <%= f.label :tracking_user_id, class: 'col-md-2 control-label' %>
+
+          <div class="col-md-5">
+
+            <%= f.text_field :tracking_user_id, include_blank: true, class: 'form-control', disabled: true %>
+
+          </div>
+
+        </div>
+
+        <%- unless @coupon_code.new_record? -%>
+
+        <div class="form-group">
+
+          <%= f.label :is_imported, class: 'col-md-2 control-label' %>
+
+          <div class="col-md-5">
+
+            <%= f.check_box :is_imported, class: 'form-control' %>
+
+            <div class="help-block">Is Imported defines that the coupon code is not yet approved</div>
+
+          </div>
+
+        </div>
+
+        <%- end -%>
+
+        <div class="form-actions form-actions-padding-sm">
+
+          <div class="row">
+
+            <div class="col-md-10 col-md-offset-2">
+
+              <%= f.submit nil, class: 'btn btn-primary' if can? :create, CouponCode %>
+
+              <%= link_to t('.cancel', default: t('helpers.links.cancel')), admin_coupon_codes_path, class: 'btn' %>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <% end %>
+
+      </div>
+
+    </div>
+
+  </div>
+
+<script type="text/javascript">
+
+document.ready = function(){
+
+  <%- unless can? :manage, CouponCode -%>
+    $("form.form-horizontal :input").attr("disabled", true);
+  <%- end -%>
+}
+
+</script>

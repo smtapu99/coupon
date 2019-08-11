@@ -1,0 +1,51 @@
+.rotated-coupons.list-coupons-as-items {
+  align-content: space-between;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  margin-bottom: 0;
+
+  .frame {
+    min-height: 112px;
+  }
+
+  li.coupon-item {
+    width: 100%;
+    height: auto;
+
+    a {
+      display: block;
+      width: 100%;
+      max-width: 100%;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .rotated-coupons.list-coupons-as-items {
+    li.coupon-item {
+      margin-bottom: 0;
+      width: 49.5%;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .rotated-coupons.list-coupons-as-items {
+    flex-flow: column wrap;
+
+    li.coupon-item {
+      margin-bottom: 10px;
+    }
+  }
+}
+
+@media (min-width: 992px) {
+  .rotated-coupons.list-coupons-as-items {
+    li.coupon-item {
+      width: 32.8%;
+      display: flex !important;
+      flex-flow: column;
+    }
+  }
+}

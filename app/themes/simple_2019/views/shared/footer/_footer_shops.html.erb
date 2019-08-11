@@ -1,0 +1,21 @@
+<div class="footer-shops">
+
+  <div class="footer-shops__header d-block d-sm-none">
+
+    <h4 class="footer-shops__title"><%= t(:MAIN_SHOPS, default: 'Shops') %></h4>
+
+  </div>
+
+  <div class="footer-shops__content">
+
+    |<%- footer_shops.each do |shop| -%>
+
+      <%= link_to shop.anchor_text_or_title, dynamic_url_for('shops', 'show', slug: shop.slug) %> |
+
+    <%- end -%>
+
+  </div>
+
+</div>
+
+<!-- /.footer-shops -->

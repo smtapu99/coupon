@@ -1,0 +1,113 @@
+<%
+color = 'ashes'
+
+if @subscriber.error?
+  action   = 'error'
+  body     = t(:NEWSLETTER_REGISTRATION_FAILURE, default: 'NEWSLETTER_REGISTRATION_FAILURE')
+  color    = 'ready'
+  headline = t(:NEWSLETTER_ERROR_HEADLINE, default: 'NEWSLETTER_ERROR_HEADLINE')
+elsif @subscriber.new?
+  action   = 'new'
+  body     = t(:NEWSLETTER_ALMOST_FINISHED_INSTRUCTION, default: 'NEWSLETTER_ALMOST_FINISHED_INSTRUCTION').gsub('{email}', "<span class='color-sky'>#{@subscriber.email}</span>")
+  color    = 'freedom'
+  headline = t(:NEWSLETTER_THANK_YOU, default: 'NEWSLETTER_THANK_YOU')
+else
+  action   = 'duplicated'
+  body     = t(:ALREADY_SUBSCRIBED_TO_SHOP, default: 'ALREADY_SUBSCRIBED_TO_SHOP')
+  color    = 'freedom'
+  headline = t(:NEWSLETTER_DUPLICATED_HEADLINE, default: 'NEWSLETTER_DUPLICATED_HEADLINE')
+end
+%>
+
+<script type="text/javascript">
+
+if(typeof dataLayer != 'undefined'){
+  dataLayer.push({
+    'event': 'newsletter-<%= params[:action] == "subscribe" ? "widget" : "inline" %><%= params[:type].present? ? "-#{params[:type]}" : "" %>',
+    'eventAction': '<%= action %>',
+    'eventLabel': '<%=  @shop.title if @shop.present? %>'
+  })
+}
+
+</script>
+
+
+<div class="modal-header border-top-<%= color %> text-right">
+
+  <button aria-label="<%= t(:CLOSE, default: 'Close') %>" class="btn btn-white close" data-dismiss="modal" type="button">
+
+      <span aria-hidden="true">
+
+        <i class="roberto roberto-remove"></i>
+
+      </span>
+
+  </button>
+
+</div>
+
+<!-- modal-header -->
+
+<div class="modal-body text-center">
+
+  <% if @subscriber.error? %>
+
+    <ul class="list-inline list-steps list-unstyled">
+
+      <li class="with-icon"><i class="roberto roberto-remove"></i></li>
+
+      <!-- /.with-icon -->
+
+    </ul>
+
+    <!-- /.list-inline list-steps list-unstyled -->
+
+  <% elsif @subscriber.new? %>
+
+    <ul class="list-inline list-steps list-unstyled">
+
+      <li class="bg-<%= color %> with-icon"><i class="roberto roberto-envelope"></i></li>
+
+      <!-- /.bg-<%= color %> with-icon -->
+
+      <% 3.times do %>
+
+        <li class="bg-<%= color %>"><span class="list-circle-full"></span></li>
+
+        <!-- /.bg-<%= color %> -->
+
+      <% end %>
+
+      <li class="with-icon"><i class="roberto roberto-check"></i></li>
+
+      <% 3.times do %>
+
+        <li><span class="list-circle-full"></span></li>
+
+      <% end %>
+
+      <li class="with-icon"><i class="roberto roberto-ok"></i></li>
+
+    </ul>
+
+    <!-- /.list-inline list-steps list-unstyled -->
+
+  <% else %>
+
+    <ul class="list-inline list-steps list-unstyled">
+
+      <li class="with-icon"><i class="roberto roberto-users"></i></li>
+
+      <!-- /.with-icon -->
+
+    </ul>
+
+    <!-- /.list-inline list-steps list-unstyled -->
+
+  <% end %>
+
+  <p><%= body.html_safe %></p>
+
+</div>
+
+<!-- /.modal-body text-center -->

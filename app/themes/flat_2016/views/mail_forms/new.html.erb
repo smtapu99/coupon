@@ -1,0 +1,41 @@
+<div class="container">
+
+  <div class="row">
+
+    <div class="col-xs-12 col-sm-8 pannacotta" id="content" role="main">
+
+      <%= render partial: 'mail_forms/new/card_mail_forms_new', locals: {title: @title, type: @type} %>
+
+    </div>
+
+    <!-- /#content.col-xs-12 col-sm-8 pannacotta -->
+
+    <div class="col-xs-12 col-sm-4 pannacotta" id="sidebar" role="complementary">
+
+      <% if !is_home? %>
+
+        <%= render partial: "banners/sidebar_banner" %>
+
+      <%- end -%>
+
+      <%= render partial: 'shared/widgets_sidebar' %>
+
+    </div>
+
+    <!-- /#sidebar.col-xs-12 col-sm-4 pannacotta -->
+
+  </div>
+
+  <!-- /.row -->
+
+</div>
+
+<!-- /.container -->
+
+<%- content_for :footer_script do -%>
+  <script type="text/javascript">
+    $(document).on('tracking_user_set', function() {
+      $('.form input[type="submit"]').removeAttr('disabled');
+    })
+  </script>
+<%- end -%>

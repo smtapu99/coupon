@@ -1,0 +1,142 @@
+
+<div class="col-sm-12 col-md-6" id="legal-pages">
+
+  <div class="box bordered-box blue-border <%= 'box-collapsed' unless session[:last_setting] == 'legal_pages' %>">
+
+    <div class="box-header banana-background">
+
+      <div class="title">
+
+        <i class="icon-legal"></i>
+
+        Legal Pages Settings
+
+      </div>
+
+      <div class="actions">
+
+        <a class="btn box-collapse btn-xs btn-link" href="#">
+
+          <i></i>
+
+        </a>
+
+      </div>
+
+    </div>
+
+    <div class="box-content">
+
+      <%= form_for [:admin, @setting], method: :patch, html: {class: 'form form-horizontal', style: 'margin-bottom: 0'} do |f| %>
+
+        <%= hidden_field_tag :option_type, 'legal_pages' %>
+
+        <%= fields_for :legal_pages, @setting.legal_pages do |ff| %>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :about_us_url %>
+
+              <%= ff.text_field :about_us_url, class: 'form-control', placeholder: 'e.g. /about-us' %>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :imprint_url %>
+
+              <%= ff.text_field :imprint_url, class: 'form-control', placeholder: 'e.g. /imprint' %>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :terms_and_conditions_url %>
+
+              <%= ff.text_field :terms_and_conditions_url, class: 'form-control', placeholder: 'e.g. /terms-and-conditions' %>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :privacy_policy_url %>
+
+              <%= ff.text_field :privacy_policy_url, class: 'form-control', placeholder: 'e.g. /data-security' %>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :cookie_policy_url %>
+
+              <%= ff.text_field :cookie_policy_url, class: 'form-control', placeholder: 'e.g. /cookie-policy' %>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :press_url %>
+
+              <%= ff.text_field :press_url, class: 'form-control', placeholder: 'e.g. /press' %>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <div class="col-sm-12">
+
+              <%= ff.label :faq_url %>
+
+              <%= ff.text_field :faq_url, class: 'form-control', placeholder: 'e.g. /faq' %>
+
+            </div>
+
+          </div>
+
+          <div class="form-actions form-actions-padding-sm">
+
+            <div class="row">
+
+              <div class="col-md-2">
+
+                <%= f.submit 'Save', class: 'btn btn-primary btn-block' %>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        <% end %>
+
+      <% end %>
+
+    </div>
+
+  </div>
+
+</div>

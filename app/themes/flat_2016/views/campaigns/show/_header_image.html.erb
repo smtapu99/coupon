@@ -1,0 +1,109 @@
+
+<%- columns = @campaign.template == :default ? 2 : 1 -%>
+
+<style>
+#header_image.hero {
+  background-image:
+  <%- if @campaign.html_document.darken_header_image? %>
+    linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.2)),
+  <% end %>
+  url(<%= @campaign.html_document.mobile_header_image_url(:teaser) || @campaign.html_document.header_image_url(:teaser) %>);
+}
+
+@media(min-width: 768px) {
+  #header_image.hero {
+    background-image:
+    <%- if @campaign.html_document.darken_header_image? %>
+      linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.2)),
+    <% end %>
+    url(<%= @campaign.html_document.header_image_url %>);
+  }
+}
+
+#header_image.hero h1 {
+  color: <%= @campaign.html_document_header_font_color %>;
+}
+
+#header_image.hero h2 {
+  color: <%= @campaign.html_document_header_font_color %>;
+}
+</style>
+
+<div class="hero <%=@campaign.template%> hero--align-<%=@campaign.html_document.header_text_v_alignment %> hero--align-<%=@campaign.html_document.header_text_h_alignment %> <%= 'hero--text-bg' if @campaign.html_document.header_text_background %>" id="header_image">
+
+  <div class="row">
+
+    <div class="col-sm-12">
+
+      <%- if head_lines -%>
+
+        <%- if @campaign.h1_first_line.present? -%>
+
+          <h1><%= @campaign.h1_first_line.html_safe %> <br> <%= "#{@campaign.h1_second_line.html_safe}" %></h1>
+
+        <%- end -%>
+
+        <%- if @h2.present? -%>
+
+          <h2><%= @h2.html_safe %></h2>
+
+        <%- end -%>
+
+      <% end %>
+
+      <%- if @campaign.html_document_countdown_date.present? -%>
+
+          <div id="counter" class="hidden">
+
+            <table id="countdown" class="text-center">
+
+              <tbody>
+
+                  <tr class="countdown-time">
+
+                  <td><span class="days">00</span></td>
+
+                  <td><span class="hours">00</span></td>
+
+                  <td><span class="minutes">00</span></td>
+
+                  <td><span class="seconds">00</span></td>
+
+                </tr>
+
+                <tr class="countdown-labels">
+
+                  <td><%= t(:days, default: 'Days') %></td>
+
+                  <td><%= t(:hour_short, default: 'h') %></td>
+
+                  <td><%= t(:minute_short, default: 'm') %></td>
+
+                  <td><%= t(:second_short, default: 's') %></td>
+
+                </tr>
+
+              </tbody>
+
+            </table>
+
+          </div>
+
+        <% end %>
+
+      </div>
+
+  </div>
+
+</div>
+<%- if @campaign.html_document_countdown_date.present? -%>
+<script type="text/javascript">
+  window.onload=function(){
+    if(new Date("<%= @campaign.html_document_countdown_date.to_datetime.rfc3339 %>") > new Date()){
+      jQuery('#counter').removeClass('hidden');
+      jQuery('#countdown').countdown({date:'<%= @campaign.html_document_countdown_date.to_datetime.rfc3339 %>'});
+    }
+  }
+</script>
+<%- end -%>
+

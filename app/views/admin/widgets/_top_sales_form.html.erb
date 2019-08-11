@@ -1,0 +1,39 @@
+<div class="form-group">
+
+  <%= ff.label :subtitle, class: 'col-md-2 control-label' %>
+
+  <div class="col-md-10">
+
+    <%= ff.text_field :subtitle, class: 'form-control' %>
+
+  </div>
+
+</div>
+
+<%- (0..3).each do |num| -%>
+
+  <h3>Coupon <%= num+1 %></h3>
+
+  <div class="form-group">
+
+    <div class="col-md-6">
+
+      <label for="">Title</label>
+
+      <%= text_field_tag 'widget[top_sales][][coupon_id]', (@widget.top_sales[num][:coupon_id] rescue nil), class: 'select2 form-control', placeholder: 'Coupon id' %>
+
+    </div>
+
+    <div class="col-md-6">
+
+      <label for="">Image</label>
+
+      <%= text_field_tag 'widget[top_sales][][image_url]', (@widget.top_sales[num][:image_url] rescue nil), class: 'select2 form-control', placeholder: 'Image URL' %>
+
+      <div class="help block"><small>Default: Shop Header Image;</small></div>
+
+    </div>
+
+  </div>
+
+<%- end -%>

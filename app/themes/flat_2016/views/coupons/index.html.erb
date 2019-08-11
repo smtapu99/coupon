@@ -1,0 +1,19 @@
+<% content_for(:before_breadcrumbs) do %>
+
+  <%= render partial: 'coupons/index/dropdown_list_coupon_type', locals: {coupons: @coupons} %>
+
+<% end %>
+  
+<%= render partial: 'coupons/index/page_headlines' %>
+
+<% if @coupons.present? %>
+
+  <%= render partial: 'coupons/shared/card_coupons_list', locals: {coupons: @coupons} %>
+
+<% else %>
+
+  <%= render partial: 'coupons/index/card_alert', locals: {top_coupons: @top_coupons} %>
+
+<% end %>
+
+<%= render partial: 'coupons/index/sidebar' %>

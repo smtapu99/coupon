@@ -1,0 +1,75 @@
+<% if @category.present? %>
+
+  <%= render partial: 'categories/show/head', locals: { category: @category } %>
+
+  <%= render partial: 'categories/show/page_headlines', locals: { category: @category } %>
+
+  <% if @coupons.present? %>
+
+    <% if shops_featured = @site.featured_shops_by_category(@category) and shops_featured.size >= 6 %>
+
+      <div class="category-featured-shops pannacotta">
+
+          <%= render partial: 'shops/index/popular_shops', locals: { shops_featured: shops_featured } %>
+
+      </div>
+
+    <%- end -%>
+
+    <%= render partial: 'coupons/shared/card_coupons_list', locals: { coupons: @coupons } %>
+
+  <% else %>
+
+    <%= render partial: 'categories/show/card_alert' %>
+
+  <% end %>
+
+  <div class="card card-shops-index pannacotta">
+
+    <div class="card-header">
+
+      <h3 class="card-title"><%= t(:SEE_SHOPS_FROM_CATEGORY, default: 'See Shops from {category}').gsub('{category}', @category.name) %></h3>
+
+      <!-- /.card-title -->
+
+    </div>
+
+    <!-- /.card-header -->
+
+    <div class="card-content">
+
+      <ol class="list-unstyled list-three-cols">
+
+        <% @category_shops.each do |shop| %>
+
+          <% shop_url = dynamic_url_for('shop', 'show', slug: shop.slug) %>
+
+          <% add_collection_page_element(shop.title, shop_url) %>
+
+          <li>
+
+            <a href="<%= shop_url %>" title="<%= shop.title %>">
+
+              <%= shop.title if shop.title.present? %>
+
+            </a>
+
+          </li>
+
+        <% end %>
+
+      </ol>
+
+    </div>
+
+    <!-- /.card-content -->
+
+  </div>
+
+  <!-- /.card card-shops-index pannacotta -->
+
+  <%= render partial: 'categories/show/card_about_this_category', locals: { category: @category } %>
+
+<% end %>
+
+<%= render partial: 'categories/show/sidebar', locals: { category: @category, categories: @categories, shops: @shops } %>

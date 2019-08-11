@@ -1,0 +1,79 @@
+.full-newsletter {
+  margin: 0;
+  padding: 27px 0 34px;
+  background: $themed--color-primary;
+
+  @media (max-width: 767px) {
+    padding: 42px 0 50px;
+  }
+
+  &--sidebar {
+    .container {
+      width: 100%;
+    }
+  }
+
+  &__header {
+    margin-top: 0;
+    color: $themed--white;
+    font-weight: 300;
+    font-size: 24px;
+    line-height: 1.35;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  &__form {
+    padding: 14px 0 0;
+    overflow: hidden;
+
+    @media (max-width: 767px) {
+      padding-top: 9px;
+    }
+  }
+
+  .input-wrapper {
+    margin-right: -15px;
+
+    @media (max-width: 767px) {
+      margin-right: 0;
+    }
+  }
+
+  &__input {
+    width: 100%;
+    border-radius: $themed--border-radius;
+  }
+
+  &__btn.btn-small {
+    padding: 9px 20px !important;
+    font-weight: 400;
+    line-height: 1;
+    text-transform: uppercase;
+    background: $themed--color-secondary;
+    border-radius: $themed--border-radius;
+
+    &:hover {
+      background: darken($themed--color-secondary, 10%);
+    }
+
+    @media (max-width: 767px) {
+      width: auto;
+      margin-top: 11px;
+    }
+  }
+
+  .privacy-policy {
+    margin-top: 10px;
+    text-align: left;
+
+    a {
+      color: #FFF;
+    }
+
+    input[type=checkbox] {
+      margin-top: -1px;
+      vertical-align: middle;
+    }
+  }
+}

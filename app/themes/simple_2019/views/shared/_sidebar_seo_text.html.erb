@@ -1,0 +1,17 @@
+<%- title ||= nil -%>
+
+<%- if content.present? -%>
+
+  <div class="widget widget--seo-text">
+
+    <%- if title.present? -%>
+
+      <h2><%= title %></h2>
+
+    <%- end -%>
+
+    <%= content.html_safe %>
+
+  </div>
+
+<%- end -%>

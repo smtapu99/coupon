@@ -1,0 +1,170 @@
+.featured-coupons.list-coupons-as-items {
+  align-content: space-between;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  margin-bottom: 0;
+
+  .cta-arrow {
+    display: flex;
+    min-height: 110px;
+    font-size: 28px;
+    justify-content: center;
+    flex-direction: column;
+    text-align: right;
+    margin-right: 15px;
+  }
+
+  &.last-chance-widget {
+    li.coupon-item {
+      a {
+        .content {
+          span.hours,
+          span.minutes,
+          span.seconds {
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 5px;
+          }
+        }
+      }
+    }
+  }
+
+  li.coupon-item {
+    width: 100%;
+    height: auto;
+
+    a {
+      display: block;
+      width: 100%;
+      max-width: 100%;
+    }
+
+    .coupon-hero {
+      display: none;
+    }
+
+    &--big {
+      height: auto;
+
+      &.coupon-ads {
+        @include flat-box-shadow(none);
+
+        background-color: transparent;
+        border: none;
+
+        img {
+          height: 230px;
+          object-fit: contain;
+          -o-object-fit: contain;
+          width: 100%;
+        }
+      }
+
+      img {
+        object-position: center;
+        -o-object-position: center;
+
+        &.coupon-hero {
+          background-color: $color-bg-hero;
+          background-size: cover;
+          display: block;
+          height: 120px;
+          // object-fit: cover;
+          // -o-object-fit: cover;
+          width: 100%;
+        }
+      }
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .featured-coupons.list-coupons-as-items {
+    li.coupon-item {
+      margin-bottom: 0;
+      width: 49.5%;
+    }
+
+    &.hide-first-featured {
+      li:first-child {
+        display: none;
+      }
+    }
+
+    &.hide-second-featured {
+      li:nth-child(2) {
+        display: none;
+      }
+    }
+
+    &.hide-third-featured {
+      li:nth-child(3) {
+        display: none;
+      }
+    }
+
+    &.hide-fourth-featured {
+      li:nth-child(4) {
+        display: none;
+      }
+    }
+
+    &.hide-fifth-featured {
+      li:nth-child(5) {
+        display: none;
+      }
+    }
+
+    &.hide-last-featured {
+      li:last-child {
+        display: none;
+      }
+    }
+  }
+}
+
+@media (min-width: 992px) {
+  .featured-coupons.list-coupons-as-items {
+    &.hide-first-featured,
+    &.hide-second-featured,
+    &.hide-third-featured,
+    &.hide-fourth-featured,
+    &.hide-fifth-featured,
+    &.hide-last-featured {
+      li {
+        display: block !important;
+      }
+    }
+
+    li.coupon-item {
+      width: 32.8%;
+      display: flex !important;
+      flex-flow: column;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .featured-coupons.list-coupons-as-items {
+    flex-flow: column wrap;
+
+    li.coupon-item {
+      margin-bottom: 10px;
+
+      &--big img.coupon-hero {
+        height: auto;
+        max-width: 100%;
+      }
+    }
+
+    .cta-arrow {
+      min-height: 90px;
+    }
+  }
+}

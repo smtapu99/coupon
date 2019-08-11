@@ -1,0 +1,100 @@
+<% theme = @campaign.template %>
+
+<div class="themed <%=theme%> <%= 'custom' if @layout == 'custom' %>">
+
+  <%= render partial: 'shared/navigation_mobile' %>
+
+  <div class="themed__header">
+
+    <%- if @layout == 'custom' -%>
+
+      <div class="container">
+
+        <%# Show the default header in case of WLS %>
+
+        <%= render 'campaigns/show/header_image', head_lines: true %>
+
+      </div>
+
+    <% elsif theme == 'themed--black-friday' %>
+
+      <%- if Setting::get('publisher_site.show_topbar', default: 1).to_i != 0 -%>
+
+        <%= render partial: 'shared/topbar' %>
+
+      <%- end -%>
+
+      <%= render partial: 'campaigns/show/themed_navigation' %>
+
+      <%= render partial: 'campaigns/show/themed_hero' %>
+
+    <% elsif theme == 'themed--cybermonday' %>
+
+      <%= render partial: 'campaigns/show/themed_navigation' %>
+
+      <%= render partial: 'campaigns/show/cybermonday_hero' %>
+
+    <% elsif theme == 'themed--black-friday-2018' %>
+
+      <%= render partial: 'campaigns/show/themed_navigation' %>
+
+      <%= render partial: 'campaigns/show/black_friday_2018_hero' %>
+
+    <% elsif theme == 'themed--default' %>
+
+      <%= render partial: 'campaigns/show/themed_navigation' %>
+
+      <%= render partial: 'campaigns/show/default_hero' %>
+
+    <% end %>
+
+  </div>
+  <!-- /.themed-header  -->
+
+  <%= render 'campaigns/show/widgets', except: [:about] if !@campaign.coupons_on_top %>
+
+  <div class="deals" id="deals">
+
+    <div class="deals__header">
+
+      <h3 class="section-header"><%= t(:see_our_best_coupons, default: 'See our best coupons') %></h3>
+
+      <h4 class="section-subheader"><%= t(:search_what_you_need_and_grab_it, default: 'Search what you need and grab it') %></h4>
+
+    </div>
+
+    <div class="deals__wrapper">
+
+      <div class="container">
+
+        <%= render partial: 'campaigns/show/coupons' %>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <%= render 'campaigns/show/widgets', except: [:about] if @campaign.coupons_on_top %>
+
+  <!-- /.deals -->
+
+  <%= render 'campaigns/show/widgets', only: [:about] %>
+
+  <div class="container">
+
+    <%= render_summary_widget @campaign %>
+
+    <%= render partial: 'campaigns/show/card_about_this_campaign', locals: { campaign: @campaign } %>
+
+  </div>
+
+</div>
+<!-- /.themed.themed--black-friday  -->
+
+
+<%- unless @layout == 'custom' -%>
+
+  <%= render partial: 'shared/footer' %>
+
+<%- end -%>

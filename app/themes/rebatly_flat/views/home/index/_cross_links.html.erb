@@ -1,0 +1,53 @@
+<%- site_id = Site.current.id -%>
+
+<section id="regions">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 text-center">
+        <span class="title"><%= t(:FindCouponsAndOffersInOtherCountries, default: 'Find coupons and offers in other countries') %></span>
+        <ul class="flags-group">
+          <%- unless site_id == 34 -%>
+          <li class="flag">
+            <a href="https://www.rebatly.es" title="Rebatly.es" target="_blank">
+              <img alt="Rebatly ES" width="75" class="img-responsive" src="https://static.savings-united.com/pc/assets/spain.jpg">
+              <span><%= t(:Spain, default: 'Spain') %></span>
+            </a>
+          </li>
+          <%- end -%>
+          <%- unless site_id == 36 -%>
+          <li class="flag">
+            <a href="https://www.rebatly.com.mx" title="Rebatly.com.mx" target="_blank">
+              <img alt="Rebatly.com.mx" width="75" src="https://static.savings-united.com/pc/assets/flag_mx.jpg">
+              <span><%= t(:Mexico, default: 'Mexico') %></span>
+            </a>
+          </li>
+          <%- end -%>
+          <%- unless site_id == 35 -%>
+          <li class="flag">
+            <a href="https://www.rebatly.com.br" title="Rebatly.com.br" target="_blank">
+              <img alt="Rebatly.com.br" width="75" src="https://static.savings-united.com/pc/assets/flag_br.jpg">
+              <span><%= t(:Brasil, default: 'Brasil') %></span>
+            </a>
+          </li>
+          <%- end -%>
+          <%- unless site_id == 38 -%>
+          <li class="flag">
+            <a href="http://www.promokodabra.ru" title="Promokodabra.ru" target="_blank">
+              <img alt="Promokodabra.ru" width="75" src="https://static.savings-united.com/pc/assets/flag_ru.jpg">
+              <span><%= t(:Russia, default: 'Russia') %></span>
+            </a>
+          </li>
+          <%- end -%>
+          <%- unless site_id == 37 -%>
+          <li class="flag">
+            <a href="https://www.rebatly.it" title="Rebatly.it" target="_blank">
+              <img alt="Rebatly.it" width="75" src="https://static.savings-united.com/pc/assets/flag_it.jpg">
+              <span><%= t(:Italy, default: 'Italy') %></span>
+            </a>
+          </li>
+          <%- end -%>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

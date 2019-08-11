@@ -1,0 +1,625 @@
+format 214
+"dev item process"
+  revision 2
+  modified_by 12 "ain"
+
+
+  
+  // class settings
+  default_attribute_visibility private default_relation_visibility private default_operation_visibility public
+  
+  classdiagramsettings draw_all_relations yes hide_attributes no hide_operations no hide_getset_operations no show_members_full_definition no show_members_visibility no show_members_stereotype no show_members_context no show_members_multiplicity no show_members_initialization no show_attribute_modifiers no member_max_width 127 show_parameter_dir yes show_parameter_name yes package_name_in_tab no class_drawing_mode natural drawing_language uml show_context_mode no auto_label_position yes show_relation_modifiers no show_relation_visibility no show_infonote no shadow yes gradient none show_stereotype_properties no end
+  
+  usecasediagramsettings package_name_in_tab no show_context_mode no auto_label_position yes draw_all_relations yes class_drawing_mode actor shadow yes gradient none show_stereotype_properties no end
+  
+  sequencediagramsettings show_full_operations_definition no show_class_of_operation no write_horizontally yes instances_drawing_mode natural drawing_language uml draw_all_relations yes shadow yes gradient none show_stereotype_properties no show_class_context_mode no show_msg_context_mode no end
+  
+  collaborationdiagramsettings show_full_operations_definition no show_class_of_operation no show_hierarchical_rank no write_horizontally yes instances_drawing_mode natural drawing_language uml package_name_in_tab no show_class_pack_context_mode no show_msg_context_mode no draw_all_relations yes shadow yes gradient none show_stereotype_properties no end
+  
+  objectdiagramsettings write_horizontally yes package_name_in_tab no show_class_pack_context_mode no auto_label_position yes draw_all_relations yes shadow yes gradient none show_stereotype_properties no end
+  
+  componentdiagramsettings package_name_in_tab no show_context_mode no auto_label_position yes draw_all_relations yes shadow yes gradient none
+   draw_component_as_icon no show_component_req_prov no show_component_rea no show_stereotype_properties no end
+  
+  deploymentdiagramsettings package_name_in_tab no show_context_mode no write_horizontally yes auto_label_position yes draw_all_relations yes shadow yes gradient none
+   draw_component_as_icon no show_component_req_prov no show_component_rea no show_stereotype_properties no end
+  
+  statediagramsettings package_name_in_tab no show_context_mode no auto_label_position yes write_label_horizontally yes show_trans_definition no draw_all_relations yes shadow yes gradient none
+   show_activities yes region_horizontally yes drawing_language uml show_stereotype_properties no end
+  
+  activitydiagramsettings package_name_in_tab no show_context_mode no show_opaque_action_definition no auto_label_position yes write_label_horizontally no draw_all_relations yes shadow yes gradient none
+   show_infonote yes drawing_language uml show_stereotype_properties no end
+  
+  class_color yellow duration_color transparent continuation_color gray note_color blue fragment_color transparent subject_color transparent usecase_color yellow package_color transparent component_color green artifact_color green deploymentnode_color gray state_color yellow stateaction_color transparent activity_color transparent activityregion_color transparent activitypartition_color transparent activityaction_color transparent parameterpin_color white generalization_color black 
+  dpi 72
+  font_size 10
+  diagram_format A4
+
+  image_root_dir ""
+
+  mark_for_import
+  
+  ncouples 1
+  key "html dir" value "/Users/ain/Downloads/Process/"
+  classview 128006 "Development item"
+    
+    classdiagramsettings member_max_width 0 end
+    
+    collaborationdiagramsettings end
+    
+    objectdiagramsettings end
+    
+    sequencediagramsettings end
+    
+    statediagramsettings
+     end
+    
+    
+    activitydiagramsettings
+     end
+    activity 128006 "Development Request"
+      activitydiagram 128262 "Activity"
+	activitydiagramsettings draw_all_relations no
+	 end
+	size A4
+      end
+
+      activityobject 128006 "dad"
+	 explicit_type ""
+	unordered 
+      end
+
+      activityaction 128006 "sst"
+	opaque_action
+      end
+
+      activityaction 128134 "start'"
+	opaque_action
+      end
+
+      activityobject 128134 "iopo"
+	 explicit_type ""
+	unordered 
+      end
+
+      activitynode 128006 initial_node ""
+	flow 128006 "<flow>"
+	  on activityaction_ref 128262 // activity action Receive request
+	end
+      end
+
+      activityobject 128262 "req"
+	 explicit_type ""
+	unordered 
+      end
+
+      activitypartition 128006 "qdqqdq"
+      end
+
+      activityobject 128390 "qdsq"
+	 explicit_type ""
+	unordered 
+      end
+
+      activityaction 128262 "Receive request"
+	opaque_action
+	flow 128134 "<flow>"
+	  on activityaction_ref 128390 // activity action Validate
+	end
+
+	flow 128902 "<flow>"
+	  on activitynode_ref 129158 // fork
+	end
+
+	flow 129286 "<flow>"
+	  on activityaction_ref 128390 // activity action Validate
+	end
+      end
+
+      activityaction 128390 "Validate"
+	opaque_action
+	flow 128262 "<flow>"
+	  on activitynode_ref 128646 // decision
+	end
+
+	flow 129414 "<flow>"
+	  on activitynode_ref 129414 // decision
+	end
+      end
+
+      interruptibleactivityregion 128006 "PM evaluation"
+      end
+
+      activitynode 128134 merge ""
+      end
+
+      activitynode 128262 merge ""
+      end
+
+      activityaction 128518 "Validate for system"
+	opaque_action
+	flow 128646 "<flow>"
+	  on activitynode_ref 128902 // decision
+	end
+      end
+
+      activitynode 128646 decision ""
+	flow 128390 "<flow>"
+	  on activityaction_ref 128518 // activity action Validate for system
+	end
+
+	flow 128518 "<flow>"
+	  on activitynode_ref 128774 // activity_final
+	end
+      end
+
+      activitynode 128774 activity_final ""
+      end
+
+      activitynode 128902 decision ""
+	flow 128774 "<flow>"
+	  on activitynode_ref 129030 // activity_final
+	end
+      end
+
+      activitynode 129030 activity_final ""
+      end
+
+      interruptibleactivityregion 128134 "Product validation"
+      end
+
+      activitynode 129158 fork ""
+	flow 129030 "<flow>"
+	  on activityaction_ref 128390 // activity action Validate
+	end
+
+	flow 129158 "<flow>"
+	  on activityaction_ref 128518 // activity action Validate for system
+	end
+      end
+
+      interruptibleactivityregion 128262 "Validation"
+      end
+
+      activitynode 129286 flow_final ""
+      end
+
+      activitypartition 128262 "errorõ"
+      end
+
+      activityobject 128518 "Ticket"
+	 explicit_type ""
+	unordered 
+      end
+
+      activityaction 128646 "Create ticket"
+	opaque_action
+	flow 129798 "<flow>"
+	  on activityaction_ref 128774 // activity action Estimate
+	end
+
+	flow 130054 "<flow>"
+	  on activityaction_ref 128774 // activity action Estimate
+	end
+
+	flow 134540 "<flow>"
+	  on activityobject_ref 134540 // activity object Ticket
+	end
+      end
+
+      activityaction 128774 "Estimate"
+	opaque_action
+	flow 130182 "<flow>"
+	  on activitynode_ref 129798 // decision
+	end
+
+	flow 130438 "<flow>"
+	  on activitynode_ref 130182 // decision
+	end
+
+	flow 130694 "<flow>"
+	  on activityaction_ref 128902 // activity action Evaluate
+	end
+      end
+
+      activitynode 129414 decision ""
+	flow 129542 "<flow>"
+	  on activityaction_ref 128646 // activity action Create ticket
+	end
+
+	flow 129670 "<flow>"
+	  on activitynode_ref 129542 // activity_final
+	end
+
+	flow 129926 "<flow>"
+	  on activityaction_ref 128646 // activity action Create ticket
+	end
+      end
+
+      activitynode 129542 activity_final ""
+      end
+
+      activitynode 129670 activity_final ""
+      end
+
+      expansionregion 128006 "Estimation"
+	iterative
+      end
+
+      activitynode 129798 decision ""
+	flow 130310 "<flow>"
+	  on activitynode_ref 129926 // activity_final
+	end
+      end
+
+      activitynode 129926 activity_final ""
+      end
+
+      activityaction 128902 "Evaluate"
+	opaque_action
+	flow 130822 "<flow>"
+	  on activitynode_ref 130182 // decision
+	end
+      end
+
+      interruptibleactivityregion 128390 "Ticketing"
+	activitynode 130054 flow_final ""
+	end
+      end
+
+      activitynode 130182 decision ""
+	flow 130566 "<flow>"
+	  on activityaction_ref 128902 // activity action Evaluate
+	end
+
+	flow 130950 "<flow>"
+	  on activitynode_ref 130310 // activity_final
+	end
+
+	flow 131078 "<flow>"
+	  on activityaction_ref 129030 // activity action Schedule
+	end
+
+	flow 136332 "<flow>"
+	  on activityaction_ref 129414 // activity action Assign
+	end
+      end
+
+      activitynode 130310 activity_final ""
+      end
+
+      activityaction 129030 "Schedule"
+	opaque_action
+	flow 134924 "<flow>"
+	  on activityaction_ref 129414 // activity action Assign
+	end
+      end
+
+      activityaction 129158 "Write code"
+	opaque_action
+	flow 135052 "<flow>"
+	  on activityaction_ref 131718 // activity action Create Pull Request
+	end
+      end
+
+      interruptibleactivityregion 128518 "Development"
+	activityaction 129286 "Review code"
+	  opaque_action
+	  flow 136076 "<flow>"
+	    on activitynode_ref 130694 // decision
+	  end
+	end
+      end
+
+      activityaction 129414 "Assign"
+	opaque_action
+	flow 134796 "<flow>"
+	  on activityaction_ref 129158 // activity action Write code
+	end
+      end
+
+      activityaction 129542 "Assign"
+	opaque_action
+      end
+
+      activitynode 130438 decision ""
+	flow 136716 "<flow>"
+	  on activitynode_ref 130566 // flow_final
+	end
+
+	flow 136844 "<flow>"
+	  on activitynode_ref 130950 // fork
+	end
+
+	flow 137228 "<flow>"
+	  on activityaction_ref 130310 // activity action Create release
+	end
+
+	flow 137868 "<flow>"
+	  on activitynode_ref 134668 // join
+	end
+
+	flow 138124 "<flow>"
+	  on activitynode_ref 134796 // join
+	end
+
+	flow 138380 "<flow>"
+	  on activitynode_ref 134924 // fork
+	end
+      end
+
+      activitynode 130566 flow_final ""
+      end
+
+      activityaction 129670 "Merge Pull Request"
+	opaque_action
+	flow 136460 "<flow>"
+	  on activityaction_ref 129798 // activity action Test
+	end
+      end
+
+      activityaction 129798 "Test"
+	opaque_action
+	flow 136588 "<flow>"
+	  on activitynode_ref 130438 // decision
+	end
+      end
+
+      activitynode 130694 decision ""
+	flow 135436 "<flow>"
+	  on activityaction_ref 134668 // activity action Request changes
+	end
+
+	flow 135948 "<flow>"
+	  on activityaction_ref 129286 // activity action Review code
+	end
+
+	flow 136204 "<flow>"
+	  on activityaction_ref 129670 // activity action Merge Pull Request
+	end
+      end
+
+      activityaction 129926 "Deploy release"
+	opaque_action
+	flow 139532 "<flow>"
+	  on activityaction_ref 130054 // activity action Confirm
+	end
+      end
+
+      activityaction 130054 "Confirm"
+	opaque_action
+	flow 139660 "<flow>"
+	  on activitynode_ref 130822 // decision
+	end
+      end
+
+      activityaction 130182 "Alert release"
+	opaque_action
+	flow 138892 "<flow>"
+	  on activitynode_ref 135052 // join
+	end
+
+	flow 139148 "<flow>"
+	  on activitynode_ref 135180 // join
+	end
+      end
+
+      activityaction 130310 "Create release"
+	opaque_action
+	flow 137356 "<flow>"
+	  on activitynode_ref 134540 // fork
+	end
+
+	flow 138764 "<flow>"
+	  on activitynode_ref 135052 // join
+	end
+
+	flow 139020 "<flow>"
+	  on activitynode_ref 135180 // join
+	end
+
+	flow 140556 "<flow>"
+	  on activityobject_ref 134924 // activity object Release
+	end
+      end
+
+      activityaction 130438 "Evaluate"
+	opaque_action
+      end
+
+      activityaction 130566 "Announce"
+	opaque_action
+	flow 140300 "<flow>"
+	  on activitynode_ref 131078 // activity_final
+	end
+      end
+
+      activitynode 130822 decision ""
+	flow 139788 "<flow>"
+	  on activityaction_ref 131590 // activity action Roll back
+	end
+
+	flow 139916 "<flow>"
+	  on activityaction_ref 131462 // activity action Create hotfix release
+	end
+
+	flow 140172 "<flow>"
+	  on activityaction_ref 130566 // activity action Announce
+	end
+
+	flow 140812 "<flow>"
+	  on activityaction_ref 129414 // activity action Assign
+	    uml_guard "hotfix/rollback"
+	end
+      end
+
+      activitynode 130950 fork ""
+	flow 136972 "<flow>"
+	  on activityaction_ref 129926 // activity action Deploy release
+	end
+
+	flow 137100 "<flow>"
+	  on activityaction_ref 130182 // activity action Alert release
+	end
+      end
+
+      activitynode 131078 activity_final ""
+      end
+
+      activitynode 131206 flow_final ""
+      end
+
+      activityaction 130694 "Merge"
+	opaque_action
+      end
+
+      interruptibleactivityregion 128646 "Development"
+	activityobject 134668 "Pull Request"
+	   explicit_type ""
+	  unordered 
+	  flow 135308 "<flow>"
+	    on activityaction_ref 131846 // activity action Reassign
+	  end
+	end
+
+	activityaction 134540 "Apply changes"
+	  opaque_action
+	  flow 135692 "<flow>"
+	    on activityaction_ref 131846 // activity action Reassign
+	  end
+	end
+
+	activityaction 134668 "Request changes"
+	  opaque_action
+	  flow 135564 "<flow>"
+	    on activityaction_ref 134540 // activity action Apply changes
+	  end
+	end
+      end
+
+      activityaction 130822 "Roll back"
+	opaque_action
+      end
+
+      activityaction 130950 "Apply hotfix"
+	opaque_action
+      end
+
+      activityaction 131078 "Roll back"
+	opaque_action
+      end
+
+      activityaction 131206 "Apply hotfix "
+	opaque_action
+      end
+
+      activityaction 131334 "Evaluate"
+	opaque_action
+      end
+
+      activitynode 131334 flow_final ""
+      end
+
+      activityaction 131462 "Create hotfix release"
+	opaque_action
+	flow 140044 "<flow>"
+	  on activityaction_ref 129926 // activity action Deploy release
+	end
+      end
+
+      activityaction 131590 "Roll back"
+	opaque_action
+	flow 139404 "<flow>"
+	  on activityaction_ref 129414 // activity action Assign
+	end
+
+	flow 140684 "<flow>"
+	  on activityaction_ref 131590 // activity action Roll back
+	end
+      end
+
+      activityaction 131718 "Create Pull Request"
+	opaque_action
+	flow 135180 "<flow>"
+	  on activityobject_ref 134668 // activity object Pull Request
+	end
+      end
+
+      activityaction 131846 "Reassign"
+	opaque_action
+	flow 135820 "<flow>"
+	  on activityaction_ref 129286 // activity action Review code
+	end
+      end
+
+      activityobject 134540 "Ticket"
+	 explicit_type ""
+	unordered 
+	flow 134668 "<flow>"
+	  on activityaction_ref 128774 // activity action Estimate
+	end
+      end
+
+      activityobject 134796 "Release"
+	 explicit_type ""
+	unordered 
+      end
+
+      activitynode 134540 fork ""
+	flow 137484 "<flow>"
+	  on activityaction_ref 129926 // activity action Deploy release
+	end
+
+	flow 137612 "<flow>"
+	  on activityaction_ref 129926 // activity action Deploy release
+	end
+
+	flow 137740 "<flow>"
+	  on activityaction_ref 130182 // activity action Alert release
+	end
+      end
+
+      activitynode 134668 join ""
+	flow 137996 "<flow>"
+	  on activityaction_ref 130310 // activity action Create release
+	end
+      end
+
+      activitynode 134796 join ""
+	flow 138252 "<flow>"
+	  on activityaction_ref 130310 // activity action Create release
+	end
+      end
+
+      activitynode 134924 fork ""
+	flow 138508 "<flow>"
+	  on activityaction_ref 130310 // activity action Create release
+	end
+
+	flow 138636 "<flow>"
+	  on activityaction_ref 130182 // activity action Alert release
+	end
+      end
+
+      activitynode 135052 join ""
+      end
+
+      activitynode 135180 join ""
+	flow 139276 "<flow>"
+	  on activityaction_ref 129926 // activity action Deploy release
+	end
+      end
+
+      activityobject 134924 "Release"
+	 explicit_type ""
+	unordered 
+	flow 140428 "<flow>"
+	  on activitynode_ref 135180 // join
+	end
+      end
+    end
+
+    activity 128134 "Development"
+    end
+  end
+end

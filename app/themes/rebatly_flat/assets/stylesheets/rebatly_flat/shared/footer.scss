@@ -1,0 +1,219 @@
+.pannacotta {
+  &#footer {
+    background-color: $color-rebatly-dark;
+    border-top: 3px solid $color-ready;
+    font-weight: normal;
+    margin-top: 40px;
+    padding: 0 0 30px;
+
+    .home & {
+      margin-top: 40px;
+    }
+
+    .col-xs-12 {
+      padding: 0;
+    }
+
+    .widget {
+      &.active {
+        .widget-header {
+          background-color: darken($color-text, 10%);
+          border-bottom-color: darken($color-text, 10%);
+        }
+      }
+
+      .widget-header {
+        background-color: darken($color-text, 5%);
+        border-bottom: 1px solid $color-text;
+        cursor: pointer;
+        padding: 15px 0;
+        position: relative;
+
+        @include flat-transition(background-color .3s ease, border-bottom-color .3s ease);
+
+        &:focus, &:hover {
+          background-color: darken($color-text, 10%);
+        }
+
+        &:after {
+          font-family: 'FontAwesome';
+          position: absolute;
+          line-height: 20px;
+          top: 50%;
+          margin-top: -10px;
+          color: #fff;
+          content: "\f078";
+          right: 10px;
+        }
+
+        &.collapsed:after {
+          content: "\f054";
+          font-family: 'FontAwesome';
+          position: absolute;
+          line-height: 20px;
+          top: 50%;
+          margin-top: -10px;
+          color: #fff;
+          right: 10px;
+        }
+
+        .widget-title {
+          color: #fff;
+          font-size: 19px;
+          font-weight: normal;
+          margin: 0;
+          text-align: center;
+
+        }
+      }
+
+      .widget-content {
+        background-color: darken($color-text, 10%);
+        border-bottom: 1px solid $color-text;
+        padding: 0 0 10px;
+        text-align: center;
+
+        ul li {
+          line-height: 40px;
+
+          a {
+            border-bottom: 1px solid transparent;
+            color: #fff;
+
+            @include flat-transition(border-bottom-color .3s ease);
+
+            &:focus, &:hover {
+              border-bottom-color: #fff;
+              text-decoration: none;
+            }
+          }
+
+          i, span {
+            display: none;
+          }
+        }
+      }
+    }
+
+    .copyright {
+      color: #fff;
+
+      img {
+        margin: 30px auto 30px;
+      }
+    }
+
+    .widget.footer_shops, .widget.footer_campaigns {
+      color: #fff;
+      line-height: 28px;
+
+      .widget-content {
+        text-align: center;
+        color: darken($color-text, 10%);
+        a {
+          color: #fff;
+          display: block;
+          text-decoration: none;
+        }
+      }
+    }
+    .disclaimer {
+      display: none;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .pannacotta {
+    &#footer {
+      border-top: none;
+      padding: 20px 0 30px;
+
+      .home & {
+        margin-top: 0px;
+      }
+
+      .col-xs-12 {
+        padding: 0 15px;
+      }
+
+      .widget {
+        .widget-header {
+          &:after, &.collapsed:after {
+            content: "";
+            display: none;
+          }
+          background-color: transparent;
+          border-bottom: none;
+          cursor: auto;
+          padding: 0;
+
+          &:focus, &:hover {
+            background-color: transparent;
+          }
+
+          .widget-title {
+            font-size: 21px;
+            font-weight: normal;
+            margin: 10px 0 20px;
+            text-align: left;
+          }
+        }
+
+        .widget-content {
+          background-color: transparent;
+          border-bottom: none;
+          margin-top: 0;
+          padding: 0;
+          text-align: left;
+
+          ul li i, ul li span {
+            display: inline-block;
+          }
+
+          ul li i {
+            border: 2px solid #fff;
+            border-radius: 20px;
+            color: #fff;
+            font-size: 18px;
+            height: 36px;
+            line-height: 20px;
+            margin: 0 10px 0 0;
+            padding: 8px 7px 4px;
+            text-align: center;
+            width: 36px;
+          }
+        }
+      }
+
+      .widget.footer_shops, .widget.footer_campaigns {
+        margin: 30px auto;
+        .widget-content {
+          color: #fff;
+          a {
+            display: inline;
+          }
+        }
+      }
+
+      .copyright {
+        img {
+          margin: 10px auto 0;
+        }
+
+        .disclaimer {
+          display: block;
+          margin-top: 30px;
+          color: #fff;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 992px) {
+}
+
+@media (min-width: 1200px) {
+}
+

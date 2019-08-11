@@ -1,0 +1,49 @@
+<%= form_for @message, :url => send("send_#{@type}_form_#{@site.site.id}_path"), method: :post, html: {class: 'form contact-form ' + @type + '_form'} do |f| %>
+
+  <p><%= t(:WELCOME_TEXT_CONTACT_PAGE, defaul: 'WELCOME_TEXT_CONTACT_PAGE') %></p>
+
+  <hr>
+
+  <div class="mail-form__group">
+
+    <%= f.label :name, t(:NAME_CONTACT_PAGE, default: 'Name') %>
+
+    <%= f.text_field :name, class: 'mail-form__control', required: true %>
+
+  </div>
+
+  <div class="mail-form__group">
+
+    <%= f.label :email, t(:EMAIL_ADRESS_USER_CONTACT_PAGE, default: 'Email') %>
+
+    <%= f.email_field :email, class: 'mail-form__control', required: true %>
+
+  </div>
+
+  <div class="mail-form__group">
+
+    <%= f.label :phone, t(:PHONE_NUMBER_USER_CONTACT_PAGE, default: 'Phone') %>
+
+    <%= f.text_field :phone, class: 'mail-form__control' %>
+
+  </div>
+
+  <div class="mail-form__group">
+
+    <%= f.label :reason, t(:YOUR_CONCERN_CONTACT_PAGE, default: 'Reason') %>
+
+    <%= f.select :reason, ContactForm::reasons, {}, class: 'mail-form__control' %>
+
+  </div>
+
+  <div class="mail-form__group">
+
+    <%= f.label :message, t(:YOUR_MESSAGE_CONTACT_PAGE, default: 'Message') %>
+
+    <%= f.text_area :message, class: 'mail-form__control' %>
+
+  </div>
+
+  <%= f.submit t(:SUBMIT, default: 'Submit'), class: 'mail-form__button', disabled: true %>
+
+<% end %>

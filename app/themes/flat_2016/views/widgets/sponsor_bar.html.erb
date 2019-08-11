@@ -1,0 +1,27 @@
+<div class="sponsor-bar">
+
+  <div class="container">
+
+    <div class="row">
+
+      <a href="<%= values[:href] %>" class="sponsor-bar__link">
+
+        <div class="col-sm-4">
+
+          <img src="<%= values[:image_url] %>" alt="Sponsor" class="sponsor-bar__logo img-responsive" height="50">
+
+        </div>
+
+        <div class="col-sm-8">
+
+          <span class="sponsor-bar__text"><%= values[:content].html_safe if values[:content].present? %></span>
+
+        </div>
+
+      </a>
+
+    </div>
+
+  </div>
+
+</div>

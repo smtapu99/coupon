@@ -1,0 +1,376 @@
+<script>
+  $('meta[content*="ISO-8859-1"]').remove();
+</script>
+<style>
+  body {
+    font-size: 12px;
+  }
+  p {
+    color: #000;
+  }
+  .container {
+    margin-left: 0;
+    width: 776px;
+  }
+  .footer {
+    width: 788px;
+  }
+  .copyright {
+    width: 788px;
+  }
+  .col-xs-1, .col-sm-1, .col-md-1, .col-lg-1,
+  .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2,
+  .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3,
+  .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4,
+  .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5,
+  .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6,
+  .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7,
+  .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8,
+  .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9,
+  .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10,
+  .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11,
+  .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .box .box-header > h1, .box .box-header > .h1,
+  .box .box-header > h2, .box .box-header > .h2,
+  .box .box-header > h3, .box .box-header > .h3,
+  .box .box-header > h4, .box .box-header > .h4,
+  .box .box-header > h5, .box .box-header > .h5,
+  .box .box-header > h6, .box .box-header > .h6,
+  .box .box-header b, .box .box-header strong {
+    color: #000 !important;
+    font-size: 12px;
+  }
+  .btn {
+    font-size: 13px;
+  }
+  .btn .picon-percent, .btn .picon-scissors {
+    height: 42px;
+  }
+  .footer h1, .footer .h1,
+  .footer h2, .footer .h2,
+  .footer h3, .footer .h3,
+  .footer h4, .footer .h4,
+  .footer h5, .footer .h5,
+  .footer h6, .footer .h6 {
+    font-size: 14px;
+  }
+  .box.box-newsletter h1, .box.box-newsletter .h1,
+  .box.box-newsletter h2, .box.box-newsletter .h2,
+  .box.box-newsletter h3, .box.box-newsletter .h3,
+  .box.box-newsletter h4, .box.box-newsletter .h4,
+  .box.box-newsletter h5, .box.box-newsletter .h5,
+  .box.box-newsletter h6, .box.box-newsletter .h6,
+  .box.box-newsletter p {
+    font-size: 12px !important;
+  }
+  .box.box-newsletter p {
+    color: #000;
+  }
+  .box.box-newsletter p small {
+    color: #999;
+    font-size: 10px !important;
+  }
+  .box.box-newsletter button {
+    margin-bottom: 20px !important;
+  }
+  .box.box-newsletter .input-wrapper {
+    margin-top: 20px !important;
+  }
+  .lah_footer {
+    line-height: normal;
+  }
+  .lah_footer .spalte1 {
+    width: 237px;
+  }
+  .lah_footer .spalte2 {
+    width: 254px;
+  }
+  .lah_footer .spalte3 {
+    width: 252px;
+  }
+  .box-top-coupons .flex-caption {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+  .box-top-coupons .flex-caption a {
+    color: #000;
+    font-size: 16px;
+  }
+  .box-top-coupons .flex-caption a:hover, .box-top-coupons .flex-caption a:focus {
+    border-bottom-color: #900;
+    color: #900;
+  }
+  .box-content {
+    border-left: 1px solid #f9f9f9;
+    border-right: 1px solid #f9f9f9;
+  }
+  .box-categories .box-content .tab-content {
+    padding: 0 30px 0 20px;
+  }
+  .box-categories .tab-pane .chevron {
+    right: 10px;
+  }
+  .box a {
+    color: #900;
+  }
+  .box a:hover, .box a:focus {
+    border-bottom-color: #900;
+    color: #900;
+  }
+  .box-categories .tab-pane .thumbnail:hover,
+  .box-categories .tab-pane .thumbnail:focus {
+    border-color: #900;
+  }
+  .box-categories .tab-pane p {
+    color: #000;
+  }
+  .modal .flex-container .flex-how-to h1, .modal .flex-container .flex-how-to .h1,
+  .modal .flex-container .flex-how-to h2, .modal .flex-container .flex-how-to .h2,
+  .modal .flex-container .flex-how-to h3, .modal .flex-container .flex-how-to .h3,
+  .modal .flex-container .flex-how-to h4, .modal .flex-container .flex-how-to .h4,
+  .modal .flex-container .flex-how-to h5, .modal .flex-container .flex-how-to .h5,
+  .modal .flex-container .flex-how-to h6, .modal .flex-container .flex-how-to .h6,
+  .box.box-help .box-content h1, .box.box-help .box-content .h1,
+  .box.box-help .box-content h2, .box.box-help .box-content .h2,
+  .box.box-help .box-content h3, .box.box-help .box-content .h3,
+  .box.box-help .box-content h4, .box.box-help .box-content .h4,
+  .box.box-help .box-content h5, .box.box-help .box-content .h5,
+  .box.box-help .box-content h6, .box.box-help .box-content .h6 {
+    font-size: 21px;
+    line-height: 31px;
+    margin-bottom: 20px;
+  }
+  .widget-shopbar a img {
+    margin-right: 6px !important;
+  }
+  .navbar .navbar-nav li a {
+    color: #7d8991;
+    font-size: 12px;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  #header > div.breadcrumb {
+    display: none !important;
+  }
+  .home h1.main-h1 {
+    color: #72757f;
+    margin-bottom: 30px !important;
+    padding: 8px 10px 9px 10px;
+    font-size: 16px;
+  }
+  .copyright .pulled {
+    margin-bottom: 15px;
+  }
+  .picon-cook, .picon-lamp, .picon-trowel {
+    background-image: url("https://pannacotta-production.s3.amazonaws.com/medium/6580/file_name/sprite.png");
+    background-repeat: no-repeat;
+  }
+  .picon-cook {
+    background-position: -80px -240px;
+  }
+  .picon-lamp {
+    background-position: 0 -240px;
+  }
+  .picon-trowel {
+    background-position: -40px -240px;
+  }
+  .categories-list li a p span {
+    color: #900;
+  }
+  .coupons-list .coupon-header .coupon-title, .coupons-list .coupon-header .coupon-title > a {
+    font-size: 18px;
+    line-height: 22px;
+  }
+  .btn, .btn span {
+    font-size: 13px;
+  }
+  .coupons-list .coupon-code {
+    font-size: 12px;
+  }
+  .campaigns .coupon-content .call-to-action,
+  .categories .coupon-content .call-to-action,
+  .coupons .coupon-content .call-to-action,
+  .searches .coupon-content .call-to-action,
+  .shops .coupon-content .call-to-action {
+    padding-left: 6px;
+    padding-right: 47px;
+  }
+  .campaigns .coupons-list .coupon-content .call-to-action,
+  .categories .coupons-list .coupon-content .call-to-action,
+  .coupons .coupons-list .coupon-content .call-to-action,
+  .searches .coupons-list .coupon-content .call-to-action,
+  .shops .coupons-list .coupon-content .call-to-actionn {
+    min-width: 198px;
+  }
+  .shops.index #sidebar .filter-with-letters ul li a:hover,
+  .shops.index #sidebar .filter-with-letters ul li a:focus,
+  .shops.index #sidebar-mobile .filter-with-letters ul li a:hover,
+  .shops.index #sidebar-mobile .filter-with-letters ul li a:focus {
+    background-color: #2eacc8;
+  }
+  .box-coupon-filters-list ul li a {
+    padding: 10px 10px 0 7px;
+  }
+  div.filter-with-letters {
+    margin-left: -10px;
+    margin-right: -15px;
+  }
+  .shops .shop-header-wrapper .star-rating span {
+    font-size: 12px;
+  }
+  .shops .bg-overlayed h2, .shops .bg-overlayed .h2 {
+    color: #fff;
+    margin-top: 10px;
+  }
+  .shops .shop-header-wrapper .logo-container {
+    height: 107px;
+    margin-top: 15px;
+  }
+  .shops .shop-header-wrapper .star-rating {
+    margin-left: -30px;
+  }
+
+  @media (min-width: 768px) {
+    .navbar {
+      height: 50px;
+    }
+    #navbar-collapse > ul.nav.navbar-nav.navbar-right.hidden-xs.hidden-sm > li {
+      height: 48px;
+    }
+    #header > div.navbar.navbar-default {
+      margin: 20px 10px;
+    }
+    #header > div.navbar.navbar-default > div.container {
+      padding: 0;
+    width: 767px;
+    }
+    #sidebar {
+      width: 33.3333333333%;
+    }
+  }
+
+  @media (min-width: 992px) {
+    .shops .shop-header-wrapper .social-media-buttons li {
+      min-width: 120px;
+    }
+  }
+
+  /* OLD code */
+  .xlMiddleLayer {
+border-bottom: 1px solid #D2D2D2;
+border-top: 1px solid #D2D2D2;
+padding: 4px 0 10px 0;
+margin: 0 0 20px 0;
+height: 38px;
+color: #666666;
+font-size: 90%;
+clear: both;
+}
+.moduleXL6 a, .xlMiddleLayer a {
+margin: 0;
+color: #666666;
+}
+.xlMiddleLayer .divBoxLeft {
+padding-top: 4px;
+font-size: 12px;
+float: left;
+}
+#divFacebookComments {
+color: #4b67a0;
+padding-top: 3px;
+float: right;
+margin-right: 15px;
+}
+.divTwitterButton {
+float: left;
+width: 100px;
+}
+.divFacebookButton, .divFacebookShareButton {
+float: left;
+height: 22px;
+  line-height: 1;
+}
+.divFacebookButton {
+min-width: 110px;
+}
+.fb_edge_widget_with_comment {
+  z-index: 15;
+}
+.divFacebookShareButton {
+margin-left: 10px;
+}
+.fbSharePluginConnectButton {
+font-family: 'lucida grande', tahoma, verdana, arial, sans-serif;
+font-size: 11px;
+line-height: 1.28;
+float: left;
+font-weight: normal;
+}
+.fbSharePluginButton {
+background: none repeat scroll 0 0 #ECEEF5;
+border: 1px solid #CAD4E7;
+border-radius: 3px 3px 3px 3px;
+color: #3B5998;
+cursor: pointer;
+white-space: nowrap;
+display: inline-block;
+padding: 0 5px 1px;
+height: 16px;
+}
+.fbSharePluginButton a {
+background: none repeat scroll 0 0 transparent;
+border: 0 none;
+color: inherit;
+cursor: pointer;
+font: inherit;
+margin: -1px;
+padding: 0;
+padding-top: 1px;
+}
+.fbSharePluginButton a {
+color: #3B5998;
+cursor: pointer;
+font: inherit;
+}
+.fbSharePluginButtonIcon {
+margin-right: 3px;
+position: relative;
+top: 2px;
+background-image: url("http://static.ak.fbcdn.net/rsrc.php/v2/yD/x/Q8FTZ0iJJF2.png");
+background-repeat: no-repeat;
+display: inline-block;
+height: 13px;
+width: 14px;
+background-position: 0 0;
+}
+.fbSharePluginButton .fbSharePluginButtonIcon {
+margin-right: 2px;
+}
+.divGooglePlus {
+float: left;
+height: 22px;
+}
+.divGooglePlus {
+margin-left: 10px;
+width: 65px;
+}
+.fb_edge_widget_with_comment {
+  z-index: 1002;
+}
+.social_widgets_box .box-content {
+  overflow: visible;
+}
+.breadcrumb {
+  display: none;
+}
+</style>
+
+{{snippet_header}}
+
+{{main_content}}
+
+{{snippet_footer}}
+

@@ -1,0 +1,313 @@
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800|Oxygen:400,300,700" rel="stylesheet" type="text/css">
+<%
+
+if @snippet.show_exclusive
+  if @snippet.manual_mode && @snippet.exclusive_ids
+    exclusive_coupons = Coupon::get_exclusive_coupons(@snippet.quantity, @snippet.exclusive_ids.split(','))
+  else
+    exclusive_coupons = Coupon::get_exclusive_coupons(@snippet.quantity)
+  end
+end
+
+if @snippet.show_free_delivery
+  if @snippet.manual_mode && @snippet.free_delivery_ids
+    free_delivery_coupons = Coupon::get_free_delivery_coupons(@snippet.quantity, @snippet.free_delivery_ids.split(','))
+  else
+    free_delivery_coupons = Coupon::get_free_delivery_coupons(@snippet.quantity)
+  end
+end
+
+if @snippet.show_new
+  if @snippet.manual_mode && @snippet.new_ids
+    new_coupons = Coupon::get_new_coupons(@snippet.quantity, @snippet.new_ids.split(','))
+  else
+    new_coupons = Coupon::get_new_coupons(@snippet.quantity)
+  end
+end
+
+if @snippet.show_top
+  if @snippet.manual_mode && @snippet.top_ids
+    top_coupons = Coupon::get_top_coupons(@snippet.quantity, @snippet.top_ids.split(','))
+  else
+    top_coupons = Coupon::get_top_coupons(@snippet.quantity)
+  end
+end
+%>
+
+<% if exclusive_coupons || free_delivery_coupons || new_coupons || top_coupons %>
+  <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <style>
+    body {
+      margin: 0px;
+      background: transparent;
+    }
+    .snippet-publisher * { border: 0; font-size: 100%; margin: 0; padding: 0; vertical-align: baseline; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; -ms-box-sizing: border-box; box-sizing: border-box; }
+    .snippet-publisher .container { margin-left: 4%; margin-right: 4%; width: width: 92%; }
+    .snippet-publisher .container .grid-12 { display: inline; float: left; position: relative; }
+    .snippet-publisher .container .grid-12 { width: 100.0%; }
+    .snippet-publisher .clear { clear: both; display: block; height: 0; overflow: hidden; visibility: hidden; width: 0; }
+    .snippet-publisher .img-responsive { display: block; height: auto; width: 100%; }
+    .snippet-publisher {
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-size: 14px;
+    }
+    .snippet-publisher .container {
+      margin: 0;
+      width: 395px;
+    }
+    .snippet-publisher .wrapper {
+      height: 214px;
+      left: 0;
+      height: 182px;
+      width: 395px;
+    }
+    .snippet-publisher .wrapper p {
+      font-family: Oxygene, 'Helvetica Neue', Arial, sans-serif;
+      font-size: 16px;
+      background: #000;
+      border-radius: 5px 5px 0 0;
+      color: #fff;
+      display: block;
+      font-weight: bold;
+      margin-bottom: 0%;
+      padding: 2% 4% 1%;
+      text-transform: uppercase;
+    }
+    .snippet-publisher .wrapper p a, .snippet-publisher .wrapper p a:hover {
+      font-family: Oxygene, 'Helvetica Neue', Arial, sans-serif;
+      font-size: 16px;
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+      border-bottom: 0;
+    }
+
+    <% if params[:type].present? && params[:type] == 'white' %>
+      .snippet-publisher .wrapper p, .snippet-publisher .wrapper p a, .snippet-publisher .wrapper p a:hover {
+        background: #fff;
+        color: #585856;
+        font-weight: normal;
+        font-size: 14px;
+      }
+    <% end %>
+
+    .snippet-publisher .carousel li {
+      float: left;
+      height: 182px;
+      width: 395px;
+      background: white;
+    }
+    .snippet-publisher .pager {
+      float: left;
+      width: 40px;
+    }
+    .snippet-publisher .pager a {
+      background-color: <%= @snippet.color_one %>;
+      border-radius: 10px;
+      display: inline-block;
+      float: left;
+      height: 7px;
+      margin: 7px 3px;
+      text-indent: -99999;
+      width: 7px;
+    }
+    .snippet-publisher .pager a.selected { background-color: <%= @snippet.color_three %>; }
+    .snippet-publisher .wrapper-pagination {
+      left: 303px;
+      position: absolute;
+      top: 49px;
+      z-index: 1;
+      width: 82px;
+    }
+    .snippet-publisher .pagination { margin: 0 auto; }
+    .snippet-publisher .prev { float: left; }
+    .snippet-publisher .grid-12 img {
+      height: 155px;
+      margin-bottom: 0px;
+      width: 395px;
+    }
+  </style>
+  <div class="snippet-publisher">
+    <% if @snippet.show_top.present? && top_coupons.present? %>
+      <div class="wrapper">
+        <p>
+          <a href="http://codepromo.programme-tv.net/" alt="Codepromo Programme TV">
+            <%= t(:SNIPPET_TOP_COUPONS, default: 'SNIPPET_TOP_COUPONS') %>
+          </a>
+        </p>
+        <ul class="carousel">
+          <% top_coupons.each do |top_coupon| %>
+            <% top_coupon_url = send("coupon_clickout_#{@site.id}_path", top_coupon.id) %>
+            <% top_coupon_href = "//#{@hostname}#{dynamic_url_for('shop', 'show', slug: top_coupon.shop.slug)}##{top_coupon.id}" %>
+            <% top_coupon_data_url = "//#{@hostname}#{top_coupon_url}" %>
+            <li>
+              <div class="container">
+                <div class="grid-12">
+                </div>
+                <!-- /.grid-12 -->
+                <div class="clear"></div>
+                <!-- /.clear -->
+              </div>
+              <!-- /.container -->
+            </li>
+          <% end %>
+        </ul>
+        <!-- /.carousel -->
+      </div>
+      <!-- /.wrapper -->
+      <div class="wrapper-pagination">
+        <a href="#" class="prev"><img src="//cimg.leguide.com/img/partner/box/mea/fleche_gauche.png" alt=""></a>
+        <div class="pagination">
+          <div class="pager"></div>
+          <!-- /.pager -->
+        </div>
+        <!-- /.pagination -->
+        <a href="#" class="next"><img src="//cimg.leguide.com/img/partner/box/mea/fleche_droite.png" alt=""></a>
+      </div>
+      <!-- /.wrapper-pagination -->
+    <% elsif @snippet.show_new.present? && new_coupons.present? %>
+      <div class="wrapper">
+        <p><%= t(:SNIPPET_NEW_COUPONS, default: 'SNIPPET_NEW_COUPONS') %></p>
+        <ul class="carousel">
+          <% new_coupons.each do |new_coupon| %>
+            <% new_coupon_url = send("coupon_clickout_#{@site.id}_path", new_coupon.id) %>
+            <% new_coupon_href = "//#{@hostname}#{dynamic_url_for('shop', 'show', slug: new_coupon.shop.slug)}##{new_coupon.id}" %>
+            <% new_coupon_data_url = "//#{@hostname}#{new_coupon_url}" %>
+            <li>
+              <div class="container">
+                <div class="grid-12">
+                </div>
+                <!-- /.grid-12 -->
+                <div class="clear"></div>
+                <!-- /.clear -->
+              </div>
+              <!-- /.container -->
+            </li>
+          <% end %>
+        </ul>
+        <!-- /.carousel -->
+      </div>
+      <!-- /.wrapper -->
+      <div class="wrapper-pagination">
+        <a href="#" class="prev"><img src="//cimg.leguide.com/img/partner/box/mea/fleche_gauche.png" alt=""></a>
+        <div class="pagination">
+          <div class="pager"></div>
+          <!-- /.pager -->
+        </div>
+        <!-- /.pagination -->
+        <a href="#" class="next"><img src="//cimg.leguide.com/img/partner/box/mea/fleche_droite.png" alt=""></a>
+      </div>
+      <!-- /.wrapper-pagination -->
+    <% elsif @snippet.show_exclusive.present? && exclusive_coupons.present? %>
+      <div class="wrapper">
+        <p><%= t(:SNIPPET_EXCLUSIVE_COUPONS, default: 'SNIPPET_EXCLUSIVE_COUPONS') %></p>
+        <ul class="carousel">
+          <% exclusive_coupons.each do |exclusive_coupon| %>
+            <% exclusive_coupon_url = send("coupon_clickout_#{@site.id}_path", exclusive_coupon.id) %>
+            <% exclusive_coupon_href = "//#{@hostname}#{dynamic_url_for('shop', 'show', slug: exclusive_coupon.shop.slug)}##{exclusive_coupon.id}" %>
+            <% exclusive_coupon_data_url = "//#{@hostname}#{exclusive_coupon_url}" %>
+            <li>
+              <div class="container">
+                <div class="grid-12">
+                </div>
+                <!-- /.grid-12 -->
+                <div class="clear"></div>
+                <!-- /.clear -->
+              </div>
+              <!-- /.container -->
+            </li>
+          <% end %>
+        </ul>
+        <!-- /.carousel -->
+      </div>
+      <!-- /.wrapper -->
+      <div class="wrapper-pagination">
+        <a href="#" class="prev"><img src="//cimg.leguide.com/img/partner/box/mea/fleche_gauche.png" alt=""></a>
+        <div class="pagination">
+          <div class="pager"></div>
+          <!-- /.pager -->
+        </div>
+        <!-- /.pagination -->
+        <a href="#" class="next"><img src="//cimg.leguide.com/img/partner/box/mea/fleche_droite.png" alt=""></a>
+      </div>
+      <!-- /.wrapper-pagination -->
+    <% elsif @snippet.show_free_delivery.present? && free_delivery_coupons.present? %>
+      <div class="wrapper">
+        <p><%= t(:SNIPPET_FREE_DELIVERY_COUPONS, default: 'SNIPPET_FREE_DELIVERY_COUPONS') %></p>
+        <ul class="carousel">
+          <% free_delivery_coupons.each do |free_delivery_coupon| %>
+            <% free_delivery_coupon_url = send("coupon_clickout_#{@site.id}_path", free_delivery_coupon.id) %>
+            <% free_delivery_coupon_href = "//#{@hostname}#{dynamic_url_for('shop', 'show', slug: free_delivery_coupon.shop.slug)}##{free_delivery_coupon.id}" %>
+            <% free_delivery_coupon_data_url = "//#{@hostname}#{free_delivery_coupon_url}" %>
+            <li>
+              <div class="container">
+                <div class="grid-12">
+                </div>
+                <!-- /.grid-12 -->
+                <div class="clear"></div>
+                <!-- /.clear -->
+              </div>
+              <!-- /.container -->
+            </li>
+          <% end %>
+        </ul>
+        <!-- /.carousel -->
+      </div>
+      <!-- /.wrapper -->
+      <div class="wrapper-pagination">
+        <a href="#" class="prev"><img src="//cimg.leguide.com/img/partner/box/mea/fleche_gauche.png" alt=""></a>
+        <div class="pagination">
+          <div class="pager"></div>
+          <!-- /.pager -->
+        </div>
+        <!-- /.pagination -->
+        <a href="#" class="next"><img src="//cimg.leguide.com/img/partner/box/mea/fleche_droite.png" alt=""></a>
+      </div>
+      <!-- /.wrapper-pagination -->
+    <% end %>
+  </div>
+  <!-- /.snippet-publisher -->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.caroufredsel/6.2.1/jquery.carouFredSel.packed.js"></script>
+  <script>
+    jQuery(document).ready(function($) {
+      var is_safari = navigator.userAgent.indexOf('Safari') > -1;
+
+      jQuery(document).on('click', '.snippet-publisher .grid-12 a', function() {
+        var $this = jQuery(this);
+        window.location.href = $this.data('coupon-url');
+
+        if (is_safari) {
+          window.open($this.attr('href'));
+          return false;
+        }
+      });
+
+      jQuery('.carousel').carouFredSel({
+        items: {
+          height: 182,
+          visible: 1,
+          width: 395
+        },
+        scroll: {
+          duration: 500,
+          fx: 'scroll',
+          timeoutDuration: 3000
+        },
+        prev: {
+          button: '.prev',
+          key: 'left'
+        },
+        next: {
+          button: '.next',
+          key: 'right'
+        },
+        pagination: {
+          container: '.pager',
+          duration: 300
+        }
+      });
+    });
+  </script>
+<% end %>

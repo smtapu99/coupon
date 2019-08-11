@@ -1,0 +1,44 @@
+<div class='login-container'>
+
+  <div class='container'>
+
+    <div class='row'>
+
+      <div class='col-sm-4 col-sm-offset-4'>
+
+        <h1 class='text-center title'>Sign in</h1>
+
+        <div class="row">
+
+          <%= render partial: 'admin/shared/flash' %>
+
+        </div>
+
+        <%= form_for(resource, as: resource_name, url: admin_users_pre_sign_in_path(resource_name), html: { id: 'step-1', class: 'validate-form' }) do |f| %>
+
+          <div class='form-group'>
+
+            <div class='controls with-icon-over-input'>
+
+              <%= f.email_field :email, autofocus: true, id: 'user_sign_in_email', class: 'form-control', placeholder: 'E-mail', data: { 'rule-required' => true } %>
+
+              <i class='icon-user text-muted'></i>
+
+            </div>
+
+          </div>
+
+          <%= f.submit 'Next', class: 'btn btn-block' %>
+
+        <% end %>
+
+        <%= render "admin/users/shared/links" %>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+

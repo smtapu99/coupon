@@ -1,0 +1,79 @@
+.premium-widget {
+  padding: 0;
+  color: #000;
+  background-color: #FFF;
+  border-top: 5px solid #000;
+
+  @media #{$md} {
+    padding-bottom: 25px;
+  }
+
+  .col-md-3:first-of-type {
+    @media #{$min-md} {
+      padding-left: 15px;
+    }
+
+    border-right: 1px solid $border-color;
+  }
+
+  .col-md-6:first-of-type {
+    border-right: 1px solid $border-color;
+  }
+
+  &__header {
+    display: block;
+    margin: 0 -15px;
+    padding: 15px 18px;
+    color: #666;
+    font-weight: 400;
+    font-size: 36px;
+    font-family: 'AmbroiseStdFrancois-Regular';
+    text-transform: uppercase;
+    border-bottom: 1px solid $border-color;
+  }
+
+  a {
+    color: #666;
+    font-family: Georgia;
+  }
+
+  &__shops {
+    margin-top: 25px;
+    padding-left: 4px;
+  }
+
+  &__shops-item {
+    margin-bottom: 24px;
+    font-weight: 400;
+    text-transform: uppercase;
+
+    @media #{$xs} {
+      margin-bottom: 16px;
+      font-size: 16px;
+    }
+  }
+
+  &__coupon {
+    border-bottom: 1px solid $border-color;
+
+    &:last-of-type {
+      @media #{$min-md} {
+        border: none;
+      }
+    }
+
+    &-tag {
+      color: #000;
+      background-color: #EDBF4A;
+
+      &::before {
+        border-right: 10px solid #EDBF4A;
+      }
+    }
+  }
+
+  &__coupon-text {
+    font-weight: 400;
+  }
+
+}

@@ -1,0 +1,48 @@
+<div class="about-campaign" id="about-campaign<%= "-" + order_number.to_s if defined?(order_number) %>">
+
+  <div class="about-campaign__header">
+
+    <h3 class="section-header"><%= values[:title] %></h3>
+
+  </div>
+
+  <div class="about-campaign__wrapper">
+
+    <div class="container">
+
+      <div class="row">
+
+        <%- if values[:image_url].present? -%>
+
+          <div class="col-lg-6">
+
+            <div class="about-campaign__name">
+
+              <img class="about-campaign__sale" src="<%= values[:image_url] %>" alt="Sale">
+
+            </div>
+
+          </div>
+
+        <%- end -%>
+
+
+        <div class="col-md-<%= values[:image_url].present? ? '6' : '12' %>">
+
+          <div class="about-campaign__text">
+
+            <%= values[:content].html_safe if values[:content].present? %>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- /.about-campaign -->

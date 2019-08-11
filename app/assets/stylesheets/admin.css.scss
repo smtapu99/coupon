@@ -1,0 +1,241 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require flatty/theme-colors
+ *= require flatty/theme/_font-awesome
+ *= require flatty/bootstrap/bootstrap
+ *= require flatty/plugins/bootstrap_colorpicker/bootstrap-colorpicker
+ *= require flatty/plugins/bootstrap_daterangepicker/bootstrap-daterangepicker
+ * require flatty/plugins/common/bootstrap-wysihtml5
+ *= require flatty/plugins/select2/select2
+ *= require flatty/jquery/jquery_ui
+ *= require flatty/light-theme
+ *= require codemirror
+ *= require codemirror/themes/monokai
+ *= require_self
+ */
+
+#ui-datepicker-div {
+  background-color: rgb(240, 240, 240);
+}
+
+.text-overflow {
+    text-overflow: ellipsis;
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.custom-dropdown {
+    width: 98%;
+    height: 30px;
+    padding-left: 1%;
+    padding-right: 1%;
+}
+.pagination {
+  margin: 10px 0;
+}
+
+.colorpicker.dropdown-menu {
+  z-index: 10001;
+}
+
+.btn-toolbar {
+  margin-bottom: 5px;
+}
+
+.box textarea {
+  min-height: 250px;
+}
+
+input[type="file"]:focus, input[type="radio"]:focus, input[type="checkbox"]:focus, .form-control.check_box, input[type="radio"], input[type="checkbox"] {
+  outline: none;
+  box-shadow: none;
+}
+
+header .navbar > .nav > li#site_dropdown > a {
+    padding-top: 9px !important;
+}
+
+.big-icon { font-size: 30px; }
+
+i.text-center { display: block; }
+
+.text-center { text-align: center; }
+
+.error-message {
+  margin-bottom: 5px;
+  padding: 5px 30px 5px 15px;
+}
+
+.btn-toolbar a[data-status] { display: none; }
+.js .btn-toolbar a[data-status] { display: inline-block; }
+
+.dropdown-menu > li > a.selected {
+  background-color: #f34541;
+  color: #fff;
+}
+
+
+/**
+* Widgets
+**/
+
+ul.sortable_item, #widgets, #ads, #sortable_coupons {
+    margin-left: 0;
+    padding: 0px;
+    width: 100%;
+    list-style: none;
+    position: relative;
+}
+
+ul.sortable_item {
+    min-height: 100px;
+}
+
+ul.sortable_item li, .widget-box, .ad, .sortable_coupon {
+    width: 100%;
+    margin-bottom: 5px;
+    padding: 5px 2%;
+    height: 40px;
+    line-height: 30px;
+}
+
+.ad small {
+  text-align: right;
+  display: block;
+  line-height: 15px;
+
+  &.expired {
+    color: #f34541;
+  }
+}
+
+ul.sortable_item li:hover, .widget-box:hover, .ad:hover, .sortable_coupon:hover {
+    cursor: pointer;
+}
+
+.cloud-background, ul.sortable_item li, .widget-box, .ad, .sortable_coupon {
+    color: #33536d;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    background-color: #e5e9ea;
+    text-shadow: none;
+    background-image: -moz-linear-gradient(top, #ecf0f1, #dadedf);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ecf0f1), to(#dadedf));
+    background-image: -webkit-linear-gradient(top, #ecf0f1, #dadedf);
+    background-image: -o-linear-gradient(top, #ecf0f1, #dadedf);
+    background-image: linear-gradient(to bottom, #ecf0f1, #dadedf);
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffecf0f1', endColorstr='#ffdadedf', GradientType=0);
+    border-color: #dadedf #dadedf #b1b9bc;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+    *background-color: #dadedf;
+    /* Darken IE7 buttons by default so they stand out more given they won't have borders */
+    border-width: 1px;
+    border-style: solid;
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+    -webkit-box-shadow: inset 0 1px 0 1px rgba(255,255,255,0.5);
+    box-shadow: inset 0 1px 0 1px rgba(255,255,255,0.5);
+}
+.cloud-background i {
+    color: #33536d;
+}
+ul.unstyled, #widgets ul, #ads ul, #sortable_coupons ul {
+    margin-left: 0;
+    list-style: none;
+    padding-left: 0;
+}
+#widgetareas .remove-link, #widgetareas .update-link,  #ad-spaces .update-link {
+    display: none;
+}
+#widgetareas .sortable_item li div, .widget-box div, .ad div {
+    float: left;
+    max-width: 76%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.widget-box table td {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.form-control.select2-container {
+    min-height: 34px;
+    height: auto;
+}
+.CodeMirror {
+  border: 1px solid #eee !important;
+  height: auto !important;
+}
+.CodeMirror-scroll {
+  min-height: 100px;
+  overflow-y: hidden !important;
+  overflow-x: auto !important;
+}
+
+.CodeMirror-lines {
+  line-height: 20px;
+}
+
+table tr.expired {
+  td {
+    background-color: #FAE1BC !important;
+  }
+}
+
+.prioritizable_coupon input {
+  height: 28px;
+  line-height: 24px;
+  padding-left: 23px;
+}
+#banner-table .img-thumbnail {
+  max-width: 300px;
+}
+
+.select2_select_all {
+  position: absolute;
+  top: -30px;
+  right: 0;
+
+  @media (min-width: 1024px) {
+    top: 3px;
+    right: -94px;
+  }
+}
+
+[id^='edit_setting'] .select2_select_all {
+  top: -30px;
+  right: 0;
+}
+
+.qr {
+  border-width: 0;
+  border-style: none;
+  border-color: #0000ff;
+  border-collapse: collapse;
+  td {
+    border-width: 0;
+    border-style: none;
+    border-color: #0000ff;
+    border-collapse: collapse;
+    padding: 0;
+    margin: 0;
+    width: 10px;
+    height: 10px;
+    &.black {
+      background-color: #000;
+    }
+    &.white {
+      background-color: #fff;
+    }
+  }
+}

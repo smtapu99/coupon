@@ -1,0 +1,30 @@
+<%= f.fields_for :setting_attributes, ancestor.setting || Setting.new do |ff| %>
+
+  <%= ff.fields_for :publisher_site, ff.object.publisher_site do |fff| %>
+
+    <div class="form-group">
+      <%= fff.label :custom_head_scripts, class: 'col-md-2 control-label' %>
+      <div class="col-md-5">
+          <%= fff.text_area :custom_head_scripts, class: 'form-control text_area' %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= fff.label :show_footer, class: 'col-md-2 control-label' %>
+      <div class="col-md-5">
+          <%= fff.select :show_footer, Option::get_select_options('yes_or_no', true), {}, class: 'form-control text_field' %>
+      </div>
+    </div>
+
+  <% end %>
+
+  <%= ff.fields_for :widget_ranking, ff.object.widget_ranking do |fff| %>
+    <div class="form-group">
+      <%= fff.label :show_featured_images_before_coupons, class: 'col-md-2 control-label' %>
+      <div class="col-md-5">
+          <%= fff.select :show_featured_images_before_coupons, Option::get_select_options('yes_or_no', true), {}, class: 'form-control text_field' %>
+      </div>
+    </div>
+  <% end %>
+
+<% end %>

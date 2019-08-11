@@ -1,0 +1,168 @@
+/*
+ * This is a manifest file that'll automatically include all the stylesheets available in this directory
+ * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
+ * the top of the compiled file, but it's generally better to create a new file per style scope.
+ *
+ * require_tree .
+ * require_self
+ */
+
+/* @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,300); */
+
+@import 'bootstrap-3.3.7';
+@import 'jasny-bootstrap-3.1.3.min';
+@import 'font-awesome-4.7.0';
+
+@import 'shared/variables';
+@import 'shared/mixins';
+
+<% if defined? variables %>
+
+<%= variables %>
+
+<% end %>
+
+@import 'modules/header_image';
+@import 'modules/featured_coupons';
+@import 'modules/rotated_coupons';
+@import 'modules/featured_images';
+@import 'modules/headlines';
+@import 'modules/lists';
+
+@import 'shared/icons';
+@import 'shared/fonts';
+
+@import 'shared/backgrounds';
+@import 'shared/buttons';
+@import 'shared/cards';
+@import 'shared/colors';
+@import 'shared/helpers';
+
+@import 'shared/additional_info';
+@import 'shared/alerts';
+@import 'shared/borders';
+@import 'shared/flexslider';
+@import 'shared/card_as_seen_on';
+@import 'shared/card_breadcrumbs';
+@import 'shared/card_search_mobile';
+@import 'shared/card_shop_filter';
+@import 'shared/card_coupon_filter';
+@import 'shared/header';
+@import '../../../../flat_2016/assets/stylesheets/flat_2016/shared/header_search_results';
+@import 'shared/footer';
+@import 'shared/newsletter';
+@import 'shared/sidebar';
+@import 'shared/modals';
+@import 'shared/shop_banner';
+@import '../../../../flat_2016/assets/stylesheets/flat_2016/shared/flyout';
+
+@import 'bookmarks/card_starter_guide';
+
+@import 'campaigns/card_about_this_campaign';
+
+@import 'widget/image';
+@import 'widget/text';
+@import 'widget/top_x_coupons';
+@import '../../../../flat_2016/assets/stylesheets/flat_2016/widget/shop_list_columns';
+@import '../../../../flat_2016/assets/stylesheets/flat_2016/widget/campaign_widgets';
+
+@import 'categories/card_back_to';
+@import 'categories/card_categories_index';
+@import 'categories/card_categories_description';
+@import 'categories/card_category_description';
+@import 'categories/card_category_featured_shops';
+@import 'categories/card_see_more_categories';
+
+@import 'cookies_eu/cookies_eu';
+
+@import 'coupons/card_coupons_list';
+@import '../../../../flat_2016/assets/stylesheets/flat_2016/coupons/card_coupons_grid';
+@import '../../../../flat_2016/assets/stylesheets/flat_2016/coupons/coupon_cta';
+@import 'coupons/card_list_coupon_type';
+@import 'coupons/card_pagination';
+@import 'coupons/coupons_as_items';
+@import 'coupons/clickout_redirect';
+@import 'coupons/dropdown_list_coupon_type';
+@import '../../../../flat_2016/assets/stylesheets/flat_2016/coupons/coupon_banner';
+
+@import '../../../../flat_2016/assets/stylesheets/flat_2016/mail_forms/card_contact_forms';
+
+@import 'pages/card_pages_show';
+@import 'pages/home';
+
+@import 'shops/featured_shops';
+@import 'shops/seo_text_container';
+@import 'shops/card_empty_shop';
+@import 'shops/card_empty_shops';
+@import 'shops/card_expired_coupons_list';
+@import 'shops/card_filter_by_category';
+@import 'shops/more_from_this_shop';
+@import 'shops/related_items';
+@import 'shops/popular_shops';
+@import 'shops/card_shops_index';
+@import 'shops/card_shop_header';
+@import 'shops/shop_rating';
+
+@import '../../../../flat_2016/assets/stylesheets/flat_2016/campaigns/themed';
+@import '../../../../flat_2016/assets/stylesheets/flat_2016/campaigns/sem';
+
+body {
+  background-attachment: $background-attachment;
+  background-color: $color-body-bg;
+  background-position: $background-position;
+  background-repeat: $background-repeat;
+  background-size: $background-size;
+
+  font-family: "Museo Sans", sans-serif;
+  text-rendering: optimizeLegibility;
+}
+
+body.only-content {
+  padding-top: 28px;
+}
+
+a {
+  color: $color-link;
+}
+
+b, strong {
+  font-weight: bold;
+}
+
+.form-control {
+  border-radius: 0px;
+}
+
+.text-ellipsis {
+  @include flat-truncate;
+}
+.btn-group-lg > .btn, .btn-lg {
+  border-radius: 0 !important;
+}
+
+.bold-text {
+  font-weight: bold;
+}
+
+label.privacy_policy {
+  font-weight: normal;
+  a {
+    color: #fff !important;
+    text-decoration: underline;
+  }
+}
+
+.loader {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #000;
+  border-bottom: 4px solid #000;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

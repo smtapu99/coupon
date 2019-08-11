@@ -1,0 +1,67 @@
+<div class="pannacotta" id="header" data-event-category="header">
+
+  <div class="container">
+
+    <div class="row">
+
+      <div class="col-xs-6 col-xs-push-3 col-sm-2 col-sm-push-5">
+
+        <%= render partial: 'shared/site_logo' %>
+
+      </div>
+
+      <!-- /.col-xs-6 col-xs-push-3 col-sm-2 col-sm-push-5 -->
+
+    </div>
+
+    <!-- /.row -->
+
+  </div>
+
+  <!-- /.container -->
+
+</div>
+
+<!-- /#header.pannacotta -->
+
+<div class="container">
+
+  <div class="row">
+
+    <div class="col-xs-12 col-sm-8 col-sm-push-2 pannacotta" id="content" role="main">
+
+      <p class="redirect-message text-center"><%= t(:COUPON_REDIRECT_MESSAGE, default: 'Hang on! We are taking you to:') %> <b><%= @coupon.shop_title %></b></p>
+
+      <!-- /.redirect-message text-center -->
+
+      <ul class="list-inline list-unstyled list-redirect text-center">
+
+        <li><i class="roberto roberto-home"></i></li>
+
+        <% 5.times do %>
+
+          <li><span class="list-circle"></span></li>
+
+        <% end %>
+
+        <li><i class="roberto roberto-shopping-cart"></i></li>
+
+      </ul>
+
+      <!-- /.list-inline list-unstyled list-redirect text-center -->
+
+      <%= render partial: 'coupons/shared/card_coupons_list', locals: { coupons: [@coupon], is_redirect: true, hide_pagination: true } %>
+
+    </div>
+
+    <!-- /#content.col-xs-12 col-sm-8 col-sm-push-2 pannacotta -->
+
+  </div>
+
+  <!-- /.row -->
+
+</div>
+
+<!-- /.container -->
+
+<%= render 'coupons/shared/clickout_script' %>

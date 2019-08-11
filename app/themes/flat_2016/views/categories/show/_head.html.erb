@@ -1,0 +1,9 @@
+<% content_for :head do %>
+
+  <% if category.html_document.try(:head_scripts).present? %>
+
+    <%= category.html_document.head_scripts.html_safe %>
+
+  <% end %>
+
+<% end %>

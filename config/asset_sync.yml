@@ -1,0 +1,29 @@
+defaults: &defaults
+  fog_provider: <%= ENV['FOG_PROVIDER'] ||= 'Google' %>
+  google_storage_access_key_id: <%= ENV['GS_ACCESS_KEY_ID'] %>
+  google_storage_secret_access_key: <%= ENV['GS_SECRET_ACCESS_KEY'] %>
+  fog_directory: <%= ENV['FOG_DIRECTORY'] ||= 'assets.js-1000.jetscale.net' %>
+  fail_silently: false
+
+development:
+
+  <<: *defaults
+
+  enabled: false
+
+
+test:
+
+  <<: *defaults
+
+  enabled: false
+
+
+staging:
+
+  <<: *defaults
+
+
+production:
+
+  <<: *defaults

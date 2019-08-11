@@ -1,0 +1,35 @@
+.pannacotta.expiring-coupons {
+  .content .content--head {
+    display: inline-block;
+    width: 100%;
+
+    p {
+      margin-bottom: 2px !important;
+
+      &.timer {
+        color: $color-ready;
+        font-weight: 600;
+      }
+    }
+
+    i {
+      font-size: .84em;
+    }
+  }
+}
+
+@media (min-width: 992px) {
+  .pannacotta.expiring-coupons {
+    .content .content--head p {
+      font-size: .88em !important;
+    }
+  }
+}
+
+@media (min-width: 1200px) {
+  .pannacotta.expiring-coupons {
+    .content .content--head p {
+      font-size: 1em !important;
+    }
+  }
+}

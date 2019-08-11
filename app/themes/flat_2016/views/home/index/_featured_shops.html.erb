@@ -1,0 +1,83 @@
+<% if @shops_featured.present? %>
+
+  <div class="container featured-shops__order-0">
+
+    <div class="row">
+
+      <div class="col-xs-12">
+
+        <h2><%= t(:POPULAR_SHOPS, default: 'Popular Shops') %></h2>
+
+        <a href="<%= dynamic_url_for('shop') %>" class="more-link"><%= t(:SEE_ALL_SHOPS, default: 'View All Shops') %> <i class="roberto-chevron-right"></i></a>
+
+      </div>
+      <!-- /.col-xs-12 -->
+
+      <div class="col-xs-12">
+
+        <div class="pannacotta featured-shops flex-default-style" data-event-category="stage_featuredshops">
+
+          <div class="flexslider--home">
+
+            <ul class="slides list-unstyled">
+
+              <li>
+
+                <ol class="list-unstyled hover">
+
+                  <% @shops_featured.each_with_index do |shop, index| %>
+
+                    <%= '<li><ol class="list-unstyled hover">'.html_safe if index === 6 || index === 12 %>
+
+                      <li data-shop-name="<%= shop.title %>">
+
+                        <div class="item">
+
+                          <a href="<%= dynamic_url_for('shop', 'show', slug: shop.slug) %>" data-shop-name="<%= shop.title %>">
+
+                            <%= image_tag shop.logo_url('_180x180'), alt: (shop.logo_alt_text.present? ? shop.logo_alt_text : shop.title), class: 'img-responsive',  height: 250, width: 250 if shop.logo? %>
+
+                          </a>
+
+                        </div>
+                        <!-- /.item -->
+
+                      </li>
+
+                      <%= '</ol></li>'.html_safe if index === 5 || index === 11 %>
+
+                  <% end %>
+
+                </ol>
+                <!-- /.list-unstyled -->
+
+              </li>
+
+            </ul>
+            <!-- /.slides list-unstyled -->
+
+            <div class="custom-navigation">
+
+              <a href="#" class="flex-prev" role="button" aria-label="Scroll left">&nbsp;</a>
+
+              <a href="#" class="flex-next" role="button" aria-label="Scroll right">&nbsp;</a>
+
+            </div>
+            <!-- /.custom-navigation -->
+
+          </div>
+          <!-- /.flexslider--home -->
+
+        </div>
+        <!-- /.pannacotta featured-shops -->
+
+      </div>
+      <!-- /.col-xs-12 -->
+
+    </div>
+    <!-- /.row -->
+
+  </div>
+  <!-- /.container -->
+
+<% end %>

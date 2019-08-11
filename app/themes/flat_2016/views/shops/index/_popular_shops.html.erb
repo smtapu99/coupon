@@ -1,0 +1,21 @@
+<ul class="list-unstyled">
+
+  <% shops_featured.each_with_index do |shop, index| %>
+
+    <% shop_url = dynamic_url_for('shop', 'show', slug: shop.slug) %>
+
+    <li class="<%= 'hidden-xs' if index >= 6 %>">
+
+      <a href="<%= shop_url %>" title="<%= shop.title if shop.title.present? %>">
+
+        <%= render partial: 'shops/shared/logo', locals: {shop: shop, height: 200, width: 200} %>
+
+      </a>
+
+    </li>
+
+  <% end %>
+
+</ul>
+
+<!-- /.list-unstyled -->

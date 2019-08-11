@@ -1,0 +1,82 @@
+<% if is_home? && Setting::get('publisher_site.show_prominent_search_on_homepage', default: 1).to_i != 0 %>
+
+  <%= render partial: 'home/index/header' %>
+
+  <%= render 'home/index/content_widgets', only: [:sponsor_bar] %>
+
+<% else %>
+
+  <%= render partial: 'shared/navigation_mobile' %>
+
+  <div class="pannacotta" id="header" data-event-category="header">
+
+    <%- if Setting::get('publisher_site.show_topbar', default: 1).to_i != 0 -%>
+
+      <%= render partial: 'shared/topbar' %>
+
+    <%- end -%>
+
+    <div class="container">
+
+      <div class="row">
+
+        <div class="col-xs-3 col-sm-6 col-sm-push-6">
+
+          <%= render partial: 'shared/navigation' %>
+
+        </div>
+        <!-- /.col-xs-3 col-sm-5 col-sm-push-7 -->
+
+        <div class="col-xs-6 col-sm-2 col-sm-pull-6">
+
+          <%= render partial: 'shared/site_logo' %>
+
+        </div>
+        <!-- /.col-xs-6 col-sm-2 col-sm-pull-5 -->
+
+        <div class="col-xs-3 col-sm-4 col-sm-pull-6">
+
+          <%= render partial: 'shared/search_header' %>
+
+        </div>
+        <!-- /.col-xs-3 col-sm-5 col-sm-pull-5 -->
+
+      </div>
+      <!-- /.row -->
+
+    </div>
+    <!-- /.container -->
+
+    <%= (content_for?(:secondary_nav)) ? yield(:secondary_nav) : nil %>
+
+  </div>
+  <!-- /#header.pannacotta -->
+
+  <%= (content_for?(:after_header)) ? yield(:after_header) : nil %>
+
+  <%- if is_home? && Setting::get('publisher_site.show_prominent_search_on_homepage', default: 1).to_i == 0  -%>
+
+    <div class="container text-center">
+
+      <div class="row">
+
+        <div class="col-xs-12">
+
+          <div class="headings--no_hero" role="banner">
+
+            <%= render partial: 'home/index/headlines', locals: { weekly_coupons_count: @weekly_coupons_count } %>
+
+          </div>
+          <!-- /.headings text-center -->
+
+        </div>
+        <!-- /.col-xs-12 -->
+
+      </div>
+      <!-- /.row -->
+
+    </div>
+
+  <%- end -%>
+
+<% end %>

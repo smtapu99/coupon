@@ -1,0 +1,25 @@
+<% content_for :page_headlines do %>
+
+  <% if campaign.h1_first_line.present? && campaign.h1_second_line.present? %>
+
+    <h1 class="page-title"><%= campaign.h1_first_line.html_safe %> <%= campaign.h1_second_line.html_safe %></h1>
+
+    <!-- /.page-title -->
+
+  <% elsif campaign.h1_first_line.present? %>
+
+    <h1 class="page-title"><%= campaign.h1_first_line.html_safe %></h1>
+
+    <!-- /.page-title -->
+
+  <% elsif campaign.h1_second_line.present? %>
+
+    <h1 class="page-title"><%= campaign.h1_second_line.html_safe %></h1>
+
+    <!-- /.page-title -->
+
+  <% end %>
+
+  <h2 class="page-subtitle"><%= t(:CAMPAIGN_DEFAULT_SUBTITLE, default: 'CAMPAIGN_DEFAULT_SUBTITLE') %></h2>
+
+<% end %>

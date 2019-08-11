@@ -1,0 +1,75 @@
+$font-family-base: "Roboto", "Franklin Gothic Medium", Tahoma, sans-serif;
+$font-family-headers: $font-family-base;
+$font-family-nav: $font-family-base;
+$font-family-breadcrumbs: $font-family-base;
+$font-family-buttons: $font-family-base;
+$font-color: #354043 !default;
+$font-gray: #595959 !default;
+
+$color-sky: #0173B9 !default;
+$color-warning: #D73A00 !default;
+$color-sale: #681E6F !default;
+$color-star: #FFC700 !default;
+$color-links: #0051AD;
+
+$topbar_bg: #001C4C !default;
+$navigation_bg: #031128 !default;
+$navigation-link--hover: #1BAFCD !default;
+$background--white: #FFF !default;
+$background--grey: #ECECEC !default;
+$background--light-grey: #F2F2F2 !default;
+$input_placeholder: #3E769E !default;
+$border-color: #E3E3E3 !default;
+$footer_bg: #031128 !default;
+$bullets-color: #49AFF9 !default;
+$breadcrumbs-color: #8DA9B1 !default;
+$big-coupon-color: #FF9448 !default;
+$btn--info: $color-links !default;
+$btn--warning: #BE2A34 !default;
+
+//Campaign colors
+
+$themed--white: #FFF !default;
+$themed--toplink-bg: #FFF !default;
+$themed--toplink-color: #000 !default;
+$themed--header-bg-image: url('https://static.savings-united.com/medium/48592/file_name/xmas-bg.jpg') !default;
+$themed--color-primary: #F12850 !default;
+$themed--color-secondary: #323538 !default; // Buttons
+$themed--color-bg: #F4F4F1 !default;
+$themed--color-light-bg: #E5E5E5 !default;
+$themed--color-font: #000 !default;
+$themed--color-1: #27AE60 !default; // Green label
+$themed--color-2: #4AADE9 !default; // Blue label
+$themed--color-3: #8A8A8A !default; // Arrow background
+$themed--color-4: #151515 !default; // Teasers text
+$themed--color-5: #627A89 !default; // Load More button
+$themed--color-6: #605E5E !default; // about-campaign Header
+$themed--color-7: #F6F6F6 !default; // Offer background
+$themed--color-8: #5C6469 !default; // navigation + h1 color !default;
+$themed--color-9: #F2994A !default; // Premium offers orange bg
+$themed--color-10: #9B51E0 !default;
+$themed--color-11: #EB5757 !default; // Category red
+$themed--telegraph-green: #285E6A !default;
+$themed--independent-red: #D13030 !default;
+$themed--social-blue: #4395DA !default;
+$themed--gold-premium: #C3851A !default;
+$themed--yellow-paste: #EECA02 !default;
+$themed--pastel-purple: #8A44FF !default;
+$themed--bubblegum-pink: #FD7AFF !default;
+$themed--grey: #959595 !default;
+$themed--border-radius: 3px !default;
+
+//Responsive breakpoints
+
+$xs: '(max-width: 575px)' !default;
+$sm: '(max-width: 767px)' !default;
+$md: '(max-width: 991px)' !default;
+$lg: '(max-width: 1199px)' !default;
+
+$min-sm: '(min-width: 768px)' !default;
+$min-md: '(min-width: 992px)' !default;
+$min-lg: '(min-width: 1200px)' !default;
+
+//bootstrap overrides
+
+$blue: $color-links !default;

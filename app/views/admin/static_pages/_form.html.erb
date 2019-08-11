@@ -1,0 +1,154 @@
+
+<div class="col-sm-12">
+
+  <div class="box bordered-box blue-border">
+
+    <div class="box-header blue-background">
+
+      <div class="title">
+
+        <i class="icon-edit"></i>
+
+        Page Form
+
+      </div>
+
+    </div>
+
+    <div class="box-content">
+
+      <%= form_for [:admin, @static_page], html: {class: 'form form-horizontal', style: 'margin-bottom: 0'} do |f| %>
+
+      <%= render partial: 'admin/shared/form_errors', locals: {ancestor: @static_page} %>
+
+      <% unless Site.current.present? %>
+
+        <div class="form-group <%= 'has-error' unless @static_page.errors.messages[:site_id].blank? %>">
+
+          <%= f.label :site_id, class: 'col-md-2 control-label' %>
+
+          <div class="col-md-5">
+
+            <%= f.collection_select :site_id, User.current.sites, :id, :name, {prompt: false}, {disabled: !f.object.new_record?, class: 'form-control'} %>
+
+          </div>
+
+        </div>
+
+      <% end %>
+
+      <div class="form-group">
+
+        <%= f.label :status, class: 'col-md-2 control-label' %>
+
+        <div class="col-md-5">
+
+          <%= f.select :status, Option::get_select_options('static_page_status', true), {prompt: false}, class: 'form-control' %>
+
+        </div>
+
+      </div>
+
+      <div class="form-group <%= 'has-error' unless @static_page.errors.messages[:title].blank? %>">
+
+        <%= f.label :title, class: 'col-md-2 control-label' %>
+
+        <div class="col-md-5">
+
+          <%= f.text_field :title, class: 'form-control text_field' %>
+
+        </div>
+
+      </div>
+
+      <div class="form-group <%= 'has-error' unless @static_page.errors.messages[:slug].blank? %>">
+
+        <%= f.label :slug, class: 'col-md-2 control-label' %>
+
+        <div class="col-md-5">
+
+          <%= f.text_field :slug, class: 'form-control text_field', :disabled => !@static_page.new_record? %>
+
+        </div>
+
+      </div>
+
+      <div class="form-group">
+
+        <%= f.label :header_color, class: 'col-md-2 control-label'%>
+
+        <div class="col-md-5">
+
+          <%= f.select :header_color, color_select(Option::get_select_options('background_default_color_names', true), f.object.header_color).html_safe, {include_blank: true}, class: 'select2-color form-control' %>
+
+        </div>
+
+      </div>
+
+      <div class="form-group">
+
+        <%= f.label :header_icon, class: 'col-md-2 control-label'%>
+
+        <div class="col-md-5">
+
+          <%= f.select :header_icon, Option::get_select_options('icons_default_names', true), {promt: true}, class: 'form-control' %>
+
+        </div>
+
+      </div>
+
+      <div class="form-group <%= 'has-error' unless @static_page.errors.messages[:css_class].blank? %>">
+
+        <%= f.label :css_class, class: 'col-md-2 control-label' %>
+
+        <div class="col-md-5">
+
+          <%= f.text_field :css_class, class: 'form-control text_field' %>
+
+          <p class="help-block">
+
+              <small class="text-muted"><%=t 'HELP_CATEGORY_CSS_ICON', default: 'Available css classes: travel, shoes, games, foto, gifts, clothing, books, music, sports,office, movies, software, food, finance, adults, car, baby, furniture, beauty, pets, other, fairtrade, jewelry, internet, chemistry, art, paper, ticket,money' %></small>
+
+            </p>
+
+        </div>
+
+      </div>
+
+      <div class="form-group">
+
+        <%= f.label :display_sidebar, class: 'col-md-2 control-label' %>
+
+        <div class="col-md-5">
+
+          <%= f.check_box :display_sidebar, class: 'form-control check_box' %>
+
+        </div>
+
+      </div>
+
+      <%= render partial: 'admin/html_documents/sub_form', locals: {ancestor: @static_page, f: f} %>
+
+      <div class="form-actions form-actions-padding-sm">
+
+        <div class="row">
+
+          <div class="col-md-10 col-md-offset-2">
+
+            <%= f.submit nil, class: 'btn btn-primary' if can? :create, StaticPage %>
+
+            <%= link_to t('.cancel', default: t('helpers.links.cancel')), admin_static_pages_path, class: 'btn' %>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <% end %>
+
+    </div>
+
+  </div>
+
+</div>

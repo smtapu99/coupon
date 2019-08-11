@@ -1,0 +1,272 @@
+<%
+hide_pagination ||= false
+is_redirect ||= false
+coupons_size = coupons.size
+newsletter_position = Setting::get('publisher_site.inline_newsletter_position', default: 3).to_i
+%>
+
+<% if coupons.present? || (@shop.present? && @shop.coupon_targeting_script.present?)  %>
+
+  <div class="card card-coupons card-coupons-list pannacotta">
+
+    <div class="card-content">
+
+      <!-- WRONG RENDERED -->
+      <ul class="list-unstyled" data-pagination='<%= render(partial: "coupons/shared/pagination", locals: {coupons: coupons}).gsub(/>\s+</, "><") unless hide_pagination === true %>'>
+
+        <% if params[:controller] === 'shops' && @shop.present? && @shop.coupon_targeting_script.present? %>
+
+          <% template = Liquid::Template.parse(@shop.coupon_targeting_script) %>
+
+          <%= raw template.render({
+            'timestamp' => Time.zone.now.to_i.to_s
+            }) %>
+
+        <%- end -%>
+
+        <% coupons.each_with_index do |coupon, index| %>
+
+          <% summarize_coupons(coupon, index) %>
+
+          <% if params[:controller] === 'shops' && newsletter_enabled? && newsletter_position != -1 && coupons_size > newsletter_position && index == newsletter_position && coupon.shop.present? %>
+
+            <li class="item-newsletter">
+
+              <%= render partial: 'coupons/shared/newsletter', locals: {shop: coupon.shop} %>
+
+            </li>
+            <!-- /.item-newsletter -->
+
+          <% end %>
+
+          <li id="<%= coupon.item_id %>" class="c-coupon item <%= 'hidden' if coupon.is_mobile %>" data-coupon-type="<%= coupon.coupon_type %>" data-coupon-id="<%= coupon.id %>" data-index="<%= index %>" data-filter-ids="shop-<%= coupon.shop_id %>x <%= (coupon.category_ids.map{|c| 'cat-' + c.to_s + 'x'}).join(' ') if coupon.category_ids.present? %>" data-shop-name="<%= coupon.shop_title %>" data-expiration-date <%= coupon.is_mobile ? 'data-is-mobile=true' : '' %>>
+
+            <div class="coupon-header">
+
+              <%= render partial: 'coupons/shared/thumbnail', locals: {coupon: coupon, is_redirect: is_redirect} %>
+
+              <%= render partial: 'coupons/shared/type', locals: {coupon: coupon, is_redirect: is_redirect} %>
+
+            </div>
+            <!-- /.coupon-header -->
+
+            <div class="coupon-body">
+
+              <%= render partial: 'coupons/shared/title', locals: {coupon: coupon, is_redirect: is_redirect} %>
+
+              <% unless is_redirect === true %>
+
+                <% if coupon.shop.present? && coupon.shop.title.present? || coupon.description.present? %>
+
+                  <%= render partial: 'coupons/shared/description', locals: {coupon: coupon} %>
+
+                <% end %>
+
+                <div class="visible-xs">
+
+                  <%- if coupon.is_editors_pick? -%>
+
+                    <span class="editors-pick color-ready">
+
+                      <i class="fa fa-tag"></i> <%= t(:EDITORS_PICK, default: "Editor's Pick") %>
+
+                    </span>
+
+                  <%- end -%>
+
+                  <%= render partial: 'coupons/shared/call_to_action', locals: {coupon: coupon} %>
+
+                </div>
+
+                <div class="coupon-additional-info">
+
+                  <%- if coupon.is_editors_pick? -%>
+
+                    <span class="editors-pick color-ready">
+
+                      <i class="fa fa-tag"></i> <%= t(:EDITORS_PICK, default: "Editor's Pick") %>
+
+                    </span>
+
+                  <%- end -%>
+
+                  <%- if coupon.end_date.present? && coupon.end_date < Time.zone.now.end_of_day + 3.days -%>
+
+                    <span class="coupon-expires hidden" data-time="<%= coupon.end_date.to_time.iso8601 %>" data-expires-tomorrow="<%= t(:expires_tomorrow, default: 'expires tomorrow') %>" data-expires-in-x-days="<%= t(:expires_in_x_days, default: 'expires in {x} days') %>">
+
+                      <i class="color-ready fa fa-clock-o"></i>
+
+                      <span class="hours">00</span>:<span class="minutes">00</span>:<span class="seconds">00</span>
+
+                    </span>
+
+                  <%- elsif coupon.start_date.present? && coupon.start_date >= (Time.zone.now - 1.day).beginning_of_day -%>
+
+                    <span class="coupon-created">
+
+                      <%- if coupon.start_date > (Time.zone.now - 1.day).end_of_day -%>
+
+                        <%= t(:CREATED_TODAY, default: 'Added today') %>
+
+                      <%- else -%>
+
+                        <%= t(:CREATED_YESTERDAY, default: 'Added yesterday') %>
+
+                      <%- end -%>
+
+                    </span>
+
+                  <%- elsif coupon.updated_at >= (Time.zone.now - 2.weeks).beginning_of_week.beginning_of_day -%>
+
+                    <span class="coupon-updated">
+
+                      <%- if coupon.updated_at > (Time.zone.now).beginning_of_day -%>
+
+                        <%= t(:UPDATED_TODAY, default: 'Updated today') %>
+
+                      <%- elsif coupon.updated_at >= (Time.zone.now - 1.day).beginning_of_day -%>
+
+                        <%= t(:UPDATED_YESTERDAY, default: 'Updated yesterday') %>
+
+                      <%- elsif coupon.updated_at >= (Time.zone.now).beginning_of_week.beginning_of_day -%>
+
+                        <%= t(:UPDATED_THIS_WEEK, default: 'Updated this week') %>
+
+                      <%- elsif coupon.updated_at >= (Time.zone.now - 1.week).beginning_of_week.beginning_of_day -%>
+
+                        <%= t(:UPDATED_THIS_WEEK, default: 'Updated last week') %>
+
+                      <%- else -%>
+
+                        <%= t(:UPDATED_THIS_WEEK, default: 'Updated 2 weeks ago') %>
+
+                      <%- end -%>
+
+                    </span>
+
+                  <%- end -%>
+
+                  <%- if clicks = coupon.random_clickouts_today and clicks.to_i > 0 -%>
+
+                    <span class="coupon-clicks">
+
+                      <%= clicks %> <%= t(:USED_TODAY, default: 'used today') %>
+
+                    </span>
+
+                  <%- end -%>
+
+                </div>
+
+              <% end %>
+
+              <ul class="divider">
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li class="visible-xs"></li>
+                <li class="visible-xs"></li>
+                <li class="visible-xs"></li>
+                <li class="visible-xs"></li>
+              </ul>
+
+            </div>
+            <!-- /.coupon-body -->
+
+            <% if !is_redirect === true %>
+
+              <div class="hidden-xs coupon-footer">
+
+                <%= render partial: 'coupons/shared/call_to_action', locals: {coupon: coupon} %>
+
+              </div>
+              <!-- /.hidden-xs coupon-footer -->
+
+              <div class="coupon-social">
+
+                <span data-href='<%= send("modals_coupon_share_#{@site.id}_url", id: coupon.id) %>' class="coupon-share" data-tooltip="<%= t(:SHARE, default: 'share') %>" title="<%= t(:SHARE, default: 'SHARE') %>">
+
+                  <i class="fa fa-share-alt"></i>
+
+                </span>
+
+                <%- if Setting::get('publisher_site.allow_coupon_bookmarks', default: 1).to_i == 1 -%>
+
+                  <span class="coupon-like">
+
+                    <span class="saved_x btn-coupon-bookmark" title="<%= t(:ADD_BOOKMARK, default: ' Save this coupon') %>" data-active="<%= t(:ADD_BOOKMARK, default: ' Save this coupon') %>" data-inactive="<%= t(:REMOVE_BOOKMARK, default: 'Added to your list') %>" href="#">
+
+                      <i class="fa fa-heart-o"></i>
+
+                    </span>
+
+                  </span>
+
+                <%- end -%>
+
+              </div>
+
+            <%- end -%>
+
+          </li>
+
+          <!-- /.item -->
+
+          <% if params[:controller] === 'shops' && index == 1 && (banner = shop_banner and banner.present?) %>
+
+            <li class="shop-banner">
+
+              <%= link_to banner.target_url, rel: 'nofollow', data: { 'banner-event-action' => banner_event_action(banner), 'banner-event-label' => banner.theme } do %>
+
+                <%= image_tag banner.image_url, class: 'img-responsive', alt: banner.name %>
+
+              <% end %>
+
+            </li>
+
+          <% end %>
+
+          <% if params[:controller] === 'shops' && newsletter_enabled? && newsletter_position != -1 && coupons_size <= newsletter_position && index === 0 && coupon.shop.present? %>
+
+            <li class="item-newsletter">
+
+              <%= render partial: 'coupons/shared/newsletter', locals: {shop: coupon.shop} %>
+
+            </li>
+            <!-- /.item-newsletter -->
+
+          <% end %>
+
+        <%- end if coupons.present? -%>
+
+      </ul>
+      <!-- /.list-unstyled -->
+
+    </div>
+    <!-- /.card-content -->
+
+  </div>
+  <!-- /.card card-coupons-list pannacotta -->
+
+  <div class="pagination-wrapper">
+
+    <% unless hide_pagination === true %>
+
+      <%= render partial: 'coupons/shared/pagination', locals: {coupons: coupons} %>
+
+    <% end %>
+
+  </div>
+
+<% elsif params[:controller] === 'shops' %>
+
+  <%= render partial: 'shops/show/card_empty_shop', locals: {shop: @shop} %>
+
+<% end %>

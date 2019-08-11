@@ -1,0 +1,36 @@
+<!-- .featured-shops -->
+<%- if shops_featured.present? -%>
+
+  <div class="featured-shops">
+
+    <div class="container">
+
+      <div class="row">
+
+        <ul class="featured-shops__list">
+
+          <% shops_featured.take(9).each do |shop| %>
+
+            <li data-shop-name="<%= shop.title %>" class="featured-shops__item">
+
+              <a href="<%= dynamic_url_for('shop', 'show', slug: shop.slug) %>" class="featured-shops__link" data-shop-name="<%= shop.title %>">
+
+                <%= image_tag shop.logo_url('_110x110'), alt: (shop.logo_alt_text.present? ? shop.logo_alt_text : shop.title), class: "img-responsive" if shop.logo? %>
+
+              </a>
+
+            </li>
+
+          <% end %>
+
+        </ul>
+
+      </div>
+
+    </div>
+
+  </div>
+
+<%- end -%>
+
+<!-- ./featured-shops -->

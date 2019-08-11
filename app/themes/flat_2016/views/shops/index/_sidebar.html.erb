@@ -1,0 +1,11 @@
+<% content_for :sidebar do %>
+
+  <% if shops.present? %>
+
+    <%= render partial: 'shops/index/card_filter_by_category', locals: { css_classes: 'hidden-xs' } %>
+
+  <% end %>
+
+  <%= render partial: 'shared/widgets_sidebar' %>
+
+<% end %>

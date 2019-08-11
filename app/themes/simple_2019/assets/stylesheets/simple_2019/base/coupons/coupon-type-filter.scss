@@ -1,0 +1,23 @@
+@critical common.css {
+  .coupon-type-filter {
+    margin-bottom: 0;
+    padding-left: 0;
+    text-align: right;
+    list-style-type: none;
+
+    @media #{$xs} {
+      padding: 10px 0;
+    }
+
+    li {
+      display: inline-block;
+      margin-left: 5px;
+      color: $color-sky;
+      cursor: pointer;
+
+      &.active {
+        text-decoration: underline;
+      }
+    }
+  }
+}

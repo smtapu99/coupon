@@ -1,0 +1,289 @@
+<div class="modal-dialog">
+
+  <div class="modal-content">
+
+    <%= form_for [:admin, @coupon], method: :get, url: export_admin_coupons_path, :html => { :class => 'form form-horizontal',
+      id: 'export-form',
+      style: 'margin-bottom: 0',
+      onsubmit: 'jQuery(this).find(".btn.btn-primary").val("Loading, please wait...").attr("disabled", true);'} do |f| %>
+
+    <div class="modal-header">
+
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+
+      <h4 class="modal-title" id="myModalLabel">Export Form</h4>
+
+    </div>
+
+    <div class="modal-body">
+
+      <div class="form-group">
+
+        <%= f.label :sites, class: 'col-md-2 control-label' %>
+
+        <div class="col-md-10">
+
+          <%= select_tag 'coupon[site_ids]', options_from_collection_for_select(User.current.sites.active, :id, :name), multiple: true, class: 'select2 form-control' %>
+
+          <p class="help-block">
+
+            <small class="text-danger">Please select site first!</small>
+
+          </p>
+
+        </div>
+
+      </div>
+
+      <div class="form-group">
+
+        <%= f.label :status, class: 'col-md-2 control-label' %>
+
+        <div class="col-md-10">
+
+          <%= f.select :status, options_for_select(Coupon.statuses), { include_blank: true }, multiple: true, class: 'select2 form-control' %>
+
+        </div>
+
+      </div>
+
+      <div class="form-group">
+
+        <%= f.label :shop_id_or_slugs, class: 'col-md-2 control-label' %>
+
+        <div class="col-md-10">
+
+            Select from Dropdown
+
+            <div class="shops-by-site">
+
+              <%= select_tag 'coupon[shop_ids]', [], multiple: true, class: 'select2 form-control' %>
+
+            </div>
+
+            <br>OR copy slug list (e.g. amazon, el-corte-ingles, douglas)<br>
+
+            <%= f.text_field :shop_slugs, class: 'form-control' %>
+
+        </div>
+
+      </div>
+
+      <div class="form-group">
+
+        <%= f.label :shop_tier_group, class: 'col-md-2 control-label' %>
+
+        <div class="col-md-10">
+
+            <%= select_tag 'coupon[shop_tier_group]', options_for_select(Option::OPTIONS[:shop_tier_groups]), class: 'select2 form-control', multiple: true %>
+
+        </div>
+
+      </div>
+
+      <div class="form-group">
+
+        <%= f.label :shop_status, class: 'col-md-2 control-label' %>
+
+        <div class="col-md-10">
+
+            <%= select_tag 'coupon[shop_status]', options_for_select(Shop.statuses), class: 'select2 form-control', multiple: true %>
+
+        </div>
+
+      </div>
+
+      <div class="form-group">
+
+        <%= f.label :category_ids, class: 'col-md-2 control-label' %>
+
+        <div class="col-md-10">
+
+          <%= f.select :category_ids, Site.current.categories.collect {|i| [i.name, i.id]}, {include_blank: true}, {class: 'select2 form-control', multiple: true} %>
+
+        </div>
+
+      </div>
+
+      <div class="form-group">
+
+        <%= f.label :campaign_ids, class: 'col-md-2 control-label' %>
+
+        <div class="col-md-10">
+
+          <%= f.select :campaign_ids, Site.current.campaigns.collect {|i| [i.name, i.id]}, {include_blank: true}, {class: 'select2 form-control', multiple: true} %>
+
+        </div>
+
+      </div>
+
+      <div class="form-group">
+
+        <%= f.label :affiliate_network_id, class: 'col-md-2 control-label' %>
+
+        <div class="col-md-10">
+
+          <%= f.select :affiliate_network_id, AffiliateNetwork.active.order(name: :asc).collect {|i| [i.name, i.id]}, {include_blank: true}, {class: 'select2 form-control', multiple: true} %>
+
+        </div>
+
+      </div>
+
+      <div class="form-group">
+
+        <%= f.label :coupon_type, class: 'col-md-2 control-label' %>
+
+        <div class="col-md-10">
+
+          <%= f.select :coupon_type, Option::get_select_options('coupon_types', true), {include_blank: true}, class: 'form-control' %>
+
+        </div>
+
+      </div>
+
+      <div class="form-group">
+        <div class="col-md-10 col-md-offset-2">
+          <div class="help-block"><small>If you don't select any date below just unexpired coupons will appear.</small></div>
+        </div>
+      </div>
+
+      <div class="form-group">
+
+        <%= f.label :start_date_from, class: 'col-md-2 control-label' %>
+
+        <div class="col-md-10">
+
+          <%= f.datetime_select :start_date_from, include_blank: true, class: 'form-control' %>
+
+        </div>
+
+      </div>
+
+      <div class="form-group">
+
+        <%= f.label :start_date_to, class: 'col-md-2 control-label' %>
+
+        <div class="col-md-10">
+
+          <%= f.datetime_select :start_date_to, include_blank: true, class: 'form-control' %>
+
+        </div>
+
+      </div>
+
+      <div class="form-group">
+
+        <%= f.label :end_date_from, class: 'col-md-2 control-label' %>
+
+        <div class="col-md-10">
+
+          <%= f.datetime_select :end_date_from, include_blank: true, class: 'form-control' %>
+
+        </div>
+
+      </div>
+
+      <div class="form-group">
+
+        <%= f.label :end_date_to, class: 'col-md-2 control-label' %>
+
+        <div class="col-md-10">
+
+          <%= f.datetime_select :end_date_to, include_blank: true, class: 'form-control' %>
+
+        </div>
+
+      </div>
+
+      <div class="form-group">
+
+        <%= f.label :created_at_from, class: 'col-md-2 control-label' %>
+
+        <div class="col-md-10">
+
+          <%= f.datetime_select :created_at_from, include_blank: true, class: 'form-control' %>
+
+        </div>
+
+      </div>
+
+      <div class="form-group">
+
+        <%= f.label :created_at_to, class: 'col-md-2 control-label' %>
+
+        <div class="col-md-10">
+
+          <%= f.datetime_select :created_at_to, include_blank: true, class: 'form-control' %>
+
+        </div>
+
+      </div>
+
+      <div class="form-group">
+
+        <%= f.label :include_expired, class: 'col-md-2 control-label' %>
+
+        <div class="col-md-10">
+
+          <%= f.check_box :include_expired, class: 'form-control' %>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="modal-footer">
+
+        <%= f.submit 'Export Coupons', :class => 'btn btn-primary' %>
+
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+    </div>
+
+    <% end # form %>
+
+  </div><!-- /.modal-content -->
+
+</div><!-- /.modal-dialog -->
+
+<script type="text/javascript">
+
+jQuery('.select2').select2();
+
+select2_select_all();
+
+jQuery("#export-form").on('submit', function(){
+  expireCookie('download_complete', '/');
+
+  var downloadTimer = window.setInterval( function() {
+    var token = getCookie( "download_complete" );
+
+    if( token == 'true' ) {
+      window.clearInterval( downloadTimer );
+      expireCookie('download_complete', '/');
+      jQuery('#myModal').modal('hide');
+    }
+  }, 1000 );
+});
+
+$('#coupon_site_ids').on('change.select2', function(){
+  if ($(this).val()) {
+    $('#coupon_shop_ids').empty();
+    $.ajax({
+      url: "shops/render_shops_select",
+      dataType: 'text',
+      type: "GET",
+      data: {site_ids: $(this).val()},
+      success: function(data) {
+        $(".shops-by-site").html(data);
+        $('#coupon_shop_ids').select2();
+        select2_select_all($('#s2id_coupon_shop_ids'));
+      }
+    });
+  } else {
+    $('#coupon_shop_ids').empty();
+  }
+});
+
+</script>

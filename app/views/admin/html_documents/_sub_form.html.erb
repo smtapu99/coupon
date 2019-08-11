@@ -1,0 +1,198 @@
+<%= f.fields_for :html_document_attributes, ancestor.html_document || HtmlDocument.new(meta_robots: 'index,follow') do |ff| %>
+  <hr class="hr-normal">
+  <% if User.current.can_metas? %>
+    <% if ancestor.class.name != "StaticPage" %>
+      <% if ancestor.class.name != "Campaign" %>
+        <div class="form-group">
+          <%= ff.label :h1, class: 'col-md-2 control-label' %>
+          <div class="col-md-5">
+            <%= ff.text_field :h1, class: 'form-control' %>
+            <div class="help-block">
+              <small>
+                You can use &lt;<%= "#{ancestor.class.name.downcase}_name" %>&gt;, &lt;year&gt;, etc. as variable. Included in API response as anchor_text
+              </small>
+            </div>
+          </div>
+        </div>
+      <% end %>
+      <div class="form-group">
+        <%= ff.label :h2, class: 'col-md-2 control-label' %>
+        <div class="col-md-5">
+          <%= ff.text_field :h2, class: 'form-control' %>
+          <div class="help-block">
+            <small>
+              You can use &lt;<%= "#{ancestor.class.name.downcase}_name" %>&gt; as variable
+            </small>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    <div class="form-group">
+      <%= ff.label :meta_robots, class: 'col-md-2 control-label' %>
+      <div class="col-md-5">
+        <%= ff.select :meta_robots, Option::get_select_options('robots', true), {}, {class: 'form-control'} %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= ff.label :meta_keywords, class: 'col-md-2 control-label' %>
+      <div class="col-md-5">
+        <%= ff.text_field :meta_keywords, class: 'form-control' %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= ff.label :meta_description, class: 'col-md-2 control-label' %>
+      <div class="col-md-5">
+        <%= ff.text_field :meta_description, class: 'form-control' %>
+        <div class="help-block">
+          <small>
+            You can use &lt;<%= "#{ancestor.class.name.downcase}_name" %>&gt; &lt;month&gt; &lt;month_abbrv&gt; &lt;year&gt; &lt;savings_percentage&gt; &lt;top_position_savings&gt; &lt;top_exclusive_value&gt; &lt;active_coupons_count&gt; &lt;title_of_top_coupon&gt; &lt;exclusive&gt;
+              &lt;coupon1_info_discount&gt; &lt;coupon2_info_discount&gt; &lt;coupon3_info_discount&gt; as variables
+          </small>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= ff.label :meta_title, class: 'col-md-2 control-label' %>
+      <div class="col-md-5">
+        <%= ff.text_field :meta_title, class: 'form-control' %>
+        <div class="help-block">
+          <small>
+            You can use &lt;<%= "#{ancestor.class.name.downcase}_name" %>&gt; &lt;month&gt; &lt;year&gt; &lt;savings_percentage&gt; &lt;top_position_savings&gt; &lt;top_exclusive_value&gt; &lt;active_coupons_count&gt; &lt;exclusive&gt; 
+              &lt;coupon1_info_discount&gt; &lt;coupon2_info_discount&gt; &lt;coupon3_info_discount&gt; as variables
+          </small>
+        </div>
+      </div>
+    </div>
+    <%- if ff.object.is_shop_or_category? -%>
+      <div class="form-group">
+        <%= ff.label :meta_title_fallback, class: 'col-md-2 control-label' %>
+        <div class="col-md-5">
+          <%= ff.text_field :meta_title_fallback, class: 'form-control' %>
+          <div class="help-block"><small>You can use &lt;shop_name&gt; &lt;month&gt; &lt;year&gt; as variables.</small></div>
+        </div>
+      </div>
+    <%- end -%>
+  <%- end # if User.current.can_metas? -%>
+
+  <div class="form-group">
+    <%= ff.label :content, class: 'col-md-2 control-label' %>
+    <div class="col-md-5">
+      <%= ff.text_area :content, class: 'form-control tinymce' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= ff.label :welcome_text, class: 'col-md-2 control-label' %>
+    <div class="col-md-5">
+      <%= ff.text_area :welcome_text, class: 'form-control tinymce' %>
+    </div>
+  </div>
+  <hr class="hr-normal">
+
+  <% if ff.object.is_shop_or_category? %>
+
+  <div class="form-group">
+    <%= ff.label :head_scripts, class: 'col-md-2 control-label' %>
+    <div class="col-md-5">
+      <%= ff.text_area :head_scripts, class: 'form-control' %>
+      <p class="help-block"><small class="text-muted">Pure HTML code</small></p>
+    </div>
+  </div>
+
+  <%- end -%>
+  <%- if ancestor.class.name == 'Campaign' %>
+    <div class="form-group">
+      <%= ff.label :header_image, class: 'col-md-2 control-label' %>
+      <div class="col-md-5">
+        <p>
+          <%= ff.file_field :header_image, class: 'form-control' %></p>
+          <p class="help-block">
+            <small class="text-muted">
+              <%=t 'HELP_SHOP_HEADER_IMAGE', default: 'The minimum image size should be 1170x310 pixels. Bigger image sizes should have the same aspect ratio and will be automatically resized to 1170x310 pixels.' %>
+            </small>
+          </p>
+          <% if !ff.object.new_record? && !ff.object.header_image_url.blank? %>
+            <%= image_tag ff.object.header_image_url(:thumb), class: 'img-responsive' if ff.object.header_image? %>
+            <p>
+              <label> <%= ff.check_box :header_image_dark_filter %> Darken header image </label>
+            </p>
+            <p>
+              <label> <%= ff.check_box :remove_header_image %> Remove header image </label>
+            </p>
+          <% end %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= ff.label :mobile_header_image, class: 'col-md-2 control-label' %>
+      <div class="col-md-5">
+        <%= ff.file_field :mobile_header_image, class: 'form-control' %></p>
+        <% if !ff.object.new_record? && !ff.object.mobile_header_image_url.blank? %>
+          <%= image_tag ff.object.mobile_header_image_url(:thumb), class: 'img-responsive' if ff.object.mobile_header_image? %>
+          <p>
+            <label> <%= ff.check_box :remove_mobile_header_image %>Remove mobile header image </label>
+          </p>
+        <% end %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= ff.label :header_size, 'Mobile Header Size', class: 'col-md-2 control-label' %>
+      <div class="col-md-5">
+        <%= ff.select :header_size, ['default', 'small'], {}, {class: 'form-control'} %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= ff.label :header_font_color, class: 'col-md-2 control-label' %>
+      <div class="col-md-5">
+        <p>
+          <%= ff.color_field :header_font_color, class: 'form-control' %>
+        </p>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= ff.label :header_cta_text, class: 'col-md-2 control-label' %>
+      <div class="col-md-5">
+        <%= ff.text_field :header_cta_text, class: 'form-control' %>
+        <p class="help-block"><small class="text-muted">
+          Default: <%= t(:hero_cta, default: 'Get it!', locale: (ff.object.htmlable.site.country.locale rescue 'en-US')) %>
+        </small></p>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= ff.label :header_cta_anchor_link, class: 'col-md-2 control-label' %>
+      <div class="col-md-5">
+        <%= ff.text_field :header_cta_anchor_link, class: 'form-control' %>
+        <p class="help-block">
+          <small class="text-muted">
+            Default: #deals<br>
+            Options: #full-newsletter, #hot-offers, #top-sales, #deals, #shop-bubbles OR any URL
+          </small>
+        </p>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= ff.label :header_text_background, class: 'col-md-2 control-label' %>
+      <div class="col-md-5">
+        <%= ff.check_box :header_text_background, class: 'form-control' %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= ff.label :header_text_h_alignment, 'Text horizontal alignment', class: 'col-md-2 control-label' %>
+      <div class="col-md-5">
+        <%= ff.select :header_text_h_alignment, ['left', 'center', 'right'], {}, {class: 'form-control'} %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= ff.label :header_text_v_alignment, 'Text vertical alignment', class: 'col-md-2 control-label' %>
+      <div class="col-md-5">
+        <%= ff.select :header_text_v_alignment, ['top', 'middle', 'bottom'], {}, {class: 'form-control'} %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= ff.label :countdown_date, class: 'col-md-2 control-label' %>
+      <div class="col-md-5">
+        <p>
+          <%= ff.datetime_select :countdown_date, {include_blank: true, start_year: Time.zone.now.year } %>
+        </p>
+      </div>
+    </div>
+  <%- end %>
+<% end %>

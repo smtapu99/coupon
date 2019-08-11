@@ -1,0 +1,8 @@
+<% if flash.present? %>
+  <% flash.each do |key, value| %>
+    <div class="pannacotta alert <%= alert_class key %>" style="margin-bottom: 25px; padding: 10px 15px;">
+      <%= value %>
+    </div>
+    <!-- /.alert <%= alert_class key %> -->
+  <% end %>
+<% end %>

@@ -1,0 +1,533 @@
+<div class="col-sm-12">
+
+  <div class="box bordered-box blue-border">
+
+    <div class="box-header blue-background">
+
+      <div class="title">
+
+        <i class="icon-edit"></i>
+
+        Shop Form
+
+      </div>
+
+    </div>
+
+    <div class="box-content">
+
+      <%= form_for [:admin, @shop], html: {class: 'form form-horizontal', multipart: true, style: 'margin-bottom: 0'} do |f| %>
+
+      <%= render partial: 'admin/shared/form_errors', locals: {ancestor: @shop} %>
+
+      <% if can?(:manage, Shop) && !f.object.new_record? %>
+
+        <div class="form-group">
+
+          <label class="col-md-2"></label>
+
+          <div class="col-md-5">
+
+            <%= link_to '<i class="icon-trello"></i> Order Coupons'.html_safe ,
+              admin_shops_order_coupons_path(id: f.object.id),
+              :class => 'btn btn-info btn-block btn-lg' %>
+
+          </div>
+
+        </div>
+
+      <% end %>
+
+      <div class="form-group">
+
+        <%= f.label :global_id, class: 'col-md-2 control-label' %>
+
+        <div class="col-md-5">
+
+          <%= f.select :global_id, Global.shops.order(name: :asc).collect { |i| [i.name, i.id] }, { include_blank: true }, { class: 'form-control'} %>
+
+        </div>
+
+      </div>
+
+      <div class="form-group">
+
+        <%= f.label :status, class: 'col-md-2 control-label' %>
+
+        <div class="col-md-5">
+
+          <%= f.select :status, Shop.statuses, {prompt: true}, class: 'form-control' %>
+
+          <div class="help-block">
+
+            <small>Changing this status to blocked will create a redirection to the homepage. Changing it back to anything else then blocked will delete this redirection again.</small>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="form-group">
+
+        <%= f.label :tier_group, class: 'col-md-2 control-label' %>
+
+        <div class="col-md-5">
+
+          <%= f.select :tier_group, Option::get_select_options('shop_tier_groups', true), {prompt: true}, class: 'form-control' %>
+
+          <div class="help-block">
+
+            <small>Tiergroup can be either 1,2,3 or 4; Default: 4.</small>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <% unless Site.current.present? %>
+
+        <div class="form-group <%= 'has-error' unless @shop.errors.messages[:site_id].blank? %>">
+
+          <%= f.label :site_id, class: 'col-md-2 control-label' %>
+
+          <div class="col-md-5">
+
+            <%= f.collection_select :site_id, User.current.sites, :id, :name, {prompt: false}, {disabled: !f.object.new_record?, class: 'form-control'} %>
+
+          </div>
+
+        </div>
+
+      <% else %>
+
+        <div class="form-group <%= 'has-error' unless @shop.errors.messages[:site_id].blank? %>">
+
+          <%= f.label :person_in_charge_id, class: 'col-md-2 control-label' %>
+
+          <div class="col-md-5">
+
+            <%= f.collection_select :person_in_charge_id, Site.current.all_users, :id, :email, {prompt: true}, {class: 'form-control'} %>
+
+          </div>
+
+        </div>
+
+      <% end %>
+
+      <div class="form-group <%= 'has-error' unless @shop.errors.messages[:site_id].blank? %>">
+
+        <%= f.label :prefered_affiliate_network_id, class: 'col-md-2 control-label' %>
+
+        <div class="col-md-5">
+
+          <%= f.collection_select :prefered_affiliate_network_id, AffiliateNetwork.active, :id, :name, {prompt: true}, {class: 'form-control'} %>
+
+        </div>
+
+      </div>
+
+
+      <div class="form-group">
+
+        <%= f.label 'Shop Title', class: 'col-md-2 control-label' %>
+
+        <div class="col-md-5">
+
+          <%= f.text_field :title, class: 'form-control' %>
+
+        </div>
+
+      </div>
+
+      <div class="form-group">
+
+        <%= f.label 'Anchor Text', class: 'col-md-2 control-label' %>
+
+        <div class="col-md-5">
+
+          <%= f.text_field :anchor_text, class: 'form-control' %>
+
+          <div class="help-block">
+
+            <small>Used for internal navigation, e.g. for footer links and title text of links.<br/>ATTENTION: field is not returned by API</small>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <%- if User.current.is_admin? -%>
+
+      <div class="form-group">
+
+        <div class="red-background">You are logged in as Admin and are able to change the slug. Dont forget to also change the Redirections!!!</div>
+
+      </div>
+
+      <%- end -%>
+
+      <div class="form-group">
+
+        <%= f.label :slug, class: 'col-md-2 control-label' %>
+
+        <div class="col-md-5">
+
+          <%= f.text_field :slug, class: 'form-control', disabled: !(@shop.new_record? || User.current.is_admin?) %>
+
+        </div>
+
+      </div>
+
+      <div class="form-group">
+
+        <%= f.label :shop_category_ids, class: 'col-md-2 control-label' %>
+
+        <div class="col-md-5">
+
+          <%= f.select :shop_category_ids, Site.current.categories.active.collect {|i| [i.site_id_and_name, i.id]}, {}, {multiple: true, class: 'select2 form-control'} %>
+
+        </div>
+
+      </div>
+
+      <%= render partial: 'admin/html_documents/sub_form', locals: {ancestor: @shop, f: f} %>
+
+      <div class="form-group">
+
+        <%= f.label :fallback_url, class: 'col-md-2 control-label' %>
+
+        <div class="col-md-5">
+
+          <%= f.text_field :fallback_url, class: 'form-control' %>
+
+        </div>
+
+      </div>
+
+      <div class="form-group">
+
+        <%= f.label :link_title, class: 'col-md-2 control-label' %>
+
+        <div class="col-md-5">
+
+          <%= f.text_field :link_title, class: 'form-control' %>
+
+        </div>
+
+      </div>
+
+      <div class="form-group">
+
+        <%= f.label :coupon_targeting_script, class: 'col-md-2 control-label' %>
+
+        <div class="col-md-5">
+
+          <%= f.text_area :coupon_targeting_script, class: 'form-control' %>
+
+          <div class="help-block"><small>This is used for coupon targeting scripts. e.g. Zalando wants to show just coupons for male users. it will be append to the top of the coupon list</small></div>
+
+        </div>
+
+      </div>
+
+      <div class="form-group">
+
+        <%= f.label :home_widget_teaser, class: 'col-xs-2 control-label' %>
+
+        <div class="col-xs-5">
+
+          <p><%= f.file_field :header_image, class: 'form-control' %></p>
+
+            <p class="help-block">
+
+              <small class="text-muted"><%=t 'HELP_SHOP_HEADER_IMAGE', default: 'The minimum image size should be 1170x310 pixels. Bigger image sizes should have the same aspect ratio and will be automatically resized to 1170x310 pixels.' %></small>
+
+            </p>
+
+
+            <% unless @shop.new_record? %>
+              <% unless @shop.header_image_url.blank? %>
+
+                <%= image_tag @shop.header_image_url(:thumb), class: 'img-responsive' if @shop.header_image? %>
+                <p>
+                  <label>
+                    <%= f.check_box :remove_header_image %>
+                    Remove home widget teaser
+                  </label>
+                </p>
+
+              <% end %>
+            <% end %>
+
+        </div>
+
+      </div>
+
+      <div class="form-group">
+
+        <%= f.label :first_coupon_image, class: 'col-xs-2 control-label' %>
+
+        <div class="col-xs-5">
+
+          <p><%= f.file_field :first_coupon_image, class: 'form-control' %></p>
+
+            <p class="help-block">
+
+              <small class="text-muted"><%=t 'HELP_SHOP_HEADER_IMAGE', default: 'The minimum image size should be 1170x310 pixels. Bigger image sizes should have the same aspect ratio and will be automatically resized to 1170x310 pixels.' %></small>
+
+            </p>
+
+
+            <% unless @shop.new_record? %>
+              <% unless @shop.first_coupon_image.blank? %>
+
+                <%= image_tag @shop.first_coupon_image_url(:thumb), class: 'img-responsive' if @shop.first_coupon_image? %>
+                <p>
+                  <label>
+                    <%= f.check_box :remove_first_coupon_image %>
+                    Remove first coupon image
+                  </label>
+                </p>
+
+              <% end %>
+            <% end %>
+
+        </div>
+
+      </div>
+
+      <div class="form-group">
+
+        <%= f.label :logo, class: 'col-xs-2 control-label' %>
+
+        <div class="col-xs-5">
+
+          <p><%= f.file_field :logo, class: 'form-control' %></p>
+
+            <p class="help-block">
+
+              <small class="text-muted"><%=t 'HELP_SHOP_LOGO_IMAGE', default: 'The minimum image size should be 150x150 pixels.' %></small>
+
+            </p>
+
+            <% unless @shop.new_record? %>
+
+              <% unless @shop.logo_url.blank? %>
+
+                <%= image_tag @shop.logo_url(:thumb), class: 'img-responsive' if @shop.logo? %>
+                <p>
+                  <label>
+                    <%= f.check_box :remove_logo %>
+                    Remove logo image
+                  </label>
+                </p>
+
+              <% end %>
+
+            <% end %>
+
+        </div>
+
+      </div>
+
+      <div class="form-group">
+
+        <%= f.label :logo_alt_text, class: 'col-md-2 control-label' %>
+
+        <div class="col-md-5">
+
+          <%= f.text_field :logo_alt_text, class: 'form-control' %>
+
+        </div>
+
+      </div>
+
+      <div class="form-group">
+
+        <%= f.label :logo_title_text, class: 'col-md-2 control-label' %>
+
+        <div class="col-md-5">
+
+          <%= f.text_field :logo_title_text, class: 'form-control' %>
+
+        </div>
+
+      </div>
+
+      <hr>
+
+      <h3>Shop Information</h3>
+
+      <div class="form-group">
+
+        <%= f.label :info_address, class: 'col-md-2 control-label' %>
+
+        <div class="col-md-5">
+
+          <%= f.text_area :info_address, class: 'form-control', style: "height: 100px; min-height: inherit;" %>
+
+        </div>
+
+      </div>
+
+      <div class="form-group">
+
+        <%= f.label :info_phone, class: 'col-md-2 control-label' %>
+
+        <div class="col-md-5">
+
+          <%= f.text_area :info_phone, class: 'form-control', style: "height: 50px; min-height: inherit;" %>
+
+        </div>
+
+      </div>
+
+      <div class="form-group">
+
+        <%= f.label :info_free_shipping, class: 'col-md-2 control-label' %>
+
+        <div class="col-md-5">
+
+          <%= f.text_area :info_free_shipping, class: 'form-control', style: "height: 50px; min-height: inherit;" %>
+
+        </div>
+
+      </div>
+
+      <div class="form-group">
+
+        <%= f.label :info_payment_methods, class: 'col-md-2 control-label' %>
+
+        <div class="col-md-5">
+
+          <%= f.select :info_payment_methods, Option::get_select_options('payment_methods', true), {prompt: true}, {multiple: true, class: 'select2 form-control'} %>
+
+        </div>
+
+      </div>
+
+      <div class="form-group">
+
+        <%= f.label :info_delivery_methods, class: 'col-md-2 control-label' %>
+
+        <div class="col-md-5">
+
+          <%= f.select :info_delivery_methods, Option::get_select_options('delivery_methods', true), {prompt: true}, {multiple: true, class: 'select2 form-control'} %>
+
+        </div>
+
+      </div>
+
+      <hr>
+
+      <div class="form-group">
+
+        <%= f.label :is_hidden, class: 'col-md-2 control-label' %>
+
+        <div class="col-md-5">
+
+          <%= f.check_box :is_hidden, class: 'form-control' %>
+
+        </div>
+
+      </div>
+
+      <div class="form-group">
+
+        <%= f.label :is_top, class: 'col-md-2 control-label' %>
+
+        <div class="col-md-5">
+
+          <%= f.check_box :is_top, class: 'form-control' %>
+
+        </div>
+
+      </div>
+
+      <div class="form-group">
+
+        <%= f.label :is_default_clickout, class: 'col-md-2 control-label' %>
+
+        <div class="col-md-5">
+
+          <%= f.check_box :is_default_clickout, class: 'form-control' %>
+
+          <div class="help-box">
+
+            <small>Default: Yes; When disabled, coupons that have codes, will still trigger modal in foreground</small>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="form-group">
+
+        <%= f.label :is_direct_clickout, class: 'col-md-2 control-label' %>
+
+        <div class="col-md-5">
+
+          <%= f.check_box :is_direct_clickout, class: 'form-control' %>
+
+          <div class="help-box">
+
+            <small>Default: No; When enabled, avoids rendering redirect page on click-out</small>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="form-group">
+
+        <%= f.label :clickout_value, class: 'col-md-2 control-label' %>
+
+        <div class="col-md-5">
+
+          <%= f.text_field :clickout_value, class: 'form-control number' %>
+
+        </div>
+
+      </div>
+
+      <div class="form-actions form-actions-padding-sm">
+
+        <div class="row">
+
+          <div class="col-md-10 col-md-offset-2">
+
+            <%= f.submit nil, class: 'btn btn-primary update-shop' if can? :create, Shop %>
+
+            <%= link_to t('.cancel', default: t('helpers.links.cancel')), admin_shops_path, class: 'btn' %>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <% end %>
+
+    </div>
+
+  </div>
+
+</div>
+
+<script type="text/javascript">
+
+
+document.ready = function(){
+
+  <%- unless can? :manage, @shop -%>
+    $("form.form-horizontal :input").attr("disabled", true);
+  <%- end -%>
+
+}
+
+</script>

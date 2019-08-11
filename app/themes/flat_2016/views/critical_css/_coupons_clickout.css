@@ -1,0 +1,1025 @@
+html {
+  font-family: sans-serif;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+}
+
+a {
+  background-color: transparent;
+}
+
+b {
+  font-weight: 700;
+}
+
+img {
+  border: 0;
+}
+
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+:after,
+:before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 10px;
+}
+
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #333;
+  background-color: #fff;
+}
+
+a {
+  color: #337ab7;
+  text-decoration: none;
+}
+
+img {
+  vertical-align: middle;
+}
+
+.img-responsive {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+h3 {
+  font-family: inherit;
+  font-weight: 500;
+  line-height: 1.1;
+  color: inherit;
+}
+
+h3 {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+h3 {
+  font-size: 24px;
+}
+
+p {
+  margin: 0 0 10px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-uppercase {
+  text-transform: uppercase;
+}
+
+ul {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+ul ul {
+  margin-bottom: 0;
+}
+
+.list-unstyled {
+  padding-left: 0;
+  list-style: none;
+}
+
+.list-inline {
+  padding-left: 0;
+  margin-left: -5px;
+  list-style: none;
+}
+
+.list-inline>li {
+  display: inline-block;
+  padding-right: 5px;
+  padding-left: 5px;
+}
+
+.container {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media (min-width: 768px) {
+  .container {
+    width: 750px;
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+    width: 970px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+  }
+}
+
+.row {
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+.col-sm-2,
+.col-sm-8,
+.col-xs-12,
+.col-xs-6 {
+  position: relative;
+  min-height: 1px;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.col-xs-12,
+.col-xs-6 {
+  float: left;
+}
+
+.col-xs-12 {
+  width: 100%;
+}
+
+.col-xs-6 {
+  width: 50%;
+}
+
+.col-xs-push-3 {
+  left: 25%;
+}
+
+@media (min-width: 768px) {
+  .col-sm-2,
+  .col-sm-8 {
+    float: left;
+  }
+
+  .col-sm-8 {
+    width: 66.66666667%;
+  }
+
+  .col-sm-2 {
+    width: 16.66666667%;
+  }
+
+  .col-sm-push-5 {
+    left: 41.66666667%;
+  }
+
+  .col-sm-push-2 {
+    left: 16.66666667%;
+  }
+}
+
+.fade {
+  opacity: 0;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1040;
+  display: none;
+  overflow: hidden;
+  -webkit-overflow-scrolling: touch;
+  outline: 0;
+}
+
+.modal.fade .modal-dialog {
+  -webkit-transform: translate(0, -25%);
+  -ms-transform: translate(0, -25%);
+  -o-transform: translate(0, -25%);
+  transform: translate(0, -25%);
+}
+
+.modal-dialog {
+  position: relative;
+  width: auto;
+  margin: 10px;
+}
+
+.modal-content {
+  position: relative;
+  background-color: #fff;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  border: 1px solid #999;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  outline: 0;
+  -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+}
+
+@media (min-width: 768px) {
+  .modal-dialog {
+    width: 600px;
+    margin: 30px auto;
+  }
+
+  .modal-content {
+    -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  }
+}
+
+.container:after,
+.container:before,
+.row:after,
+.row:before {
+  display: table;
+  content: " ";
+}
+
+.container:after,
+.row:after {
+  clear: both;
+}
+
+@-ms-viewport {
+  width: device-width;
+}
+
+.visible-xs {
+  display: none !important;
+}
+
+@media (max-width: 767px) {
+  .visible-xs {
+    display: block !important;
+  }
+}
+
+.pannacotta h3 {
+  letter-spacing: -0.016em;
+}
+
+@font-face {
+  font-family: 'mighty-roberto';
+  src: url("https://static.savings-united.com/pc/assets/flat_2016/mighty-roberto.eot");
+  src: url("https://static.savings-united.com/pc/assets/flat_2016/mighty-roberto.eot#iefix") format("embedded-opentype"), url("https://static.savings-united.com/pc/assets/flat_2016/mighty-roberto.woff2") format("woff2"), url("https://static.savings-united.com/pc/assets/flat_2016/mighty-roberto.woff") format("woff"), url("https://static.savings-united.com/pc/assets/flat_2016/mighty-roberto.ttf") format("truetype"), url("https://static.savings-united.com/pc/assets/flat_2016/mighty-roberto.svg#mighty-roberto") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class*=" roberto-"]:before {
+  font-family: "mighty-roberto";
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  text-align: center;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.roberto-home:before {
+  content: '\e809';
+}
+
+.roberto-shopping-cart:before {
+  content: '\e80e';
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 300;
+  src: local("Open Sans Light"), local("OpenSans-Light"), url(https://fonts.gstatic.com/s/opensans/v13/DXI1ORHCpsQm3Vp6mXoaTa-j2U0lmluP9RWlSytm3ho.woff2) format("woff2");
+  unicode-range: U+0460-052F, U+20B4, U+2DE0-2DFF, U+A640-A69F;
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 300;
+  src: local("Open Sans Light"), local("OpenSans-Light"), url(https://fonts.gstatic.com/s/opensans/v13/DXI1ORHCpsQm3Vp6mXoaTZX5f-9o1vgP2EXwfjgl7AY.woff2) format("woff2");
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 300;
+  src: local("Open Sans Light"), local("OpenSans-Light"), url(https://fonts.gstatic.com/s/opensans/v13/DXI1ORHCpsQm3Vp6mXoaTRWV49_lSm1NYrwo-zkhivY.woff2) format("woff2");
+  unicode-range: U+1F00-1FFF;
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 300;
+  src: local("Open Sans Light"), local("OpenSans-Light"), url(https://fonts.gstatic.com/s/opensans/v13/DXI1ORHCpsQm3Vp6mXoaTaaRobkAwv3vxw3jMhVENGA.woff2) format("woff2");
+  unicode-range: U+0370-03FF;
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 300;
+  src: local("Open Sans Light"), local("OpenSans-Light"), url(https://fonts.gstatic.com/s/opensans/v13/DXI1ORHCpsQm3Vp6mXoaTf8zf_FOSsgRmwsS7Aa9k2w.woff2) format("woff2");
+  unicode-range: U+0102-0103, U+1EA0-1EF1, U+20AB;
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 300;
+  src: local("Open Sans Light"), local("OpenSans-Light"), url(https://fonts.gstatic.com/s/opensans/v13/DXI1ORHCpsQm3Vp6mXoaTT0LW-43aMEzIO6XUTLjad8.woff2) format("woff2");
+  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 300;
+  src: local("Open Sans Light"), local("OpenSans-Light"), url(https://fonts.gstatic.com/s/opensans/v13/DXI1ORHCpsQm3Vp6mXoaTegdm0LZdjqr5-oayXSOefg.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local("Open Sans"), local("OpenSans"), url(https://fonts.gstatic.com/s/opensans/v13/K88pR3goAWT7BTt32Z01mxJtnKITppOI_IvcXXDNrsc.woff2) format("woff2");
+  unicode-range: U+0460-052F, U+20B4, U+2DE0-2DFF, U+A640-A69F;
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local("Open Sans"), local("OpenSans"), url(https://fonts.gstatic.com/s/opensans/v13/RjgO7rYTmqiVp7vzi-Q5URJtnKITppOI_IvcXXDNrsc.woff2) format("woff2");
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local("Open Sans"), local("OpenSans"), url(https://fonts.gstatic.com/s/opensans/v13/LWCjsQkB6EMdfHrEVqA1KRJtnKITppOI_IvcXXDNrsc.woff2) format("woff2");
+  unicode-range: U+1F00-1FFF;
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local("Open Sans"), local("OpenSans"), url(https://fonts.gstatic.com/s/opensans/v13/xozscpT2726on7jbcb_pAhJtnKITppOI_IvcXXDNrsc.woff2) format("woff2");
+  unicode-range: U+0370-03FF;
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local("Open Sans"), local("OpenSans"), url(https://fonts.gstatic.com/s/opensans/v13/59ZRklaO5bWGqF5A9baEERJtnKITppOI_IvcXXDNrsc.woff2) format("woff2");
+  unicode-range: U+0102-0103, U+1EA0-1EF1, U+20AB;
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local("Open Sans"), local("OpenSans"), url(https://fonts.gstatic.com/s/opensans/v13/u-WUoqrET9fUeobQW7jkRRJtnKITppOI_IvcXXDNrsc.woff2) format("woff2");
+  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local("Open Sans"), local("OpenSans"), url(https://fonts.gstatic.com/s/opensans/v13/cJZKeOuBrn4kERxqtaUH3VtXRa8TVwTICgirnJhmVJw.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 600;
+  src: local("Open Sans Semibold"), local("OpenSans-Semibold"), url(https://fonts.gstatic.com/s/opensans/v13/MTP_ySUJH_bn48VBG8sNSq-j2U0lmluP9RWlSytm3ho.woff2) format("woff2");
+  unicode-range: U+0460-052F, U+20B4, U+2DE0-2DFF, U+A640-A69F;
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 600;
+  src: local("Open Sans Semibold"), local("OpenSans-Semibold"), url(https://fonts.gstatic.com/s/opensans/v13/MTP_ySUJH_bn48VBG8sNSpX5f-9o1vgP2EXwfjgl7AY.woff2) format("woff2");
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 600;
+  src: local("Open Sans Semibold"), local("OpenSans-Semibold"), url(https://fonts.gstatic.com/s/opensans/v13/MTP_ySUJH_bn48VBG8sNShWV49_lSm1NYrwo-zkhivY.woff2) format("woff2");
+  unicode-range: U+1F00-1FFF;
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 600;
+  src: local("Open Sans Semibold"), local("OpenSans-Semibold"), url(https://fonts.gstatic.com/s/opensans/v13/MTP_ySUJH_bn48VBG8sNSqaRobkAwv3vxw3jMhVENGA.woff2) format("woff2");
+  unicode-range: U+0370-03FF;
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 600;
+  src: local("Open Sans Semibold"), local("OpenSans-Semibold"), url(https://fonts.gstatic.com/s/opensans/v13/MTP_ySUJH_bn48VBG8sNSv8zf_FOSsgRmwsS7Aa9k2w.woff2) format("woff2");
+  unicode-range: U+0102-0103, U+1EA0-1EF1, U+20AB;
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 600;
+  src: local("Open Sans Semibold"), local("OpenSans-Semibold"), url(https://fonts.gstatic.com/s/opensans/v13/MTP_ySUJH_bn48VBG8sNSj0LW-43aMEzIO6XUTLjad8.woff2) format("woff2");
+  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 600;
+  src: local("Open Sans Semibold"), local("OpenSans-Semibold"), url(https://fonts.gstatic.com/s/opensans/v13/MTP_ySUJH_bn48VBG8sNSugdm0LZdjqr5-oayXSOefg.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: local("Open Sans Bold"), local("OpenSans-Bold"), url(https://fonts.gstatic.com/s/opensans/v13/k3k702ZOKiLJc3WVjuplzK-j2U0lmluP9RWlSytm3ho.woff2) format("woff2");
+  unicode-range: U+0460-052F, U+20B4, U+2DE0-2DFF, U+A640-A69F;
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: local("Open Sans Bold"), local("OpenSans-Bold"), url(https://fonts.gstatic.com/s/opensans/v13/k3k702ZOKiLJc3WVjuplzJX5f-9o1vgP2EXwfjgl7AY.woff2) format("woff2");
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: local("Open Sans Bold"), local("OpenSans-Bold"), url(https://fonts.gstatic.com/s/opensans/v13/k3k702ZOKiLJc3WVjuplzBWV49_lSm1NYrwo-zkhivY.woff2) format("woff2");
+  unicode-range: U+1F00-1FFF;
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: local("Open Sans Bold"), local("OpenSans-Bold"), url(https://fonts.gstatic.com/s/opensans/v13/k3k702ZOKiLJc3WVjuplzKaRobkAwv3vxw3jMhVENGA.woff2) format("woff2");
+  unicode-range: U+0370-03FF;
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: local("Open Sans Bold"), local("OpenSans-Bold"), url(https://fonts.gstatic.com/s/opensans/v13/k3k702ZOKiLJc3WVjuplzP8zf_FOSsgRmwsS7Aa9k2w.woff2) format("woff2");
+  unicode-range: U+0102-0103, U+1EA0-1EF1, U+20AB;
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: local("Open Sans Bold"), local("OpenSans-Bold"), url(https://fonts.gstatic.com/s/opensans/v13/k3k702ZOKiLJc3WVjuplzD0LW-43aMEzIO6XUTLjad8.woff2) format("woff2");
+  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: local("Open Sans Bold"), local("OpenSans-Bold"), url(https://fonts.gstatic.com/s/opensans/v13/k3k702ZOKiLJc3WVjuplzOgdm0LZdjqr5-oayXSOefg.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+
+.pannacotta.card {
+  background-color: #fff;
+  border: 1px solid #D8D8D8;
+  border-bottom-width: 2px;
+  border-radius: 2px;
+  margin-bottom: 30px;
+}
+
+.pannacotta .list-circle {
+  border: 2px solid #E60000;
+  border-radius: 3px;
+  color: transparent;
+  display: inline-block;
+  height: 6px;
+  margin: 0 10px 0 0;
+  width: 6px;
+  position: relative;
+  top: -2px;
+}
+
+.pannacotta#header {
+  background-color: #FFF;
+  margin-bottom: 28px;
+}
+
+.pannacotta#header .site-logo {
+  margin: 16px 0;
+  text-align: center;
+}
+
+.pannacotta#header .site-logo img {
+  display: inherit;
+  margin: -8px auto 0 0;
+  max-height: 40px;
+  width: auto;
+}
+
+@media (min-width: 768px) {
+  .pannacotta#header .site-logo a {
+    display: table-cell;
+    height: 40px;
+    vertical-align: middle;
+  }
+
+  .pannacotta#header .site-logo img {
+    max-height: 44px;
+  }
+}
+
+@media (min-width: 992px) {
+  .pannacotta#header .site-logo {
+    margin: 25px 0;
+  }
+}
+
+.pannacotta#my-modal .modal-content {
+  background-color: #F6F6F6;
+  border-radius: 0;
+  color: #404040;
+  font-size: 14px;
+  font-weight: lighter;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+@media (min-width: 768px) {
+  .pannacotta#my-modal .modal-dialog {
+    width: 650px;
+  }
+}
+
+.pannacotta.card-coupons-list.card {
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+  margin-bottom: 0px;
+}
+
+.pannacotta.card-coupons-list .card-content {
+  background-color: transparent;
+}
+
+.pannacotta.card-coupons-list .card-content>ul li.item {
+  position: relative;
+  background-color: #fff;
+  border-radius: 2px;
+  box-shadow: inset 0 0 0 1px #D8D8D8;
+  padding: 0;
+  margin-bottom: 6px;
+  display: inline-block;
+  overflow: hidden;
+  width: 100%;
+}
+
+.pannacotta.card-coupons-list .card-content>ul li.item .coupon-header,
+.pannacotta.card-coupons-list .card-content>ul li.item .coupon-body {
+  padding: 0 12px;
+  position: relative;
+}
+
+.pannacotta.card-coupons-list .card-content>ul li.item .coupon-header {
+  padding: 24px 12px;
+  margin-bottom: 24px;
+}
+
+.pannacotta.card-coupons-list .card-content>ul li.item .coupon-body .divider {
+  display: flex;
+  position: absolute;
+  top: -24px;
+  left: 0;
+  flex-direction: row;
+  padding: 0 24px;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.pannacotta.card-coupons-list .card-content>ul li.item .coupon-body .divider li {
+  display: block;
+  border-radius: 100%;
+  background-color: #ECECEC;
+  border: 1px solid #D8D8D8;
+  width: 8px;
+  height: 8px;
+}
+
+.pannacotta.card-coupons-list .card-content>ul li.item .coupon-body::before {
+  border-radius: 100%;
+  content: "";
+  display: block;
+  width: 24px;
+  height: 24px;
+  border: 1px solid #D8D8D8;
+  background-color: #ECECEC;
+  position: absolute;
+  left: -12px;
+  top: -32px;
+}
+
+.pannacotta.card-coupons-list .card-content>ul li.item .coupon-body::after {
+  border-radius: 100%;
+  content: "";
+  display: block;
+  width: 24px;
+  height: 24px;
+  border: 1px solid #D8D8D8;
+  background-color: #ECECEC;
+  position: absolute;
+  right: -12px;
+  top: -32px;
+}
+
+.pannacotta.card-coupons-list .card-content .coupon-logo {
+  color: inherit;
+  display: block;
+  text-align: center;
+}
+
+.pannacotta.card-coupons-list .card-content .coupon-logo img {
+  border: 1px solid #737373;
+  margin: 0 auto;
+}
+
+.pannacotta.card-coupons-list .card-content .exclusive {
+  text-align: center;
+}
+
+.pannacotta.card-coupons-list .card-content .exclusive .coupon-banner {
+  background-color: #404040;
+  color: #FFF;
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 17px;
+  padding: 1px 8px 1px 0;
+  position: relative;
+  margin: 12px 0 0 8px;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.pannacotta.card-coupons-list .card-content .exclusive .coupon-banner::before {
+  border-width: 10px 4px 9px;
+  border-style: solid;
+  border-color: #404040 #404040 #404040 transparent;
+  content: '';
+  left: -8px;
+  position: absolute;
+  top: 0;
+}
+
+.pannacotta.card-coupons-list .card-content .exclusive .coupon-banner::after {
+  border-color: transparent #FFF transparent transparent;
+  border-style: solid;
+  border-width: 10px 4px 9px;
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.pannacotta.card-coupons-list .card-content .coupon-title {
+  color: #262626;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 22px;
+  margin: 8px 0;
+  padding: 0 12px;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .pannacotta.card-coupons-list .card-content>ul li.item {
+    min-height: 160px;
+  }
+
+  .pannacotta.card-coupons-list .card-content>ul li.item .coupon-header,
+  .pannacotta.card-coupons-list .card-content>ul li.item .coupon-body {
+    float: left;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    padding-top: 0;
+  }
+
+  .pannacotta.card-coupons-list .card-content>ul li.item .coupon-header {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    height: 160px;
+    justify-content: center;
+  }
+
+  .pannacotta.card-coupons-list .card-content>ul li.item .coupon-header {
+    margin: 0;
+    padding-right: 16px;
+    width: 20%;
+  }
+
+  .pannacotta.card-coupons-list .card-content>ul li.item .coupon-body {
+    padding-left: 24px;
+    padding-right: 4px;
+    padding-bottom: 30px;
+    width: 48%;
+    min-height: 159px;
+  }
+
+  .pannacotta.card-coupons-list .card-content>ul li.item .coupon-body .divider {
+    top: 0;
+    left: -4px;
+    flex-direction: column;
+    padding: 18px 0;
+    justify-content: space-between;
+    height: 100%;
+    width: auto;
+  }
+
+  .pannacotta.card-coupons-list .card-content>ul li.item .coupon-body::before {
+    top: -12px;
+  }
+
+  .pannacotta.card-coupons-list .card-content>ul li.item .coupon-body::after {
+    left: -12px;
+    bottom: -12px;
+    top: inherit;
+    right: inherit;
+  }
+
+  .coupons.clickout .pannacotta.card-coupons-list .card-content>ul li.item .coupon-header {
+    width: 30%;
+  }
+
+  .coupons.clickout .pannacotta.card-coupons-list .card-content>ul li.item .coupon-body {
+    width: 68%;
+  }
+
+  .pannacotta.card-coupons-list .card-content .coupon-logo img {
+    width: 72px;
+    height: 72px;
+  }
+
+  .pannacotta.card-coupons-list .card-content .exclusive .coupon-banner {
+    font-size: 9px;
+    font-weight: 400;
+    max-width: 110px;
+  }
+
+  .pannacotta.card-coupons-list .card-content .coupon-title {
+    font-size: 18px;
+    margin-top: 12px;
+    overflow: hidden;
+    padding: 0;
+    text-align: left;
+  }
+}
+
+@media (min-width: 1200px) {
+  .coupons.clickout .pannacotta.card-coupons-list .card-content>ul li.item .coupon-header {
+    width: 20%;
+  }
+
+  .coupons.clickout .pannacotta.card-coupons-list .card-content>ul li.item .coupon-body {
+    width: 78%;
+  }
+
+  .pannacotta.card-coupons-list .card-content>ul li.item .coupon-body {
+    padding-left: 36px;
+    padding-right: 8px;
+  }
+
+  .pannacotta.card-coupons-list .card-content>ul li.item .coupon-title {
+    font-size: 20px;
+    line-height: 24px;
+  }
+}
+
+.pannacotta.coupons.clickout #header {
+  background-color: transparent;
+  border: none;
+}
+
+.pannacotta.coupons.clickout #header .site-logo {
+  padding: 25px 0 0;
+}
+
+.pannacotta.coupons.clickout .redirect-message {
+  color: #262626;
+  font-size: 20px;
+  font-weight: lighter;
+  margin-bottom: 20px;
+}
+
+.pannacotta.coupons.clickout .redirect-message b {
+  font-weight: bold;
+}
+
+.pannacotta.coupons.clickout .list-redirect {
+  margin-bottom: 40px;
+}
+
+.pannacotta.coupons.clickout .list-redirect>li:first-child i {
+  color: #E60000;
+}
+
+.pannacotta.coupons.clickout .list-redirect>li:last-child i {
+  background-color: #E60000;
+  color: #fff;
+}
+
+.pannacotta.coupons.clickout .list-redirect>li:nth-child(2)>span {
+  -webkit-animation-delay: 0.5s;
+  -moz-animation-delay: 0.5s;
+  -ms-animation-delay: 0.5s;
+  -o-animation-delay: 0.5s;
+  animation-delay: 0.5s;
+}
+
+.pannacotta.coupons.clickout .list-redirect>li:nth-child(3)>span {
+  -webkit-animation-delay: 1s;
+  -moz-animation-delay: 1s;
+  -ms-animation-delay: 1s;
+  -o-animation-delay: 1s;
+  animation-delay: 1s;
+}
+
+.pannacotta.coupons.clickout .list-redirect>li:nth-child(4)>span {
+  -webkit-animation-delay: 1.5s;
+  -moz-animation-delay: 1.5s;
+  -ms-animation-delay: 1.5s;
+  -o-animation-delay: 1.5s;
+  animation-delay: 1.5s;
+}
+
+.pannacotta.coupons.clickout .list-redirect>li:nth-child(5)>span {
+  -webkit-animation-delay: 2s;
+  -moz-animation-delay: 2s;
+  -ms-animation-delay: 2s;
+  -o-animation-delay: 2s;
+  animation-delay: 2s;
+}
+
+.pannacotta.coupons.clickout .list-redirect>li:nth-child(6)>span {
+  -webkit-animation-delay: 2.5s;
+  -moz-animation-delay: 2.5s;
+  -ms-animation-delay: 2.5s;
+  -o-animation-delay: 2.5s;
+  animation-delay: 2.5s;
+}
+
+.pannacotta.coupons.clickout .list-redirect>li i {
+  border: 2px solid #E60000;
+  border-radius: 22px;
+  display: block;
+  font-size: 20px;
+  height: 44px;
+  padding: 8px 10px 4px;
+  width: 44px;
+}
+
+.pannacotta.coupons.clickout .list-redirect>li span {
+  border-radius: 5px;
+  display: block;
+  height: 8px;
+  margin: -10px auto 0;
+  width: 8px;
+  -webkit-animation: LOADER 3s linear infinite;
+  -moz-animation: LOADER 3s linear infinite;
+  -ms-animation: LOADER 3s linear infinite;
+  -o-animation: LOADER 3s linear infinite;
+  animation: LOADER 3s linear infinite;
+}
+
+@-webkit-keyframes LOADER {
+  0% {
+    background-color: transparent;
+  }
+
+  50% {
+    background-color: #E60000;
+  }
+
+  100% {
+    background-color: transparent;
+  }
+}
+
+@-moz-keyframes LOADER {
+  0% {
+    background-color: transparent;
+  }
+
+  50% {
+    background-color: #E60000;
+  }
+
+  100% {
+    background-color: transparent;
+  }
+}
+
+@-o-keyframes LOADER {
+  0% {
+    background-color: transparent;
+  }
+
+  50% {
+    background-color: #E60000;
+  }
+
+  100% {
+    background-color: transparent;
+  }
+}
+
+@keyframes LOADER {
+  0% {
+    background-color: transparent;
+  }
+
+  50% {
+    background-color: #E60000;
+  }
+
+  100% {
+    background-color: transparent;
+  }
+}
+
+body {
+  background-attachment: scroll;
+  background-color: #ECECEC;
+  background-position: 0 0;
+  background-repeat: repeat;
+  background-size: auto;
+  font-family: "Open Sans", "Helvetica Neue", Arial, Helvetica, sans-serif;
+  text-rendering: optimizeLegibility;
+}
+
+b {
+  font-weight: bold;
+}
+label.privacy_policy {
+  font-weight: normal;
+}
+
+label.privacy_policy a {
+  color: #fff;
+  text-decoration: underline;
+}

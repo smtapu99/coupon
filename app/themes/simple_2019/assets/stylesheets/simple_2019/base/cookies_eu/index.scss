@@ -1,0 +1,45 @@
+.cookies-eu {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 999;
+  padding: 15px 30px 15px 15px;
+  color: #FFF;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 15px;
+  text-align: center;
+  background-color: $color-sky;
+
+  a {
+    color: inherit;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 15px;
+  }
+
+  &__close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 32px;
+    height: 32px;
+    padding: 6px 8px 3px;
+    color: #FFF;
+    font-size: 14px;
+    background: transparent;
+    cursor: pointer;
+
+    svg {
+      fill: #FFF;
+    }
+
+    &:focus,
+    &:hover {
+      svg {
+        fill: $color-warning;
+      }
+    }
+  }
+}

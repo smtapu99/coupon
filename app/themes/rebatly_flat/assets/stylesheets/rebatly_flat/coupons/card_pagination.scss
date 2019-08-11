@@ -1,0 +1,39 @@
+.pannacotta {
+  &.card-pagination {
+    .card-content {
+      .pagination {
+        margin: 10px 25px 6px;
+
+        > li {
+          &.active > a {
+            background-color: $color-sky;
+            color: #fff;
+          }
+
+          &.disabled {
+            display: none !important;
+          }
+
+          > a, > span {
+            border: none;
+            border-radius: 0;
+            color: $color-sky;
+            font-size: 14px;
+            font-weight: bold;
+            margin: 0 5px;
+            padding: 7px 13px;
+
+            @include flat-transition(background-color .3s ease, color .3s ease);
+          }
+
+          > a {
+            &:focus, &:hover {
+              background-color: $color-sky;
+              color: #fff;
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,49 @@
+.pannacotta {
+  .bg-ashes,
+  .bg-berry,
+  .bg-cloud,
+  .bg-cherry,
+  .bg-freedom,
+  .bg-ready,
+  .bg-royal,
+  .bg-sky {
+    color: #FFF;
+  }
+
+  .bg-ashes {
+    background-color: $color-ashes !important;
+  }
+
+  .bg-berry {
+    background-color: $color-berry !important;
+  }
+
+  .bg-cloud {
+    background-color: $color-cloud !important;
+    color: $color-text;
+  }
+
+  .bg-cherry {
+    background-color: $color-cherry !important;
+  }
+
+  .bg-freedom {
+    background-color: $color-freedom !important;
+  }
+
+  .bg-juicy {
+    background-color: $color-juicy !important;
+  }
+
+  .bg-ready {
+    background-color: $color-ready !important;
+  }
+
+  .bg-royal {
+    background-color: $color-royal !important;
+  }
+
+  .bg-sky {
+    background-color: $color-sky !important;
+  }
+}

@@ -1,0 +1,8 @@
+jQuery('.card.card-bookmarks-index.pannacotta').replaceWith("<%= escape_javascript render :partial => 'saved_coupons' %>");
+
+jQuery('body').load_bookmarked_coupon();
+
+jQuery('.bookmarks .card.card-coupons-list.pannacotta .btn-coupon-bookmark').each(function () {
+  jQuery(this).bookmark_coupon();
+});
+

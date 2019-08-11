@@ -1,0 +1,311 @@
+<button class="btn btn-no-border btn-transparent visible-xs navbar-toggle" data-canvas="body" data-target="#navigation-mobile" data-toggle="offcanvas" type="button">
+
+  <i class="roberto roberto-menu-hamburger"></i>
+
+</button>
+
+<div id="main-menu" role="navigation">
+
+  <ul class="hidden-xs nav nav-pills nav-justified">
+
+    <%- if !is_home? && Setting::get('publisher_site.show_home_link', default: 0).to_i == 1 -%>
+
+      <%- site_navigation_element(name: 'home', url: root_url, only_path: false) -%>
+
+      <li>
+
+        <a href="<%= root_url %>">
+
+          <i class="roberto roberto-home"></i>
+
+        </a>
+
+      </li>
+
+    <%- end -%>
+
+    <li class="<%= 'has-sub-menu' if @site.nav_shops.present? && @site.nav_shops.size >= 1 %> <%= 'active' if params[:controller] === 'shops' %>">
+
+      <%- shops_url = dynamic_url_for('shops', 'index', only_path: false) -%>
+
+      <a href="<%= shops_url %>">
+
+        <%= t(:MAIN_SHOPS, default: 'Shops') %> <i class="roberto-down-dir"></i>
+
+        <%- site_navigation_element(name: t(:MAIN_SHOPS, default: 'Shops'), url: shops_url) -%>
+
+      </a>
+
+      <% if @site.nav_shops.present? && @site.nav_shops.size >= 1 %>
+
+        <% content_for :after_header do %>
+
+          <div class="hidden pannacotta sub-menu" data-event-category="header">
+
+            <div class="container">
+
+              <div class="row">
+
+                <div class="col-xs-12">
+
+                  <p class="text-uppercase"><b><%= t(:POPULAR_SHOPS, default: 'Popular Shops') %></b></p>
+                  <!-- /.text-uppercase -->
+
+                  <ul class="list-three-cols list-unstyled">
+
+                    <% @site.nav_shops.each do |shop| %>
+
+                      <li>
+
+                        <span class="list-circle"></span>
+
+                        <%- shop_url = dynamic_url_for('shops', 'show', slug: shop.slug, only_path: false) -%>
+
+                        <%= link_to(shop.title, shop_url) %>
+
+                        <%- site_navigation_element(name: shop.title, url: shop_url) -%>
+
+                      </li>
+
+                    <% end %>
+
+                  </ul>
+                  <!-- /.list-three-cols list-unstyled -->
+
+                </div>
+                <!-- /.col-xs-12 -->
+
+              </div>
+              <!-- /.row -->
+
+            </div>
+            <!-- /.container -->
+
+            <p class="text-center">
+
+              <a href="<%= shops_url %>">
+
+                <%= t(:SEE_ALL_SHOPS, default: 'See All Shops') %>
+
+                <i class="roberto roberto-arrow-right"></i>
+
+                <%- site_navigation_element(name: t(:SEE_ALL_SHOPS, default: 'See All Shops'), url: dynamic_url_for('shops', 'index', only_path: false)) -%>
+
+              </a>
+
+            </p>
+            <!-- /.text-center text-uppercase -->
+
+          </div>
+          <!-- /.hidden pannacotta sub-menu -->
+
+        <% end %>
+
+      <% end %>
+
+    </li>
+
+    <%- if Setting::get('menu.show_coupons', default: 1).to_i == 1 -%>
+
+      <li class="<%= 'active' if params[:controller] === 'coupons' %>">
+
+        <%- coupons_url = dynamic_url_for('coupon', 'index', type: 'top', only_path: false) -%>
+
+        <%= link_to(t(:MAIN_COUPONS, default: 'Coupons'), coupons_url) %>
+
+        <%- site_navigation_element(name: t(:MAIN_COUPONS, default: 'Coupons'), url: coupons_url) -%>
+
+      </li>
+
+    <%- end -%>
+
+    <%- if Setting::get('menu.show_categories', default: 1).to_i == 1 %>
+
+      <li class="<%= 'has-sub-menu__categories' if @site.nav_categories.present? && @site.nav_categories.size >= 1 %> <%= 'active' if params[:controller] === 'categories' %>">
+
+        <%- categories_url = dynamic_url_for('categories', 'index', only_path: false) -%>
+
+        <a href="<%= categories_url %>">
+
+          <span><%= t(:MAIN_CATEGORIES, default: 'Categories') %></span>
+
+          <%- if @site.nav_categories.present? -%>
+
+            <i class="roberto-down-dir"></i>
+
+          <%- end -%>
+
+          <%- site_navigation_element(name: t(:MAIN_CATEGORIES, default: 'Categories'), url: categories_url) -%>
+
+        </a>
+
+        <%- if @site.nav_categories.present? -%>
+
+          <div class="hidden pannacotta sub-menu__categories">
+
+            <ul class="nav text-ellipsis">
+
+              <% @site.nav_categories.each do |cat| %>
+
+                <li>
+
+                  <%- category_url = dynamic_url_for('categories', 'show', slug: cat.slug, only_path: false) -%>
+
+                  <%= link_to(cat.name, category_url) %>
+
+                  <%- site_navigation_element(name: cat.name, url: category_url) -%>
+
+                </li>
+
+              <%- end -%>
+
+              <li class="nav-see-more">
+
+                <a href="<%= categories_url %>">
+
+                  <%= t(:SEE_ALL_CATEGORIES, default: 'SEE_ALL_CATEGORIES') %>
+
+                  <i class="roberto roberto-arrow-right"></i>
+
+                  <%- site_navigation_element(name: t(:SEE_ALL_CATEGORIES, default: 'SEE_ALL_CATEGORIES'), url: categories_url) -%>
+
+                </a>
+
+              </li>
+
+            </ul>
+            <!-- /.list-unstyled -->
+
+          </div>
+          <!-- /.hidden pannacotta sub-menu -->
+
+        <%- end # end @site.nav_categories.present? -%>
+
+      </li>
+
+    <% end %>
+
+    <%- @site.nav_main_shops.each do |shop| -%>
+
+      <li>
+
+        <%- shop_url = dynamic_url_for('shops', 'show', slug: shop.slug, only_path: false) -%>
+
+        <%= link_to(shop.title, shop_url) %>
+
+        <%- site_navigation_element(name: shop.title, url: shop_url) -%>
+
+      </li>
+
+    <% end %>
+
+    <%- if Setting::get('menu.show_campaigns', default: 1).to_i == 1 -%>
+
+      <%- if @site.nav_campaigns.size > 1 -%>
+
+        <%- if !is_home? -%>
+
+          <%- content_for :secondary_nav do -%>
+
+            <div class="secondary-nav">
+
+              <div class="container">
+
+                <div class="row">
+
+                  <div class="hidden-xs col-sm-12">
+
+                    <ul class="nav nav-pills">
+
+                      <% for campaign in @site.nav_campaigns %>
+
+                        <%- campaign_url = dynamic_campaign_url_for(campaign) -%>
+
+                        <li class="<%= 'active' if current_page?(campaign_url) %>">
+
+                          <%= link_to(campaign.nav_title_or_name, campaign_url) %>
+
+                          <%- site_navigation_element(name: campaign.nav_title_or_name, url: campaign_url) -%>
+
+                        </li>
+
+                      <% end %>
+
+                    </ul>
+
+                  </div>
+                  <!-- /.hidden-xs .col-sm-12 -->
+
+                </div>
+                <!-- /.row -->
+
+              </div>
+              <!-- /.container -->
+
+            </div>
+            <!-- /.secondary-nav -->
+
+          <%- end # end content_for -%>
+
+        <%- else # !is_home -%>
+
+          <li class="has-sub-menu__specials">
+
+            <a href="#">
+
+              <%= t(:SPECIALS, default: 'SPECIALS') %> <i class="roberto-down-dir"></i>
+
+            </a>
+
+            <div class="hidden pannacotta sub-menu__specials">
+
+              <ul class="nav text-ellipsis">
+
+                <% for campaign in @site.nav_campaigns %>
+
+                  <li>
+
+                    <%- campaign_url = dynamic_campaign_url_for(campaign) -%>
+
+                    <%= link_to(campaign.nav_title_or_name, campaign_url) %>
+
+                    <%- site_navigation_element(name: campaign.nav_title_or_name, url: campaign_url) -%>
+
+                  </li>
+
+                <% end %>
+
+              </ul>
+              <!-- /.list-unstyled -->
+
+            </div>
+            <!-- /.hidden pannacotta sub-menu -->
+
+          </li>
+          <!-- /.has-sub-menu__specials -->
+
+        <%- end # end !is_home -%>
+
+      <%- elsif @site.nav_campaigns.size == 1 -%>
+
+        <li>
+
+          <%- campaign = @site.nav_campaigns.first -%>
+
+          <%- campaign_url = dynamic_campaign_url_for(campaign) -%>
+
+          <%= link_to(campaign.nav_title_or_name, campaign_url) %>
+
+          <%- site_navigation_element(name: campaign.nav_title_or_name, url: campaign_url) -%>
+
+        </li>
+
+      <%- end -%>
+
+    <%- end # end show_campaigns? -%>
+
+  </ul>
+  <!-- /#main-menu.hidden-xs nav nav-pills nav-justified -->
+
+</div>
+<!-- /#main-menu -->

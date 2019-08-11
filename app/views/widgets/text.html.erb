@@ -1,0 +1,38 @@
+<%- if values[:without_box] -%>
+
+  <div class="hidden-xs">
+
+    <%= values[:content].html_safe if values[:content].present? %>
+
+  </div>
+
+<%- else -%>
+
+  <div class="box box-text <%= 'box-transparent' if values[:transparent_widget].to_i == 1 %> <%= values[:css_class] %>">
+
+    <% if values[:without_header].to_i == 0 %>
+
+      <div class="box-header bg-<%= values[:header_color] %>">
+
+        <h3><i class="picon picon-<%= values[:header_icon] %>"></i> <%= values[:title] %></h3>
+
+      </div>
+
+    <% end %>
+
+    <!-- /.box-header bg-cloud -->
+
+    <div class="box-content">
+
+      <%= values[:content].html_safe if values[:content].present? %>
+
+    </div>
+
+    <!-- /.box-content -->
+
+  </div>
+
+  <!-- /.box box-text -->
+
+<%- end -%>
+

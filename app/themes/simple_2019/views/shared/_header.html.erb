@@ -1,0 +1,61 @@
+<!-- .topbar -->
+
+<div class="topbar">
+
+  <div class="container">
+
+    <div class="row">
+
+      <%= render partial: 'shared/topbar_logo' %>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- ./topbar -->
+
+<%= render partial: 'shared/navigation' %>
+
+<% if is_home? && Setting::get('publisher_site.show_prominent_search_on_homepage', default: 1).to_i != 0 %>
+
+  <%= render partial: 'shared/m_search_box' %>
+
+<% else %>
+
+  <!-- .sub-nav-bar -->
+
+  <div class="sub-nav-bar">
+
+    <div class="container">
+
+      <div class="row align-items-center search-container">
+
+        <div class="col-10 col-lg-9">
+
+          <%= render partial: 'shared/breadcrumbs', locals: { breadcrumbs: breadcrumbs } %>
+
+        </div>
+
+        <div class="col-2 col-lg-3">
+
+            <%= render partial: 'shared/small_search' %>
+
+        </div>
+
+        <div class="col-12 col-lg-3 offset-lg-9">
+
+          <div class="hidden search-header-results search-header-results--small" id="search-header-results"></div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- ./sub-nav-bar -->
+
+<% end %>

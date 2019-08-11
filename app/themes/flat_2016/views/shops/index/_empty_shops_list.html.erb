@@ -1,0 +1,23 @@
+<% if shops_empty.present? %>
+
+  <ol class="list-unstyled list-three-cols">
+
+    <% shops_empty.each do |shop| %>
+
+      <li>
+
+        <a href="<%= dynamic_url_for('shop', 'show', slug: shop.slug) %>" title="<%= shop.title if shop.title.present? %>">
+
+          <%= shop.title if shop.title.present? %>
+
+        </a>
+
+      </li>
+
+    <% end %>
+
+  </ol>
+
+  <!-- /.list-unstyled list-three-cols -->
+
+<% end %>

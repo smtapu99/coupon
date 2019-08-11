@@ -1,0 +1,91 @@
+<div class="form-group">
+
+  <%= ff.label :subtitle, class: 'col-md-2 control-label' %>
+
+  <div class="col-md-10">
+
+    <%= ff.text_field :subtitle, class: 'form-control' %>
+
+  </div>
+
+</div>
+
+<div class="form-group">
+
+  <%= ff.label 'Label PNG', class: 'col-md-2 control-label' %>
+
+  <div class="col-md-10">
+
+    <%= ff.text_field :image_url, class: 'form-control' %>
+
+  </div>
+
+</div>
+
+<div class="form-group">
+
+  <%= ff.label 'Background URL', class: 'col-md-2 control-label' %>
+
+  <div class="col-md-10">
+
+    <%= ff.text_field :background_url, class: 'form-control' %>
+
+    <div class="help-block">
+
+      <small>Default: Background of the theme. Only put background if you are sure you need to look different then the default.</small>
+
+    </div>
+
+  </div>
+
+</div>
+
+<%- (0..5).each do |num| -%>
+
+  <h3>Item <%= num+1 %></h3>
+
+  <div class="form-group">
+
+    <div class="col-md-6">
+
+      <label for="">Title</label>
+
+      <%= text_field_tag 'widget[subpage_teaser][][title]', (@widget.subpage_teaser[num][:title] rescue nil), class: 'select2 form-control', placeholder: 'Title' %>
+
+    </div>
+
+    <div class="col-md-6">
+
+      <label for="">Link URL</label>
+
+      <%= text_field_tag 'widget[subpage_teaser][][url]', (@widget.subpage_teaser[num][:url] rescue nil), class: 'select2 form-control', placeholder: 'URL' %>
+
+    </div>
+
+  </div>
+
+  <div class="form-group">
+
+    <div class="col-md-6">
+
+      <label for="">Background Image URL</label>
+
+      <%= text_field_tag 'widget[subpage_teaser][][image_url]', (@widget.subpage_teaser[num][:image_url] rescue nil), class: 'select2 form-control', placeholder: 'Image URL' %>
+
+    </div>
+
+    <div class="col-md-6">
+
+      <label for="">Icon URL</label>
+
+      <%= text_field_tag 'widget[subpage_teaser][][icon_url]', (@widget.subpage_teaser[num][:icon_url] rescue nil), class: 'select2 form-control', placeholder: 'Icon URL' %>
+
+      <div class="help-block"><small>Transparent Icon; Hint: If no icon is provided we will also remove the dark overlay.</small></div>
+
+    </div>
+
+  </div>
+
+  <hr>
+
+<%- end -%>

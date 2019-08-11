@@ -1,0 +1,113 @@
+<div class="navmenu flat-navmenu-default navmenu-fixed-left offcanvas" id="navigation-mobile" role="navigation">
+
+  <%= render partial: 'shared/search_navigation_mobile' %>
+
+  <ul class="nav navmenu-nav">
+
+    <%- if Setting::get('menu.show_home_link', default: 0).to_i == 1 -%>
+
+      <li class="<%= 'active' if params[:controller] === 'home' %>">
+
+          <a href="<%= root_url %>">
+
+            <i class="roberto roberto-home"></i>
+
+          </a>
+
+      </li>
+
+    <%- end -%>
+
+    <li class="<%= 'active' if params[:controller] === 'shops' %>">
+
+      <%= link_to(t(:MAIN_SHOPS, default: 'Shops'), dynamic_url_for('shop')) %>
+
+    </li>
+
+    <%- if Setting::get('menu.show_coupons', default: 1).to_i == 1 -%>
+
+      <li class="<%= 'active' if params[:controller] === 'coupons' %>">
+
+        <%= link_to(t(:MAIN_COUPONS, default: 'Coupons'), dynamic_url_for('coupon', 'index', type: 'top')) %>
+
+      </li>
+
+    <%- end -%>
+
+    <%- if Setting::get('menu.show_categories', default: 1).to_i == 1 -%>
+
+      <li class="<%= 'active' if params[:controller] === 'categories' %>">
+
+        <%= link_to(t(:MAIN_CATEGORIES, default: 'Categories'), dynamic_url_for('category')) %>
+
+      </li>
+
+    <%- end -%>
+
+    <%- if Setting::get('menu.show_campaigns', default: 1).to_i == 1 -%>
+
+      <% for campaign in @site.nav_campaigns %>
+
+        <li class="<%= 'active' if params[:controller] === 'campaigns' %>">
+
+          <%= link_to((campaign.nav_title.present?) ? campaign.nav_title : 'Special', dynamic_campaign_url_for(campaign)) %>
+
+        </li>
+
+      <% end %>
+
+    <%- end -%>
+
+    <%- for shop in @site.nav_main_shops -%>
+
+      <li>
+
+        <%= link_to(shop.title, dynamic_url_for('shops', 'show', slug: shop.slug)) %>
+
+      </li>
+
+    <% end %>
+
+    <% if Setting::get('publisher_site.blog_link_url').present? %>
+
+      <li>
+
+        <a href="<%= Setting::get('publisher_site.blog_link_url') %>">
+
+          <i class="picon picon-books-nav"></i>
+
+          <% if Setting::get('publisher_site.blog_link_title').present? %>
+
+            &nbsp;
+
+            <span><%= Setting::get('publisher_site.blog_link_title') || t(:MAIN_BLOG, default: 'MAIN_BLOG') %></span>
+
+          <% end %>
+
+        </a>
+
+      </li>
+
+    <% end %>
+
+    <%- if Setting::get('menu.show_home_link', default: 0).to_i == 1 && @site.image_setting.logo_url.present? -%>
+
+      <li class="logo-row">
+
+          <a class="text-center" href="<%= Setting::get('publisher_site.external_logo_url', default: root_url) %>" style="border: none;">
+
+            <%= image_tag @site.image_setting.logo_url, alt: @site.image_setting.logo_url, class: 'img-responsive', style: 'max-width: 100%' %>
+
+          </a>
+
+      </li>
+
+    <%- end -%>
+
+  </ul>
+
+  <!-- /#navigation-mobile.nav navmenu-nav offcanvas -->
+
+</div>
+
+<!-- /#navigation-mobile.navmenu navmenu-fixed-left offcanvas -->

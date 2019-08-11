@@ -1,0 +1,183 @@
+<div class="col-sm-12 col-md-6" id="image-upload">
+
+  <div class="box bordered-box muted-border <%= 'box-collapsed' unless session[:last_setting] == 'image_upload' %>">
+
+    <div class="box-header muted-background">
+
+      <div class="title">
+
+        <i class="icon-upload-alt"></i>
+
+        Image Upload
+
+      </div>
+
+      <div class="actions">
+
+        <a class="btn box-collapse btn-xs btn-link" href="#">
+
+          <i></i>
+
+        </a>
+
+      </div>
+
+    </div>
+
+    <div class="box-content">
+
+      <%= form_for [:admin, @image_setting], url: admin_image_settings_path, method: :patch, html: { class: 'form form-horizontal', style: 'margin-bottom: 0', multipart: true } do |f| %>
+
+        <div class="form-group">
+
+          <div class="col-sm-12">
+
+            <%= f.label :favicon %>
+
+              <br />
+
+              <% if  @image_setting.favicon.present? %>
+
+                <%= image_tag @image_setting.favicon_url, width: '50' %>
+
+                <p>
+
+                  <label>
+
+                    <%= f.check_box :remove_favicon %>
+
+                    Remove favicon
+
+                  </label>
+
+                </p>
+
+              <% end %>
+
+            <%= f.file_field :favicon, :class => 'form-control' %>
+
+          </div>
+
+        </div>
+
+        <div class="form-group">
+
+          <div class="col-sm-12">
+
+            <%= f.label :logo %>
+
+              <br />
+
+              <% if  @image_setting.logo.present? %>
+
+                <%= image_tag @image_setting.logo_url, width: '150' %>
+
+                <p>
+
+                  <label>
+
+                    <%= f.check_box :remove_logo %>
+
+                    Remove logo
+
+                  </label>
+
+                </p>
+
+              <% end %>
+
+            <%= f.file_field :logo, :class => 'form-control' %>
+
+          </div>
+
+        </div>
+
+        <div class="form-group">
+
+          <div class="col-sm-12">
+
+            <%= f.label :hero %>
+
+              <br />
+
+              <% if  @image_setting.hero.present? %>
+
+                <%= image_tag @image_setting.hero_url, width: '150' %>
+
+                <p>
+
+                  <label>
+
+                    <%= f.check_box :remove_hero %>
+
+                    Remove hero
+
+                  </label>
+
+                </p>
+
+              <% end %>
+
+            <%= f.file_field :hero, :class => 'form-control' %>
+
+          </div>
+
+        </div>
+
+        <hr>
+
+        <h3>Theme Options: Simple 2019</h3>
+
+        <div class="form-group">
+
+          <div class="col-sm-12">
+
+            <%= f.label :see_more_categories_background %>
+
+              <br />
+
+              <% if  @image_setting.see_more_categories_background.present? %>
+
+                <%= image_tag @image_setting.see_more_categories_background_url, width: '150' %>
+
+                <p>
+
+                  <label>
+
+                    <%= f.check_box :remove_see_more_categories_background %>
+
+                    Remove "see more categories" background
+
+                  </label>
+
+                </p>
+
+              <% end %>
+
+            <%= f.file_field :see_more_categories_background, :class => 'form-control' %>
+
+          </div>
+
+        </div>
+
+        <div class="form-actions form-actions-padding-sm">
+
+          <div class="row">
+
+            <div class="col-md-2">
+
+              <%= f.submit 'Save', class: 'btn btn-primary btn-block' %>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      <%- end -%>
+
+    </div>
+
+  </div>
+
+</div>

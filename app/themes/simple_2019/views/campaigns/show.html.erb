@@ -1,0 +1,29 @@
+<% content_for :before_content do %>
+
+  <%= render 'campaigns/show/header_image', head_lines: false if @campaign.html_document_header_image.present? %>
+
+<% end %>
+
+<% if Setting::get('publisher_site.show_header_logo_area', default: 1, campaign_id: @campaign.id).to_i != 0 %>
+
+  <%= render partial: 'campaigns/show/header', locals: {campaign: @campaign} %>
+
+<%- end -%>
+
+<% if @coupons.size > 0 %>
+
+  <%= render partial: 'coupons/shared/card_coupons_list', locals: {coupons: @coupons} %>
+
+<% end %>
+
+<%= render partial: 'campaigns/show/card_about_this_campaign', locals: {campaign: @campaign} %>
+
+<%- if @campaign.shop_id.present? -%>
+
+  <%= render partial: 'shops/show/sidebar', locals: {shop: @campaign.shop, sub_pages: @sub_pages} %>
+
+<%- else -%>
+
+  <%= render partial: 'campaigns/show/sidebar', locals: {shops: @shops, campaign: @campaign, sub_pages: @sub_pages} %>
+
+<%- end -%>

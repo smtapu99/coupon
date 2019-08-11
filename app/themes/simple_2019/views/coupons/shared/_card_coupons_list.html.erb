@@ -1,0 +1,161 @@
+<%
+  expired ||= false
+  hide_pagination ||= false
+  is_redirect ||= false
+  coupons_size = coupons.size
+  newsletter_position = Setting::get('publisher_site.inline_newsletter_position', default: 3).to_i
+%>
+
+<% if coupons.present? || (@shop.present? && @shop.coupon_targeting_script.present?) %>
+
+  <div class="loader loader--coupons hidden"></div>
+
+  <div class="coupons-list">
+
+    <div data-pagination='<%= render(partial: "coupons/shared/pagination", locals: { coupons: coupons }).gsub(/>\s+</, "><") unless hide_pagination === true %>'>
+
+      <% if params[:controller] === 'shops' && @shop.present? && @shop.coupon_targeting_script.present? && expired === false %>
+
+        <% template = Liquid::Template.parse(@shop.coupon_targeting_script) %>
+
+        <%= raw template.render(timestamp: Time.zone.now.to_i.to_s) %>
+
+      <%- end -%>
+
+    </div>
+
+    <% coupons.each_with_index do |coupon, index| %>
+
+      <% summarize_coupons(coupon, index) unless expired %>
+
+      <% if params[:controller] === 'shops' && newsletter_enabled? && !expired && newsletter_position != -1 && coupons_size > newsletter_position && index == newsletter_position && coupon.shop.present? %>
+
+        <div class="coupon coupon--newsletter">
+
+          <%= render partial: 'coupons/shared/newsletter', locals: { shop: coupon.shop } %>
+
+        </div>
+        <!-- /.item-newsletter -->
+
+      <% end %>
+
+      <div <%= clickout_params_for_element(coupon, 'li') %> id="<%= coupon.item_id %>" class="coupon" data-coupon-id="<%= coupon.id %>" data-index="<%= index %>" <%= coupon_filter_ids(coupon) %> <%= coupon.is_mobile ? 'data-is-mobile=true' : '' %>>
+
+        <div class="coupon__body">
+
+          <%- if coupon.is_editors_pick? -%>
+
+            <div class="coupon__tag">
+
+              <i class="icon-tag"></i><%= t(:EDITORS_PICK, default: "Editor's Pick") %>
+
+            </div>
+
+          <% end %>
+
+          <div class="coupon__aside">
+
+            <%= render partial: 'coupons/shared/thumbnail', locals: { coupon: coupon, is_redirect: is_redirect } %>
+
+            <%= render partial: 'coupons/shared/type', locals: { coupon: coupon, is_redirect: is_redirect } %>
+
+          </div>
+
+          <div class="coupon__right">
+
+            <div class="coupon__desc">
+
+              <%= render partial: 'coupons/shared/title', locals: { coupon: coupon, is_redirect: is_redirect } %>
+
+              <% unless is_redirect === true %>
+
+                <% if coupon.shop.present? && coupon.shop.title.present? || coupon.description.present? %>
+
+                  <%= render partial: 'coupons/shared/description', locals: { coupon: coupon } %>
+
+                <% end %>
+
+                <div class="coupon__additional">
+
+                  <%- if clicks = coupon.random_clickouts_today and clicks.to_i > 0 -%>
+
+                      <span class="coupon__clicks">
+
+                        <%= clicks %> <%= t(:USED_TODAY, default: 'used today') %>
+
+                      </span>
+
+                  <%- end -%>
+
+                </div>
+
+              <% end %>
+
+            </div>
+
+            <div class="coupon__action">
+
+              <%= render partial: 'coupons/shared/call_to_action', locals: { coupon: coupon } %>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="coupon__footer">
+
+          <% if coupon.description.present? && (strip_tags(coupon.description).length > 150 || info_fields_string(coupon).present?) %>
+
+            <span class="coupon__see-details" data-more-text="<%= t(:MORE_DETAILS, default: 'More details') %>" data-less-text="<%= t(:LESS_DETAILS, default: 'Less details') %>">
+
+              <%= t(:MORE_DETAILS, default: 'More details') %>
+
+            </span>
+
+            <i class="icon-double-chevron coupon__icon-chevron"></i>
+
+          <%end%>
+
+        </div>
+
+      </div>
+
+      <% if params[:controller] === 'shops' && (banner = shop_banner and banner.present?) && !expired %>
+
+        <% if coupons_size == 1 || index == 1 %>
+
+          <div class="shop-banner">
+
+            <%= link_to banner.target_url, rel: 'nofollow' do %>
+
+              <%= image_tag banner.image_url, class: 'img-responsive', alt: banner.name %>
+
+            <% end %>
+
+          </div>
+
+        <% end %>
+
+      <% end %>
+
+    <%- end if coupons.present? -%>
+
+
+    <div class="pagination-wrapper">
+
+      <% unless hide_pagination === true %>
+
+        <%= render partial: 'coupons/shared/pagination', locals: { coupons: coupons } %>
+
+      <% end %>
+
+    </div>
+
+  </div>
+
+<% elsif params[:controller] === 'shops' %>
+
+  <%= render partial: 'shops/show/card_empty_shop', locals: { shop: @shop } %>
+
+<% end %>

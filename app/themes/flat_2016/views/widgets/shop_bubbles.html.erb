@@ -1,0 +1,97 @@
+<% if shops.present? %>
+
+  <div class="shop-bubbles"  id="shop-bubbles<%= "-" + order_number.to_s if defined?(order_number) %>"  <%="style='background-color: #{values[:background_color]}'".html_safe if values[:background_color].present? %>>
+
+    <div class="container">
+
+      <div class="row">
+
+        <div class="shop-bubbles__header">
+
+          <%- if values[:title].present? -%>
+
+            <h3 class="section-header"><%= values[:title] %></h3>
+
+          <%- end -%>
+
+          <%- if values[:subtitle].present? -%>
+
+            <h4 class="section-subheader"><%= values[:subtitle] %></h4>
+
+          <%- end -%>
+
+        </div>
+
+      </div>
+
+      <div class="row">
+
+        <div class="col-lg-10 col-lg-offset-1">
+
+          <div class="shop-bubbles__wrapper">
+
+            <div class="shop-bubbles__list">
+
+              <ul class="shop-bubbles__row">
+
+                <%- shops.each do |shop| -%>
+
+                  <li class="shop-bubbles__item">
+
+                    <%- if shop.slug.present? %>
+
+                    <a href="<%= dynamic_url_for('shop', 'show', slug: shop.slug) %>" title="<%= shop.title if shop.title.present? %>">
+
+                    <%- end %>
+
+                    <%= image_tag shop.logo_url('_110x110'),
+                      title: t(:SEE_ALL_COUPONS_AND_OFFERS_FROM_SHOP_NAME,
+                      default: 'SEE_ALL_COUPONS_AND_OFFERS_FROM_SHOP_NAME').gsub('<shop_name>', shop.title),
+                      alt: shop.alt_text_or_title,
+                      class: 'shop-bubbles__img',
+                      width: 80 %>
+
+                    <%- if shop.slug.present? %>
+
+                      </a>
+
+                    <%- end %>
+                  </li>
+
+                <%- end -%>
+
+              </ul>
+
+              <span class="shop-bubbles__arrow shop-bubbles__arrow--left">
+
+                <svg class="shop-bubbles__chevron" version="1.1" width="11" height="20" xmlns="http://www.w3.org/2000/svg">
+
+                  <path d="M 10.4018 9.6013L 0.96715 0.166606C 0.74501 -0.0555352 0.388746 -0.0555352 0.166605 0.166606C -0.0555353 0.388746 -0.0555353 0.74501 0.166605 0.96715L 9.19893 9.99948L 0.166605 19.0318C -0.0555353 19.2539 -0.0555353 19.6102 0.166605 19.8323C 0.27558 19.9413 0.422277 20 0.564782 20C 0.707288 20 0.853985 19.9455 0.962959 19.8323L 10.3977 10.3977C 10.6198 10.1797 10.6198 9.81925 10.4018 9.6013Z" fill="#F4F4F1"></path>
+
+                </svg>
+
+              </span>
+
+              <span class="shop-bubbles__arrow shop-bubbles__arrow--right">
+
+                <svg class="shop-bubbles__chevron" version="1.1" width="11" height="20" xmlns="http://www.w3.org/2000/svg">
+
+                  <path d="M 10.4018 9.6013L 0.96715 0.166606C 0.74501 -0.0555352 0.388746 -0.0555352 0.166605 0.166606C -0.0555353 0.388746 -0.0555353 0.74501 0.166605 0.96715L 9.19893 9.99948L 0.166605 19.0318C -0.0555353 19.2539 -0.0555353 19.6102 0.166605 19.8323C 0.27558 19.9413 0.422277 20 0.564782 20C 0.707288 20 0.853985 19.9455 0.962959 19.8323L 10.3977 10.3977C 10.6198 10.1797 10.6198 9.81925 10.4018 9.6013Z" fill="#F4F4F1"></path>
+
+                </svg>
+
+              </span>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+<%- end -%>

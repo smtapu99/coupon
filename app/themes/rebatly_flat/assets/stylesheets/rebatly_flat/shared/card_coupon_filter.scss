@@ -1,0 +1,102 @@
+$filter-light: #075F4A;
+$filter-dark: #078366;
+
+.card-coupon-filter {
+
+  text-align: center;
+
+  .category-filter, .shop-filter {
+    margin: 12px 0 0;
+    float: none;
+
+    .dropdown-toggle {
+      border-radius: 0px;
+      padding: 4px 10px 3px;
+      border: 1px solid $filter-dark;
+      background: #fff;
+
+      &.active {
+        border: 1px solid $filter-dark;
+      }
+
+      &::after {
+        display: inline-block;
+        width: 0;
+        height: 0;
+        margin-left: .3em;
+        vertical-align: middle;
+        content: "";
+        border-top: .3em solid;
+        border-right: .3em solid transparent;
+        border-left: .3em solid transparent;
+      }
+    }
+
+    .dropdown-menu {
+      padding: 8px 10px 5px !important;
+      border-radius: 0px;
+
+      label {
+        white-space: nowrap;
+        display: block;
+        font-weight: normal;
+
+        input {
+          position: relative;
+          top: 1px;
+        }
+      }
+    }
+  }
+
+  .shop-filter {
+    margin-left: 4px;
+  }
+
+  ul {
+    display: inline-block;
+    list-style-type: none;
+    margin: 12px 0 0;
+    padding: 0;
+
+    li {
+      background-color: $filter-dark; // $color-sky @ saturation 40% - lightness 40% - transparency .8
+      border: 1px solid $filter-dark;
+      float: left;
+      padding: 4px 14px;
+      margin-right: 4px;
+      margin-left: 0px;
+      color: $color-white;
+      font-size: 12px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: $filter-light; // $color-sky @ saturation 85% - transparency .7
+        border: 1px solid $filter-dark;
+        text-decoration: underline;
+      }
+
+      &.active {
+        background-color: $filter-light; // $color-sky @ saturation 85% - transparency .7
+        border: 1px solid $filter-dark;
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: none;
+          cursor: default;
+        }
+      }
+    }
+  }
+}
+
+@media(min-width: 768px) {
+  .card-coupon-filter {
+    text-align: left;
+
+    .shop-filter, .category-filter {
+      float: right;
+    }
+  }
+
+}

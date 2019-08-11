@@ -1,0 +1,132 @@
+<% # --- Headerimage section --- %>
+
+<%= render 'campaigns/show/header_image', head_lines: true %>
+
+<%- if @campaign.themed_fallback_into_grid? -%>
+
+  <%- if !@campaign.coupons_on_top -%>
+
+    <div class="themed themed--default">
+
+      <%= render 'campaigns/show/widgets', only: [:hot_offers, :sponsor_bar, :shop_bubbles, :discount_bubbles, :subpage_teaser, :premium_hero, :premium_offers, :top_sales, :quicklinks, :rotated_coupons] %>
+
+    </div>
+
+  <%- end -%>
+
+  <%= render partial: 'campaigns/show/featured_images' %>
+
+  <div class="themed themed--default" style="background: transparent;">
+
+    <div class="deals" id="deals">
+
+      <div class="deals__header">
+
+        <h3 class="section-header"><%= t(:see_our_best_coupons, default: 'See our best coupons') %></h3>
+
+        <h4 class="section-subheader"><%= t(:search_what_you_need_and_grab_it, default: 'Search what you need and grab it') %></h4>
+
+      </div>
+
+      <div class="deals__wrapper">
+
+        <%= render partial: 'campaigns/show/coupons' %>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <%- if @campaign.coupons_on_top -%>
+    <div class="themed themed--default">
+
+      <%= render 'campaigns/show/widgets', only: [:hot_offers, :sponsor_bar, :shop_bubbles, :discount_bubbles, :subpage_teaser, :premium_hero, :premium_offers, :top_sales, :quicklinks, :rotated_coupons] %>
+
+    </div>
+
+  <%- end -%>
+
+<% elsif Setting::get('widget_ranking.show_featured_images_before_coupons', default: 1).to_i == 1 %>
+  <%- if !@campaign.coupons_on_top -%>
+    <div class="themed themed--default">
+
+      <%= render 'campaigns/show/widgets' %>
+
+    </div>
+  <% end %>
+  <%= render partial: 'campaigns/show/featured_images' %>
+  <%= render partial: 'campaigns/show/coupons' %>
+  <%- if @campaign.coupons_on_top -%>
+    <div class="themed themed--default">
+
+      <%= render 'campaigns/show/widgets' %>
+
+    </div>
+  <% end %>
+
+<% else %>
+  <%- if !@campaign.coupons_on_top -%>
+    <div class="themed themed--default">
+
+      <%= render 'campaigns/show/widgets' %>
+
+    </div>
+  <% end %>
+  <%= render partial: 'campaigns/show/coupons' %>
+  <%= render partial: 'campaigns/show/featured_images' %>
+  <%- if @campaign.coupons_on_top -%>
+    <div class="themed themed--default">
+
+      <%= render 'campaigns/show/widgets' %>
+
+    </div>
+  <% end %>
+<% end %>
+
+<%- if related_shops = @campaign.related_shops and related_shops.present? -%>
+
+  <div class="row" id="campaign-related-shops">
+
+    <div class="col-xs-12">
+
+      <h2 class=""><%= t(:find_more_coupons_of_this_campaign, default: 'Find More Coupons Of This Campaign') %></h2>
+
+      <ul class="list-unstyled">
+
+        <%- related_shops.each do |shop| -%>
+
+          <li>
+
+            <%= link_to dynamic_url_for('shops', 'show', slug: shop.slug) do %>
+
+              <%= image_tag "", data: { normal: shop.logo_url(:standard) }, alt: shop.title, class: 'img-responsive', height: '150', width: '150' %>
+
+            <%- end -%>
+
+          </li>
+
+        <%- end -%>
+
+      </ul>
+
+    </div>
+
+
+  </div>
+
+<%- end -%>
+
+
+<%= render_summary_widget @campaign %>
+
+
+<div class="row">
+
+  <div class="col-xs-12">
+
+    <%= render partial: 'campaigns/show/card_about_this_campaign', locals: { campaign: @campaign } %>
+
+  </div>
+
+</div>

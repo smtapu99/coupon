@@ -1,0 +1,30 @@
+<%- theme = Setting::get('style.theme', default: 'flat_2016') -%>
+<%- max = theme == 'simple_2019' ? 4 : 5 -%>
+
+<div class="form-group">
+  <center><b>Note! This form may vary based on the selected theme.</b></center>
+</div>
+
+<%- (1..max).each do |i| -%>
+  <div class="form-group">
+    <%= ff.label 'Title', :class => 'col-md-2 control-label' %>
+    <div class="col-md-10">
+        <%= text_field_tag 'widget[images][][title]', (@widget.images[i-1][:title] rescue nil), class: 'select2 form-control' %>
+    </div>
+    <%= ff.label 'Image', :class => 'col-md-2 control-label' %>
+    <div class="col-md-10">
+        <%= text_field_tag 'widget[images][][src]', (@widget.images[i-1][:src] rescue nil), class: 'select2 form-control' %>
+    </div>
+    <%= ff.label 'URL', :class => 'col-md-2 control-label' %>
+    <div class="col-md-10">
+        <%= text_field_tag 'widget[images][][url]', (@widget.images[i-1][:url] rescue nil), class: 'select2 form-control' %>
+    </div>
+    <%- if theme == 'simple_2019' -%>
+      <%= ff.label 'Overlay Color', :class => 'col-md-2 control-label' %>
+      <div class="col-md-10">
+          <%= text_field_tag 'widget[images][][overlay_color]', (@widget.images[i-1][:overlay_color] rescue nil), class: 'colorpicker form-control' %>
+      </div>
+    <%- end -%>
+  </div>
+  <hr>
+<% end %>

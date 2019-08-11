@@ -1,0 +1,35 @@
+<% if sub_pages.present? %>
+
+  <div class="sub_pages">
+
+    <h3><%= t(:MORE_FROM_THIS_SHOP, default: 'More From This Shop') %></h3>
+
+    <!-- /.card-header -->
+
+    <div class="subpages__content">
+
+      <ul class="subpages__list">
+
+        <% sub_pages.each do |shop| %>
+
+          <% if shop.name.present? %>
+
+            <li class="text-ellipsis">
+
+              <span class="list-circle"></span>
+
+              <%= link_to shop.name, dynamic_campaign_url_for(shop) %>
+
+            </li>
+
+          <% end %>
+
+        <% end %>
+
+      </ul>
+
+    </div>
+
+  </div>
+
+<% end %>

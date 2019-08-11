@@ -1,0 +1,22 @@
+<%
+  @h1 = data_page_headlines[:title]
+  @h2 = data_page_headlines[:subtitle]
+%>
+
+<% if @coupons.present? %>
+
+  <%= render partial: 'coupons/shared/card_coupons_list', locals: { coupons: @coupons } %>
+
+<% else %>
+
+  <p class="alert alert-info alert--center">
+
+    <%= t(:THEIRS_NO_COUPON, default: 'There is no coupons') %>
+
+  </p>
+
+  <%= render partial: 'coupons/shared/card_coupons_list', locals: { coupons: @top_coupons, hide_pagination: true } if @top_coupons.present? %>
+
+<% end %>
+
+<%= render partial: 'coupons/index/sidebar' %>

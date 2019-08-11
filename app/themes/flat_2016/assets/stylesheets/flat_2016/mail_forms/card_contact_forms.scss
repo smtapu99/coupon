@@ -1,0 +1,29 @@
+.pannacotta {
+  &.card-contact-forms {
+    .card-content {
+      color: $color-text;
+      font-size: 14px;
+      font-weight: lighter;
+      line-height: 20px;
+      padding: 0 25px 25px;
+
+      .privacy-note {
+        margin-top: 15px;
+        font-size: 12px;
+      }
+
+      .form-control {
+        border-color: $color-border;
+        color: $color-text;
+
+        @include flat-box-shadow(none);
+        @include border-radius(2px);
+      }
+
+      .form-control:not(textarea) {
+        height: 50px !important;
+        line-height: 50px !important;
+      }
+    }
+  }
+}

@@ -1,0 +1,175 @@
+= \PannaCotta Voucher App
+
+This Readme file leads you through the installation process and shows which dependencies need to be installed
+
+= \Preface
+Use this hook to avoid merges from staging into any other branch:
+* copy the `/files/prepare-commit-msg` file to `.git/hooks/prepare-commit-msg`
+* make it executable (if you created a new file instead of copy the file) : `chmod u+x .git/hooks/prepare-commit-msg`
+* disable fast-forward for all branches merges: `git config --add merge.ff false`
+* that's it!
+
+NOTE: after a failed merge from staging, the working tree will still be in a MERGING state.
+To discard the local working copy state, run:
+`git reset --merge`
+
+= \Installation
+
+1. Clone Repository
+
+  git clone https://user.name@github.com/pcvg/app.git pannacotta; cd pannacotta
+
+2. install all required gems
+
+  bundle install
+
+3. Configure Database in +config/databases.yml+
+
+4. Create a +config/services.yml+ file from +config/example.services.yml+ and configure with your amazon credentials
+
+5. Create a +config/asset_sync.yml+ file from +config/example.asset_sync.yml+ and configure
+
+6. Setup the database and run the migrations
+
+  rake db:create
+  rake db:migrate
+  rake db:seed
+
+  in case any error occured during the process (which should as it was tested) try to fix the error and run
+  rake db:reset
+
+7. Start the Rails Server with Webpack development server
+
+  foreman start -f Procfile.dev -p 3000
+
+8. Visit the backend
+
+  http://localhost:3000/pcadmin/users/sign_in
+
+
+= \Dependencies
+
+The following steps need to be done before you can use the pannacotta voucher app. Please make sure you install
+the proper versions so that the system works as expected.
+
+== 1. Install RMagick
+
+  sudo apt-get install imagemagick libmagickwand-dev
+
+  Problems on mac: use the PGK_CONFIG_PATH to the correct /MagickCore.pc file
+
+  PKG_CONFIG_PATH='/usr//local/Cellar/imagemagick@6/6.9.7-8/lib/pkgconfig/' gem install rmagick -v '2.16.0'
+
+  OR (depending on your version)
+
+  PKG_CONFIG_PATH='/usr/local/Cellar/imagemagick@6/6.9.9-40/lib/pkgconfig/' gem install rmagick -v '2.16.0'
+
+  or this answer
+
+  https://stackoverflow.com/questions/41647979/imagemagick-7-with-rmagick-2-16-on-macos-sierra-cant-find-magickwand-h
+
+== 2. Install phantomjs-1.9.2
+
+2.1 Download: +sudo wget https://phantomjs.googlecode.com/files/phantomjs-1.9.2-linux-x86_64.tar.bz2+
+2.2 extract the folder with +tar jxf foldername+
+2.3 +cp foldername/bin/phantomjs /usr/bin/+
+2.4 Check version of +phantomjs --version+ should be 1.9.2
+2.5 Check path of phantomjs use +which phantomjs+ should give "/bin/phantomjs"
+
+
+== 3. Enable MySQL TimeZone Support
+
+To make the charts working with groupdate gem you need to activate Time Zone Support on mysql
+  mysql_tzinfo_to_sql /usr/share/zoneinfo | mysql -u root mysql+
+and
+  service mysql restart
+
+== 4. Install Redis
+
+  sudo apt-get install redis-server
+
+== 5. Environment
+
+Please run the application under the "development" environment, as it has not been fully tested with other environemnts until now. (03/03/2014)
+
+== 6. Patron Gem errors
+
+to get the latest version of libcurl run this
+  apt-get install libcurl4-gnutls-dev
+and then
+  bundle update
+
+== 7. ImageUpload to Amazon S3 config / Redis config
+
+In development enviroment you need a services.yml file in the config directory. There is a example.services.yml file there.
+In production all those variables needs to be set in the ENV Variables (see config/initializers/fog.rb).
+The same yaml file is used to setup Redis variables for the production environment (redis_server, redis_port - see config/application.rb)
+
+== Hints
+
+For the frontend dont use url_for anymore
+
+instead of:
+  url_for controller: 'coupons', action: 'index', type: 'top'
+
+use:
+  dynamic_url_for 'coupons', 'index', type: top
+
+This is because url_for doesnt recognize our routes for the different sites
+
+
+# Flush redis cache
+
+kubectl exec -it pcvg-app-jobber-3234075789-9kq5j bash
+sudo apt-get install telnet
+telnet 10.132.0.3 6379
+FLUSHALL
+
+# Flush Fastly Cache from Console
+curl -X PURGE -H 'X-SU-Forwarded-Host: cupon.es' -H 'Host: app-production.savings-united.com' a.prod.fastly.net/descuentos-meetic.html
+
+# Remove fields from database (model)
+In order to avoid errors when removing fields from the database we have to make sure that we do migration in 4 steps.
+
+1) remove all usage of that field and set the field to non-writable like this in the model:
+
+  # used for migration with zero downtime. disables writes to the rejected colums
+  def self.columns
+    super.reject { |column| ['priority', 'is_featured', 'shop_slider_position'].include?(column.name) }
+  end
+
+2) deploy this change
+3) create migration to delete the column
+4) deploy the migration
+
+# Dump production database
+run
+
+bash db/dump_production_db.sh -u user -p password -h host -d db_name -o true|false
+- o option is only_content (optional) - this will skip the structure_dump
+
+# Test production database locally.
+
+You can see the site as if it was on production and it allows you to see errors which you would not see otherwise
+as you dont run it in production mode. *Dont forget* to revert your changes afterwards to make sure you dont
+manipulate production data accidentally.
+
+1) add your IP to the GCloud SQL / Authentication section
+2) add production (or staging) credentials to your database.yml and make sure you can access it
+e.g. mysql -h123.456.7.89 -usuapp_production -ppassword
+3) add the host to your /etc/host and match it to localhost
+e.g. 127.0.0.1 app-staging.savings-united.com
+4) Delete HSTS entry in chrome for the wanted domain to be able to access it without https
+Visit: chrome://net-internals/#hsts => Delete domain security policies
+5) Start rails server on port 80 (stop any other server on port 80 in the meantime)
+rvmsudo rails s -p80
+6) Visit the URL and see if the server responds
+7) Do your fixes and make sure you REVERT all changes in database.yml and restart server again with rails s.
+
+
+
+
+
+
+
+

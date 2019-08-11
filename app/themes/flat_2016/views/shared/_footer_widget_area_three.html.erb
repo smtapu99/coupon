@@ -1,0 +1,57 @@
+<div class="widget">
+
+  <div class="widget-header">
+
+    <h4 class="widget-title"><%= t(:CONTACT, default: 'Stay in Contact') %></h4>
+
+    <!-- /.widget-title -->
+
+  </div>
+
+  <!-- /.widget-header -->
+
+  <div class="widget-content">
+
+    <ul class="list-unstyled">
+
+      <li>
+
+        <span class="list-circle"></span>
+
+        <%= link_to t(:REPORT_OFFER, default: 'Report an Offer'), url_for(send("report_#{@site.site.id}_path")), rel: 'nofollow' %>
+
+      </li>
+
+      <li>
+
+        <span class="list-circle"></span>
+
+        <%= link_to t(:BECOME_A_PARTNER, default: 'Be our Partner'), url_for(send("partner_#{@site.site.id}_path")), rel: 'nofollow' %>
+
+      </li>
+
+      <li>
+
+        <span class="list-circle"></span>
+
+        <%= link_to t(:CONTACT, default: 'Talk to Us'), url_for(send("contact_#{@site.site.id}_path")), rel: 'nofollow' %>
+
+      </li>
+
+      <li>
+        
+        <%= button_tag t(:HOW_TO_USE, default: 'How to Use'), class: 'btn btn-white text-lighter', type: 'button', data: {modal: 'help'} %>
+
+      </li>
+
+    </ul>
+
+    <!-- /.list-unstyled -->
+
+  </div>
+
+  <!-- /.widget-content -->
+
+</div>
+
+<!-- /.widget -->

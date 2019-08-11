@@ -1,0 +1,13 @@
+<li class="sortable_coupon cloud-background" data-coupon-id="<%= coupon.id %>">
+  <table width="100%" style="table-layout: fixed">
+    <tr>
+      <td style="" class="text-overflow"><%= coupon.id %>: <%= coupon.title.titleize %></td>
+      <td style="width:30%"><%= coupon.affiliate_network.name if coupon.affiliate_network.present? %></td>
+      <td style="width:10%">Start:<%= coupon.start_date.to_s(:short) if coupon.start_date.present? %></td>
+      <td style="width:10%">End:<%= coupon.end_date.to_s(:short) if coupon.end_date.present? %></td>
+      <td style="width:10%" class="text-right">
+        <i class="icon icon-move"></i>
+      </td>
+    </tr>
+  </table>
+</li>

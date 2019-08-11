@@ -1,0 +1,33 @@
+<%- unless reduced_js_features? -%>
+
+  <% content_for :before_sidebar do %>
+
+    <%= render partial: 'categories/show/shop_filter', locals: { shops: shops } %>
+
+  <%- end -%>
+
+<%- end -%>
+
+<% content_for :sidebar do %>
+
+  <div class="d-none d-sm-block">
+
+    <%= render partial: 'shared/sidebar_seo_text', locals: { title: @h2, content: @welcome_text } %>
+
+    <%= render partial: 'shared/sidebar_seo_text', locals: { content: @content } %>
+
+  </div>
+
+<% end %>
+
+<% content_for :after_content do %>
+
+  <div class="d-block d-sm-none">
+
+    <%= render partial: 'shared/sidebar_seo_text', locals: { title: @h2, content: @welcome_text } %>
+
+    <%= render partial: 'shared/sidebar_seo_text', locals: { content: @content } %>
+
+  </div>
+
+<% end %>

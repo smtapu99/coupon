@@ -1,0 +1,57 @@
+@critical shop-filter.css {
+  .shop-filter {
+    max-height: 365px;
+    margin-right: 10px;
+    margin-bottom: 26px;
+    padding: 32px 21px 35px 0;
+    overflow: hidden;
+    color: #FFF;
+    background-color: $btn--info;
+
+    &__title {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      height: 35px;
+      padding-left: 36px;
+      color: #FFF;
+      font-size: 18px;
+      border-left: 4px solid rgba(255, 255, 255, 0.5);
+    }
+
+    &__content {
+      max-height: 270px;
+      padding-right: 15px;
+      overflow-y: scroll;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(255, 255, 255, 0.5) $btn--info;
+
+      &::-webkit-scrollbar {
+        width: 8px;
+        background-color: $btn--info;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color: rgba(255, 255, 255, 0.5);
+        border-radius: 10px;
+      }
+    }
+
+    &__list {
+      padding: 10px 0 0 42px;
+      font-size: 14px;
+      list-style-type: none;
+    }
+
+    &__label {
+      margin-bottom: 4px;
+      cursor: pointer;
+    }
+
+    &__checkbox {
+      @include checkbox;
+
+      cursor: pointer;
+    }
+  }
+}

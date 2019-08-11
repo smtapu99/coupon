@@ -1,0 +1,99 @@
+<% model_class = Shop %>
+
+<%= define_grid(@shops_grid, upper_pagination_panel: false) do |g|
+
+  if can? :change_status, model_class
+
+    g.action_column param_name: :foo, html: {class: 'my_class', width: '5%'}, select_all_buttons: true, object_property: :id
+
+  end
+
+  g.column html: {width: '5%'} do |task|
+
+    if can? :edit, model_class
+
+      link_to('<i class="icon-pencil"></i>'.html_safe, edit_admin_shop_path(task), class: 'btn btn-primary')
+
+    end
+
+  end
+
+  g.column name: "ID", attribute: "id"
+
+  g.column name: "Tier Group", attribute: "tier_group"
+
+  g.column name: "Title", attribute: "title"
+
+  g.column name: "Slug", attribute: "slug"
+
+  g.column name: 'Status', attribute: 'status', auto_reload: true, custom_filter: [['all', 'all'], ['active', 'active'], ['blocked', 'blocked'], ['pending', 'pending'], ['gone', 'gone']] do |task|
+
+      case task.status.downcase
+
+      when 'active'
+
+        tag('i', class: 'text-success icon-thumbs-up  big-icon')
+
+      when 'blocked'
+
+        tag('i', class: 'text-danger icon-thumbs-down  big-icon')
+
+      when 'gone'
+
+        tag('i', class: 'icon-signout  big-icon')
+
+      else
+
+        tag('i', class: 'text-warning icon-time  big-icon')
+
+      end
+
+    end
+
+  g.column name: 'Is top?', attribute: 'is_top', auto_reload: true, custom_filter: [['Yes', '1'], ['No', '0']]  do |task|
+
+    case task.is_top
+
+    when true
+
+      tag('i', class: 'text-success icon-thumbs-up  big-icon')
+
+    else
+
+      tag('i', class: 'text-danger icon-thumbs-down  big-icon')
+
+    end
+
+  end
+
+  g.column name: 'Is Hidden?', attribute: 'is_hidden', auto_reload: true, custom_filter: [['Yes', '1'], ['No', '0']]  do |task|
+
+    case task.is_hidden
+
+    when true
+
+      tag('i', class: 'text-success icon-thumbs-up  big-icon')
+
+    else
+
+      tag('i', class: 'text-danger icon-thumbs-down  big-icon')
+
+    end
+
+  end
+
+  g.column name: 'Prio Score', attribute: 'priority_score'
+
+  g.column name: 'Updated At', attribute: 'updated_at', detach_with_id: 'updated_at_filter' do |task|
+
+    l task.updated_at, format: :long if task.updated_at.present?
+
+  end
+
+  unless Site.current.present?
+    g.column name: "Site", attribute: "name", assoc: :site do |task|
+      task.site.name if task.site
+    end
+  end
+
+end %>

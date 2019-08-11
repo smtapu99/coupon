@@ -1,0 +1,95 @@
+<div class="widget">
+
+  <div class="widget-header">
+
+    <h4 class="widget-title"><%= t(:NAVIGATION_COUPONCODES, default: 'Discount Coupons') %></h4>
+
+    <!-- /.widget-title -->
+
+  </div>
+
+  <!-- /.widget-header -->
+
+  <div class="widget-content">
+
+    <ul class="list-unstyled">
+
+      <li>
+
+        <span class="list-circle"></span>
+
+        <%= link_to t(:TOP_20, default: 'Top Coupons'), dynamic_url_for('coupons', 'index', type: 'top') %>
+
+      </li>
+
+      <li>
+
+        <span class="list-circle"></span>
+
+        <%= link_to t(:NEW_COUPONCODES, default: 'New Coupons'), dynamic_url_for('coupons', 'index', type: 'new') %>
+
+      </li>
+
+      <li>
+
+        <span class="list-circle"></span>
+
+        <%= link_to t(:EXPIRING_COUPONS, default: 'Expiring Coupons'), dynamic_url_for('coupons', 'index', type: 'expiring') %>
+
+      </li>
+
+      <li>
+
+        <span class="list-circle"></span>
+
+        <%= link_to t(:SHOPS, default: 'Shops'), dynamic_url_for('shops', 'index') %>
+
+      </li>
+
+      <li>
+
+        <span class="list-circle"></span>
+
+        <%= link_to t(:CATEGORIES, default: 'Categories'), dynamic_url_for('categories', 'index') %>
+
+      </li>
+
+      <%- if footer_campaigns.present? && footer_campaigns.size == 1 -%>
+
+        <% campaign = footer_campaigns.first %>
+
+        <li>
+
+          <span class="list-circle"></span>
+
+          <%= link_to campaign.nav_title_or_name, dynamic_campaign_url_for(campaign) %>
+
+        </li>
+
+      <%- end -%>
+
+      <%- if footer_shops.present? && footer_shops.size == 1 -%>
+
+        <% shop = footer_shops.first %>
+
+        <li>
+
+          <span class="list-circle"></span>
+
+          <%= link_to shop.anchor_text_or_title, dynamic_url_for('shops', 'show', slug: shop.slug) %> |
+
+        </li>
+
+      <%- end -%>
+
+    </ul>
+
+    <!-- /.list-unstyled -->
+
+  </div>
+
+  <!-- /.widget-content -->
+
+</div>
+
+<!-- /.widget -->

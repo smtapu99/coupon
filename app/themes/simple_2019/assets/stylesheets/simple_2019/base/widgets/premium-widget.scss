@@ -1,0 +1,115 @@
+.premium-widget {
+  margin: 20px 0;
+  padding: 48px 0;
+  color: #FFF;
+  background-color: $topbar_bg;
+
+  & + .premium-offers {
+    margin-top: 40px;
+
+    @media (max-width: 768px) {
+      margin-top: 0;
+    }
+  }
+
+  @media #{$min-md} {
+    .col-md-3:first-of-type {
+      padding-left: 30px;
+    }
+  }
+
+  a {
+    color: #FFF;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  &__header {
+    font-weight: 300;
+    font-size: 24px;
+    line-height: 1;
+  }
+
+  &__shops {
+    margin-top: 47px;
+    padding-left: 0;
+    list-style-type: none;
+
+    &-item {
+      margin-bottom: 26px;
+      overflow: hidden;
+      font-weight: 700;
+      font-size: 18px;
+      line-height: 1;
+      text-overflow: ellipsis;
+    }
+  }
+
+  &__coupons {
+    margin-top: 27px;
+  }
+
+  &__coupon {
+    display: flex;
+    margin-bottom: 24px;
+
+    &-image {
+      min-width: 110px;
+      max-width: 110px;
+      height: 110px;
+      background-color: #FFF;
+    }
+
+    &-aside {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      padding-top: 14px;
+      padding-left: 24px;
+    }
+
+    &-tag {
+      position: relative;
+      display: inline-block;
+      margin-left: 11px;
+      padding: 4px 9px;
+      font-weight: 700;
+      font-size: 10px;
+      text-align: center;
+      text-transform: uppercase;
+      background-color: $color-warning;
+      border-top-right-radius: 2px;
+      border-bottom-right-radius: 2px;
+
+      &::before {
+        position: absolute;
+        top: 0;
+        left: -10px;
+        display: block;
+        content: "";
+        width: 10px;
+        height: 23px;
+        border-top: 11px solid transparent;
+        border-right: 10px solid $color-warning;
+        border-bottom: 11px solid transparent;
+      }
+    }
+
+    &-text {
+      margin-top: 5px;
+      font-weight: 700;
+      font-size: 20px;
+      line-height: 1.2;
+    }
+  }
+
+  &__banner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+}

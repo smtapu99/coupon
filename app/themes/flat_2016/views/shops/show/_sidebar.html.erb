@@ -1,0 +1,17 @@
+<% content_for :sidebar do %>
+
+  <%= render partial: 'shops/show/additional_info', locals: { shop: shop } %>
+
+  <%- unless related_shops_blocked?(shop) -%>
+
+    <%= render partial: 'shops/show/related_shops', locals: { related_shops: @related_shops, popular_shops: @popular_shops } %>
+
+  <%- end -%>
+
+  <%= render partial: 'shared/widgets_sidebar' %>
+
+  <%= render partial: 'shops/show/card_more_from_this_shop', locals: { sub_pages: sub_pages } %>
+
+  <%= render_summary_widget(@shop, secondary: true, without_h2: false) %>
+
+<% end %>

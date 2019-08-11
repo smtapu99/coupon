@@ -1,0 +1,23 @@
+<%- return unless footer_shops.present? -%>
+
+<div class="footer_shops widget">
+
+  <div class="widget-header visible-xs">
+
+    <h4 class="widget-title"><%= t(:MAIN_SHOPS, default: 'Shops') %></h4>
+
+  </div>
+
+  <div class="widget-content">
+
+    |<%- footer_shops.each do |shop| -%>
+
+      <%= link_to shop.anchor_text_or_title, dynamic_url_for('shops', 'show', slug: shop.slug) %> |
+
+    <%- end -%>
+
+  </div>
+
+</div>
+
+<!-- /.footer_shops -->

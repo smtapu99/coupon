@@ -1,0 +1,44 @@
+.pannacotta {
+  &.popular-shops {
+    ul {
+      margin-bottom: 0px;
+      li {
+        margin-bottom: 0px;
+        a {
+          line-height: 40px;
+          margin-bottom: 5px;
+          word-wrap: nowrap;
+          display: inline-block;
+          width: 100%;
+
+          span {
+            width: 40px;
+            height: 40px;
+            border-radius: 50px;
+            background-color: #fff;
+            float: left;
+            margin-right: 10px;
+            display: inline-block;
+            overflow: hidden;
+            line-height: 40px;
+              
+            img {
+              width: 40px;
+              height: auto;
+              position: relative;
+              top: -1px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 768px) {
+
+}
+
+@media (min-width: 992px) {
+
+}

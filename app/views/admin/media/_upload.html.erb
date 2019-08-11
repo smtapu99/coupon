@@ -1,0 +1,18 @@
+<div class="pull-left">
+  <%= form_for [:admin, @new_media], html: {class: 'form form-horizontal', style: 'margin-bottom: 0', multipart: true} do |f| %>
+    <div class="row fileupload-buttonbar">
+      <div class="col-lg-12">
+        <span class="btn btn-success fileinput-button">
+          <i class="glyphicon glyphicon-plus"></i>
+          <span>Add files...</span>
+          <%=file_field_tag 'file_names[]', multiple: "" %>
+        </span>
+      </div>
+
+      <% if Site.current.blank? %>
+        <%= hidden_field_tag :site_id, @site_id %>
+      <% end %>
+
+    </div>
+  <% end %>
+</div>

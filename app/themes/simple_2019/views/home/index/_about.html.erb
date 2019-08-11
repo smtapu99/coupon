@@ -1,0 +1,15 @@
+<% @site.widgets_for_area('main').each_with_index do |widget, index| %>
+
+  <% if widget.name === 'text' %>
+
+    <%= render 'shared/seo_text_container', text: widget.value[:content], widget_id: index %>
+
+  <% elsif widget.name === 'raw_html' %>
+
+    <%= render_widget(widget, site: @site) %>
+
+  <% end %>
+
+<% end %>
+
+

@@ -1,0 +1,43 @@
+<% if @page.present? %>
+
+  <%= render partial: 'pages/show/head', locals: {page: @page} %>
+
+  <div class="container">
+
+    <div class="row">
+
+      <div class="col-xs-12 <%= 'col-sm-8' if @page.display_sidebar.present? %> pannacotta" id="content" role="main">
+
+        <%= render partial: 'pages/show/card_pages_show', locals: {page: @page} %>
+
+      </div>
+
+      <!-- /#content.col-xs-12 <%= 'col-sm-8' if @page.display_sidebar.present? %> pannacotta -->
+
+      <% if @page.display_sidebar.present? %>
+
+        <div class="col-xs-12 col-sm-4 pannacotta sidebar" id="sidebar" role="complementary">
+
+          <% if !is_home? %>
+
+            <%= render partial: "banners/sidebar_banner" %>
+
+          <%- end -%>
+
+          <%= render partial: 'shared/widgets_sidebar' %>
+
+        </div>
+
+        <!-- /#sidebar.col-xs-12 col-sm-4 pannacotta -->
+
+      <% end %>
+
+    </div>
+
+    <!-- /.row -->
+
+  </div>
+
+  <!-- /.container -->
+
+<% end %>

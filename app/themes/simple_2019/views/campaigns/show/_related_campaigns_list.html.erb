@@ -1,0 +1,23 @@
+<%- if campaign.template == 'grid' && @sub_pages.present? -%>
+
+  <h2><%= t(:RELATED_CAMPAIGNS, default: 'Related Campaigns') %></h2>
+
+  <ul class="list-unstyled">
+
+    <% @sub_pages.each do |campaign| %>
+
+      <% if campaign.name.present? %>
+
+      <li class="text-ellipsis">
+
+        <%= link_to campaign.name, dynamic_campaign_url_for(campaign) %>
+
+      </li>
+
+      <% end %>
+
+    <% end %>
+
+  </ul>
+
+<%- end -%>

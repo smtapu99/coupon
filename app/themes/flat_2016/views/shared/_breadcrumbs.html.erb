@@ -1,0 +1,71 @@
+<div class="card-breadcrumbs pannacotta">
+
+  <div class="card-content">
+
+    <% if breadcrumbs.present? && breadcrumbs.size > 1 %>
+
+      <ol class="breadcrumb" data-event-category="breadcrumb">
+
+        <% breadcrumbs.each_with_index do |breadcrumb, index| %>
+
+          <% if breadcrumbs.size - 1 === index %>
+
+            <li class="active">
+
+              <span><%= breadcrumb.name %></span>
+
+              <% breadcrumbs_element(name: breadcrumb.name, item: breadcrumb.path, position: index + 1) %>
+
+            </li>
+
+            <!-- /.active -->
+
+          <% else %>
+
+            <li>
+
+              <a href="<%= breadcrumb.path %>" aria-label="<%= breadcrumb.name %>" title="<%= breadcrumb.name %>">
+
+                <span>
+
+                  <% if index == 0 %>
+
+                    <i class="roberto roberto-home"></i>
+
+                    <span class="breadcrumbs-home">
+
+                      <%= breadcrumb.name %>
+
+                    </span>
+
+                  <% else %>
+
+                    <%= breadcrumb.name %>
+
+                  <% end %>
+
+                </span>
+
+              </a>
+
+              <% breadcrumbs_element(name: breadcrumb.name, item: breadcrumb.path, position: index + 1) %>
+
+            </li>
+
+          <% end %>
+
+        <% end %>
+
+      </ol>
+
+      <!-- /.breadcrumb pull-right -->
+
+    <% end %>
+
+  </div>
+
+  <!-- /.card-content -->
+
+</div>
+
+<!-- /.card card-breadcrumbs pannacotta -->

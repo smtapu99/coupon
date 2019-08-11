@@ -1,0 +1,37 @@
+<div class="card-categories-index pannacotta">
+
+    <ul class="list-unstyled list-main-categories hover">
+
+      <% @categories.each do |category| %>
+
+        <% category_url = dynamic_url_for('category', 'show', slug: category.slug, parent_slug: category.parent_slug) %>
+
+        <% add_collection_page_element(category.name, category_url) %>
+
+        <li>
+
+          <a href="<%= category_url %>">
+
+            <%- if category.css_icon_class.present? -%>
+
+              <i class="roberto roberto-category-<%= category.css_icon_class %>"></i>
+
+            <%- else -%>
+
+              <i class="roberto roberto-th-large"></i>
+
+            <%- end -%>
+
+            <%= category.name %>
+
+          </a>
+
+        </li>
+
+      <% end %>
+
+    </ul>
+
+</div>
+
+<!-- /.card card-categories-index pannacotta -->

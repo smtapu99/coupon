@@ -1,0 +1,527 @@
+.pannacotta {
+  &#my-modal {
+    .modal-backdrop.in {
+      position: fixed;
+      opacity: 0.85;
+      filter: alpha(opacity=85);
+    }
+
+    .modal-content {
+      background-color: $color-header-bg;
+      border-radius: 0;
+      color: $color-text;
+      font-size: 14px;
+      font-weight: lighter;
+      box-shadow: none;
+
+      .modal-header {
+        border-top-width: 5px;
+        border-bottom: none;
+        padding: 25px;
+
+        .btn {
+          background-color: #FFF;
+          border-radius: 13px;
+          color: $color-ashes;
+          float: none;
+          font-size: 14px;
+          margin-left: 25px;
+          padding: 6px;
+          line-height: 14px;
+          opacity: 1;
+          filter: alpha(opacity=100);
+          transition: color 0.3s ease;
+
+          .roberto-remove {
+            top: 1px;
+          }
+
+          &:focus,
+          &:hover {
+            color: $color-ready;
+          }
+        }
+      }
+
+      .modal-body {
+        padding: 0 25px 25px;
+
+        .show-coupon-details {
+          cursor: pointer;
+        }
+
+        &.newsletter-empty-shop {
+
+          .input-lg {
+            border-radius: 0;
+          }
+
+          .checkbox {
+            input {
+              top: 0;
+            }
+
+            label {
+              font-size: 11px;
+            }
+          }
+
+          input.btn-lg {
+            margin-bottom: 11px;
+          }
+
+          .text-muted small {
+            font-size: 71%;
+            display: inline-block;
+            line-height: 15px;
+          }
+        }
+
+        .envelope {
+          background: url("https://static.savings-united.com/pc/assets/default/sprite-two.png") -64px -139px no-repeat scroll;
+          display: block;
+          height: 220px;
+          margin: 20px auto 0;
+          width: 230px;
+        }
+
+        .thumb {
+          background: #FFF;
+          border: 5px solid $color-ashes;
+          display: block;
+          height: 120px;
+          margin: -240px auto 0;
+          width: 120px;
+        }
+
+        h5 {
+          color: $color-text;
+          font-size: 16px;
+          font-weight: bold;
+          line-height: 20px;
+        }
+
+        hr {
+          border-top-color: $color-cloud;
+          margin-left: -25px;
+          margin-right: -25px;
+        }
+
+        .list-steps {
+          margin-bottom: 25px;
+
+          > li {
+            display: none;
+            background: $color-inactive;
+            border-radius: 5px;
+            color: #FFF;
+            margin: 0 5px;
+            padding: 5px;
+
+            &:first-child {
+              display: inline-block;
+            }
+
+            &.with-icon {
+              border-radius: 50px;
+              font-size: 40px;
+              vertical-align: -10px;
+              width: 100px;
+              height: 100px;
+              line-height: 100px;
+
+              &.with-icon-facebook,
+              &.with-icon-twitter,
+              &.with-icon-google {
+                display: inline-block !important;
+
+                a {
+                  color: #FFF;
+                  height: 100%;
+                  width: 100%;
+                  display: inline-block;
+                }
+
+                i {
+                  position: relative;
+                  top: -4px;
+                  width: 40px;
+                }
+              }
+
+              &.with-icon-facebook {
+                background: #3B5998;
+
+                &:hover {
+                  background: #4273C8;
+                }
+              }
+
+              &.with-icon-twitter {
+                background: #55ACEE;
+
+                &:hover {
+                  background: #32BBF5;
+                }
+              }
+
+              &.with-icon-google {
+                background: #D34836;
+
+                &:hover {
+                  background: #F75B44;
+                }
+              }
+            }
+          }
+        }
+
+        p a {
+          @include flat-anchor($color-sky);
+
+          display: inline-block;
+          font-size: 20px;
+          margin: 10px 0 5px;
+        }
+
+        .privacy-note {
+          small,
+          label {
+            font-size: 12px;
+            cursor: pointer;
+            margin-top: 12px;
+          }
+
+          input {
+            min-width: 0;
+          }
+
+          a {
+            font-size: 12px;
+          }
+        }
+
+        .coupon-info-box {
+          width: 78%;
+          margin: 0 auto 20px;
+
+          td {
+            b {
+              margin-right: 10px;
+            }
+          }
+
+          table {
+            margin-top: 10px;
+          }
+
+          .coupon-time-box {
+            font-size: 11px;
+            font-weight: normal;
+            text-align: left;
+            margin-bottom: 10px;
+          }
+
+          .coupon-header {
+            width: 100%;
+
+            img {
+              max-width: 150px;
+              margin: 0 auto;
+            }
+          }
+
+          .coupon-title-box {
+            width: 100%;
+            text-align: center;
+            margin-top: 5px;
+
+            .coupon-title {
+              text-align: left;
+              color: #262626;
+              font-size: 18px;
+              font-weight: 600;
+              margin-top: 0;
+              line-height: 22px;
+            }
+          }
+        }
+
+        .coupon-info {
+          margin-left: 0;
+          font-size: 12px;
+          margin-bottom: 10px;
+        }
+
+        .the-code {
+          background-color: #FFF;
+          border-radius: 2px;
+          border-width: 2px;
+          color: $color-text;
+          font-size: 20px;
+          font-weight: bold;
+          margin: 0 auto;
+          padding: 17px 12px;
+          position: relative;
+          width: 78%;
+
+          &:focus,
+          &:hover {
+            > .cursor {
+              display: none !important;
+            }
+          }
+
+          > .cursor {
+            background-color: $color-text;
+            height: 27px;
+            margin-left: 2px;
+            position: absolute;
+            top: 17px;
+            width: 1px;
+            animation: CURSOR-BLINK 1.2s infinite;
+          }
+        }
+
+        .zclip {
+          display: block;
+          margin: 0 auto;
+          width: 100%;
+          margin-top: 6px;
+        }
+
+        .the-message {
+          margin: 15px auto 0;
+          padding: 0;
+
+          .btn {
+            font-size: 16px;
+            color: $color-white;
+            text-decoration: none;
+            border-bottom: 0;
+            margin-top: 16px;
+            display: inline-block;
+
+            &:hover {
+              text-decoration: none;
+              border-bottom: 0;
+            }
+          }
+        }
+
+        .pannacotta.card-coupons-list {
+          margin: 0 auto;
+          width: 80%;
+
+          .card-content {
+            > ul > li {
+              background-color: transparent;
+              border: none;
+              padding: 0;
+              margin-bottom: 30px;
+              box-shadow: none;
+            }
+
+            .coupon-logo {
+              border: none;
+              height: auto;
+              padding: 0;
+              width: auto;
+
+              img {
+                margin: 0 auto;
+                background-color: transparent;
+              }
+            }
+
+            .coupon-title {
+              margin-bottom: 0;
+            }
+          }
+        }
+
+        .input-button-wrapper {
+          background-color: #FFF;
+          border-width: 2px;
+          margin: 30px auto 10px;
+          padding: 10px;
+          width: 80%;
+
+          input {
+            border-color: transparent;
+            color: $color-text;
+            font-size: 14px;
+            font-weight: lighter;
+            box-shadow: none;
+          }
+
+          .btn {
+            display: block;
+            width: 100%;
+            padding: 10px 24px;
+          }
+        }
+      }
+
+      .modal-footer {
+        background-color: $color-card-bg;
+        border-top: 1px solid $color-border;
+        padding: 10px 25px;
+
+        .list-voting {
+          margin: 0;
+
+          .btn {
+            border: 1px solid $color-border;
+            font-size: 30px;
+            border-radius: 22px;
+            color: $color-border;
+            padding: 0 6px !important;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+
+            &:focus,
+            &:hover,
+            &.active {
+              color: #FFF;
+            }
+
+            &.add-positive-vote {
+              &:focus,
+              &:hover,
+              &.active {
+                background-color: $color-freedom;
+                border-color: $color-freedom;
+              }
+            }
+
+            &.add-negative-vote {
+              &:focus,
+              &:hover,
+              &.active {
+                background-color: $color-ashes;
+                border-color: $color-ashes;
+              }
+            }
+
+            .roberto {
+              vertical-align: -4px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .pannacotta#my-modal {
+    .modal-dialog {
+      width: 650px;
+    }
+
+    .modal-content {
+      .modal-body {
+        .zclip {
+          display: inline-block;
+          float: right;
+          margin: -6px 0 0;
+          width: auto;
+          padding: 9px 24px;
+        }
+
+        .coupon-info-box {
+          width: 73%;
+
+          .coupon-header {
+            width: 25%;
+            float: left;
+          }
+
+          .coupon-title-box {
+            padding-left: 20px;
+            margin-top: 0;
+            width: 75%;
+            float: left;
+
+            .exclusive {
+              padding: 0;
+              margin: 0;
+              text-align: left;
+            }
+
+            .coupon-title {
+              text-align: left;
+            }
+          }
+        }
+
+        .the-code,
+        .the-message {
+          width: 73% !important;
+        }
+
+        .list-steps {
+          > li {
+            display: inline-block;
+          }
+        }
+
+        .input-button-wrapper {
+          height: 66px;
+
+          input[type=email],
+          input[type=text] {
+            min-width: 300px;
+            padding: 13px 12px 6px;
+          }
+
+          .btn {
+            display: inline-block !important;
+            float: right !important;
+            width: auto !important;
+          }
+        }
+
+        &.newsletterpopup .input-button-wrapper {
+          height: auto;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 992px) {
+  .pannacotta#my-modal .modal-content .modal-body {
+    .the-code,
+    .the-message {
+      width: 80% !important;
+    }
+    .coupon-info-box {
+      width: 80%;
+
+      .coupon-header {
+        width: 25%;
+        float: left;
+      }
+
+      .coupon-title-box {
+        width: 75%;
+        float: left;
+      }
+    }
+  }
+}
+
+@keyframes CURSOR-BLINK {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}

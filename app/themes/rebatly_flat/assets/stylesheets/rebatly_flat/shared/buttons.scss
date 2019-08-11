@@ -1,0 +1,126 @@
+.btn {
+  &.active, &:active {
+    @include flat-box-shadow(none);
+  }
+
+  &:focus, &:active:focus, &.active:focus {
+    outline: none;
+  }
+}
+
+.pannacotta {
+  .btn-ashes,
+  .btn-berry,
+  .btn-cloud,
+  .btn-cherry,
+  .btn-freedom,
+  .btn-gold,
+  .btn-juicy,
+  .btn-mamba,
+  .btn-ready,
+  .btn-royal,
+  .btn-sky,
+  .btn-transparent,
+  .btn-white {
+    border-radius: 0px;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 13px 24px;
+
+    @include flat-transition(background-color .3s ease);
+
+    &:focus, &:hover {
+      text-decoration: none;
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  .btn-ashes {
+    @include flat-button($color-ashes);
+  }
+
+  .btn-berry {
+    @include flat-button($color-berry);
+  }
+
+  .btn-cloud {
+    @include flat-button($color-cloud, $color-text);
+  }
+
+  .btn-cherry {
+    @include flat-button($color-cherry);
+  }
+
+  .btn-freedom {
+    @include flat-button($color-freedom);
+  }
+
+  .btn-gold {
+    @include flat-button($color-gold);
+  }
+
+  .btn-juicy {
+    @include flat-button($color-juicy);
+  }
+
+  .btn-mamba {
+    @include flat-button($color-mamba);
+  }
+
+  .btn-ready {
+    @include flat-button($color-ready, #fff, 30%);
+  }
+
+  .btn-royal {
+    @include flat-button($color-royal);
+  }
+
+  .btn-sky {
+    @include flat-button($color-sky);
+  }
+
+  .btn-transparent {
+    @include flat-button(rgba(255, 255, 255, 0), $color-border);
+  }
+
+  .btn-white {
+    @include flat-button(#fff, $color-text);
+  }
+
+  .btn-no-border {
+    border-bottom: none;
+    padding: 12px 24px !important;
+  }
+
+  .btn-no-padding {
+    padding: 0 !important;
+  }
+
+  .btn-squared {
+    padding: 10px !important;
+  }
+
+  .btn-small {
+    padding: 9px 16px !important;
+  }
+
+  .btn-seamless {
+    border: 0;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 4px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 4px;
+    margin-left: -2px;
+  }
+}
+
+@media (min-width: 992px) {
+  .pannacotta {
+    .btn-no-border {
+      padding: 16px 24px !important;
+    }
+  }
+}

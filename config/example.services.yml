@@ -1,0 +1,17 @@
+# Config for Carriewave/Fog uploader
+
+development:
+  provider: Google
+  fog_directory: 'xxxxxxxxxxx'
+  google_project: xxxxxxxxxxxx
+  google_storage_access_key_id: xxxxxxxxxxxxxxxx
+  google_storage_secret_access_key: xxxxxxxxxxxxxx
+
+
+test:
+  provider: Google
+  fog_directory: 'xxxxxxxxxxx'
+  google_project: xxxxxxxxxxxx
+  google_storage_access_key_id: xxxxxxxxxxxxxxxx
+  google_storage_secret_access_key: xxxxxxxxxxxxxx
+

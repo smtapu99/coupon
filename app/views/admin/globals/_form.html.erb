@@ -1,0 +1,69 @@
+  <div class="col-sm-12">
+
+    <div class="box bordered-box blue-border">
+
+      <div class="box-header blue-background">
+
+        <div class="title">
+
+          <i class="icon-edit"></i>
+
+          Global Form
+
+        </div>
+
+      </div>
+
+      <div class="box-content">
+
+        <%= form_for [:admin, @global], html: {class: 'form form-horizontal', style: 'margin-bottom: 0'} do |f| %>
+
+        <%= render partial: 'admin/shared/form_errors', locals: {ancestor: @global} %>
+
+        <div class="form-group <%= 'has-error' unless @global.errors.messages[:name].blank? %>">
+
+          <%= f.label :name, class: 'col-md-2 control-label' %>
+
+          <div class="col-md-5">
+
+            <%= f.text_field :name, class: 'form-control' %>
+
+          </div>
+
+        </div>
+
+        <div class="form-group <%= 'has-error' unless @global.errors.messages[:locale].blank? %>">
+
+          <%= f.label :model_type, class: 'col-md-2 control-label' %>
+
+          <div class="col-md-5">
+
+            <%= f.select :model_type, Global.model_types, { include_blank: true }, class: 'form-control' %>
+
+          </div>
+
+        </div>
+
+        <div class="form-actions form-actions-padding-sm">
+
+          <div class="row">
+
+            <div class="col-md-10 col-md-offset-2">
+
+              <%= f.submit nil, class: 'btn btn-primary' if can? :create, Global %>
+
+              <%= link_to t('.cancel', default: t('helpers.links.cancel')), admin_globals_path, class: 'btn' %>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <% end %>
+
+      </div>
+
+    </div>
+
+  </div>

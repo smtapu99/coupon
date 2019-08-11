@@ -1,0 +1,31 @@
+@critical page.css {
+  .page {
+    margin-top: 28px;
+    margin-bottom: 30px;
+    background-color: #FFF;
+    border: 1px solid $border-color;
+    border-bottom-width: 2px;
+    border-radius: 2px;
+
+    &__header {
+      padding: 25px;
+    }
+
+    &__title {
+      margin: 0;
+      font-weight: bold;
+      font-size: 20px;
+    }
+
+    &__content {
+      padding: 0 25px 25px;
+      font-weight: 300;
+      font-size: 14px;
+      line-height: 30px;
+    }
+  }
+
+  .pages #content {
+    order: 0;
+  }
+}

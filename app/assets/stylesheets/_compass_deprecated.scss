@@ -1,0 +1,26 @@
+@mixin clearfix {
+  overflow: hidden;
+  zoom: 1;
+}
+
+@mixin transition($transitions...) {
+  transition: $transitions;
+}
+
+@mixin border-radius($radius: $default-border-radius, $vertical-radius: false) {
+  border-radius: $radius;
+}
+
+@mixin box-shadow($shadow...) {
+  box-shadow: $shadow;
+}
+
+@mixin opacity($opacity) {
+  opacity: $opacity;
+}
+
+@mixin ellipsis($no-wrap: true) {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

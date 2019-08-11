@@ -1,0 +1,13 @@
+<% content_for :sidebar do %>
+
+  <%- unless reduced_js_features? -%>
+
+    <%= render partial: 'shared/shop_filter', locals: {shops: shops} %>
+
+  <%- end -%>
+
+  <%= render partial: 'categories/show/card_see_more_categories', locals: {categories: categories} %>
+
+  <%= render partial: 'shared/widgets_sidebar' %>
+
+<% end %>
